@@ -31,7 +31,7 @@ Creating a device
 * :py:attr:`connection_mode` determines which :doc:`connection adapter <data_model>` would be activated for the device.
 * :py:attr:`address` determines IP address/DNS name for socket-based or HTTP REST connection, it is not used for serial connection.
 
- The rest of constructor parameters are device specific and are described in the corresponding :doc:`module documentation <src/devices>`.
+ The rest of constructor parameters are device specific and are described in the corresponding :doc:`module documentation <api/devices>`.
 
 
 **Socket-based connection:**
@@ -151,7 +151,7 @@ necessary, so that the end user has nothing to worry about::
             self.execute_when_ready(self.send, cmd, position)
 
 For the detailed syntax please check the corresponding
-:doc:`documentation <src/controllers>`.
+:doc:`documentation <api/controllers>`.
 
 The :py:meth:`~PyLabware.controllers.LabDevice.wait_until_ready()`
 is a simplified wrapper over
@@ -341,7 +341,7 @@ device method with ``if self.simulation is True`` clause, a special method decor
 :py:attr:`@in_simulation_device_returns` decorator should be used to wrap any
 function that relies on a particular value that device should return. This value
 should be passed as the decorator argument. Here is an example from :doc:`Tricontinent C3000
-syringe pump driver <src/devices.tricontinent_c3000>`::
+syringe pump driver <api/devices.tricontinent_c3000>`::
 
     class C3000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         ...
@@ -377,7 +377,7 @@ syringe pump driver <src/devices.tricontinent_c3000>`::
             self.logger.debug("is_idle()::true.")
             return True
 
-The decorator works :doc:`as following <src/controllers>`:
+The decorator works :doc:`as following <api/controllers>`:
 
 * Gets the object reference from the wrapped bound method (passed as self in the arguments list).
 * Checks :py:meth:`self.simulation` to proceed.
