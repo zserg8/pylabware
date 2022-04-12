@@ -21,6 +21,9 @@ from .devices.ika_rv10 import RV10Rotovap
 # JULABO
 from .devices.julabo_cf41 import CF41Chiller
 
+# TECAN
+from .devices.tecan_cavro_xlp6000 import XLP6000SyringePump
+
 # Tricontinent
 from .devices.tricontinent_c3000 import C3000SyringePump
 

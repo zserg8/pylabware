@@ -13,8 +13,10 @@ def slicer(reply: str, *args) -> str:
     Returns:
         (any): Slice of the original object.
     """
-
-    return reply[slice(*args)]
+    reply = reply[slice(*args)]
+    if (len(reply) == 1):
+        reply = str(reply[0])
+    return reply
 
 
 def researcher(reply, *args):
@@ -53,3 +55,15 @@ def stripper(reply: str, prefix=None, suffix=None) -> str:
         reply = reply[:-len(suffix)]
 
     return reply
+
+def splitter(reply: str, separator: str, *slice_positions):
+    """ This is a combination of str.split() followed by slicing.
+        Allows to avoid using RegExes for simple cases.
+
+    Args:
+        reply (str): String to process
+        separator (str): Sparator for str.split().
+    """
+
+    reply = reply.split(separator)
+    return slicer(reply, *slice_positions)

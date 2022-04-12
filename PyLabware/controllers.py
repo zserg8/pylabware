@@ -450,7 +450,9 @@ class LabDevice(AbstractLabDevice):
                 check_ready = self.is_idle
             while not check_ready():
                 sleep(0.5)
-            self.logger.info("Waiting done. Device <%s> ready.", self.device_name)
+            #TODO Think how to reduce the amount of repeated log messages here.
+            # Maybe invert execute_when_ready() <-> wait_until_ready() logic
+            #self.logger.info("Waiting done. Device <%s> ready.", self.device_name)
             if args is not None:
                 return action(*args)
             else:
