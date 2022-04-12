@@ -5,7 +5,7 @@ Data flow
 ---------
 The flow chart below shows the data flow from the host to the device using the
 :py:meth:`set_temperature()` method for the
-:doc:`IKA RCT Digital hotplate<src/devices.ika_rct_digital>`:
+:doc:`IKA RCT Digital hotplate<api/devices.ika_rct_digital>`:
 
 .. image:: images/_static/flow_diagram_data_to_device.png
 

@@ -8,7 +8,7 @@ PyLabware documentation
    overview
    usage
    data_model
-   src/main
+   api/main
    utils
    contributing
 
