@@ -21,6 +21,9 @@ from .devices.ika_rv10 import RV10Rotovap
 # JULABO
 from .devices.julabo_cf41 import CF41Chiller
 
+# Mettler Toledo
+from .devices.mt_ms3002s import MS3002SBalance
+
 # Metrohm
 from .devices.metrohm_781ph import Metrohm781pHMeter
 
