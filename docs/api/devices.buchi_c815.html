@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buchi C815 &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Buchi R300" href="devices.buchi_r300.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="devices.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyLabware
+            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_model.html">Data model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="connections.html">Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsers.html">Parsers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="main.html#devices">Devices</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Buchi C815</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.buchi_r300.html">Buchi R300</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_hei_torque_100_precision.html">Heidolph HeiTorque 100 Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_rzr_2052_control.html">Heidolph RZR 2052 Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.huber_petite_fleur.html">Huber Petite Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_microstar_75.html">IKA Microstar 75</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rct_digital.html">IKA RCT Digital</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rv10.html">IKA RV10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.julabo_cf41.html">Julabo CF41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="main.html">API Reference</a> &raquo;</li>
+          <li><a href="devices.html">&lt;no title&gt;</a> &raquo;</li>
+      <li>Buchi C815</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/devices.buchi_c815.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-PyLabware.devices.buchi_c815">
+<span id="buchi-c815"></span><h1>Buchi C815<a class="headerlink" href="#module-PyLabware.devices.buchi_c815" title="Permalink to this headline"></a></h1>
+<p>PyLabware driver for Buchi C815 flash system.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.buchi_c815.</span></span><span class="sig-name descname"><span class="pre">C815Commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815Commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.models.LabDeviceCommands</span></code></p>
+<p>Collection of command definitions for C815 flash chromatography system.</p>
+<p>This class shouldn’t be instantiated</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.C815_IDLE_STATE">
+<span class="sig-name descname"><span class="pre">C815_IDLE_STATE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'Idle'</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.C815_IDLE_STATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.C815_SYSTEMMODEL">
+<span class="sig-name descname"><span class="pre">C815_SYSTEMMODEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'C815_FlashAdvanced'</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.C815_SYSTEMMODEL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_AIRSYSTEM_ISENABLED">
+<span class="sig-name descname"><span class="pre">GET_AIRSYSTEM_ISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_AIRSYSTEM_ISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['airSystem',</span> <span class="pre">'isEnabled'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_AIRSYSTEM_ISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_AIRSYSTEM_VALVEPOS">
+<span class="sig-name descname"><span class="pre">GET_AIRSYSTEM_VALVEPOS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_AIRSYSTEM_VALVEPOS',</span> <span class="pre">'path':</span> <span class="pre">['airSystem',</span> <span class="pre">'valvePos'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_AIRSYSTEM_VALVEPOS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_COLUMN_COLUMNNAME">
+<span class="sig-name descname"><span class="pre">GET_COLUMN_COLUMNNAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_COLUMN_COLUMNNAME',</span> <span class="pre">'path':</span> <span class="pre">['column',</span> <span class="pre">'columnName'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_COLUMN_COLUMNNAME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_COLUMN_DATA">
+<span class="sig-name descname"><span class="pre">GET_COLUMN_DATA</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_COLUMN_DATA',</span> <span class="pre">'path':</span> <span class="pre">['column',</span> <span class="pre">'data'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_COLUMN_DATA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_COLUMN_VERSION">
+<span class="sig-name descname"><span class="pre">GET_COLUMN_VERSION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_COLUMN_VERSION',</span> <span class="pre">'path':</span> <span class="pre">['column',</span> <span class="pre">'version'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_COLUMN_VERSION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_DETECTORS">
+<span class="sig-name descname"><span class="pre">GET_DETECTORS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_DETECTORS',</span> <span class="pre">'path':</span> <span class="pre">['detectors'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_DETECTORS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_CARRIERFLOWISENABLED">
+<span class="sig-name descname"><span class="pre">GET_ELSDDETECTOR_CARRIERFLOWISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_ELSDDETECTOR_CARRIERFLOWISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'carrierFlowIsEnabled'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_CARRIERFLOWISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_LASERISENABLED">
+<span class="sig-name descname"><span class="pre">GET_ELSDDETECTOR_LASERISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_ELSDDETECTOR_LASERISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'laserIsEnabled'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_LASERISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_LASERVOLTAGE">
+<span class="sig-name descname"><span class="pre">GET_ELSDDETECTOR_LASERVOLTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_ELSDDETECTOR_LASERVOLTAGE',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'laserVoltage'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_LASERVOLTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SENSITIVITY">
+<span class="sig-name descname"><span class="pre">GET_ELSDDETECTOR_SENSITIVITY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_ELSDDETECTOR_SENSITIVITY',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'sensitivity'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SENSITIVITY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SHUTTLEVALVEISENABLED">
+<span class="sig-name descname"><span class="pre">GET_ELSDDETECTOR_SHUTTLEVALVEISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_ELSDDETECTOR_SHUTTLEVALVEISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'shuttleValveIsEnabled'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SHUTTLEVALVEISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SIGNAL_SIGNAL">
+<span class="sig-name descname"><span class="pre">GET_ELSDDETECTOR_SIGNAL_SIGNAL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_ELSDDETECTOR_SIGNAL_SIGNAL',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'signal',</span> <span class="pre">'signal'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SIGNAL_SIGNAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SIGNAL_TIMESINCESTART">
+<span class="sig-name descname"><span class="pre">GET_ELSDDETECTOR_SIGNAL_TIMESINCESTART</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_ELSDDETECTOR_SIGNAL_TIMESINCESTART',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'signal',</span> <span class="pre">'timeSinceStart'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_ELSDDETECTOR_SIGNAL_TIMESINCESTART" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION">
+<span class="sig-name descname"><span class="pre">GET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'collectionTask',</span> <span class="pre">'action'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_FIRMWARE">
+<span class="sig-name descname"><span class="pre">GET_FRACTIONCOLLECTOR_FIRMWARE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_FRACTIONCOLLECTOR_FIRMWARE',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'firmware'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_FIRMWARE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_POSITION_TRAY">
+<span class="sig-name descname"><span class="pre">GET_FRACTIONCOLLECTOR_POSITION_TRAY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_FRACTIONCOLLECTOR_POSITION_TRAY',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'position',</span> <span class="pre">'tray'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_POSITION_TRAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_POSITION_VIAL">
+<span class="sig-name descname"><span class="pre">GET_FRACTIONCOLLECTOR_POSITION_VIAL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_FRACTIONCOLLECTOR_POSITION_VIAL',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'position',</span> <span class="pre">'vial'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_POSITION_VIAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_TRAYS">
+<span class="sig-name descname"><span class="pre">GET_FRACTIONCOLLECTOR_TRAYS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_FRACTIONCOLLECTOR_TRAYS',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'trays'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_FRACTIONCOLLECTOR_TRAYS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_PUMP_FIRMWARE">
+<span class="sig-name descname"><span class="pre">GET_PUMP_FIRMWARE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_PUMP_FIRMWARE',</span> <span class="pre">'path':</span> <span class="pre">['pump',</span> <span class="pre">'firmware'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_PUMP_FIRMWARE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_PUMP_HARDWARE">
+<span class="sig-name descname"><span class="pre">GET_PUMP_HARDWARE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_PUMP_HARDWARE',</span> <span class="pre">'path':</span> <span class="pre">['pump',</span> <span class="pre">'hardware'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_PUMP_HARDWARE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_PUMP_PUMPTYPE">
+<span class="sig-name descname"><span class="pre">GET_PUMP_PUMPTYPE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_PUMP_PUMPTYPE',</span> <span class="pre">'path':</span> <span class="pre">['pump',</span> <span class="pre">'pumpType'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_PUMP_PUMPTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_RUNMODE">
+<span class="sig-name descname"><span class="pre">GET_RUNMODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_RUNMODE',</span> <span class="pre">'path':</span> <span class="pre">['runMode'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_RUNMODE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_RUNNINGSTATE">
+<span class="sig-name descname"><span class="pre">GET_RUNNINGSTATE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_RUNNINGSTATE',</span> <span class="pre">'path':</span> <span class="pre">['runningState'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_RUNNINGSTATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_AIRPRESSUREINLET">
+<span class="sig-name descname"><span class="pre">GET_SENSORS_AIRPRESSUREINLET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SENSORS_AIRPRESSUREINLET',</span> <span class="pre">'path':</span> <span class="pre">['sensors',</span> <span class="pre">'airPressureInlet'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_AIRPRESSUREINLET" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_AIRPRESSURENEBULIZER">
+<span class="sig-name descname"><span class="pre">GET_SENSORS_AIRPRESSURENEBULIZER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SENSORS_AIRPRESSURENEBULIZER',</span> <span class="pre">'path':</span> <span class="pre">['sensors',</span> <span class="pre">'airPressureNebulizer'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_AIRPRESSURENEBULIZER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_SOLVENTLEVELS">
+<span class="sig-name descname"><span class="pre">GET_SENSORS_SOLVENTLEVELS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SENSORS_SOLVENTLEVELS',</span> <span class="pre">'path':</span> <span class="pre">['sensors',</span> <span class="pre">'solventLevels'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_SOLVENTLEVELS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_SOLVENTPRESSUREAFTERCOLUMN">
+<span class="sig-name descname"><span class="pre">GET_SENSORS_SOLVENTPRESSUREAFTERCOLUMN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SENSORS_SOLVENTPRESSUREAFTERCOLUMN',</span> <span class="pre">'path':</span> <span class="pre">['sensors',</span> <span class="pre">'solventPressureAfterColumn'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_SOLVENTPRESSUREAFTERCOLUMN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_SOLVENTPRESSUREAFTERPUMP">
+<span class="sig-name descname"><span class="pre">GET_SENSORS_SOLVENTPRESSUREAFTERPUMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SENSORS_SOLVENTPRESSUREAFTERPUMP',</span> <span class="pre">'path':</span> <span class="pre">['sensors',</span> <span class="pre">'solventPressureAfterPump'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_SOLVENTPRESSUREAFTERPUMP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_VAPORLEVEL">
+<span class="sig-name descname"><span class="pre">GET_SENSORS_VAPORLEVEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SENSORS_VAPORLEVEL',</span> <span class="pre">'path':</span> <span class="pre">['sensors',</span> <span class="pre">'vaporLevel'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_VAPORLEVEL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_WASTELEVEL">
+<span class="sig-name descname"><span class="pre">GET_SENSORS_WASTELEVEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SENSORS_WASTELEVEL',</span> <span class="pre">'path':</span> <span class="pre">['sensors',</span> <span class="pre">'wasteLevel'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SENSORS_WASTELEVEL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_FLOWISENABLED">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_FLOWISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_FLOWISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'flowIsEnabled'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_FLOWISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_FLOWRATE">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_FLOWRATE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_FLOWRATE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'flowRate'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_FLOWRATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_MODE">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_MODE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'mode'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_MODE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'sampleInjectionValvePos'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line1Percentage'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line2Percentage'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line3Percentage'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE">
+<span class="sig-name descname"><span class="pre">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line4Percentage'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMCLASS">
+<span class="sig-name descname"><span class="pre">GET_SYSTEMCLASS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SYSTEMCLASS',</span> <span class="pre">'path':</span> <span class="pre">['systemClass'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMCLASS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMLINE">
+<span class="sig-name descname"><span class="pre">GET_SYSTEMLINE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SYSTEMLINE',</span> <span class="pre">'path':</span> <span class="pre">['systemLine'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMLINE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMMODEL">
+<span class="sig-name descname"><span class="pre">GET_SYSTEMMODEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SYSTEMMODEL',</span> <span class="pre">'path':</span> <span class="pre">['systemModel'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMMODEL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMNAME">
+<span class="sig-name descname"><span class="pre">GET_SYSTEMNAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Info',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_SYSTEMNAME',</span> <span class="pre">'path':</span> <span class="pre">['systemName'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_SYSTEMNAME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH1">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ABSORBANCE_CH1</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ABSORBANCE_CH1',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'absorbance',</span> <span class="pre">'ch1'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH2">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ABSORBANCE_CH2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ABSORBANCE_CH2',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'absorbance',</span> <span class="pre">'ch2'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH3">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ABSORBANCE_CH3</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ABSORBANCE_CH3',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'absorbance',</span> <span class="pre">'ch3'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH4">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ABSORBANCE_CH4</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ABSORBANCE_CH4',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'absorbance',</span> <span class="pre">'ch4'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_CH4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_SCAN">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ABSORBANCE_SCAN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ABSORBANCE_SCAN',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'absorbance',</span> <span class="pre">'scan'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_SCAN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_TIMESINCESTART">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ABSORBANCE_TIMESINCESTART</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ABSORBANCE_TIMESINCESTART',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'absorbance',</span> <span class="pre">'timeSinceStart'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ABSORBANCE_TIMESINCESTART" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH1">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ENABLEDCHANNELS_CH1</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ENABLEDCHANNELS_CH1',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch1'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH2">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ENABLEDCHANNELS_CH2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ENABLEDCHANNELS_CH2',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch2'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH3">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ENABLEDCHANNELS_CH3</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ENABLEDCHANNELS_CH3',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch3'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH4">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ENABLEDCHANNELS_CH4</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ENABLEDCHANNELS_CH4',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch4'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_CH4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_SCAN">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_ENABLEDCHANNELS_SCAN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_ENABLEDCHANNELS_SCAN',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'scan'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_ENABLEDCHANNELS_SCAN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_SENSITIVITY">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_SENSITIVITY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_SENSITIVITY',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'sensitivity'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_SENSITIVITY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_SPECTRUM_TIMESINCESTART">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_SPECTRUM_TIMESINCESTART</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_SPECTRUM_TIMESINCESTART',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'spectrum',</span> <span class="pre">'timeSinceStart'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_SPECTRUM_TIMESINCESTART" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_SPECTRUM_VALUES">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_SPECTRUM_VALUES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_SPECTRUM_VALUES',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'spectrum',</span> <span class="pre">'values'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_SPECTRUM_VALUES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH1">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_WAVELENGTHS_CH1</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_WAVELENGTHS_CH1',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch1'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH2">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_WAVELENGTHS_CH2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_WAVELENGTHS_CH2',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch2'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH3">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_WAVELENGTHS_CH3</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_WAVELENGTHS_CH3',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch3'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH4">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_WAVELENGTHS_CH4</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_WAVELENGTHS_CH4',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch4'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_CH4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_SCANEND">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_WAVELENGTHS_SCANEND</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_WAVELENGTHS_SCANEND',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'scanEnd'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_SCANEND" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_SCANSTART">
+<span class="sig-name descname"><span class="pre">GET_UVDETECTOR_WAVELENGTHS_SCANSTART</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'GET',</span> <span class="pre">'name':</span> <span class="pre">'GET_UVDETECTOR_WAVELENGTHS_SCANSTART',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'scanStart'],</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.GET_UVDETECTOR_WAVELENGTHS_SCANSTART" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_AIRSYSTEM_ISENABLED">
+<span class="sig-name descname"><span class="pre">SET_AIRSYSTEM_ISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_AIRSYSTEM_ISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['airSystem',</span> <span class="pre">'isEnabled'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_AIRSYSTEM_ISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_AIRSYSTEM_VALVEPOS">
+<span class="sig-name descname"><span class="pre">SET_AIRSYSTEM_VALVEPOS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Off',</span> <span class="pre">'Elsd',</span> <span class="pre">'Column']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_AIRSYSTEM_VALVEPOS',</span> <span class="pre">'path':</span> <span class="pre">['airSystem',</span> <span class="pre">'valvePos'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_AIRSYSTEM_VALVEPOS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_CARRIERFLOWISENABLED">
+<span class="sig-name descname"><span class="pre">SET_ELSDDETECTOR_CARRIERFLOWISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_ELSDDETECTOR_CARRIERFLOWISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'carrierFlowIsEnabled'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_CARRIERFLOWISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_LASERISENABLED">
+<span class="sig-name descname"><span class="pre">SET_ELSDDETECTOR_LASERISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_ELSDDETECTOR_LASERISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'laserIsEnabled'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_LASERISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_SENSITIVITY">
+<span class="sig-name descname"><span class="pre">SET_ELSDDETECTOR_SENSITIVITY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Low',</span> <span class="pre">'High']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_ELSDDETECTOR_SENSITIVITY',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'sensitivity'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_SENSITIVITY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_SHUTTLEVALVEISENABLED">
+<span class="sig-name descname"><span class="pre">SET_ELSDDETECTOR_SHUTTLEVALVEISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_ELSDDETECTOR_SHUTTLEVALVEISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['elsdDetector',</span> <span class="pre">'shuttleValveIsEnabled'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_ELSDDETECTOR_SHUTTLEVALVEISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION">
+<span class="sig-name descname"><span class="pre">SET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Waste',</span> <span class="pre">'Vial']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'collectionTask',</span> <span class="pre">'action'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_FRACTIONCOLLECTOR_POSITION_TRAY">
+<span class="sig-name descname"><span class="pre">SET_FRACTIONCOLLECTOR_POSITION_TRAY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Left',</span> <span class="pre">'Right',</span> <span class="pre">'Unknown']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_FRACTIONCOLLECTOR_POSITION_TRAY',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'position',</span> <span class="pre">'tray'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_FRACTIONCOLLECTOR_POSITION_TRAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_FRACTIONCOLLECTOR_POSITION_VIAL">
+<span class="sig-name descname"><span class="pre">SET_FRACTIONCOLLECTOR_POSITION_VIAL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Unknown',</span> <span class="pre">'Home']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_FRACTIONCOLLECTOR_POSITION_VIAL',</span> <span class="pre">'path':</span> <span class="pre">['fractionCollector',</span> <span class="pre">'position',</span> <span class="pre">'vial'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_FRACTIONCOLLECTOR_POSITION_VIAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_RUNMODE">
+<span class="sig-name descname"><span class="pre">SET_RUNMODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Flash',</span> <span class="pre">'Prep']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_RUNMODE',</span> <span class="pre">'path':</span> <span class="pre">['runMode'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_RUNMODE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_FLOWISENABLED">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_FLOWISENABLED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_FLOWISENABLED',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'flowIsEnabled'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_FLOWISENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_FLOWRATE">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_FLOWRATE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_FLOWRATE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'flowRate'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_FLOWRATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_MODE">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Flash',</span> <span class="pre">'Prep']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_MODE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'mode'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_MODE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Load',</span> <span class="pre">'Separation']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'sampleInjectionValvePos'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line1Percentage'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line2Percentage'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line3Percentage'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE">
+<span class="sig-name descname"><span class="pre">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE',</span> <span class="pre">'path':</span> <span class="pre">['solventSystem',</span> <span class="pre">'solventMixture',</span> <span class="pre">'line4Percentage'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH1">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_ENABLEDCHANNELS_CH1</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Off',</span> <span class="pre">'On',</span> <span class="pre">'Monitor']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_ENABLEDCHANNELS_CH1',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch1'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH2">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_ENABLEDCHANNELS_CH2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Off',</span> <span class="pre">'On',</span> <span class="pre">'Monitor']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_ENABLEDCHANNELS_CH2',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch2'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH3">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_ENABLEDCHANNELS_CH3</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Off',</span> <span class="pre">'On',</span> <span class="pre">'Monitor']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_ENABLEDCHANNELS_CH3',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch3'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH4">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_ENABLEDCHANNELS_CH4</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Off',</span> <span class="pre">'On',</span> <span class="pre">'Monitor']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_ENABLEDCHANNELS_CH4',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'ch4'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_CH4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_SCAN">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_ENABLEDCHANNELS_SCAN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Off',</span> <span class="pre">'On',</span> <span class="pre">'Monitor']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_ENABLEDCHANNELS_SCAN',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'enabledChannels',</span> <span class="pre">'scan'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_ENABLEDCHANNELS_SCAN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_SENSITIVITY">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_SENSITIVITY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['Low',</span> <span class="pre">'High']},</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_SENSITIVITY',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'sensitivity'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_SENSITIVITY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH1">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_WAVELENGTHS_CH1</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_WAVELENGTHS_CH1',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch1'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH2">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_WAVELENGTHS_CH2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_WAVELENGTHS_CH2',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch2'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH3">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_WAVELENGTHS_CH3</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_WAVELENGTHS_CH3',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch3'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH4">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_WAVELENGTHS_CH4</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_WAVELENGTHS_CH4',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'ch4'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_CH4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_SCANEND">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_WAVELENGTHS_SCANEND</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_WAVELENGTHS_SCANEND',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'scanEnd'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_SCANEND" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_SCANSTART">
+<span class="sig-name descname"><span class="pre">SET_UVDETECTOR_WAVELENGTHS_SCANSTART</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">None,</span> <span class="pre">'endpoint':</span> <span class="pre">'/api/v1/Process',</span> <span class="pre">'method':</span> <span class="pre">'PUT',</span> <span class="pre">'name':</span> <span class="pre">'SET_UVDETECTOR_WAVELENGTHS_SCANSTART',</span> <span class="pre">'path':</span> <span class="pre">['uvDetector',</span> <span class="pre">'wavelengths',</span> <span class="pre">'scanStart'],</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815Commands.SET_UVDETECTOR_WAVELENGTHS_SCANSTART" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.buchi_c815.</span></span><span class="sig-name descname"><span class="pre">C815FlashChromatographySystem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractFlashChromatographySystem" title="PyLabware.controllers.AbstractFlashChromatographySystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractFlashChromatographySystem</span></code></a></p>
+<p>This provides a Python class for the Buchi C815 flash chromatography system
+based on the Buchi OpenAPI specification v.1</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+<li><p><strong>address</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>port</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>user</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.check_errors">
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.check_errors" title="Permalink to this definition"></a></dt>
+<dd><p>Not supported on this model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.clear_errors">
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.clear_errors" title="Permalink to this definition"></a></dt>
+<dd><p>Not supported on this model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_isenabled">
+<span class="sig-name descname"><span class="pre">get_airsystem_isenabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_airsystem_isenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_isenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_valvepos">
+<span class="sig-name descname"><span class="pre">get_airsystem_valvepos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_airsystem_valvepos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_valvepos" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_columnname">
+<span class="sig-name descname"><span class="pre">get_column_columnname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_column_columnname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_columnname" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_data">
+<span class="sig-name descname"><span class="pre">get_column_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_column_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_data" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_version">
+<span class="sig-name descname"><span class="pre">get_column_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_column_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_version" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_detectors">
+<span class="sig-name descname"><span class="pre">get_detectors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_detectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_detectors" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_carrierflowisenabled">
+<span class="sig-name descname"><span class="pre">get_elsddetector_carrierflowisenabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_elsddetector_carrierflowisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_carrierflowisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laserisenabled">
+<span class="sig-name descname"><span class="pre">get_elsddetector_laserisenabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_elsddetector_laserisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laserisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laservoltage">
+<span class="sig-name descname"><span class="pre">get_elsddetector_laservoltage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_elsddetector_laservoltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laservoltage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_sensitivity">
+<span class="sig-name descname"><span class="pre">get_elsddetector_sensitivity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_elsddetector_sensitivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_sensitivity" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_shuttlevalveisenabled">
+<span class="sig-name descname"><span class="pre">get_elsddetector_shuttlevalveisenabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_elsddetector_shuttlevalveisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_shuttlevalveisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_signal">
+<span class="sig-name descname"><span class="pre">get_elsddetector_signal_signal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_elsddetector_signal_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_signal" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_timesincestart">
+<span class="sig-name descname"><span class="pre">get_elsddetector_signal_timesincestart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_elsddetector_signal_timesincestart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_timesincestart" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_collectiontask_action">
+<span class="sig-name descname"><span class="pre">get_fractioncollector_collectiontask_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_fractioncollector_collectiontask_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_collectiontask_action" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_firmware">
+<span class="sig-name descname"><span class="pre">get_fractioncollector_firmware</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_fractioncollector_firmware"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_firmware" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_tray">
+<span class="sig-name descname"><span class="pre">get_fractioncollector_position_tray</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_fractioncollector_position_tray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_tray" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_vial">
+<span class="sig-name descname"><span class="pre">get_fractioncollector_position_vial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_fractioncollector_position_vial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_vial" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_trays">
+<span class="sig-name descname"><span class="pre">get_fractioncollector_trays</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_fractioncollector_trays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_trays" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_firmware">
+<span class="sig-name descname"><span class="pre">get_pump_firmware</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_pump_firmware"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_firmware" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_hardware">
+<span class="sig-name descname"><span class="pre">get_pump_hardware</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_pump_hardware"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_hardware" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_pumptype">
+<span class="sig-name descname"><span class="pre">get_pump_pumptype</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_pump_pumptype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_pumptype" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runmode">
+<span class="sig-name descname"><span class="pre">get_runmode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_runmode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runmode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runningstate">
+<span class="sig-name descname"><span class="pre">get_runningstate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_runningstate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runningstate" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressureinlet">
+<span class="sig-name descname"><span class="pre">get_sensors_airpressureinlet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_sensors_airpressureinlet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressureinlet" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressurenebulizer">
+<span class="sig-name descname"><span class="pre">get_sensors_airpressurenebulizer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_sensors_airpressurenebulizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressurenebulizer" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventlevels">
+<span class="sig-name descname"><span class="pre">get_sensors_solventlevels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_sensors_solventlevels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventlevels" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureaftercolumn">
+<span class="sig-name descname"><span class="pre">get_sensors_solventpressureaftercolumn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_sensors_solventpressureaftercolumn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureaftercolumn" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureafterpump">
+<span class="sig-name descname"><span class="pre">get_sensors_solventpressureafterpump</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_sensors_solventpressureafterpump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureafterpump" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_vaporlevel">
+<span class="sig-name descname"><span class="pre">get_sensors_vaporlevel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_sensors_vaporlevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_vaporlevel" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_wastelevel">
+<span class="sig-name descname"><span class="pre">get_sensors_wastelevel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_sensors_wastelevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_wastelevel" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowisenabled">
+<span class="sig-name descname"><span class="pre">get_solventsystem_flowisenabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_flowisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowrate">
+<span class="sig-name descname"><span class="pre">get_solventsystem_flowrate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_flowrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowrate" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_mode">
+<span class="sig-name descname"><span class="pre">get_solventsystem_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_mode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_sampleinjectionvalvepos">
+<span class="sig-name descname"><span class="pre">get_solventsystem_sampleinjectionvalvepos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_sampleinjectionvalvepos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_sampleinjectionvalvepos" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line1percentage">
+<span class="sig-name descname"><span class="pre">get_solventsystem_solventmixture_line1percentage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_solventmixture_line1percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line1percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line2percentage">
+<span class="sig-name descname"><span class="pre">get_solventsystem_solventmixture_line2percentage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_solventmixture_line2percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line2percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line3percentage">
+<span class="sig-name descname"><span class="pre">get_solventsystem_solventmixture_line3percentage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_solventmixture_line3percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line3percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line4percentage">
+<span class="sig-name descname"><span class="pre">get_solventsystem_solventmixture_line4percentage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_solventsystem_solventmixture_line4percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line4percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_status" title="Permalink to this definition"></a></dt>
+<dd><p>Gets device status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemclass">
+<span class="sig-name descname"><span class="pre">get_systemclass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_systemclass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemclass" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemline">
+<span class="sig-name descname"><span class="pre">get_systemline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_systemline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemline" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemmodel">
+<span class="sig-name descname"><span class="pre">get_systemmodel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_systemmodel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemmodel" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemname">
+<span class="sig-name descname"><span class="pre">get_systemname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_systemname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemname" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch1">
+<span class="sig-name descname"><span class="pre">get_uvdetector_absorbance_ch1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_absorbance_ch1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch1" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch2">
+<span class="sig-name descname"><span class="pre">get_uvdetector_absorbance_ch2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_absorbance_ch2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch2" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch3">
+<span class="sig-name descname"><span class="pre">get_uvdetector_absorbance_ch3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_absorbance_ch3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch3" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch4">
+<span class="sig-name descname"><span class="pre">get_uvdetector_absorbance_ch4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_absorbance_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch4" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_scan">
+<span class="sig-name descname"><span class="pre">get_uvdetector_absorbance_scan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_absorbance_scan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_scan" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_timesincestart">
+<span class="sig-name descname"><span class="pre">get_uvdetector_absorbance_timesincestart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_absorbance_timesincestart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_timesincestart" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch1">
+<span class="sig-name descname"><span class="pre">get_uvdetector_enabledchannels_ch1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch1" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch2">
+<span class="sig-name descname"><span class="pre">get_uvdetector_enabledchannels_ch2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch2" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch3">
+<span class="sig-name descname"><span class="pre">get_uvdetector_enabledchannels_ch3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch3" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch4">
+<span class="sig-name descname"><span class="pre">get_uvdetector_enabledchannels_ch4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch4" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_scan">
+<span class="sig-name descname"><span class="pre">get_uvdetector_enabledchannels_scan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_enabledchannels_scan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_scan" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_sensitivity">
+<span class="sig-name descname"><span class="pre">get_uvdetector_sensitivity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_sensitivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_sensitivity" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_timesincestart">
+<span class="sig-name descname"><span class="pre">get_uvdetector_spectrum_timesincestart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_spectrum_timesincestart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_timesincestart" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_values">
+<span class="sig-name descname"><span class="pre">get_uvdetector_spectrum_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_spectrum_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_values" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch1">
+<span class="sig-name descname"><span class="pre">get_uvdetector_wavelengths_ch1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_wavelengths_ch1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch1" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch2">
+<span class="sig-name descname"><span class="pre">get_uvdetector_wavelengths_ch2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_wavelengths_ch2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch2" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch3">
+<span class="sig-name descname"><span class="pre">get_uvdetector_wavelengths_ch3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_wavelengths_ch3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch3" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch4">
+<span class="sig-name descname"><span class="pre">get_uvdetector_wavelengths_ch4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_wavelengths_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch4" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanend">
+<span class="sig-name descname"><span class="pre">get_uvdetector_wavelengths_scanend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_wavelengths_scanend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanend" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanstart">
+<span class="sig-name descname"><span class="pre">get_uvdetector_wavelengths_scanstart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.get_uvdetector_wavelengths_scanstart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanstart" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.initialize_device">
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.initialize_device" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization sequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_connected">
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_connected" title="Permalink to this definition"></a></dt>
+<dd><p>Stateless device - always connected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_idle">
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_idle" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the device is idle</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.parse_reply">
+<span class="sig-name descname"><span class="pre">parse_reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reply</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.parse_reply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.parse_reply" title="Permalink to this definition"></a></dt>
+<dd><p>Parses JSON payload and returns device reply.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> (<em>Dict</em>) – </p></li>
+<li><p><strong>reply</strong> (<a class="reference internal" href="../data_model.html#PyLabware.models.LabDeviceReply" title="PyLabware.models.LabDeviceReply"><em>PyLabware.models.LabDeviceReply</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.prepare_message">
+<span class="sig-name descname"><span class="pre">prepare_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.prepare_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.prepare_message" title="Permalink to this definition"></a></dt>
+<dd><p>Checks parameter value if necessary and prepares JSON payload</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> (<em>Dict</em>) – </p></li>
+<li><p><strong>value</strong> (<em>Any</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_isenabled">
+<span class="sig-name descname"><span class="pre">set_airsystem_isenabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_airsystem_isenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_isenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>bool</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_valvepos">
+<span class="sig-name descname"><span class="pre">set_airsystem_valvepos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_airsystem_valvepos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_valvepos" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_carrierflowisenabled">
+<span class="sig-name descname"><span class="pre">set_elsddetector_carrierflowisenabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_elsddetector_carrierflowisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_carrierflowisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>bool</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_laserisenabled">
+<span class="sig-name descname"><span class="pre">set_elsddetector_laserisenabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_elsddetector_laserisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_laserisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>bool</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_sensitivity">
+<span class="sig-name descname"><span class="pre">set_elsddetector_sensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_elsddetector_sensitivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_sensitivity" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_shuttlevalveisenabled">
+<span class="sig-name descname"><span class="pre">set_elsddetector_shuttlevalveisenabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_elsddetector_shuttlevalveisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_shuttlevalveisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>bool</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_collectiontask_action">
+<span class="sig-name descname"><span class="pre">set_fractioncollector_collectiontask_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_fractioncollector_collectiontask_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_collectiontask_action" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_tray">
+<span class="sig-name descname"><span class="pre">set_fractioncollector_position_tray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_fractioncollector_position_tray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_tray" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_vial">
+<span class="sig-name descname"><span class="pre">set_fractioncollector_position_vial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_fractioncollector_position_vial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_vial" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_runmode">
+<span class="sig-name descname"><span class="pre">set_runmode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_runmode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_runmode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowisenabled">
+<span class="sig-name descname"><span class="pre">set_solventsystem_flowisenabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_flowisenabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowisenabled" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>bool</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowrate">
+<span class="sig-name descname"><span class="pre">set_solventsystem_flowrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_flowrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowrate" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_mode">
+<span class="sig-name descname"><span class="pre">set_solventsystem_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_mode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_sampleinjectionvalvepos">
+<span class="sig-name descname"><span class="pre">set_solventsystem_sampleinjectionvalvepos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_sampleinjectionvalvepos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_sampleinjectionvalvepos" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line1percentage">
+<span class="sig-name descname"><span class="pre">set_solventsystem_solventmixture_line1percentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_solventmixture_line1percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line1percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line2percentage">
+<span class="sig-name descname"><span class="pre">set_solventsystem_solventmixture_line2percentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_solventmixture_line2percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line2percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line3percentage">
+<span class="sig-name descname"><span class="pre">set_solventsystem_solventmixture_line3percentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_solventmixture_line3percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line3percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line4percentage">
+<span class="sig-name descname"><span class="pre">set_solventsystem_solventmixture_line4percentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_solventsystem_solventmixture_line4percentage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line4percentage" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch1">
+<span class="sig-name descname"><span class="pre">set_uvdetector_enabledchannels_ch1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch1" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch2">
+<span class="sig-name descname"><span class="pre">set_uvdetector_enabledchannels_ch2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch2" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch3">
+<span class="sig-name descname"><span class="pre">set_uvdetector_enabledchannels_ch3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch3" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch4">
+<span class="sig-name descname"><span class="pre">set_uvdetector_enabledchannels_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch4" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_scan">
+<span class="sig-name descname"><span class="pre">set_uvdetector_enabledchannels_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_enabledchannels_scan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_scan" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_sensitivity">
+<span class="sig-name descname"><span class="pre">set_uvdetector_sensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_sensitivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_sensitivity" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch1">
+<span class="sig-name descname"><span class="pre">set_uvdetector_wavelengths_ch1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_wavelengths_ch1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch1" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch2">
+<span class="sig-name descname"><span class="pre">set_uvdetector_wavelengths_ch2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_wavelengths_ch2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch2" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch3">
+<span class="sig-name descname"><span class="pre">set_uvdetector_wavelengths_ch3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_wavelengths_ch3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch3" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch4">
+<span class="sig-name descname"><span class="pre">set_uvdetector_wavelengths_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_wavelengths_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch4" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanend">
+<span class="sig-name descname"><span class="pre">set_uvdetector_wavelengths_scanend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_wavelengths_scanend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanend" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanstart">
+<span class="sig-name descname"><span class="pre">set_uvdetector_wavelengths_scanstart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/buchi_c815.html#C815FlashChromatographySystem.set_uvdetector_wavelengths_scanstart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanstart" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="devices.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devices.buchi_r300.html" class="btn btn-neutral float-right" title="Buchi R300" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

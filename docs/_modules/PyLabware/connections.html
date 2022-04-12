@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.connections &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> PyLabware
+            <img src="../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>PyLabware.connections</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PyLabware.connections</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyLabware connection adapters.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urljoin</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">PLConnectionError</span><span class="p">,</span> <span class="n">PLConnectionProtocolError</span><span class="p">,</span> <span class="n">PLConnectionTimeoutError</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">LabDeviceReply</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
+
+
+<div class="viewcode-block" id="AbstractConnection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.AbstractConnection">[docs]</a><span class="k">class</span> <span class="nc">AbstractConnection</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base abstract class for all connection adapters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DEFAULT_CONNECTION_PARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1"># Default connection address</span>
+        <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+
+        <span class="c1"># Connection port</span>
+        <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+
+        <span class="c1"># Default encoding for text data</span>
+        <span class="s2">&quot;encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span>
+
+        <span class="c1"># command_delay serves as a flow control to ensure that device has time</span>
+        <span class="c1"># to process the command before issuing another one.This is not an issue</span>
+        <span class="c1"># for high-level transports, such as HTTP, because network stack latency</span>
+        <span class="c1"># adds some delay, but it is a problem for low-level protocols like</span>
+        <span class="c1"># RS-232 or RS-485 if hardware flow-control is not implemented.</span>
+        <span class="s2">&quot;command_delay&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+
+        <span class="c1"># Buffer size for reading incoming data, bytes</span>
+        <span class="c1"># Typically, serial communiation with devices is reply based rather</span>
+        <span class="c1"># than stream based. However, not all devices behave themselves,</span>
+        <span class="c1"># replying with properly terminated strings, so it becomes unreliable to</span>
+        <span class="c1"># detect end of message here on transport level. Thus connection operates</span>
+        <span class="c1"># as a stream device, quickly reading data back in fixed-size chunks and</span>
+        <span class="c1"># passing them to upper level (controller) for assembly</span>
+        <span class="s2">&quot;receive_buffer_size&quot;</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+
+        <span class="c1"># Receive timeout in seconds.</span>
+        <span class="s2">&quot;receive_timeout&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="c1"># Transmit timeout in seconds</span>
+        <span class="s2">&quot;transmit_timeout&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="c1"># Delay for the connection listener loop to check for new data</span>
+        <span class="c1"># TODO maybe this can be replaced by a multiple of receive_timeout</span>
+        <span class="s2">&quot;receiving_interval&quot;</span><span class="p">:</span> <span class="mf">0.05</span>
+    <span class="p">}</span>  <span class="c1"># type: ConnectionParameters</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            connection_parameters: Dictionary with connection settings</span>
+<span class="sd">                                   relevant for the concrete type of connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get logger object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="c1"># Merge default dict with provided dict to give connection parameter dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_CONNECTION_PARAMETERS</span><span class="p">,</span> <span class="o">**</span><span class="n">connection_parameters</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating connection object with the following settings: </span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">)</span>
+
+        <span class="c1"># Empty connection object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Lock for thread-safe access to connection object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+        <span class="c1"># Flag for thread-safe access to received data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="c1"># Last reply from the device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="c1"># Time when last command was sent to the device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_command_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+        <span class="c1"># Common connection parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;encoding&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receive_buffer_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;receive_buffer_size&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;command_delay&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transmit_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;transmit_timeout&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receive_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;receive_timeout&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="AbstractConnection.open_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.AbstractConnection.open_connection">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">open_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Opens the connection. This method should create self._connection object,</span>
+<span class="sd">        set up necessary parameters and open connection. Connection object</span>
+<span class="sd">        creation shouldn&#39;t be done in __init__(), otherwise the connection object</span>
+<span class="sd">        instance might not be reusable after close()-open() sequence.</span>
+
+<span class="sd">        This method has to be redefined in child classes.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractConnection.close_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.AbstractConnection.close_connection">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">close_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Closes the connection.</span>
+
+<span class="sd">        This method has to be redefined in child classes.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractConnection.is_connection_open"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.AbstractConnection.is_connection_open">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">is_connection_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks whether the connection is open.</span>
+
+<span class="sd">        This method has to be redefined in child classes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (bool): True if connection is open, False if connection is closed.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractConnection.transmit"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.AbstractConnection.transmit">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">transmit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transmits the data to the device.</span>
+
+<span class="sd">        This method has to be redefined in child classes.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            msg (str): Data to send.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractConnection.receive"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.AbstractConnection.receive">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives data from the device</span>
+
+<span class="sd">        This method has to be redefined in child classes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (str): Data from the device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="k">def</span> <span class="nf">_clear_data_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Debug method to remove accidentally stuck data from the buffer</span>
+<span class="sd">        between connection closing/re-opening.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="SerialConnection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.SerialConnection">[docs]</a><span class="k">class</span> <span class="nc">SerialConnection</span><span class="p">(</span><span class="n">AbstractConnection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Serial connection adapter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SERIAL_DEFAULT_CONNECTION_PARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;write_timeout&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s2">&quot;baudrate&quot;</span><span class="p">:</span> <span class="mi">9600</span><span class="p">,</span>
+        <span class="s2">&quot;bytesize&quot;</span><span class="p">:</span> <span class="n">serial</span><span class="o">.</span><span class="n">EIGHTBITS</span><span class="p">,</span>
+        <span class="s2">&quot;parity&quot;</span><span class="p">:</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span><span class="p">,</span>
+        <span class="s2">&quot;stopbits&quot;</span><span class="p">:</span> <span class="n">serial</span><span class="o">.</span><span class="n">STOPBITS_ONE</span><span class="p">,</span>
+        <span class="s2">&quot;xonxoff&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;rtscts&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;dsrdtr&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;inter_byte_timeout&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">}</span>  <span class="c1"># type: ConnectionParameters</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            connection_parameters: Dictionary with connection settings relevant for the serial connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Init base class, set common parameters</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">SERIAL_DEFAULT_CONNECTION_PARAMETERS</span><span class="p">,</span> <span class="o">**</span><span class="n">connection_parameters</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="c1"># Interval in seconds for connection listener to check for incoming data</span>
+        <span class="c1"># This is the time that connection listener sleeps between serial port read attempts</span>
+        <span class="c1"># So this determines the maximum delay between reply received and reply being read out.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receiving_interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;receiving_interval&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Connection listener thread settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SerialConnection.open_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.SerialConnection.open_connection">[docs]</a>    <span class="k">def</span> <span class="nf">open_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates, sets up and opens serial connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Create serial connection object</span>
+        <span class="c1"># port=None is required to prevent port from being immediately opened</span>
+        <span class="c1"># TODO add here &amp; for TCPIP check is connection already open</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clear_data_buffer</span><span class="p">()</span>
+        <span class="c1"># Load settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">baudrate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;baudrate&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">bytesize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bytesize&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">parity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;parity&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">stopbits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stopbits&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timeout&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">receive_timeout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">xonxoff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;xonxoff&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">rtscts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rtscts&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">dsrdtr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dsrdtr&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">write_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transmit_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">inter_byte_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;inter_byte_timeout&quot;</span><span class="p">)</span>
+        <span class="c1"># Open connection</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">serial</span><span class="o">.</span><span class="n">SerialException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t open serial port </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">port</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="c1"># Start connection listener</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection_listener</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_listener&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Port </span><span class="si">%s</span><span class="s2"> opened.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">port</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SerialConnection.connection_listener"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.SerialConnection.connection_listener">[docs]</a>    <span class="k">def</span> <span class="nf">connection_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Periodically checks for new data on the connection,</span>
+<span class="sd">        reads it, puts the data read into receive buffer and raises data ready flag.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting connection listener...&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># Check connection close request</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connection listener exiting.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">in_waiting</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># If the flag is still set it means receive() hasn&#39;t yet read it out</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Discarding unconsumed device reply &lt;</span><span class="si">%r</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="c1"># Read data from connection into buffer</span>
+                <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">in_waiting</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receive_buffer_size</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;connection_listener()::&lt;</span><span class="si">%s</span><span class="s2">&gt; bytes to read&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">in_waiting</span><span class="p">)</span>
+                    <span class="c1"># Lock connection</span>
+                    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_lock</span><span class="p">:</span>
+                        <span class="n">reply_bytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">receive_buffer_size</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;connection_listener()::got reply &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">reply_bytes</span><span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">+=</span> <span class="n">reply_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t decode device reply!&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="c1"># Unlock connection &amp; break to outer loop discarding current data</span>
+                        <span class="k">break</span>
+                <span class="c1"># Notify main thread that it can access _last_reply now</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="c1"># Switch thread context to main</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiving_interval</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SerialConnection.close_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.SerialConnection.close_connection">[docs]</a>    <span class="k">def</span> <span class="nf">close_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Closes serial connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_open</span><span class="p">():</span>
+            <span class="c1"># Stop connection listener</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">receiving_interval</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">reset_input_buffer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">reset_output_buffer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Port </span><span class="si">%s</span><span class="s2"> closed.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Trying to close port &lt;</span><span class="si">%s</span><span class="s2">&gt; that is not open&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">port</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SerialConnection.is_connection_open"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.SerialConnection.is_connection_open">[docs]</a>    <span class="k">def</span> <span class="nf">is_connection_open</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Checks whether the serial port is opened.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (bool): If the serial port is open.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Serial connection open status</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">is_open</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">is_open</span>
+        <span class="c1"># Check &amp; warn if connection is open, but connection listener thread is not running</span>
+        <span class="k">if</span> <span class="n">is_open</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>  <span class="c1"># type: ignore</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Connection listener thread seems to be dead!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">is_open</span></div>
+
+<div class="viewcode-block" id="SerialConnection.transmit"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.SerialConnection.transmit">[docs]</a>    <span class="k">def</span> <span class="nf">transmit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sends message to the serial port.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check if connection is alive</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_open</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">PLConnectionError</span><span class="p">(</span><span class="s2">&quot;No connection to the device!&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionProtocolError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t encode command &lt;</span><span class="si">{}</span><span class="s2">&gt; to a byte-string!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span> <span class="kn">from</span> <span class="bp">None</span>
+        <span class="c1"># Calculate if we have to wait after the previous command was sent</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_command_time</span>
+        <span class="c1"># Subtract 0.5 second for possible jitter/precision errors</span>
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_delay</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Command rate too high! Delaying next command for </span><span class="si">%s</span><span class="s2"> seconds&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_delay</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">command_delay</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Previous reply &lt;</span><span class="si">%s</span><span class="s2">&gt; has not been read.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_lock</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">reset_input_buffer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">reset_output_buffer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_command_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;transmit()::sent command &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SerialConnection.receive"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.SerialConnection.receive">[docs]</a>    <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the data from receive buffer, clears the data ready flag</span>
+<span class="sd">        and passes the data back.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (LabDeviceReply): Reply from the device packed into LabDeviceReply object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;receive()::waiting for incoming data to become ready...&quot;</span><span class="p">)</span>
+            <span class="n">failed_attempts</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># Timeout here ensures upper level code wouldn&#39;t lock forever if no reply is received</span>
+            <span class="c1"># It has to be long enough to give time for connection_listener() thread to do it&#39;s job</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">receive_timeout</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">failed_attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">failed_attempts</span> <span class="o">&gt;</span> <span class="n">retries</span><span class="p">:</span>
+                    <span class="c1"># No reply after timeout</span>
+                    <span class="k">raise</span> <span class="n">PLConnectionTimeoutError</span><span class="p">(</span><span class="s2">&quot;No reply received from the device!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Unset ready flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">LabDeviceReply</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;chunked&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TCPIPConnection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.TCPIPConnection">[docs]</a><span class="k">class</span> <span class="nc">TCPIPConnection</span><span class="p">(</span><span class="n">AbstractConnection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Socket-based TCP/IP connection adapter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TCPIP_DEFAULT_CONNECTION_PARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;TCP&quot;</span><span class="p">,</span>
+    <span class="p">}</span>  <span class="c1"># type: ConnectionParameters</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Default constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            connection_parameters: Dictionary with connection settings for socket-based connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Init base class, set common parameters</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">TCPIP_DEFAULT_CONNECTION_PARAMETERS</span><span class="p">,</span> <span class="o">**</span><span class="n">connection_parameters</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="c1"># Default IP connection settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;protocol&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="c1"># Connection listener thread settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># Interval in seconds for connection listener to check for incoming data</span>
+        <span class="c1"># This is the time that connection listener sleeps between serial port read attempts</span>
+        <span class="c1"># So this determines the maximum delay between reply received and reply being read out.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receiving_interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;receiving_interval&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TCPIPConnection.open_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.TCPIPConnection.open_connection">[docs]</a>    <span class="k">def</span> <span class="nf">open_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates, sets up and and opens the socket.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Initialize TCP socket connection object</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s2">&quot;TCP&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s2">&quot;UDP&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PLConnectionProtocolError</span><span class="p">(</span><span class="s2">&quot;Unknown transport layer protocol &lt;</span><span class="si">{}</span><span class="s2">&gt; provided!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_clear_data_buffer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)))</span>
+            <span class="c1"># Receive timeout in seconds.</span>
+            <span class="c1"># This has to be done after opening the connection to avoid</span>
+            <span class="c1"># connect() error on non-blocking socket, but before starting</span>
+            <span class="c1"># connection listener which uses this timeout for socket recv().</span>
+            <span class="c1"># Zero sets the socket to non-blocking mode. Non-blocking mode does</span>
+            <span class="c1"># not provide any performance benefit compared to blocking socket</span>
+            <span class="c1"># with small delay, but it makes it to raise platform-specific</span>
+            <span class="c1"># exceptions which might be trickier to catch.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receive_timeout</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection_listener</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_listener&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Opened connection to &lt;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TimeoutError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionTimeoutError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Remote host </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="si">}</span><span class="s2"> doesn&#39;t respond!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t open </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="si">}</span><span class="s2"> socket for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span></div>
+
+<div class="viewcode-block" id="TCPIPConnection.connection_listener"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.TCPIPConnection.connection_listener">[docs]</a>    <span class="k">def</span> <span class="nf">connection_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Periodically checks for new data on the connection,</span>
+<span class="sd">        reads it, puts it into receive buffer and raises data ready flag.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting connection listener...&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># Check connection close request</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+                <span class="c1"># Clear the flag and exit</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connection listener exiting.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="c1"># Lock connection object</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_lock</span><span class="p">:</span>
+                <span class="c1"># Try read from socket</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># This either gives data back or timeouts after</span>
+                    <span class="c1"># self.receive_timeout seconds</span>
+                    <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receive_buffer_size</span><span class="p">)</span>
+                    <span class="c1"># If there&#39;s any data, clear buffer</span>
+                    <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                        <span class="c1"># If the flag is still set it means receive()</span>
+                        <span class="c1"># hasn&#39;t yet read it out</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Discarding unconsumed device reply &lt;</span><span class="si">%r</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="k">while</span> <span class="n">chunk</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;connection_listener()::decoding chunk &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">chunk</span><span class="p">)</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">+=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+                                <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receive_buffer_size</span><span class="p">)</span>
+                        <span class="c1"># Socket.timeout is raised for blocking sockets after timeout</span>
+                        <span class="c1"># BlockingIOError is raised for non-blocking sockets</span>
+                        <span class="c1"># both on Windows and Linux</span>
+                        <span class="k">except</span> <span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span> <span class="ne">BlockingIOError</span><span class="p">):</span>
+                            <span class="c1"># Finished reading data from the socket</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+                        <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t decode packet &lt;</span><span class="si">%s</span><span class="s2">&gt;!&quot;</span><span class="p">,</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">except</span> <span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span> <span class="ne">BlockingIOError</span><span class="p">):</span>
+                    <span class="c1"># No data in socket</span>
+                    <span class="k">pass</span>
+                <span class="k">except</span> <span class="ne">ConnectionAbortedError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">PLConnectionError</span><span class="p">(</span><span class="s2">&quot;Device disconnected!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+            <span class="c1"># Release the lock and sleep</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiving_interval</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TCPIPConnection.close_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.TCPIPConnection.close_connection">[docs]</a>    <span class="k">def</span> <span class="nf">close_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Closes connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_open</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection_close_requested</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="c1"># There are two blocking calls in the listener loop</span>
+            <span class="c1"># receive_timeout determines for how long it blocks on the socket to read</span>
+            <span class="c1"># receiving_interval determines for how long it sleeps between socket reads</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiving_interval</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">receive_timeout</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connection to &lt;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&gt; closed.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Trying to close socket that is not open.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TCPIPConnection.is_connection_open"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.TCPIPConnection.is_connection_open">[docs]</a>    <span class="k">def</span> <span class="nf">is_connection_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks whether the socket is open</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (bool): If the socket is open.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># There&#39;s no general way in Python to check whether the socket is active.</span>
+        <span class="c1"># This code was checked to work on Windows</span>
+        <span class="c1"># It tries to get the connection state by checking</span>
+        <span class="c1"># socket._closed attribute &amp; probing with recv(1) on socket</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;win&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;This code was tested on Windows only!&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">,</span> <span class="s2">&quot;_closed&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># Socket was opened before, but now is closed</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># Otherwise socket has either been just created &amp; connection not opened</span>
+        <span class="c1"># or socket.connect() has been called, but connection is dead</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="TCPIPConnection.transmit"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.TCPIPConnection.transmit">[docs]</a>    <span class="k">def</span> <span class="nf">transmit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sends message to the socket.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check if connection is alive</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_open</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">PLConnectionError</span><span class="p">(</span><span class="s2">&quot;No connection to the device!&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionProtocolError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t encode command &lt;</span><span class="si">{}</span><span class="s2">&gt; to a byte-string!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span> <span class="kn">from</span> <span class="bp">None</span>
+        <span class="c1"># Calculate if we have to wait after the previous command was sent</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_command_time</span>
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_delay</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Command rate too high! Delaying next command for &lt;</span><span class="si">%s</span><span class="s2">&gt; seconds&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_delay</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">command_delay</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Previous reply &lt;</span><span class="si">%r</span><span class="s2">&gt; has not been read.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_lock</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_command_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;transmit()::sent command &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TCPIPConnection.receive"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.TCPIPConnection.receive">[docs]</a>    <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the data from receive buffer, clears the data ready flag</span>
+<span class="sd">        and passes the data back.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            retries (int): Number of times to retry if receive times out.</span>
+<span class="sd">                Introduced due to RCTDigitalHotplate test showing that around</span>
+<span class="sd">                0.02 % of attempted `get_temperature` calls timeout. These are</span>
+<span class="sd">                spaced out and not all happening at once so 1 retry should be</span>
+<span class="sd">                sufficient to protect against these anomalies and prevent</span>
+<span class="sd">                unnecessary crashes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (LabDeviceReply): Reply from the device packed into LabDeviceReply object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;receive()::waiting for incoming data to become ready...&quot;</span><span class="p">)</span>
+            <span class="n">failed_attempts</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># Timeout here ensures upper level code wouldn&#39;t block forever</span>
+            <span class="c1"># if no reply is received. It has to be long enough to give time</span>
+            <span class="c1"># for connection_listener() thread to do it&#39;s job</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">receive_timeout</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">failed_attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">failed_attempts</span> <span class="o">&gt;</span> <span class="n">retries</span><span class="p">:</span>
+                    <span class="c1"># No reply after timeout</span>
+                    <span class="k">raise</span> <span class="n">PLConnectionTimeoutError</span><span class="p">(</span><span class="s2">&quot;No reply received from the device!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Unset data ready flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_ready</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">LabDeviceReply</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;chunked&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="HTTPConnection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.HTTPConnection">[docs]</a><span class="k">class</span> <span class="nc">HTTPConnection</span><span class="p">(</span><span class="n">AbstractConnection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;HTTP REST connection adapter based on Requests library.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">HTTP_DEFAULT_CONNECTION_PARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;verify_ssl&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">}</span>  <span class="c1"># type: ConnectionParameters</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            connection_parameters (Dict): Dictionary with connection settings for HTTP REST connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Init base class, set common parameters</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">HTTP_DEFAULT_CONNECTION_PARAMETERS</span><span class="p">,</span> <span class="o">**</span><span class="n">connection_parameters</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="c1"># Reply for HTTP response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply_headers</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: ignore</span>
+
+        <span class="c1"># Default HTTP connection settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verify_ssl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;verify_ssl&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;headers&quot;</span><span class="p">]</span>
+        <span class="c1"># Address settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">])</span>
+
+        <span class="c1"># Append / to host address</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">+=</span> <span class="s2">&quot;/&quot;</span>
+        <span class="c1"># Strip :// from schema, if present</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Make base URL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">+</span> <span class="s2">&quot;://&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">address</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;HTTPConnection.__init__()::constructed base URL &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HTTPConnection.open_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.HTTPConnection.open_connection">[docs]</a>    <span class="k">def</span> <span class="nf">open_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates requests.Session() object &amp; sets it&#39;s parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">verify</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify_ssl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Session to &lt;</span><span class="si">%s</span><span class="s2">&gt; initialized.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPConnection.close_connection"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.HTTPConnection.close_connection">[docs]</a>    <span class="k">def</span> <span class="nf">close_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Closes connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Session to &lt;</span><span class="si">%s</span><span class="s2">&gt; closed.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPConnection.transmit"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.HTTPConnection.transmit">[docs]</a>    <span class="k">def</span> <span class="nf">transmit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+        <span class="sd">&quot;&quot;&quot;Sends request to the server.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message: Dictionary containing method, endpoint and request data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Make complete URL from base API URL and endpoint</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;endpoint&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;transmit()::trying to invoke &lt;</span><span class="si">%s</span><span class="s2">&gt; with method &lt;</span><span class="si">%s</span><span class="s2">&gt;, data=&lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">],</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">message</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">message</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transmit_timeout</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionTimeoutError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t connect to host!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="c1"># Log headers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;transmit()::reply headers::&lt;</span><span class="si">%r</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+        <span class="c1"># Check HTTP reply code</span>
+        <span class="k">if</span> <span class="n">reply</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&gt;</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionProtocolError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Server replied with HTTP code </span><span class="si">{</span><span class="n">reply</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">reply</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">content</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply_headers</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">reply</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPConnection.receive"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.HTTPConnection.receive">[docs]</a>    <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Passes the request response back.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (LabDeviceReply): HTTP reply from the device packed into LabDeviceReply object together with reply headers.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLConnectionProtocolError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t decode device reply!</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">LabDeviceReply</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_reply</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_reply_headers</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPConnection.is_connection_open"><a class="viewcode-back" href="../../api/connections.html#PyLabware.connections.HTTPConnection.is_connection_open">[docs]</a>    <span class="k">def</span> <span class="nf">is_connection_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Dummy method as REST is stateless.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

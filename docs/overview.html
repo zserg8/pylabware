@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="PyLabware documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyLabware
+            <img src="_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimal-requirements">Minimal requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h1>
+<img alt="" src="_images/logo_with_text_600px.png" />
+<p>PyLabware is a simple Python library providing a common interface and
+sets of commands to control various pieces of equipment which are typically
+found in the chemical laboratory from a Python script.</p>
+<p>There are a number of different manufacturers of lab equipment with some often
+being superior compared to others in particular applications and vice versa.
+Thus, a typical laboratory often has a bunch of different hotplate brands and
+models, a few rotavapors from different manufacturers and so on.</p>
+<p>While not being a problem at all for manual operation, this becomes a major
+challenge for any automation as different devices even from a single manufacturer
+often expose incompatible communication protocols making it necessary to invest
+time and resources into making specific pieces of software to make all the devices
+talk to each other.</p>
+<p>Over the recent years Python had made it’s way into chemistry labs as a powerful
+alternative to LabVIEW and other proprietary tools for various automation jobs.
+<strong>PyLabware</strong> aims to take the niche of providing simple and efficient way to
+remotely control a bunch of laboratory equipment from higher level automation
+scripts.</p>
+<p>PyLabware was originally inspired by the
+<a class="reference external" href="https://github.com/croningp/ChemputerSoftware/tree/master/platform_server/modules/serial_labware">SerialLabware</a>
+developed by Sebastian Steiner and Stefan Glatzel during their time in the
+Cronin Group. <a class="footnote-reference brackets" href="#id2" id="id1">1</a> However, the original code used in the paper was merely a
+proof of concept and contained a number of design flaws making it’s further
+development impractical.
+PyLabware, while inspired by the same idea, has been fully written from scratch
+in May 2019. This version is much more stable, offers an extended range of
+supported devices as well as many new features.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>Provides a consistent set of commands for every device type. I.e. every
+hotplate is obliged to have methods <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_temperature()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">get_temperature()</span></code> irrespective of the exact manufacturer’s protocol /
+command names for that device.</p></li>
+<li><p>Provides an abstract device type hierarchy.</p></li>
+<li><p>Supports multiple transports to physically communicate with device:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Standard serial connection with <a class="reference external" href="https://pythonhosted.org/pyserial/">PySerial</a>.</p></li>
+<li><p>Standard TCP/UDP over IP connection with Python <code class="xref py py-mod docutils literal notranslate"><span class="pre">sockets</span></code>.</p></li>
+<li><p>Connection to devices exposing HTTP REST API with Python <a class="reference external" href="https://requests.readthedocs.io/en/master/">Requests</a>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Provides an easy way to add new devices with Python dictionary-based command set definitions (see <a class="reference internal" href="contributing.html#add-new-device"><span class="std std-ref">Adding new devices</span></a>).</p></li>
+<li><p>Can run arbitrary tasks for multiple devices in parallel (see <a class="reference internal" href="usage.html#tasks"><span class="std std-ref">Running concurrent tasks for devices</span></a>).</p></li>
+<li><p>Provides full simulation mode to test any action sequences without physical
+devices present (see <a class="reference internal" href="usage.html#simulation"><span class="std std-ref">Simulation mode</span></a>).</p></li>
+</ul>
+</section>
+<section id="minimal-requirements">
+<h2>Minimal requirements<a class="headerlink" href="#minimal-requirements" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Python 3.8 or newer.</p></li>
+<li><p>PySerial package for serial communications.</p></li>
+<li><p>Requests package for HTP REST API devices.</p></li>
+<li><p>PyYAML package for using OpenAPI parser tool (see <a class="reference internal" href="utils.html"><span class="doc">Utils</span></a>).</p></li>
+</ul>
+</section>
+<section id="platforms">
+<h2>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline"></a></h2>
+<p>The library has been developed and tested on Windows only. In theory, it should
+work on *nix as well, as there is no-platform-specific code, however, the
+functionality and performance have not been extensively tested.</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h2>
+<p>The current documentation with examples can be found <a class="reference external" href="https://link_to_docs">here</a>.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>More details can be found in the <a class="reference external" href="https://doi.org/10.1126/science.aav2211">respective paper</a>.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="PyLabware documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

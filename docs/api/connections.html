@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connections &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Controllers" href="controllers.html" />
+    <link rel="prev" title="API Reference" href="main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyLabware
+            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_model.html">Data model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsers.html">Parsers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#devices">Devices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="main.html">API Reference</a> &raquo;</li>
+      <li>Connections</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/connections.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-PyLabware.connections">
+<span id="connections"></span><h1>Connections<a class="headerlink" href="#module-PyLabware.connections" title="Permalink to this headline"></a></h1>
+<p>PyLabware connection adapters.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.connections.AbstractConnection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.connections.</span></span><span class="sig-name descname"><span class="pre">AbstractConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#AbstractConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.AbstractConnection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base abstract class for all connection adapters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>connection_parameters</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Dictionary with connection settings
+relevant for the concrete type of connection.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.connections.AbstractConnection.DEFAULT_CONNECTION_PARAMETERS">
+<span class="sig-name descname"><span class="pre">DEFAULT_CONNECTION_PARAMETERS</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span></em><em class="property"> <span class="pre">=</span> <span class="pre">{'address':</span> <span class="pre">None,</span> <span class="pre">'command_delay':</span> <span class="pre">0.5,</span> <span class="pre">'encoding':</span> <span class="pre">'UTF-8',</span> <span class="pre">'port':</span> <span class="pre">'',</span> <span class="pre">'receive_buffer_size':</span> <span class="pre">128,</span> <span class="pre">'receive_timeout':</span> <span class="pre">1,</span> <span class="pre">'receiving_interval':</span> <span class="pre">0.05,</span> <span class="pre">'transmit_timeout':</span> <span class="pre">1}</span></em><a class="headerlink" href="#PyLabware.connections.AbstractConnection.DEFAULT_CONNECTION_PARAMETERS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.AbstractConnection.close_connection">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">close_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#AbstractConnection.close_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.AbstractConnection.close_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Closes the connection.</p>
+<p>This method has to be redefined in child classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.AbstractConnection.is_connection_open">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">is_connection_open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#AbstractConnection.is_connection_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.AbstractConnection.is_connection_open" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the connection is open.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if connection is open, False if connection is closed.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.AbstractConnection.open_connection">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">open_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#AbstractConnection.open_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.AbstractConnection.open_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Opens the connection. This method should create self._connection object,
+set up necessary parameters and open connection. Connection object
+creation shouldn’t be done in __init__(), otherwise the connection object
+instance might not be reusable after close()-open() sequence.</p>
+<p>This method has to be redefined in child classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.AbstractConnection.receive">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#AbstractConnection.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.AbstractConnection.receive" title="Permalink to this definition"></a></dt>
+<dd><p>Receives data from the device</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Data from the device.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.AbstractConnection.transmit">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#AbstractConnection.transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.AbstractConnection.transmit" title="Permalink to this definition"></a></dt>
+<dd><p>Transmits the data to the device.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – Data to send.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.connections.HTTPConnection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.connections.</span></span><span class="sig-name descname"><span class="pre">HTTPConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#HTTPConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.HTTPConnection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.connections.AbstractConnection" title="PyLabware.connections.AbstractConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.connections.AbstractConnection</span></code></a></p>
+<p>HTTP REST connection adapter based on Requests library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>connection_parameters</strong> (<em>Dict</em>) – Dictionary with connection settings for HTTP REST connection.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.connections.HTTPConnection.HTTP_DEFAULT_CONNECTION_PARAMETERS">
+<span class="sig-name descname"><span class="pre">HTTP_DEFAULT_CONNECTION_PARAMETERS</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span></em><em class="property"> <span class="pre">=</span> <span class="pre">{'headers':</span> <span class="pre">'',</span> <span class="pre">'password':</span> <span class="pre">None,</span> <span class="pre">'schema':</span> <span class="pre">'http',</span> <span class="pre">'user':</span> <span class="pre">None,</span> <span class="pre">'verify_ssl':</span> <span class="pre">True}</span></em><a class="headerlink" href="#PyLabware.connections.HTTPConnection.HTTP_DEFAULT_CONNECTION_PARAMETERS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.HTTPConnection.close_connection">
+<span class="sig-name descname"><span class="pre">close_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#HTTPConnection.close_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.HTTPConnection.close_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Closes connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.HTTPConnection.is_connection_open">
+<span class="sig-name descname"><span class="pre">is_connection_open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#HTTPConnection.is_connection_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.HTTPConnection.is_connection_open" title="Permalink to this definition"></a></dt>
+<dd><p>Dummy method as REST is stateless.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.HTTPConnection.open_connection">
+<span class="sig-name descname"><span class="pre">open_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#HTTPConnection.open_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.HTTPConnection.open_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Creates requests.Session() object &amp; sets it’s parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.HTTPConnection.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#HTTPConnection.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.HTTPConnection.receive" title="Permalink to this definition"></a></dt>
+<dd><p>Passes the request response back.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>HTTP reply from the device packed into LabDeviceReply object together with reply headers.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(<a class="reference internal" href="../data_model.html#PyLabware.models.LabDeviceReply" title="PyLabware.models.LabDeviceReply">LabDeviceReply</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.HTTPConnection.transmit">
+<span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#HTTPConnection.transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.HTTPConnection.transmit" title="Permalink to this definition"></a></dt>
+<dd><p>Sends request to the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>message</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Dictionary containing method, endpoint and request data</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.connections.</span></span><span class="sig-name descname"><span class="pre">SerialConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#SerialConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.SerialConnection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.connections.AbstractConnection" title="PyLabware.connections.AbstractConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.connections.AbstractConnection</span></code></a></p>
+<p>Serial connection adapter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>connection_parameters</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Dictionary with connection settings relevant for the serial connection.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection.SERIAL_DEFAULT_CONNECTION_PARAMETERS">
+<span class="sig-name descname"><span class="pre">SERIAL_DEFAULT_CONNECTION_PARAMETERS</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span></em><em class="property"> <span class="pre">=</span> <span class="pre">{'baudrate':</span> <span class="pre">9600,</span> <span class="pre">'bytesize':</span> <span class="pre">8,</span> <span class="pre">'dsrdtr':</span> <span class="pre">False,</span> <span class="pre">'inter_byte_timeout':</span> <span class="pre">False,</span> <span class="pre">'parity':</span> <span class="pre">'N',</span> <span class="pre">'rtscts':</span> <span class="pre">False,</span> <span class="pre">'stopbits':</span> <span class="pre">1,</span> <span class="pre">'write_timeout':</span> <span class="pre">0.5,</span> <span class="pre">'xonxoff':</span> <span class="pre">False}</span></em><a class="headerlink" href="#PyLabware.connections.SerialConnection.SERIAL_DEFAULT_CONNECTION_PARAMETERS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection.close_connection">
+<span class="sig-name descname"><span class="pre">close_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#SerialConnection.close_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.SerialConnection.close_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Closes serial connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection.connection_listener">
+<span class="sig-name descname"><span class="pre">connection_listener</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#SerialConnection.connection_listener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.SerialConnection.connection_listener" title="Permalink to this definition"></a></dt>
+<dd><p>Periodically checks for new data on the connection,
+reads it, puts the data read into receive buffer and raises data ready flag.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection.is_connection_open">
+<span class="sig-name descname"><span class="pre">is_connection_open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#SerialConnection.is_connection_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.SerialConnection.is_connection_open" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the serial port is opened.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>If the serial port is open.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection.open_connection">
+<span class="sig-name descname"><span class="pre">open_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#SerialConnection.open_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.SerialConnection.open_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Creates, sets up and opens serial connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#SerialConnection.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.SerialConnection.receive" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the data from receive buffer, clears the data ready flag
+and passes the data back.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Reply from the device packed into LabDeviceReply object.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(<a class="reference internal" href="../data_model.html#PyLabware.models.LabDeviceReply" title="PyLabware.models.LabDeviceReply">LabDeviceReply</a>)</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>retries</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.SerialConnection.transmit">
+<span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#SerialConnection.transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.SerialConnection.transmit" title="Permalink to this definition"></a></dt>
+<dd><p>Sends message to the serial port.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.connections.</span></span><span class="sig-name descname"><span class="pre">TCPIPConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#TCPIPConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.TCPIPConnection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.connections.AbstractConnection" title="PyLabware.connections.AbstractConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.connections.AbstractConnection</span></code></a></p>
+<p>Socket-based TCP/IP connection adapter.</p>
+<p>Default constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>connection_parameters</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Dictionary with connection settings for socket-based connection.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection.TCPIP_DEFAULT_CONNECTION_PARAMETERS">
+<span class="sig-name descname"><span class="pre">TCPIP_DEFAULT_CONNECTION_PARAMETERS</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span></em><em class="property"> <span class="pre">=</span> <span class="pre">{'protocol':</span> <span class="pre">'TCP'}</span></em><a class="headerlink" href="#PyLabware.connections.TCPIPConnection.TCPIP_DEFAULT_CONNECTION_PARAMETERS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection.close_connection">
+<span class="sig-name descname"><span class="pre">close_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#TCPIPConnection.close_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.TCPIPConnection.close_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Closes connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection.connection_listener">
+<span class="sig-name descname"><span class="pre">connection_listener</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#TCPIPConnection.connection_listener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.TCPIPConnection.connection_listener" title="Permalink to this definition"></a></dt>
+<dd><p>Periodically checks for new data on the connection,
+reads it, puts it into receive buffer and raises data ready flag.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection.is_connection_open">
+<span class="sig-name descname"><span class="pre">is_connection_open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#TCPIPConnection.is_connection_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.TCPIPConnection.is_connection_open" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the socket is open</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>If the socket is open.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection.open_connection">
+<span class="sig-name descname"><span class="pre">open_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#TCPIPConnection.open_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.TCPIPConnection.open_connection" title="Permalink to this definition"></a></dt>
+<dd><p>Creates, sets up and and opens the socket.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#TCPIPConnection.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.TCPIPConnection.receive" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the data from receive buffer, clears the data ready flag
+and passes the data back.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>retries</strong> (<em>int</em>) – Number of times to retry if receive times out.
+Introduced due to RCTDigitalHotplate test showing that around
+0.02 % of attempted <cite>get_temperature</cite> calls timeout. These are
+spaced out and not all happening at once so 1 retry should be
+sufficient to protect against these anomalies and prevent
+unnecessary crashes.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reply from the device packed into LabDeviceReply object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(<a class="reference internal" href="../data_model.html#PyLabware.models.LabDeviceReply" title="PyLabware.models.LabDeviceReply">LabDeviceReply</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.connections.TCPIPConnection.transmit">
+<span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/connections.html#TCPIPConnection.transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.connections.TCPIPConnection.transmit" title="Permalink to this definition"></a></dt>
+<dd><p>Sends message to the socket.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controllers.html" class="btn btn-neutral float-right" title="Controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

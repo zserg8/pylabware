@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.devices.ika_rv10 &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PyLabware
+            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>PyLabware.devices.ika_rv10</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PyLabware.devices.ika_rv10</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyLabware driver for IKA RV10 rotavap.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+
+<span class="c1"># Core imports</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">parsers</span> <span class="k">as</span> <span class="n">parser</span>
+<span class="kn">from</span> <span class="nn">..controllers</span> <span class="kn">import</span> <span class="n">AbstractRotavap</span><span class="p">,</span> <span class="n">in_simulation_device_returns</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">PLConnectionError</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
+
+
+<div class="viewcode-block" id="RV10RotovapCommands"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10RotovapCommands">[docs]</a><span class="k">class</span> <span class="nc">RV10RotovapCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collection of command definitions for RV10 rotavap.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ##########################  Constants ##################################</span>
+    <span class="c1"># Default name.</span>
+    <span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s2">&quot;RV10Digital&quot;</span>
+    <span class="n">STATUS_CODES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="s2">&quot;Manual operation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;Remote operation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;E01&quot;</span><span class="p">:</span> <span class="s2">&quot;No rotation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;E02&quot;</span><span class="p">:</span> <span class="s2">&quot;No communication with the heating bath&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Heating mediums for the bath</span>
+    <span class="n">HEATING_MEDIUMS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Oil&quot;</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Water&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># ################### Control commands ###################################</span>
+    <span class="c1"># Get device name</span>
+    <span class="n">GET_NAME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">11</span><span class="p">]}}</span>
+    <span class="c1"># Get software version</span>
+    <span class="n">GET_VERSION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SOFTWARE&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># The lift commands in the manual are wrong. The working command was found by Sebastian Steiner by e-mailing IKA.</span>
+    <span class="c1"># Move lift up</span>
+    <span class="n">LIFT_UP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_62 1&quot;</span><span class="p">}</span>
+    <span class="c1"># Move lift down</span>
+    <span class="n">LIFT_DOWN</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_63 1&quot;</span><span class="p">}</span>
+    <span class="c1"># Get rotation speed</span>
+    <span class="n">GET_SPEED</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_4&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]}}</span>
+    <span class="c1"># Get rotation speed setpoint</span>
+    <span class="n">GET_SPEED_SET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_4&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]}}</span>
+    <span class="c1"># Set rotation speed</span>
+    <span class="n">SET_SPEED</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_4&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">280</span><span class="p">}}</span>
+    <span class="c1"># Start rotation</span>
+    <span class="n">START_ROTATION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;START_4&quot;</span><span class="p">}</span>
+    <span class="c1"># Stop rotation</span>
+    <span class="n">STOP_ROTATION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;STOP_4&quot;</span><span class="p">}</span>
+    <span class="c1"># Start interval mode</span>
+    <span class="n">START_INTERVAL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;START_60&quot;</span><span class="p">}</span>
+    <span class="c1"># Stop interval mode</span>
+    <span class="n">STOP_INTERVAL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;STOP_60&quot;</span><span class="p">}</span>
+    <span class="c1"># Start timer mode</span>
+    <span class="n">START_TIMER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;START_61&quot;</span><span class="p">}</span>
+    <span class="c1"># Stop timer mode</span>
+    <span class="n">STOP_TIMER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;STOP_61&quot;</span><span class="p">}</span>
+    <span class="c1"># Get bath temperature</span>
+    <span class="n">GET_TEMP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_2&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]}}</span>
+    <span class="c1"># Get bath temperature setpoint</span>
+    <span class="n">GET_TEMP_SET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_2&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]}}</span>
+    <span class="c1"># Set bath temperature</span>
+    <span class="n">SET_TEMP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_2&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">180</span><span class="p">}}</span>
+    <span class="c1"># Get bath safety temperature</span>
+    <span class="n">GET_TEMP_SAFE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_3&quot;</span><span class="p">}</span>
+    <span class="c1"># Set bath safety temperature - doesn&#39;t seem to work.</span>
+    <span class="c1"># SET_TEMP_SAFE = {&quot;name&quot;:&quot;OUT_SP_3&quot;, &quot;type&quot;:int, &quot;check&quot;:{&quot;min&quot;:50, &quot;max&quot;:190}}</span>
+    <span class="c1"># Read heating medium type - doesn&#39;t seem to work</span>
+    <span class="c1"># GET_BATH_MEDIUM = {&quot;name&quot;:&quot;IN_SP_74&quot;, &quot;reply&quot;:{&quot;type&quot;:int}}</span>
+    <span class="c1"># Set heating bath medium type</span>
+    <span class="c1"># SET_BATH_MEDIUM = {&quot;name&quot;:&quot;OUT_SP_74&quot;, &quot;type&quot;:int, &quot;check&quot;:{&quot;values&quot;:HEATING_MEDIUMS}}</span>
+    <span class="c1"># Start heating</span>
+    <span class="n">START_HEAT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;START_2&quot;</span><span class="p">}</span>
+    <span class="c1"># Stop heating</span>
+    <span class="n">STOP_HEAT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;STOP_2&quot;</span><span class="p">}</span>
+
+    <span class="c1"># ################### Configuration commands #############################</span>
+
+    <span class="c1"># Reset rotavap &amp; switch back to local control mode</span>
+    <span class="n">RESET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RESET&quot;</span><span class="p">}</span>
+    <span class="c1"># Get rotavap status</span>
+    <span class="n">GET_STATUS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set timer mode duration, minutes</span>
+    <span class="n">SET_TIMER_DURATION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_60&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">199</span><span class="p">}}</span>
+    <span class="c1"># Set interval mode (left-right rotation) cycle time, seconds</span>
+    <span class="n">SET_INTERVAL_TIME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_61&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">}}</span></div>
+
+
+<div class="viewcode-block" id="RV10Rotovap"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap">[docs]</a><span class="k">class</span> <span class="nc">RV10Rotovap</span><span class="p">(</span><span class="n">AbstractRotavap</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This provides a Python class for the IKA RV10 rotavap based on the</span>
+<span class="sd">    english section of the original operation manuals for the rotavap and the</span>
+<span class="sd">    heating bath, 20000005206 RV10 bd_082018 and 20000017436 HB digital_092017,</span>
+<span class="sd">    respectively.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;Default constructor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Load commands from helper class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">RV10RotovapCommands</span>
+
+        <span class="c1"># Connection settings</span>
+        <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;baudrate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9600</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;bytesize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">SEVENBITS</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;parity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_EVEN</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">device_name</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">)</span>
+
+        <span class="c1"># Protocol settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args_delimiter</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+
+        <span class="c1"># The rotavap activates heating/rotation upon just updating the setpoint</span>
+        <span class="c1"># These internal variables are to track the state &amp; make behavior more predictable.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rotating</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_temperature_setpoint</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="RV10Rotovap.initialize_device"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Performs reset and do a custom initialization sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
+        <span class="c1"># This is legacy initialization from PL1</span>
+        <span class="c1"># According to Sebastian, without it RV didn&#39;t enter remote control mode</span>
+        <span class="c1"># TODO Check if it&#39;s actually needed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_temperature_regulation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_temperature_regulation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_rotation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_rotation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_task</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_temperature</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.is_connected"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.is_connected">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">RV10RotovapCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Checks if device is connected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NAME</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">reply</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_NAME</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.is_idle"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.is_idle">[docs]</a>    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Checks if device is ready - no explicit method for that.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rotating</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.get_status"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Not yet implemented. #TODO</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.check_errors"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Not yet implemented. #TODO</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.clear_errors"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Not yet implemented. #TODO</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.start"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts evaporation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_rotation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lift_down</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_bath</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.stop"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops evaporation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_bath</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lift_up</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_rotation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.start_bath"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.start_bath">[docs]</a>    <span class="k">def</span> <span class="nf">start_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts heating.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START_HEAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># This has to be done after the internal variable update</span>
+        <span class="c1"># so that the actual device setting is updated</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_temperature_setpoint</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.stop_bath"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.stop_bath">[docs]</a>    <span class="k">def</span> <span class="nf">stop_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops heating.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP_HEAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.set_temperature"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.set_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the desired bath temperature.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            temperature (float): Temperature setpoint in °C.</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          This device has only an internal sensor.</span>
+<span class="sd">                          Thus, the sensor variable has no effect here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If heating is not on, just update internal variable</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heating</span><span class="p">:</span>
+            <span class="c1"># Check value against limits before updating</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_temperature_setpoint</span> <span class="o">=</span> <span class="n">temperature</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_temperature_setpoint</span> <span class="o">=</span> <span class="n">temperature</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.get_temperature"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets current bath temperature.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          This device has only an internal sensor.</span>
+<span class="sd">                          Thus, the sensor variable has no effect here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.get_temperature_setpoint"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          This device has only an internal sensor.</span>
+<span class="sd">                          Thus, the sensor variable has no effect here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_temperature_setpoint</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.start_rotation"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.start_rotation">[docs]</a>    <span class="k">def</span> <span class="nf">start_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts rotation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START_ROTATION</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rotating</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># This has to be done after the internal variable update</span>
+        <span class="c1"># so that the actual device setting is updated</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.stop_rotation"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.stop_rotation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops rotation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP_ROTATION</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rotating</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.set_speed"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.set_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets desired rotation speed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If rotation is not on, just update internal variable</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rotating</span><span class="p">:</span>
+            <span class="c1"># Check value against limits before updating</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span> <span class="o">=</span> <span class="n">speed</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span> <span class="o">=</span> <span class="n">speed</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.get_speed"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.get_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets actual rotation speed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SPEED</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.get_speed_setpoint"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.get_speed_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets current rotation speed setpoint.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.lift_up"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.lift_up">[docs]</a>    <span class="k">def</span> <span class="nf">lift_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Move evaporation flask up.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">LIFT_UP</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RV10Rotovap.lift_down"><a class="viewcode-back" href="../../../api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap.lift_down">[docs]</a>    <span class="k">def</span> <span class="nf">lift_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Move evaporation flask down.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">LIFT_DOWN</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

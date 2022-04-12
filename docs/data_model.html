@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data model &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api/main.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyLabware
+            <img src="_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-flow">Data flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#device-command-structure">Device command structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#value-checking">Value checking</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#min-max-check">Min/max check</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#value-in-range-check">Value in range check</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#built-in-reply-parsers">Built-in reply parsers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#making-custom-parsers">Making custom parsers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#device-reply-structure">Device reply structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#abstract-classes-hierarchy">Abstract classes hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Data model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-model">
+<h1>Data model<a class="headerlink" href="#data-model" title="Permalink to this headline"></a></h1>
+<section id="data-flow">
+<h2>Data flow<a class="headerlink" href="#data-flow" title="Permalink to this headline"></a></h2>
+<p>The flow chart below shows the data flow from the host to the device using the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">set_temperature()</span></code> method for the
+<a class="reference internal" href="api/devices.ika_rct_digital.html"><span class="doc">IKA RCT Digital hotplate</span></a>:</p>
+<img alt="_images/flow_diagram_data_to_device.png" src="_images/flow_diagram_data_to_device.png" />
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">_recv()</span></code> is usually called
+automatically based on whether reply is expected from device according to the
+command definition (see below). However, <code class="xref py py-meth docutils literal notranslate"><span class="pre">_recv()</span></code> can be called
+explicitly to acquire the data from underlying connection object. The data flow
+inside <code class="xref py py-meth docutils literal notranslate"><span class="pre">_recv()</span></code> is presented in the next flow chart:</p>
+<img alt="_images/flow_diagram_data_from_device.png" src="_images/flow_diagram_data_from_device.png" />
+</section>
+<section id="timeouts">
+<span id="id1"></span><h2>Timeouts<a class="headerlink" href="#timeouts" title="Permalink to this headline"></a></h2>
+<p>There are several timeouts implemented to facilitate flow control and avoid
+deadlocking on the connection level:</p>
+<dl class="simple">
+<dt><cite>command_delay</cite></dt><dd><p>This is the delay between two sequential commands sent to ensure the device
+has enough time to process the first one before getting another one. This
+delay is maintained inside the repspective connection class
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">transmit()</span></code> method.</p>
+</dd>
+<dt><cite>receive_timeout</cite></dt><dd><p>This is the delay for the underlying connection’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">receive()</span></code> method.</p>
+</dd>
+<dt><cite>transmit_timeout</cite></dt><dd><p>This is the delay for the underlying connection’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code> method.</p>
+</dd>
+<dt><cite>receiving_interval</cite></dt><dd><p>This is the delay for the connection listener loop to sleep between reading
+from the underlying connection object.</p>
+</dd>
+</dl>
+<p>The default values for the timeouts can be found in the
+<a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection.DEFAULT_CONNECTION_PARAMETERS" title="PyLabware.connections.AbstractConnection.DEFAULT_CONNECTION_PARAMETERS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_CONNECTION_PARAMETERS</span></code></a>
+dictionary of the <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractConnection</span></code> class. They can be accessed and
+overriden through the <code class="xref py py-attr docutils literal notranslate"><span class="pre">LabDevice.connection</span></code> object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">LabDevice</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">command_delay</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Sets inter-command delay to 2 seconds</span>
+</pre></div>
+</div>
+</section>
+<section id="device-command-structure">
+<h2>Device command structure<a class="headerlink" href="#device-command-structure" title="Permalink to this headline"></a></h2>
+<p>Command set for every device is grouped into a helper class acting purely as a
+command container. Each command definition is a simple Python dictionary.
+The command dictionary contains all the necessary information related to any
+particular command including:</p>
+<ul class="simple">
+<li><p>Argument value type.</p></li>
+<li><p>Allowed argument values range/set.</p></li>
+<li><p>Information whether a reply is expected after issuing the command.</p></li>
+<li><p>Rules for reply parsing.</p></li>
+</ul>
+<p>Below is an example of command definitions with flattened dictionary structure
+for visual compactness:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RCTDigitalHotplateCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+   <span class="sd">&quot;&quot;&quot;Collection of command definitions for for IKA RCT Digital stirring hotplate.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="o">...</span>
+   <span class="c1"># Get internal hotplate sensor temperature</span>
+   <span class="n">GET_TEMP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_2&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]}}</span>
+   <span class="c1"># Set temperature</span>
+   <span class="n">SET_TEMP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_1&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">310</span><span class="p">}}</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<p>The principal structure of the dictionary is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmd_name</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;cmd_string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>cmd_name</dt><dd><p>A human-understandable command name used in function
+calls. Must be capitalized. Mandatory.</p>
+</dd>
+<dt>cmd_string</dt><dd><p>An actual command sent to the device, according to device
+specs. Unused fields should be either assigned to <cite>None</cite> or skipped. Mandatory.</p>
+</dd>
+<dt>type</dt><dd><p>One of the standard Python types that the command parameter has to be casted to
+before sending. Optional.</p>
+</dd>
+<dt>check</dt><dd><p>A sub-dictionary defining command parameter checking rules (see below).
+Optional.</p>
+</dd>
+<dt>reply</dt><dd><p>A sub-dictionary defining command reply handling (see below). Optional.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>PyLabware check the presence of <code class="xref py py-attr docutils literal notranslate"><span class="pre">reply</span></code> key in the command
+dictionary to judge whether a reply should be expected from the device
+after sending a command.</p>
+<p>As there is no universal way to map the reply to the preceding
+command, an unsolicited reply would be processed by PyLabware and
+given out next time <code class="xref py py-meth docutils literal notranslate"><span class="pre">_recv()</span></code> is called, which would break
+the data flow.</p>
+<p>Thus, even if no reply is desired, but the device still sends it
+back, an empty <code class="docutils literal notranslate"><span class="pre">reply:</span> <span class="pre">{}</span></code> key should be included in the command
+definition.</p>
+</div>
+<p>The shortest command specification without any parameter value checking and
+no reply expected would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TEST_COMMAND</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;T&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The shortest command definition with reply expected would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TEST_COMMAND</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{}}</span>
+</pre></div>
+</div>
+<section id="value-checking">
+<h3>Value checking<a class="headerlink" href="#value-checking" title="Permalink to this headline"></a></h3>
+<p>There are two basic options for value checking: built in - min/max check and
+value in range check. Custom workflows for value checking are not supported.</p>
+<section id="min-max-check">
+<h4>Min/max check<a class="headerlink" href="#min-max-check" title="Permalink to this headline"></a></h4>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SET_TEMP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;ST&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+            <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                      <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">180</span>
+                     <span class="p">}</span>
+            <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>min</dt><dd><p>Minimum allowed value for the command parameter.</p>
+</dd>
+<dt>max</dt><dd><p>Maximum allowed value for the command parameter.</p>
+</dd>
+</dl>
+<p>The example above defines a command with an <code class="docutils literal notranslate"><span class="pre">integer</span></code> argument having minimum
+allowed value of <code class="docutils literal notranslate"><span class="pre">20</span></code> and maximum allowed value of <code class="docutils literal notranslate"><span class="pre">180</span></code>. Upon invoking
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">device.send(SET_TEMP,</span> <span class="pre">52.5)</span></code>, the following would happen:</p>
+<ol class="arabic simple">
+<li><p>The value <code class="docutils literal notranslate"><span class="pre">52.2</span></code> would be cast to <code class="docutils literal notranslate"><span class="pre">SET_TEMP[&quot;type&quot;]</span></code>, being transformed to
+52.</p></li>
+<li><p>A check <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">52</span> <span class="pre">&gt;</span> <span class="pre">20</span></code> would be performed, if not,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">SLDeviceCommandError()</span></code> exception would be raised.</p></li>
+<li><p>A check <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">52</span> <span class="pre">&lt;</span> <span class="pre">180</span></code> would be performed, if not,
+<code class="xref py py-exc docutils literal notranslate"><span class="pre">SLDeviceCommandError</span></code> exception would be raised.</p></li>
+<li><p>The checked parameter would be glued together with the <code class="docutils literal notranslate"><span class="pre">SET_TEMP[&quot;name&quot;]</span></code> along
+with the proper termination.</p></li>
+<li><p>The resulting message (e.g. <code class="docutils literal notranslate"><span class="pre">ST</span> <span class="pre">52\r\n</span></code>) would be sent to the device after
+which <code class="xref py py-meth docutils literal notranslate"><span class="pre">device.send()</span></code> would return as no reply is expected according to
+the command definition.</p></li>
+</ol>
+</section>
+<section id="value-in-range-check">
+<h4>Value in range check<a class="headerlink" href="#value-in-range-check" title="Permalink to this headline"></a></h4>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SET_ROTATION_DIR</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;SRD&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+            <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;CW&quot;</span><span class="p">,</span> <span class="s2">&quot;CCW&quot;</span><span class="p">,</span> <span class="s2">&quot;cw&quot;</span><span class="p">,</span> <span class="s2">&quot;ccw&quot;</span><span class="p">]</span>
+                     <span class="p">}</span>
+            <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>values</dt><dd><p>Any iterable holding discrete values that the command parameter can take.</p>
+</dd>
+</dl>
+<p>The execution flow for this command would be similar to the one above with the
+min/max check being replaces by the <code class="docutils literal notranslate"><span class="pre">parameter</span> <span class="pre">in</span> <span class="pre">values</span></code> check.</p>
+</section>
+</section>
+<section id="built-in-reply-parsers">
+<h3>Built-in reply parsers<a class="headerlink" href="#built-in-reply-parsers" title="Permalink to this headline"></a></h3>
+<p>As it was explained above, PyLabware checks for the presence of the <code class="xref py py-attr docutils literal notranslate"><span class="pre">reply</span></code> key in
+the command definition to figure out whether it should wait for the device reply
+after sending a command. The contents of the <code class="xref py py-attr docutils literal notranslate"><span class="pre">reply</span></code> define the further
+processing of the obtained reply:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET_TEMP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                      <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span>
+                       <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                     <span class="p">}</span>
+            <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>type</dt><dd><p>One of the standard Python types that the reply would be cast to. Optional.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To provide compatibility with more complex processing, type casting
+only takes place if the original reply type is one of the basic Python
+types - <cite>int</cite>, <cite>float</cite>, <cite>str</cite> or <cite>bool</cite>.</p>
+</div>
+<dl class="simple">
+<dt>parser</dt><dd><p>Any callable to pass the reply to for the further parsing. See the section
+on custom parsers below for the detailed description.</p>
+</dd>
+<dt>args</dt><dd><p>A list of positional arguments to pass to the parser.</p>
+</dd>
+</dl>
+<p>A few simple parsers that are used most often are provided in the
+<a class="reference internal" href="api/parsers.html#module-PyLabware.parsers" title="PyLabware.parsers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">PyLabware.parsers</span></code></a> module.</p>
+</section>
+<section id="making-custom-parsers">
+<h3>Making custom parsers<a class="headerlink" href="#making-custom-parsers" title="Permalink to this headline"></a></h3>
+<p>To make a custom parser when developing your own device driver,
+simply define a function taking <code class="xref py py-attr docutils literal notranslate"><span class="pre">reply</span></code> as a first argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_parser</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="n">dofourtytwo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">dofourtytwo</span> <span class="o">==</span> <span class="mi">42</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">42</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">reply</span>
+</pre></div>
+</div>
+<p>Then provide it as a parser in the command definition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MY_AWESOME_CMD</span> <span class="o">=</span> <span class="p">{</span><span class="n">cmd_name</span><span class="o">=</span><span class="s2">&quot;DO&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">my_parser</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="mi">42</span><span class="p">]}}</span>
+</pre></div>
+</div>
+<p>Note the following:</p>
+<ul class="simple">
+<li><p>The absence of quotes around <code class="docutils literal notranslate"><span class="pre">my_parser</span></code> in the command definition -
+it has to be passed by reference, not by calling it.</p></li>
+<li><p>Even when we pass only a single argument, it still has to be passed as a list.</p></li>
+</ul>
+</section>
+</section>
+<section id="device-reply-structure">
+<h2>Device reply structure<a class="headerlink" href="#device-reply-structure" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.models.LabDeviceReply">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.models.</span></span><span class="sig-name descname"><span class="pre">LabDeviceReply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'text'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#LabDeviceReply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.LabDeviceReply" title="Permalink to this definition"></a></dt>
+<dd><p>This class defines the data model for a device reply for all transport types (plain text, HTTP REST, …)</p>
+</dd></dl>
+
+<dl class="simple">
+<dt>content_type</dt><dd><p>Content type is a literal defining how the reply body should be treated.
+Currently, only two types are supported - <em>text</em> for plain-text replies and
+<em>json</em> for JSON replies.</p>
+</dd>
+<dt>parameters</dt><dd><p>Optional Python dictionary holding any required reply parameters.</p>
+</dd>
+<dt>body</dt><dd><p>The reply body.</p>
+</dd>
+</dl>
+</section>
+<section id="abstract-classes-hierarchy">
+<h2>Abstract classes hierarchy<a class="headerlink" href="#abstract-classes-hierarchy" title="Permalink to this headline"></a></h2>
+<p>The abstract classes hierarchy is one of the core concepts in PyLabware. It ensures,
+that all the devices are classified into a limited number of basic types,
+according to their capabilities. Every device type provides a uniform set of
+methods irrespective of the particular device’s internal implementation.</p>
+<p>This is maintained by a set of hierarchical abstract classes branching down from
+Python’s standard <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code>. Each abstract class presents a limited set of
+basic abstract methods that <strong>must</strong> be implemented by all children along with
+any additional methods to provide extra functionality.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.models.</span></span><span class="sig-name descname"><span class="pre">AbstractLabDevice</span></span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base abstract class for all labware devices.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.check_errors">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.check_errors" title="Permalink to this definition"></a></dt>
+<dd><p>Gets errors from the device (if the device supports it) and raises
+SLDeviceInternalError with error-specific message if any errors are
+present.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.clear_errors">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.clear_errors" title="Permalink to this definition"></a></dt>
+<dd><p>Clears internal device errors, if any.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.connect">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.connect" title="Permalink to this definition"></a></dt>
+<dd><p>Connects to the device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.disconnect">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.disconnect" title="Permalink to this definition"></a></dt>
+<dd><p>Disconnects from the device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.execute_when_ready">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">execute_when_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ready</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.execute_when_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.execute_when_ready" title="Permalink to this definition"></a></dt>
+<dd><p>Acquires device lock, waits till device is ready
+and runs device method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action</strong> – <dl class="simple">
+<dt>A function to run when the device is ready</dt><dd><p>args: List of arguments for the method to run</p>
+</dd>
+<dt>check_ready: A method to use for checking whether</dt><dd><p>the device is ready or not.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.get_status">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.get_status" title="Permalink to this definition"></a></dt>
+<dd><p>Gets device internal status, if implemented in the device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.initialize_device">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.initialize_device" title="Permalink to this definition"></a></dt>
+<dd><p>Many devices require hardware initialization before they can be used.
+This method should run hardware initialization/resetting or setting
+all the necessary parameters.</p>
+<p>This method has to be redefined in child classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.is_connected">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.is_connected" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if connection to the device is active.
+This method should issue a device-specific command
+(e.g. status/info command) and check the reply from the device
+to figure out whether the device is actually responsive,
+and not just returns the state of the connection itself
+(e.g. underlying connection object is_connection_open() method).</p>
+<p>This method has to catch all potential exceptions
+and always return either True or False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether device is connected or not.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.is_idle">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.is_idle" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the device is in idle state.
+The idle state is defined as following:</p>
+<ul class="simple">
+<li><p>The device has just been powered on AND is_connected() is True</p></li>
+<li><p>OR if device has an idle status indication - if device.status == idle</p></li>
+<li><p>OR if device doesn’t have an idle status indication - after device.stop() was called</p></li>
+</ul>
+<p>This method has to execute device-specific command, if possible,
+to check whether a device is in idle state as defined above.</p>
+<p>If there’s no command to get device status, an internal flag self._running
+has to be used.
+If the device has multiple activities (e.g. hotplate), an appropriate
+set of flags has to be used (idle == not (self._stirring or self._heating))</p>
+<p>This method has to catch all potential exceptions
+and always return either True or False.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Device ready status</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.simulation">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">simulation</span></span><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.simulation" title="Permalink to this definition"></a></dt>
+<dd><p>Determines whether the device behaves as as a real or simulated one.
+Simulated device just logs all the commands.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.start">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.start" title="Permalink to this definition"></a></dt>
+<dd><p>Main method that starts device’s intended activity.
+E.g if it’s a stirrer, starts stirring. If it’s a stirring hotplate -
+starts both stirring and heating. For granular control child classes for
+the devices capable of multiple activities (e.g. stirring hotplate)
+must implement separate methods defined in the respective derivate
+abstract classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.stop">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops all device activities and brings it back to idle state.
+According to the definition of is_idle() above, is_idle() ran after
+stop() must return True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.models.AbstractLabDevice.wait_until_ready">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">wait_until_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_ready</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/models.html#AbstractLabDevice.wait_until_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.models.AbstractLabDevice.wait_until_ready" title="Permalink to this definition"></a></dt>
+<dd><p>Acquires device lock, waits till device is ready
+and returns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>check_ready</strong> – A method to use for checking whether
+the device is ready or not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractTemperatureController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.LabDevice</span></code></a></p>
+<p>Any device capable of heating or cooling with temperature regulation.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController.get_temperature">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController.get_temperature" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the actual temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
+Default (0) is the internal probe.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController.get_temperature_setpoint">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController.get_temperature_setpoint" title="Permalink to this definition"></a></dt>
+<dd><p>Gets desired temperature setpoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
+Default (0) is the internal probe.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController.set_temperature">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController.set_temperature" title="Permalink to this definition"></a></dt>
+<dd><p>Sets desired temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>temperature</strong> (<em>float</em>) – Temperature setpoint in °C.</p></li>
+<li><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
+Default (0) is the internal probe.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController.start" title="Permalink to this definition"></a></dt>
+<dd><p>Starts the device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController.start_temperature_regulation">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">start_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController.start_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController.start_temperature_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Starts temperature regulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractTemperatureController.stop_temperature_regulation">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">stop_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractTemperatureController.stop_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractTemperatureController.stop_temperature_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Stops temperature regulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractPressureController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.LabDevice</span></code></a></p>
+<p>Any device capable of regulating the pressure.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.get_pressure">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.get_pressure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.get_pressure" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the actual pressure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.get_pressure_setpoint">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_pressure_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.get_pressure_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.get_pressure_setpoint" title="Permalink to this definition"></a></dt>
+<dd><p>Gets desired pressure setpoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.set_pressure">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">set_pressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pressure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.set_pressure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.set_pressure" title="Permalink to this definition"></a></dt>
+<dd><p>Sets desired pressure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pressure</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.start" title="Permalink to this definition"></a></dt>
+<dd><p>Starts the device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.start_pressure_regulation">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">start_pressure_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.start_pressure_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.start_pressure_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Starts regulating the pressure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops the device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.stop_pressure_regulation">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">stop_pressure_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.stop_pressure_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.stop_pressure_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Stops regulating the pressure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.vent_off">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">vent_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.vent_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.vent_off" title="Permalink to this definition"></a></dt>
+<dd><p>Stops venting the system to atmosphere.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractPressureController.vent_on">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">vent_on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractPressureController.vent_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractPressureController.vent_on" title="Permalink to this definition"></a></dt>
+<dd><p>Vents the system to atmosphere.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractStirringController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.LabDevice</span></code></a></p>
+<p>Any device capable of stirring.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController.get_speed">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController.get_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the actual stirring speed, in RPM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController.get_speed_setpoint">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_speed_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController.get_speed_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController.get_speed_setpoint" title="Permalink to this definition"></a></dt>
+<dd><p>Gets desired stirring speed setpoint, in RPM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController.set_speed">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController.set_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Sets desired stirring speed, in RPM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>speed</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController.start" title="Permalink to this definition"></a></dt>
+<dd><p>Starts the device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController.start_stirring">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">start_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController.start_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController.start_stirring" title="Permalink to this definition"></a></dt>
+<dd><p>Starts stirring.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops the device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractStirringController.stop_stirring">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">stop_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractStirringController.stop_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractStirringController.stop_stirring" title="Permalink to this definition"></a></dt>
+<dd><p>Stops stirring.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDispensingController">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractDispensingController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDispensingController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDispensingController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.LabDevice</span></code></a></p>
+<p>Any device capable of withdrawing and dispensing the material.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDispensingController.dispense">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">dispense</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDispensingController.dispense"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDispensingController.dispense" title="Permalink to this definition"></a></dt>
+<dd><p>Dispenses the defined amount of material.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>amount</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDispensingController.get_speed">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDispensingController.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDispensingController.get_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the dispensing speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDispensingController.set_speed">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDispensingController.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDispensingController.set_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the dispensing speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>speed</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDispensingController.withdraw">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">withdraw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDispensingController.withdraw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDispensingController.withdraw" title="Permalink to this definition"></a></dt>
+<dd><p>Withdraws the defined amount of material.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>amount</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractHotplate">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractHotplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractHotplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractHotplate" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.controllers.AbstractTemperatureController" title="PyLabware.controllers.AbstractTemperatureController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractTemperatureController</span></code></a>, <a class="reference internal" href="#PyLabware.controllers.AbstractStirringController" title="PyLabware.controllers.AbstractStirringController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractStirringController</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>A typical hotplate capable of heating and stirring simultaneously.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractHotplate.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractHotplate.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractHotplate.start" title="Permalink to this definition"></a></dt>
+<dd><p>Starts the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractHotplate.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractHotplate.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractHotplate.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops the device</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractSyringePump">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractSyringePump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractSyringePump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractSyringePump" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.controllers.AbstractDispensingController" title="PyLabware.controllers.AbstractDispensingController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractDispensingController</span></code></a></p>
+<p>A syringe pump device.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractSyringePump.get_plunger_position">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_plunger_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractSyringePump.get_plunger_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractSyringePump.get_plunger_position" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the actual plunger position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractSyringePump.move_home">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">move_home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractSyringePump.move_home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractSyringePump.move_home" title="Permalink to this definition"></a></dt>
+<dd><p>Moves the plunger to home position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractSyringePump.move_plunger_absolute">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">move_plunger_absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractSyringePump.move_plunger_absolute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractSyringePump.move_plunger_absolute" title="Permalink to this definition"></a></dt>
+<dd><p>Moves the plunger to an absolute position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>position</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractSyringePump.move_plunger_relative">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">move_plunger_relative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractSyringePump.move_plunger_relative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractSyringePump.move_plunger_relative" title="Permalink to this definition"></a></dt>
+<dd><p>Moves the plunger relative +/- to the current position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>position</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDistributionValve">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractDistributionValve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDistributionValve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDistributionValve" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.LabDevice</span></code></a></p>
+<p>A 1-to-N distribution device.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDistributionValve.get_valve_position">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_valve_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDistributionValve.get_valve_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDistributionValve.get_valve_position" title="Permalink to this definition"></a></dt>
+<dd><p>Gets currently selected distribution valve output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDistributionValve.move_home">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">move_home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDistributionValve.move_home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDistributionValve.move_home" title="Permalink to this definition"></a></dt>
+<dd><p>Resets the device distribution machinery to it’s power on state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractDistributionValve.set_valve_position">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">set_valve_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractDistributionValve.set_valve_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractDistributionValve.set_valve_position" title="Permalink to this definition"></a></dt>
+<dd><p>Connects the chosen distribution valve output to its input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>position</strong> (<em>Any</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractRotavap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.controllers.AbstractTemperatureController" title="PyLabware.controllers.AbstractTemperatureController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractTemperatureController</span></code></a>, <a class="reference internal" href="#PyLabware.controllers.AbstractStirringController" title="PyLabware.controllers.AbstractStirringController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractStirringController</span></code></a></p>
+<p>A typical rotary evaporator, without integrated vacuum controller/pump.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.lift_down">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">lift_down</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.lift_down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.lift_down" title="Permalink to this definition"></a></dt>
+<dd><p>Lowers the evaporation flask down.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.lift_up">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">lift_up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.lift_up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.lift_up" title="Permalink to this definition"></a></dt>
+<dd><p>Lifts the evaporation flask up.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.start_bath">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">start_bath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.start_bath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.start_bath" title="Permalink to this definition"></a></dt>
+<dd><p>Human-friendly wrapper for the start_temperature_regulation() of the parent class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.start_rotation">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">start_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.start_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.start_rotation" title="Permalink to this definition"></a></dt>
+<dd><p>Human-friendly wrapper for the start_stirring() of the parent class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.start_stirring">
+<span class="sig-name descname"><span class="pre">start_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.start_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.start_stirring" title="Permalink to this definition"></a></dt>
+<dd><p>Mandatory method inherited from the AbstractStirringController.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.start_temperature_regulation">
+<span class="sig-name descname"><span class="pre">start_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.start_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.start_temperature_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Mandatory method inherited from the AbstractTemperatureController.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.stop_bath">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">stop_bath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.stop_bath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.stop_bath" title="Permalink to this definition"></a></dt>
+<dd><p>Human-friendly wrapper for the stop_temperature_regulation() of the parent class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.stop_rotation">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">stop_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.stop_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.stop_rotation" title="Permalink to this definition"></a></dt>
+<dd><p>Human-friendly wrapper for the stop_stirring() of the parent class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.stop_stirring">
+<span class="sig-name descname"><span class="pre">stop_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.stop_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.stop_stirring" title="Permalink to this definition"></a></dt>
+<dd><p>Mandatory method inherited from the AbstractStirringController.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractRotavap.stop_temperature_regulation">
+<span class="sig-name descname"><span class="pre">stop_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractRotavap.stop_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractRotavap.stop_temperature_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Mandatory method inherited from the AbstractTemperatureController.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.controllers.AbstractFlashChromatographySystem">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">AbstractFlashChromatographySystem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PyLabware/controllers.html#AbstractFlashChromatographySystem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.AbstractFlashChromatographySystem" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.LabDevice</span></code></a></p>
+<p>A flash chromatography system.</p>
+<p>Default constructor. This function performs object initialization.
+All device-specific hardware initialization procedures should be inside
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
+<p>This method has to be redefined in child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+adapter used).</p></li>
+<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+These vary depending on the connection_mode.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/main.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

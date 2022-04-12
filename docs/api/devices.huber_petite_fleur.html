@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huber Petite Fleur &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="IKA Microstar 75" href="devices.ika_microstar_75.html" />
+    <link rel="prev" title="Heidolph RZR 2052 Control" href="devices.heidolph_rzr_2052_control.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyLabware
+            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_model.html">Data model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="connections.html">Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsers.html">Parsers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="main.html#devices">Devices</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="devices.buchi_c815.html">Buchi C815</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.buchi_r300.html">Buchi R300</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_hei_torque_100_precision.html">Heidolph HeiTorque 100 Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_rzr_2052_control.html">Heidolph RZR 2052 Control</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Huber Petite Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_microstar_75.html">IKA Microstar 75</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rct_digital.html">IKA RCT Digital</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rv10.html">IKA RV10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.julabo_cf41.html">Julabo CF41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="main.html">API Reference</a> &raquo;</li>
+          <li><a href="devices.html">&lt;no title&gt;</a> &raquo;</li>
+      <li>Huber Petite Fleur</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/devices.huber_petite_fleur.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-PyLabware.devices.huber_petite_fleur">
+<span id="huber-petite-fleur"></span><h1>Huber Petite Fleur<a class="headerlink" href="#module-PyLabware.devices.huber_petite_fleur" title="Permalink to this headline"></a></h1>
+<p>PyLabware driver for Huber Petite Fleur chiller.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.huber_petite_fleur.</span></span><span class="sig-name descname"><span class="pre">PetiteFleurChiller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractTemperatureController" title="PyLabware.controllers.AbstractTemperatureController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractTemperatureController</span></code></a></p>
+<p>This provides a Python class for the Huber Petite Fleur
+chiller based on the the original operation manual
+V1.8.0en/06.10.17</p>
+<p>Default constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>connection_mode</strong> (<em>str</em>) – </p></li>
+<li><p><strong>address</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>port</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.check_errors">
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.check_errors" title="Permalink to this definition"></a></dt>
+<dd><p>Not implemented yet. #TODO</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.clear_errors">
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.clear_errors" title="Permalink to this definition"></a></dt>
+<dd><p>Not implemented yet. #TODO</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_errors">
+<span class="sig-name descname"><span class="pre">get_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.get_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_errors" title="Permalink to this definition"></a></dt>
+<dd><p>Not implemented yet. #TODO</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_pump_pressure">
+<span class="sig-name descname"><span class="pre">get_pump_pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.get_pump_pressure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_pump_pressure" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the pump pressure (can be used as measure of the pump activity).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_ramp_details">
+<span class="sig-name descname"><span class="pre">get_ramp_details</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.get_ramp_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_ramp_details" title="Permalink to this definition"></a></dt>
+<dd><p>Get remaining time and target temperature for the ramp.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[int, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_status" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the status of the chiller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_temperature">
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_temperature" title="Permalink to this definition"></a></dt>
+<dd><p>Reads the current temperature of the bath</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
+This device has one common setpoint temperature shared by the external and internal probe.
+Thus, the sensor variable has no effect here.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_temperature_setpoint">
+<span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.get_temperature_setpoint" title="Permalink to this definition"></a></dt>
+<dd><p>Reads the current temperature setpoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
+This device has one common setpoint temperature shared by the external and internal probe.
+Thus, the sensor variable has no effect here.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.initialize_device">
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.initialize_device" title="Permalink to this definition"></a></dt>
+<dd><p>This chiller doesn’t need/have any initialization.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.interpret_status">
+<span class="sig-name descname"><span class="pre">interpret_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.interpret_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.interpret_status" title="Permalink to this definition"></a></dt>
+<dd><p>Interprets the status string to return human-readable status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>status_string</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.is_connected">
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.is_connected" title="Permalink to this definition"></a></dt>
+<dd><p>Tries to get chiller status &amp; compares it to the template value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.is_idle">
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.is_idle" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the chiller is running.
+#TODO Probably rather has to be done by checking device status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.ramp_temperature">
+<span class="sig-name descname"><span class="pre">ramp_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.ramp_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.ramp_temperature" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the duration for a temperature ramp in seconds.
+Range is -32767…32767s where negative values cancel the
+ramp. Maximum ramp is a tad over 9 hours.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>end_temperature</strong> (<em>float</em>) – </p></li>
+<li><p><strong>time</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.set_circulator_control">
+<span class="sig-name descname"><span class="pre">set_circulator_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pump_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.set_circulator_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.set_circulator_control" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the compressor control mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pump_mode</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.set_temperature">
+<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.set_temperature" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the target temperature of the chiller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>temperature</strong> (<em>float</em>) – Temperature setpoint in °C.</p></li>
+<li><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
+This device has one common setpoint temperature shared by the external and internal probe.
+Thus, the sensor variable has no effect here.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.start_temp_ctrl">
+<span class="sig-name descname"><span class="pre">start_temp_ctrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.start_temp_ctrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.start_temp_ctrl" title="Permalink to this definition"></a></dt>
+<dd><p>Starts the temperature control program input from 0001 -&gt; 0010</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>program</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.start_temperature_regulation">
+<span class="sig-name descname"><span class="pre">start_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.start_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.start_temperature_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Starts the chiller.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.stop_temperature_regulation">
+<span class="sig-name descname"><span class="pre">stop_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.stop_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.stop_temperature_regulation" title="Permalink to this definition"></a></dt>
+<dd><p>Stops the chiller.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.temp_transform">
+<span class="sig-name descname"><span class="pre">temp_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChiller.temp_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller.temp_transform" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature transformed into appropriate number:
+16 bit signed integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.huber_petite_fleur.</span></span><span class="sig-name descname"><span class="pre">PetiteFleurChillerCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/huber_petite_fleur.html#PetiteFleurChillerCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.models.LabDeviceCommands</span></code></p>
+<p>Collection of command definitions for Huber PetiteFleur chiller.</p>
+<p>This class shouldn’t be instantiated</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.COMMAND_PREFIX">
+<span class="sig-name descname"><span class="pre">COMMAND_PREFIX</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'{M'</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.COMMAND_PREFIX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.DEFAULT_NAME">
+<span class="sig-name descname"><span class="pre">DEFAULT_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'Huber</span> <span class="pre">device'</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.DEFAULT_NAME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_ERRORS">
+<span class="sig-name descname"><span class="pre">GET_ERRORS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M05****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_ERRORS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_PROCESS_TEMP">
+<span class="sig-name descname"><span class="pre">GET_PROCESS_TEMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M07****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_PROCESS_TEMP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_PUMP_PRESSURE">
+<span class="sig-name descname"><span class="pre">GET_PUMP_PRESSURE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M03****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_PUMP_PRESSURE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_RAMP_TEMP">
+<span class="sig-name descname"><span class="pre">GET_RAMP_TEMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M5A****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_RAMP_TEMP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_RAMP_TIME">
+<span class="sig-name descname"><span class="pre">GET_RAMP_TIME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M59****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_RAMP_TIME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_STATUS">
+<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M0A****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_STATUS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_TEMP_BATH">
+<span class="sig-name descname"><span class="pre">GET_TEMP_BATH</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M01****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_TEMP_BATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_TEMP_SP">
+<span class="sig-name descname"><span class="pre">GET_TEMP_SP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M00****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_TEMP_SP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_WARNINGS">
+<span class="sig-name descname"><span class="pre">GET_WARNINGS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M06****',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.GET_WARNINGS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.KEY_LOCK">
+<span class="sig-name descname"><span class="pre">KEY_LOCK</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M17',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.KEY_LOCK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.SET_PUMP_MODE">
+<span class="sig-name descname"><span class="pre">SET_PUMP_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M15',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.SET_PUMP_MODE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.SET_RAMP_DURATION">
+<span class="sig-name descname"><span class="pre">SET_RAMP_DURATION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M59',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.SET_RAMP_DURATION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.SET_TEMP_SP">
+<span class="sig-name descname"><span class="pre">SET_TEMP_SP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M00',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.SET_TEMP_SP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_CIRCULATOR">
+<span class="sig-name descname"><span class="pre">START_CIRCULATOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M160001',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_CIRCULATOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_RAMP">
+<span class="sig-name descname"><span class="pre">START_RAMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M5A',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_RAMP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_TEMPERATURE_CTRL">
+<span class="sig-name descname"><span class="pre">START_TEMPERATURE_CTRL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M58',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_TEMPERATURE_CTRL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_TEMP_CONTROL">
+<span class="sig-name descname"><span class="pre">START_TEMP_CONTROL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M140001',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.START_TEMP_CONTROL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.STATUSES">
+<span class="sig-name descname"><span class="pre">STATUSES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['Temperature</span> <span class="pre">control</span> <span class="pre">operating</span> <span class="pre">mode:</span> <span class="pre">',</span> <span class="pre">'Circulation</span> <span class="pre">operating</span> <span class="pre">mode:</span> <span class="pre">',</span> <span class="pre">'Refrigerator</span> <span class="pre">compressor</span> <span class="pre">mode:</span> <span class="pre">',</span> <span class="pre">'Temperature</span> <span class="pre">control</span> <span class="pre">mode:</span> <span class="pre">',</span> <span class="pre">'Circulating</span> <span class="pre">Pump:</span> <span class="pre">',</span> <span class="pre">'Cooling</span> <span class="pre">power</span> <span class="pre">available:</span> <span class="pre">',</span> <span class="pre">'KeyLock:</span> <span class="pre">',</span> <span class="pre">'PID</span> <span class="pre">parameter</span> <span class="pre">set:</span> <span class="pre">',</span> <span class="pre">'Error</span> <span class="pre">detected:</span> <span class="pre">',</span> <span class="pre">'Warning</span> <span class="pre">message</span> <span class="pre">detected:</span> <span class="pre">',</span> <span class="pre">'Mode</span> <span class="pre">for</span> <span class="pre">setting</span> <span class="pre">the</span> <span class="pre">internal</span> <span class="pre">temperature(0X08):</span> <span class="pre">',</span> <span class="pre">'Mode</span> <span class="pre">for</span> <span class="pre">setting</span> <span class="pre">the</span> <span class="pre">external</span> <span class="pre">temperature(0X09):</span> <span class="pre">',</span> <span class="pre">'DV</span> <span class="pre">E-grade:</span> <span class="pre">',</span> <span class="pre">'Power</span> <span class="pre">failure:</span> <span class="pre">',</span> <span class="pre">'Freeze</span> <span class="pre">protection:</span> <span class="pre">']</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.STATUSES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.STOP_CIRCULATOR">
+<span class="sig-name descname"><span class="pre">STOP_CIRCULATOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M160000',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.STOP_CIRCULATOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.STOP_TEMP_CONTROL">
+<span class="sig-name descname"><span class="pre">STOP_TEMP_CONTROL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'{M140000',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[4,</span> <span class="pre">8],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands.STOP_TEMP_CONTROL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="devices.heidolph_rzr_2052_control.html" class="btn btn-neutral float-left" title="Heidolph RZR 2052 Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devices.ika_microstar_75.html" class="btn btn-neutral float-right" title="IKA Microstar 75" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

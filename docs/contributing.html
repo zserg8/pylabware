@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Utils" href="utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyLabware
+            <img src="_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-bugs">Reporting bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-requests">Feature requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-new-devices">Adding new devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-style">Code style</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Contributing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h1>
+<p>Contributing is welcome both in the form of adding new devices support and
+enhancing the functionality of the existing ones.</p>
+<p>To report a bug or ask for a feature/enhancement please create an issue
+on <a class="reference external" href="https://link_to_github">Github</a>.</p>
+<section id="reporting-bugs">
+<h2>Reporting bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline"></a></h2>
+<p>As most of the bugs that can be encountered are related to the particular
+hardware behavior, it would be impossible to reproduce and fix them without
+knowing the exact hardware been used. <strong>The following information must be
+included with any bug description to be considered:</strong></p>
+<ul class="simple">
+<li><p>Full log output at the DEBUG log level (preferably attached as a separate
+.log file).</p></li>
+<li><p>The Python script that caused the error along with full stack trace.</p></li>
+<li><p>Exact brand, model and firmware version of the unit that has been used.</p></li>
+</ul>
+<p>Please adhere to the following structure when creating an issue:</p>
+<ul class="simple">
+<li><p>Quick summary.</p></li>
+<li><p>Code excerpt/stack trace.</p></li>
+<li><p>Comments/suggestions, if any.</p></li>
+</ul>
+</section>
+<section id="feature-requests">
+<h2>Feature requests<a class="headerlink" href="#feature-requests" title="Permalink to this headline"></a></h2>
+<p>Please adhere to the following structure when creating an issue:</p>
+<ul class="simple">
+<li><p>Quick summary.</p></li>
+<li><p>Current behavior - describe what’s happening/missing now.</p></li>
+<li><p>Desired behavior - describe what you would like to have instead and <strong>why</strong>.</p></li>
+</ul>
+</section>
+<section id="adding-new-devices">
+<span id="add-new-device"></span><h2>Adding new devices<a class="headerlink" href="#adding-new-devices" title="Permalink to this headline"></a></h2>
+<p>Here is the rough sequence to follow if you want to add a new device ‘XXX’:</p>
+<ol class="arabic" start="0">
+<li><p>Prepare your development tools:</p>
+<ul class="simple">
+<li><p>Python (see <a class="reference internal" href="overview.html"><span class="doc">Overview</span></a> for Python version and required packages)</p></li>
+<li><p>Flake8</p></li>
+<li><p>MyPy</p></li>
+</ul>
+</li>
+<li><p>If you have write access to the repository, create a new branch off
+<code class="docutils literal notranslate"><span class="pre">develop</span></code> named <code class="docutils literal notranslate"><span class="pre">add_XXX_support</span></code>. If you don’t have a write access, fork
+the repository and create a branch in your private fork.</p></li>
+<li><p>Copy <code class="file docutils literal notranslate"><span class="pre">PyLabware/examples/new_Device_template.py</span></code> from
+<code class="file docutils literal notranslate"><span class="pre">examples</span></code> to <code class="file docutils literal notranslate"><span class="pre">devices</span></code>.</p></li>
+<li><p>Rename the file to be &lt;manufacturer&gt;_&lt;device_model&gt;.py</p></li>
+<li><p>Check the style guide below and write up your code.</p></li>
+<li><p>When putting the command definitions into the helper class, please, put
+<strong>all</strong> commands listed in the device manual even if you are planning to use
+only a subset of them. You don’t have to implement a method for each command,
+but having all of them listed is a burden of the first module author to help
+others in future.</p></li>
+<li><p>Add the user manual into the <code class="file docutils literal notranslate"><span class="pre">manuals</span></code> folder and add a
+reference to it in the docstring of the command class.</p></li>
+<li><p>Test your code on the hardware and fix all bugs found. If there are bugs in
+the hardware discovered, do describe them in the docstring of the appropriate
+method.</p></li>
+<li><p>Run linting and MyPy check from the repository root:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="o">.</span>
+<span class="n">mypy</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>There must be no flake8 errors, and as few MyPy errors as possible.</p>
+</li>
+<li><p>Before submitting PR ensure to merge in latest changes from the <code class="docutils literal notranslate"><span class="pre">develop</span></code>
+branch.</p></li>
+<li><p>Submit a PR to the mainline, provide brief description of the device and
+its particular quirks, if any.</p></li>
+</ol>
+</section>
+<section id="code-style">
+<h2>Code style<a class="headerlink" href="#code-style" title="Permalink to this headline"></a></h2>
+<p>Please, take your time to read <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a>
+carefully before writing any code. If anything remains unclear, please, take
+your time to read it again. We are not strictly following all the PEP8
+guidelines, however, ugly code would not be merged. Here is the rough list of
+things to check for:</p>
+<ul class="simple">
+<li><p><strong>All classes/methods/functions must have meaningful docstrings</strong>
+- they are used for automatic generation of documentation.</p></li>
+<li><p><a class="reference external" href="http://google.github.io/styleguide/pyguide.html">Google style guide</a>
+must be followed for the docstrings syntax.</p></li>
+<li><p>Apart from the docstrings, <strong>the code must have inline comments.</strong></p></li>
+<li><p>PascalCase is used for class names, underscore case for variable/method names.
+All command names use capitalized underscore syntax.</p></li>
+<li><p>Lazy formatting is using for logging.</p></li>
+<li><p>Log outputs should be preceded by the method name that emits the message.</p></li>
+<li><p>All parameters in log messages should be enclosed in &lt;&gt;.</p></li>
+<li><p>All code should pass flake8 linting without errors. A configuration file used
+in the CI can be found in the repository root.</p></li>
+<li><p>Type annotations should be used, but type checking with MyPy is not enforced.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="utils.html" class="btn btn-neutral float-left" title="Utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

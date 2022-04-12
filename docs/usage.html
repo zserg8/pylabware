@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data model" href="data_model.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyLabware
+            <img src="_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-examples">Basic examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-device">Creating a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operating-a-device">Operating a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-sequential-commands">Running sequential commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operating-multiple-devices">Operating multiple devices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-examples">Advanced examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-concurrent-tasks-for-devices">Running concurrent tasks for devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-mode">Simulation mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tweaking-simulation-mode">Tweaking simulation mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-simulation-mode-works">How simulation mode works</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-in-simulation-device-returns-decorator">Using <code class="xref py py-attr docutils literal notranslate"><span class="pre">&#64;in_simulation_device_returns</span></code> decorator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simulating-dynamic-return-values">Simulating dynamic return values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h1>
+<p>Importing the library automatically imports all the device modules into the
+library namespace to make their usage straightforward:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">pl</span><span class="p">)</span>
+<span class="go">[&#39;C3000SyringePump&#39;, &#39;C815FlashChromatographySystem&#39;, &#39;CF41Chiller&#39;,</span>
+<span class="go">&#39;CVC3000VacuumPump&#39;, &#39;HeiTorque100PrecisionStirrer&#39;, &#39;Microstar75Stirrer&#39;,</span>
+<span class="go">&#39;PetiteFleurChiller&#39;, &#39;R300Rotovap&#39;, &#39;RCTDigitalHotplate&#39;,</span>
+<span class="go">&#39;RETControlViscHotplate&#39;, &#39;RV10Rotovap&#39;, &#39;RZR2052ControlStirrer&#39;,</span>
+<span class="go">&#39;__builtins__&#39;, &#39;__cached__&#39;, &#39;__doc__&#39;, &#39;__file__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;,</span>
+<span class="go">&#39;__package__&#39;, &#39;__path__&#39;, &#39;__spec__&#39;, &#39;connections&#39;, &#39;controllers&#39;, &#39;devices&#39;,</span>
+<span class="go">&#39;exceptions&#39;, &#39;models&#39;, &#39;parsers&#39;]</span>
+</pre></div>
+</div>
+<section id="basic-examples">
+<h2>Basic examples<a class="headerlink" href="#basic-examples" title="Permalink to this headline"></a></h2>
+<section id="creating-a-device">
+<h3>Creating a device<a class="headerlink" href="#creating-a-device" title="Permalink to this headline"></a></h3>
+<p><strong>Serial connection:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">C3000SyringePump</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;reagent_pump&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;COM7&quot;</span><span class="p">,</span>
+<span class="go">connection_mode=&quot;serial&quot;, address=None, switch_address=4)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">device_name</span></code> is an arbitrary string used to identify a device.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">port</span></code> is a serial port name (platform-dependent).</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">connection_mode</span></code> determines which <a class="reference internal" href="data_model.html"><span class="doc">connection adapter</span></a> would be activated for the device.</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">address</span></code> determines IP address/DNS name for socket-based or HTTP REST connection, it is not used for serial connection.</p></li>
+</ul>
+<blockquote>
+<div><p>The rest of constructor parameters are device specific and are described in the corresponding <a class="reference internal" href="api/devices.html"><span class="doc">module documentation</span></a>.</p>
+</div></blockquote>
+<p><strong>Socket-based connection:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chiller</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">CF41Chiller</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;jacket_chiller&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;5050&quot;</span><span class="p">,</span>
+<span class="go">connection_mode=&quot;tcpip&quot;, address=&quot;192.168.0.1&quot;)</span>
+</pre></div>
+</div>
+<p><strong>HTTP connection:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rv</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">R300Rotovap</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;rotavap&quot;</span><span class="p">,</span> <span class="n">connection_mode</span><span class="o">=</span><span class="s2">&quot;http&quot;</span><span class="p">,</span>
+<span class="go">address=&quot;r300.local&quot;, password=&quot;yourpass&quot;, port=&quot;4443&quot;)</span>
+</pre></div>
+</div>
+</section>
+<section id="operating-a-device">
+<h3>Operating a device<a class="headerlink" href="#operating-a-device" title="Permalink to this headline"></a></h3>
+<p>A general sequence for an arbitrary device would be:</p>
+<ol class="arabic">
+<li><p>Create device object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">C3000SyringePump</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;reagent_pump&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;COM7&quot;</span><span class="p">,</span>
+<span class="go">connection_mode=&quot;serial&quot;, address=None, switch_address=4)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Alter any settings if needed.</p></li>
+<li><p>Open connection.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>                  <span class="c1"># Open serial connection</span>
+</pre></div>
+</div>
+</li>
+<li><p>Check that device is alive.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">is_connected</span><span class="p">()</span>             <span class="c1"># Check that the pump is live</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</li>
+<li><p>Check that device is initialized. <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialize_device()</span></code> handles any
+device-specific functionality needed for it to operate properly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">()</span>           <span class="c1"># Check that the pump has been initialized</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">initialize_device</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run whatever operations are needed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">get_valve_position</span><span class="p">()</span>       <span class="c1"># Check pump distribution valve position</span>
+<span class="go">&#39;I&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>              <span class="c1"># Withdraw 200 units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">get_plunger_position</span><span class="p">()</span>
+<span class="go">200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>    <span class="c1"># Switch valve</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">get_valve_position</span><span class="p">()</span>
+<span class="go">&#39;O&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">dispense</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>              <span class="c1"># Dispense 200 units to another output</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">get_plunger_position</span><span class="p">()</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Close the connection and exit.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>               <span class="c1"># Close connection before exiting</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Gracefully closing connection before exiting is a good practice.
+Otherwise you are relying on a Python garbage collector for
+closing the connection when it destroys the device object.
+There are no warranties the latter would happen cleanly,
+so the physical device might get stuck with the half-open connection.</p>
+</div>
+</section>
+<section id="running-sequential-commands">
+<h3>Running sequential commands<a class="headerlink" href="#running-sequential-commands" title="Permalink to this headline"></a></h3>
+<p>Often it is important to ensure that the device is idle before sending a
+command. A classical example would be a syringe pump running
+at low speed that would block any further commands until the current
+dispensing/withdrawing is complete.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the definition of what ‘device idle state’ means in the context of
+this library, please check the documentation for the
+<a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.is_idle" title="PyLabware.models.AbstractLabDevice.is_idle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_idle()</span></code></a>:</p>
+</div>
+<p>To indicate whether a device is ready to receive further commands, every device
+driver implements a hardware-specific
+<a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.is_idle" title="PyLabware.models.AbstractLabDevice.is_idle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_idle()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">C3000SyringePump</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;reagent_pump&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;COM7&quot;</span><span class="p">,</span>
+<span class="go">connection_mode=&quot;serial&quot;, address=None, switch_address=4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">initialise_device</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">is_idle</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="go">###########################</span>
+<span class="go"># Set slow withdrawal speed</span>
+<span class="go">###########################</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">set_speed</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="go">###############################################################</span>
+<span class="go"># From here the pump would give a hardware error if any further</span>
+<span class="go"># plunger movement commands are issued before it has finished move.</span>
+<span class="go">###############################################################</span>
+</pre></div>
+</div>
+<p>To make the life easier, a
+<a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.execute_when_ready" title="PyLabware.controllers.LabDevice.execute_when_ready"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute_when_ready()</span></code></a> method
+is provided. For most of the device drivers it is internally used when
+necessary, so that the end user has nothing to worry about:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C3000SyringePump</span><span class="p">(</span><span class="n">AbstractSyringePump</span><span class="p">,</span> <span class="n">AbstractDistributionValve</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">move_plunger_absolute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Makes absolute plunger move.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">set_busy</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_MOVE_ABS</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_MOVE_ABS_NOBUSY</span>
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the detailed syntax please check the corresponding
+<a class="reference internal" href="api/controllers.html"><span class="doc">documentation</span></a>.</p>
+<p>The <a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.wait_until_ready" title="PyLabware.controllers.LabDevice.wait_until_ready"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wait_until_ready()</span></code></a>
+is a simplified wrapper over
+<a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.execute_when_ready" title="PyLabware.controllers.LabDevice.execute_when_ready"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute_when_ready()</span></code></a>
+that just blocks until the device is idle.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If using <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_idle()</span></code>/<code class="xref py py-meth docutils literal notranslate"><span class="pre">execute_when_ready()</span></code> is not
+convenient (e.g. the device doesn’t report busy/idle state), there is
+a simple control flow mechanism built in that ensures there is a
+minimal delay between any two successive commands. Read more <a class="reference internal" href="data_model.html#timeouts"><span class="std std-ref">here</span></a>.</p>
+</div>
+</section>
+<section id="operating-multiple-devices">
+<h3>Operating multiple devices<a class="headerlink" href="#operating-multiple-devices" title="Permalink to this headline"></a></h3>
+<p>Operating multiple devices is similar to the single device example given above.
+The <code class="xref py py-attr docutils literal notranslate"><span class="pre">device_name</span></code> attribute can be used to distinguish between device
+replies in the log files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every device has its own connection object, so concurrent
+access to a single serial port from multiple devices is not supported.</p>
+</div>
+</section>
+</section>
+<section id="advanced-examples">
+<h2>Advanced examples<a class="headerlink" href="#advanced-examples" title="Permalink to this headline"></a></h2>
+<section id="running-concurrent-tasks-for-devices">
+<span id="tasks"></span><h3>Running concurrent tasks for devices<a class="headerlink" href="#running-concurrent-tasks-for-devices" title="Permalink to this headline"></a></h3>
+<p>PyLabware supports concurrent execution of commands if the device hardware itself
+supports it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">C3000SyringePump</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;reagent_pump&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;COM7&quot;</span><span class="p">,</span>
+<span class="go">connection_mode=&quot;serial&quot;, address=None, switch_address=4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">initialise_device</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">is_idle</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">set_speed</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_plunger_position</span><span class="p">():</span>
+<span class="go">...:    print(f&quot;Plunger position: {pump.get_plunger_position()}&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">start_task</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">print_plunger_position</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="go">Plunger position: 0</span>
+<span class="go">Plunger position: 0</span>
+<span class="go">Plunger position: 0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="go">Plunger position: 12</span>
+<span class="go">Plunger position: 62</span>
+<span class="go">Plunger position: 113</span>
+<span class="go">Plunger position: 163</span>
+<span class="go">Plunger position: 200</span>
+<span class="go">Plunger position: 200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">get_all_tasks</span><span class="p">()</span>
+<span class="go">[&lt;LabDeviceTask(Thread-2, started 7944)&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">task</span> <span class="o">=</span> <span class="n">pump</span><span class="o">.</span><span class="n">get_all_tasks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">stop_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the example above the plunger position is constantly monitored and printed
+out while the pump is withdrawing the liquid. Any sensible number of tasks can
+be run in parallel and started/stopped independently. A common use case for this
+feature would be to issue keep-alive commands so that the device stays active.</p>
+<p>More examples can be found in
+<code class="file docutils literal notranslate"><span class="pre">PyLabware/examples/concurrent_tasks.py</span></code></p>
+</section>
+<section id="simulation-mode">
+<span id="simulation"></span><h3>Simulation mode<a class="headerlink" href="#simulation-mode" title="Permalink to this headline"></a></h3>
+<p>Often it is desirable to make a dry run of a script before running it on actual
+hardware to avoid unnecessary time/material cost and/or to ease up debug and
+development. To fulfill this task, every device can be run in simulation
+mode.</p>
+<p>The simulation mode is switched on by setting the <code class="xref py py-attr docutils literal notranslate"><span class="pre">simulation</span></code> property
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>. Simulation messages are printed to log at INFO level so to use it
+you need to configure logging first:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">PyLabware</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">C3000SyringePump</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;reagent_pump&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;COM7&quot;</span><span class="p">,</span> <span class="n">connection_mode</span><span class="o">=</span><span class="s2">&quot;serial&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">switch_address</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">[INFO] :: PyLabware.connections.SerialConnection :: Creating connection object with the following settings:</span>
+<span class="go">{&#39;address&#39;: None, &#39;port&#39;: &#39;COM7&#39;, &#39;encoding&#39;: &#39;UTF-8&#39;, &#39;command_delay&#39;: 0.5,</span>
+<span class="go">&#39;receive_buffer_size&#39;: 128, &#39;receive_timeout&#39;: 1, &#39;transmit_timeout&#39;: 1,</span>
+<span class="go">&#39;receiving_interval&#39;: 0.05, &#39;write_timeout&#39;: 0.5, &#39;baudrate&#39;: 9600,</span>
+<span class="go">&#39;bytesize&#39;: 8, &#39;parity&#39;: &#39;N&#39;, &#39;stopbits&#39;: 1, &#39;xonxoff&#39;: False, &#39;rtscts&#39;: False,</span>
+<span class="go">&#39;dsrdtr&#39;: False, &#39;inter_byte_timeout&#39;: False}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">simulation</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>After that one can use the device as usual issuing any commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">is_connected</span><span class="p">()</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Pretending to send message &lt;&#39;/5?23R\r\n&#39;&gt;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">()</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Patched send() to return &lt;True&gt;, calling &lt;is_initialized&gt;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">get_valve_position</span><span class="p">()</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Pretending to send message &lt;&#39;/5?6R\r\n&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">get_plunger_position</span><span class="p">()</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Pretending to send message &lt;&#39;/5?R\r\n&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">pump</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Patched send() to return &lt;&lt;PyLabware.models.LabDeviceReply object at 0x05A8DA08&gt;&gt;, calling &lt;is_idle&gt;</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: Waiting done. Device &lt;test&gt; ready.</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Pretending to send message &lt;&#39;/5P200R\r\n&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">dispense</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Patched send() to return &lt;&lt;PyLabware.models.LabDeviceReply object at 0x05A8DA08&gt;&gt;, calling &lt;is_idle&gt;</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: Waiting done. Device &lt;test&gt; ready.</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Pretending to send message &lt;&#39;/5D200R\r\n&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Patched send() to return &lt;&lt;PyLabware.models.LabDeviceReply object at 0x05A8DA08&gt;&gt;, calling &lt;is_idle&gt;</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: Waiting done. Device &lt;test&gt; ready.</span>
+<span class="go">[INFO] :: PyLabware.controllers.C3000SyringePump.test :: SIM :: Pretending to send message &lt;&#39;/5OR\r\n&#39;&gt;</span>
+</pre></div>
+</div>
+<p>All methods work without throwing an error, though, obviously, the
+methods that have to return the data from the device do not return anything.
+This behavior can be altered in the device driver, see below for more details.</p>
+<p>The simulation mode is designed in such a way to facilitate device testing. Thus,
+all value checking in device methods still takes place even in simulation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pump</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+<span class="go">SLDeviceCommandError: Unknown valve position &lt;X&gt; requested!</span>
+</pre></div>
+</div>
+</section>
+<section id="tweaking-simulation-mode">
+<h3>Tweaking simulation mode<a class="headerlink" href="#tweaking-simulation-mode" title="Permalink to this headline"></a></h3>
+<section id="how-simulation-mode-works">
+<h4>How simulation mode works<a class="headerlink" href="#how-simulation-mode-works" title="Permalink to this headline"></a></h4>
+<p>Simulation mode works by intercepting the execution workflow in the following four
+places:</p>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">LabDevice.connect()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">LabDevice.disconnect()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">LabDevice.send()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">LabDevice._recv()</span></code></p></li>
+</ul>
+<p>A typical implementation just replaces the actual invocation of the underlying
+connection adapter method with a <code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.info()</span></code> call:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Connects to the device.</span>
+
+<span class="sd">    This method normally shouldn&#39;t be redefined in child classes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SIM :: Opened connection.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">open_connection</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Opened connection.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This results in all high-level code (e.g. value checking and other
+device-specific logic) to be executed as usual in the simulation mode, but all
+the command strings prepared are just logged instead of being sent to the device.</p>
+</section>
+<section id="using-in-simulation-device-returns-decorator">
+<h4>Using <code class="xref py py-attr docutils literal notranslate"><span class="pre">&#64;in_simulation_device_returns</span></code> decorator<a class="headerlink" href="#using-in-simulation-device-returns-decorator" title="Permalink to this headline"></a></h4>
+<p>Sometimes it is necessary to tune the simulated device behavior more granularly.
+The possible examples are:</p>
+<ul class="simple">
+<li><p>A device that echoes the command back upon successful action. The device driver
+code checks the device reply to determine whether the command has been
+interpreted and ran correctly and raises an error if not.</p></li>
+<li><p>A device with higher-level logic that relies on a particular value being
+returned from the device before the execution can continue, e.g. waiting for a
+certain temperature to be reached.</p></li>
+</ul>
+<p>Both of these examples would be impossible to implement with the simple logic
+described above. To work around this issue and avoid patching every complex
+device method with <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">self.simulation</span> <span class="pre">is</span> <span class="pre">True</span></code> clause, a special method decorator is used.</p>
+<p><code class="xref py py-attr docutils literal notranslate"><span class="pre">&#64;in_simulation_device_returns</span></code> decorator should be used to wrap any
+function that relies on a particular value that device should return. This value
+should be passed as the decorator argument. Here is an example from <a class="reference internal" href="api/devices.tricontinent_c3000.html"><span class="doc">Tricontinent C3000
+syringe pump driver</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C3000SyringePump</span><span class="p">(</span><span class="n">AbstractSyringePump</span><span class="p">,</span> <span class="n">AbstractDistributionValve</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">LabDeviceReply</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">C3000SyringePumpCommands</span><span class="o">.</span><span class="n">DEFAULT_STATUS</span><span class="p">))</span>
+        <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Checks if pump is in idle state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send status request command and read back reply with no parsing</span>
+        <span class="c1"># Parsing manipulates status byte to get error flags, we need it here</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="c1">########################################################</span>
+            <span class="c1"># send() patching takes place here</span>
+            <span class="c1">########################################################</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_STATUS</span><span class="p">,</span> <span class="n">parse_reply</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="n">SLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># Chop off prefix/terminator &amp; cut out status byte</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">stripper</span><span class="p">(</span><span class="n">reply</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_prefix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span><span class="p">)</span>
+        <span class="n">status_byte</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">reply</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># Busy/idle bit is 6th bit of the status byte. 0 - busy, 1 - idle</span>
+        <span class="k">if</span> <span class="n">status_byte</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::false.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># Check for errors if any</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_errors</span><span class="p">(</span><span class="n">status_byte</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">SLDeviceInternalError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::false, errors present.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::true.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>The decorator works <a class="reference internal" href="api/controllers.html"><span class="doc">as following</span></a>:</p>
+<ul class="simple">
+<li><p>Gets the object reference from the wrapped bound method (passed as self in the arguments list).</p></li>
+<li><p>Checks <code class="xref py py-meth docutils literal notranslate"><span class="pre">self.simulation()</span></code> to proceed.</p></li>
+<li><p>Stores reference to original <code class="xref py py-meth docutils literal notranslate"><span class="pre">self.send()</span></code> and replaces <code class="xref py py-meth docutils literal notranslate"><span class="pre">self.send()</span></code> with
+a lambda returning decorator argument.</p></li>
+<li><p>Runs the wrapped function and stores the return value.</p></li>
+<li><p>Replaces <code class="xref py py-meth docutils literal notranslate"><span class="pre">self.send()</span></code> back with original reference and returns the return
+value from previous step.</p></li>
+</ul>
+</section>
+<section id="simulating-dynamic-return-values">
+<h4>Simulating dynamic return values<a class="headerlink" href="#simulating-dynamic-return-values" title="Permalink to this headline"></a></h4>
+<p>Sometimes just the decorator is also not enough to achieve desirable behavior. A
+typical example would be a device that echoes back not the command, but the
+command argument and the code that relies on checking this reply for proper
+operation, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">to</span> <span class="n">device</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">SET_TEMP</span> <span class="mf">25.0</span>
+<span class="n">Device</span> <span class="n">reply</span>      <span class="o">&lt;&lt;&lt;</span> <span class="mf">25.0</span>
+</pre></div>
+</div>
+<p>This is quite typical echo mode often encountered in different devices. In order
+to support this mode of operation the following special syntax is used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;{$args[1]}&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">):</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">1</span></code> is the number of positional argument that you want to extract from the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">some_method()</span></code> call. In the case above the decorator will extract
+<code class="docutils literal notranslate"><span class="pre">arg2</span></code> from the arguments list and return it as a return value for the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code> call. Here’s a specific example from the Heidolph overhead
+stirrer driver:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HeiTorque100PrecisionStirrer</span><span class="p">(</span><span class="n">AbstractStirringController</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;{$args[1]}&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets rotation speed in rpm.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If the stirrer is not running, just update internal variable</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">:</span>
+            <span class="c1"># Check value against limits before updating</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span> <span class="o">=</span> <span class="n">speed</span>
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1">###############################################################</span>
+            <span class="c1"># Here send() will be replaced with a lambda returning args[1]</span>
+            <span class="c1"># from set_speed(), which is speed</span>
+            <span class="c1">###############################################################</span>
+            <span class="n">readback_setpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">readback_setpoint</span> <span class="o">!=</span> <span class="n">speed</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">SLDeviceReplyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error setting stirrer speed. Requested setpoint &lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span><span class="si">}</span><span class="s2">&gt; &quot;</span>
+                                        <span class="sa">f</span><span class="s2">&quot;RPM, read back setpoint &lt;</span><span class="si">{</span><span class="n">readback_setpoint</span><span class="si">}</span><span class="s2">&gt; RPM&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span> <span class="o">=</span> <span class="n">speed</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_model.html" class="btn btn-neutral float-right" title="Data model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

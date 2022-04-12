@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.devices.julabo_cf41 &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PyLabware
+            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>PyLabware.devices.julabo_cf41</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PyLabware.devices.julabo_cf41</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyLabware driver for Julabo CF41 chiller.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">serial</span>
+
+<span class="c1"># Core imports</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">parsers</span> <span class="k">as</span> <span class="n">parser</span>
+<span class="kn">from</span> <span class="nn">..controllers</span> <span class="kn">import</span> <span class="n">AbstractTemperatureController</span><span class="p">,</span> <span class="n">in_simulation_device_returns</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="p">(</span><span class="n">PLConnectionError</span><span class="p">,</span>
+                          <span class="n">PLDeviceCommandError</span><span class="p">,</span>
+                          <span class="n">PLDeviceInternalError</span><span class="p">,</span>
+                          <span class="n">PLDeviceReplyError</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
+
+
+<div class="viewcode-block" id="CF41ChillerCommands"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41ChillerCommands">[docs]</a><span class="k">class</span> <span class="nc">CF41ChillerCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collection of command definitions for CF41 chiller.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ################### Configuration constants #############################</span>
+    <span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s2">&quot;JULABO CRYOCOMPACT CF41&quot;</span>
+
+    <span class="c1"># Selected setpoint to use</span>
+    <span class="n">SETPOINT_MODES</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;SP1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;SP2&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;SP3&quot;</span><span class="p">}</span>
+
+    <span class="c1"># Self-tuning modes</span>
+    <span class="n">SELFTUNE_MODES</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;SELFTUNE_OFF&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;SELFTUNE_ONCE&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;SELFTUNE_ALWAYS&quot;</span><span class="p">}</span>
+
+    <span class="c1"># External programmer input modes. 0 - voltage 0..10V; 1 - current 0..20mA</span>
+    <span class="n">EXTPROG_MODES</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;EXT_VOLTAGE&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;EXT_CURRENT&quot;</span><span class="p">}</span>
+
+    <span class="c1"># Temperature regulation mode. 0 - internal; 1 - external Pt100</span>
+    <span class="n">REGULATION_MODES</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;INTERNAL&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;EXTERNAL&quot;</span><span class="p">}</span>
+
+    <span class="c1"># Control dynamics modes</span>
+    <span class="n">CONTROL_DYNAMCIS_MODES</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;APERIODIC&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;STANDARD&quot;</span><span class="p">}</span>
+
+    <span class="c1"># Pump speed modes</span>
+    <span class="n">PUMP_SPEED_MODES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+    <span class="n">STATUSES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;00&quot;</span><span class="p">:</span> <span class="s2">&quot;STOPPED&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;02&quot;</span><span class="p">:</span> <span class="s2">&quot;STOPPED&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;01&quot;</span><span class="p">:</span> <span class="s2">&quot;STARTED&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;03&quot;</span><span class="p">:</span> <span class="s2">&quot;STARTED&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Non critical errors. User has to be notified, but device can keep operating.</span>
+    <span class="n">WARNINGS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;-10&quot;</span><span class="p">:</span> <span class="s2">&quot;Entered value too small!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-11&quot;</span><span class="p">:</span> <span class="s2">&quot;Entered value too large!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-15&quot;</span><span class="p">:</span> <span class="s2">&quot;External control selected, but Pt100 sensor not connected.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-20&quot;</span><span class="p">:</span> <span class="s2">&quot;Check air cooled condenser.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-21&quot;</span><span class="p">:</span> <span class="s2">&quot;Compressor stage 1 does not work.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-26&quot;</span><span class="p">:</span> <span class="s2">&quot;Stand-by plug is missing.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-33&quot;</span><span class="p">:</span> <span class="s2">&quot;Safety temperature sensor short-circuited or open!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-38&quot;</span><span class="p">:</span> <span class="s2">&quot;External Pt100 sensor error!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-40&quot;</span><span class="p">:</span> <span class="s2">&quot;Coolant level low&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Critical errors. Device operation is not possible until the error is cleared.</span>
+    <span class="n">ERRORS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;-01&quot;</span><span class="p">:</span> <span class="s2">&quot;Coolant level critically low!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-03&quot;</span><span class="p">:</span> <span class="s2">&quot;Coolant temperature too high!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-04&quot;</span><span class="p">:</span> <span class="s2">&quot;Coolant temperature too low!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-05&quot;</span><span class="p">:</span> <span class="s2">&quot;Working temperature sensor short-circuited or open!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-06&quot;</span><span class="p">:</span> <span class="s2">&quot;Temperature difference between working and safety temperature is above 35°C!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-07&quot;</span><span class="p">:</span> <span class="s2">&quot;Internal I2C bus error!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-08&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid command!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-09&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid command in current operating mode!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-12&quot;</span><span class="p">:</span> <span class="s2">&quot;Internal ADC error!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-13&quot;</span><span class="p">:</span> <span class="s2">&quot;Set temperature value exceeds safety limits!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-14&quot;</span><span class="p">:</span> <span class="s2">&quot;Excess temperature protection alarm&quot;</span><span class="p">,</span>
+
+    <span class="p">}</span>
+
+    <span class="c1"># ################### Control commands ###################################</span>
+
+    <span class="c1"># Get software version</span>
+    <span class="n">GET_VERSION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;VERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]}}</span>
+    <span class="c1"># Get device name</span>
+    <span class="n">GET_NAME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;VERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">23</span><span class="p">]}}</span>
+    <span class="c1"># Get status/error message</span>
+    <span class="n">GET_STATUS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}}</span>
+
+    <span class="c1"># Get/set working temperature - setpoint 1</span>
+    <span class="n">GET_TEMP_SP1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_00&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Most of the chillers have H5 cooling fluid which has recommended temperature -40..110 ºC</span>
+    <span class="n">SET_TEMP_SP1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_00&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">110</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set working temperature - setpoint 2</span>
+    <span class="n">GET_TEMP_SP2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_01&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="n">SET_TEMP_SP2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_01&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">110</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set working temperature - setpoint 3</span>
+    <span class="n">GET_TEMP_SP3</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_02&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="n">SET_TEMP_SP3</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_02&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">110</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set pump speed mode</span>
+    <span class="n">GET_PUMP_SPEED</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_07&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_PUMP_SPEED</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_07&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">PUMP_SPEED_MODES</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set maximum cooling power</span>
+    <span class="n">GET_MAX_COOL_PWR</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_HIL_00&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_MAX_COOL_PWR</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_HIL_00&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}}</span>
+    <span class="c1"># Get/set maximum heating power</span>
+    <span class="n">GET_MAX_HEAT_PWR</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_HIL_01&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_MAX_HEAT_PWR</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_HIL_01&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}}</span>
+
+    <span class="c1"># Start the chiller</span>
+    <span class="n">START_CHILLER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_MODE_05 1&quot;</span><span class="p">}</span>
+    <span class="c1"># Stop the chiller</span>
+    <span class="n">STOP_CHILLER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_MODE_05 0&quot;</span><span class="p">}</span>
+    <span class="c1"># Get chiller state</span>
+    <span class="n">GET_CHILLER_STATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_MODE_05&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+
+    <span class="c1"># Get actual bath temperature</span>
+    <span class="n">GET_TEMP_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_00&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get heating power, %</span>
+    <span class="n">GET_HEAT_PWR</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_01&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get temperature from external Pt100 sensor</span>
+    <span class="n">GET_TEMP_EXT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_02&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get safety sensor temperature</span>
+    <span class="n">GET_TEMP_SAFE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_03&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get safety temperature setpoint</span>
+    <span class="n">GET_TEMP_SAFE_SET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PV_04&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set high temperature warning limit</span>
+    <span class="n">GET_TEMP_LIM_HI</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_03&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Room temperature to maximum temp the chiller can reach</span>
+    <span class="n">SET_TEMP_LIM_HI</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_03&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">190</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set low temperature warning limit</span>
+    <span class="n">GET_TEMP_LIM_LO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_04&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Room temperature to minimum temperature the chiller can reach</span>
+    <span class="n">SET_TEMP_LIM_LO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_04&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">19</span><span class="p">}}</span>
+
+    <span class="c1"># Get value from external flowrate sensor</span>
+    <span class="n">GET_EXT_FLOWRATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_08&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get temperature difference between working and safety sensor</span>
+    <span class="n">GET_TEMP_DELTA</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_00&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get time constant for external bath</span>
+    <span class="n">GET_BATH_TE_EXT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_01&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get internal slope</span>
+    <span class="n">GET_SI</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_02&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Time constant for internal bath</span>
+    <span class="n">GET_BATH_TE_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_03&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get bath temperature band limit</span>
+    <span class="n">GET_BATH_BAND_LIMIT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_04&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+
+    <span class="c1"># Get self-tuning mode. 0 - off; 1 - once; 2 - always</span>
+    <span class="n">GET_SELFTUNE_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_MODE_02&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+
+    <span class="c1"># Get type of ext programmer input.</span>
+    <span class="n">GET_EXTPROG_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_MODE_03&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set temperature control mode. 0 - internal; 1 - external.</span>
+    <span class="n">GET_TEMP_REG_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_MODE_04&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="c1"># Set temperature regulation mode</span>
+    <span class="n">SET_TEMP_REG_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_MODE_04&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">REGULATION_MODES</span><span class="p">}}</span>
+
+    <span class="c1"># Get control dynamics mode. 0 - aperiodic; 1 - standard</span>
+    <span class="n">GET_DYN_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_MODE_08&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+
+    <span class="c1"># ################### Configuration commands #############################</span>
+
+    <span class="c1"># Get/set temperature setpoint to use (SP1..SP3)</span>
+    <span class="n">SET_TEMP_SP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_MODE_01&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">SETPOINT_MODES</span><span class="p">}}</span>
+    <span class="n">GET_TEMP_SP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_MODE_01&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="c1"># Set self-tune mode</span>
+    <span class="n">SET_SELFTUNE_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_MODE_02&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">SELFTUNE_MODES</span><span class="p">}}</span>
+    <span class="c1"># Set external programmer mode</span>
+    <span class="n">SET_EXTPROG_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_MODE_03&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">EXTPROG_MODES</span><span class="p">}}</span>
+    <span class="c1"># Set manipulated variable for the heater via serial interface</span>
+    <span class="n">SET_HEATER_VALUE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_SP_06&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}}</span>
+    <span class="c1"># Set cospeed for external control</span>
+    <span class="n">SET_COSPEED_EXT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_04&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}}</span>
+    <span class="c1"># Set control dynamics mode</span>
+    <span class="n">SET_CONTROL_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_MODE_08&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">CONTROL_DYNAMCIS_MODES</span><span class="p">}}</span>
+    <span class="c1"># Get setpoint temperature of external programmer</span>
+    <span class="n">GET_TEMP_EXTPROG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_05&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get temperature indication: 0-°C, 1-°F</span>
+    <span class="n">GET_TEMP_UNITS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_SP_06&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="c1"># Get pk/ph0 factor (ratio between max cooling and max heating capacity)</span>
+    <span class="n">GET_PKPH0</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_05&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set Xp control parameter of the internal controller</span>
+    <span class="n">GET_XP_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_06&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="n">SET_XP_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_06&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mf">99.9</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set Tn control parameter of the internal controller</span>
+    <span class="n">GET_TN_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_07&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_TN_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_07&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">9999</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set Tv control parameter of the internal controller</span>
+    <span class="n">GET_TV_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_08&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_TV_INT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_08&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">999</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set Xp control parameter of the cascaded controller</span>
+    <span class="n">GET_XP_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_09&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="n">SET_XP_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_09&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mf">99.9</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set proportional coefficient of the cascaded controller</span>
+    <span class="n">GET_PROP_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_10&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="n">SET_PROP_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_10&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mf">99.9</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set Tn control parameter of the cascaded controller</span>
+    <span class="n">GET_TN_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_11&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_TN_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_11&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">9999</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set Tn control parameter of the cascaded controller</span>
+    <span class="n">GET_TV_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_12&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_TV_CAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_12&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">999</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set adjusted maximum internal temperature for the cascaded controller</span>
+    <span class="n">GET_TEMP_CAS_MAX</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_13&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="n">SET_TEMP_CAS_MAX</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_13&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}</span>
+
+    <span class="c1"># Get/set adjusted minimum internal temperature for the cascaded controller</span>
+    <span class="n">GET_TEMP_CAS_MIN</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_14&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}}</span>
+    <span class="n">SET_TEMP_CAS_MIN</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_14&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}</span>
+
+    <span class="c1"># Get/set upper band limit</span>
+    <span class="n">GET_BAND_LIM_HI</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_15&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_BAND_LIM_HI</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_15&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}}</span>
+
+    <span class="c1"># Get/set lower band limit</span>
+    <span class="n">GET_BAND_LIM_LO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PAR_16&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="n">SET_BAND_LIM_LO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_16&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}}</span></div>
+
+
+<div class="viewcode-block" id="CF41Chiller"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller">[docs]</a><span class="k">class</span> <span class="nc">CF41Chiller</span><span class="p">(</span><span class="n">AbstractTemperatureController</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This provides a Python class for the Julabo CF41 chiller based on the</span>
+<span class="sd">    the original operation manual 1.951.4871-V3 11/15 26.11.15</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;Default constructor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">CF41ChillerCommands</span>
+
+        <span class="c1"># Serial connection settings - p.71 of the manual</span>
+        <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;baudrate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9600</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;bytesize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">SEVENBITS</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;parity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_EVEN</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;rtscts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;command_delay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+        <span class="c1"># Protocol settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args_delimiter</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">device_name</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CF41Chiller.initialize_device"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This chiller doesn&#39;t have initialization method.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_status"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_status">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">)</span>  <span class="c1"># Stopped, no error</span>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets chiller status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_STATUS</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.check_errors"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks device for errors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+        <span class="c1"># All OK</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STATUSES</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_status()::status: &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STATUSES</span><span class="p">[</span><span class="n">status</span><span class="p">])</span>
+            <span class="k">return</span>
+        <span class="c1"># Warning</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">WARNINGS</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning! </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">WARNINGS</span><span class="p">[</span><span class="n">status</span><span class="p">])</span>
+            <span class="k">return</span>
+        <span class="c1"># Critical error</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERRORS</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Critical error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERRORS</span><span class="p">[</span><span class="n">status</span><span class="p">])</span>
+            <span class="k">raise</span> <span class="n">PLDeviceInternalError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERRORS</span><span class="p">[</span><span class="n">status</span><span class="p">])</span>
+        <span class="n">errmsg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Unknown status </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2"> received from device!&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">errmsg</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="n">errmsg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.clear_errors"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Not yet implemented. #TODO</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.is_connected"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.is_connected">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CF41ChillerCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Checks if teh chiller is connected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NAME</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_NAME</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.is_idle"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.is_idle">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if the chiller is off: pump and temperature control</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_CHILLER_STATE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.start_temperature_regulation"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.start_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">start_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts the chiller</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START_CHILLER</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.stop_temperature_regulation"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.stop_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops the chiller</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP_CHILLER</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_regulation_mode"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_regulation_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_regulation_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets current temperature regulation mdoe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_REG_MODE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.set_regulation_mode"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_regulation_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_regulation_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets chiller temperature regulation mode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check if we got valid mode</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">REGULATION_MODES</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Invalid regulation mode provided!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP_REG_MODE</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.set_temperature"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_temperature">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;{$args[1]}&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the target temperature of the chiller.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            temperature (float): Temperature setpoint in °C.</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          The Julabo CF41 chiller has one common setpoint temperature</span>
+<span class="sd">                          shared by the external and internal probe. Thus, the sensor variable has no effect here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check which SP is currently active</span>
+        <span class="n">setpoint_active</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_active_setpoint</span><span class="p">()</span>
+
+        <span class="c1"># Choose the setpoint</span>
+        <span class="k">if</span> <span class="n">setpoint_active</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP_SP1</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">setpoint_active</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP_SP2</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">setpoint_active</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP_SP3</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid active SP &lt;</span><span class="si">{</span><span class="n">setpoint_active</span><span class="si">}</span><span class="s2">&gt; received from the device!&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_active_setpoint"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_active_setpoint">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_active_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Gets currently active temperature setpoint.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_SP</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_temperature"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Retrieves the current temperature of the chiller.</span>
+<span class="sd">        This can be the internal or external temperature, depending</span>
+<span class="sd">        in what mode the chiller is currently operating.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># First, get regulation mde from the chiller</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_regulation_mode</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># The chiller returned an invalid mode.</span>
+            <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received invalid mode &#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&#39; from the chiller &quot;</span>
+                                     <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&#39;. Valid modes are &#39;0&#39; (internal &quot;</span>
+                                     <span class="s2">&quot;regulation mode) and &#39;1&#39; (external regulation mode).&quot;</span><span class="p">)</span>
+        <span class="c1"># Invalid sensor requested</span>
+        <span class="k">if</span> <span class="n">sensor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">REGULATION_MODES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid sensor number </span><span class="si">{</span><span class="n">sensor</span><span class="si">}</span><span class="s2"> provided!&quot;</span>
+                                       <span class="sa">f</span><span class="s2">&quot;Allowed values are </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">REGULATION_MODES</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># Check if the sensor requested matches the regulation modes (0 - internal; 1 - external)</span>
+        <span class="c1"># FIXME</span>
+        <span class="c1"># If external probe is not connected, chiller returns &quot;---.--&quot;</span>
+        <span class="c1"># which would throw an exception from parse_reply() when requesting external sensor reading</span>
+        <span class="k">if</span> <span class="n">sensor</span> <span class="o">!=</span> <span class="n">mode</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Chiller currently operates in </span><span class="si">{mode}</span><span class="s2"> regulation mode, &quot;</span>
+                                <span class="s2">&quot;but the reading from sensor </span><span class="si">{sensor}</span><span class="s2"> (</span><span class="si">{self.cmd.REGULATION_MODES[sensor]}</span><span class="s2">) was requested!&quot;</span><span class="p">)</span>
+        <span class="c1"># Internal sensor temperature</span>
+        <span class="k">if</span> <span class="n">sensor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_INT</span><span class="p">)</span>
+        <span class="c1"># External sensor temperature</span>
+        <span class="k">if</span> <span class="n">sensor</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_EXT</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_temperature_setpoint"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature_setpoint">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          This device uses a shared setpoint for all temperature probes.</span>
+<span class="sd">                          Hence, this argument has no effect here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check which SP is currently active</span>
+        <span class="n">setpoint_active</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_active_setpoint</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">setpoint_active</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_SP1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">setpoint_active</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_SP2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">setpoint_active</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_SP3</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid active SP &lt;</span><span class="si">{</span><span class="n">setpoint_active</span><span class="si">}</span><span class="s2">&gt; received from the device!&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># FIXME this should be refactored with new background tasks functionality</span>
+<div class="viewcode-block" id="CF41Chiller.ramp_temperature"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.ramp_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">ramp_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ramps chiller temperature from the current temperature</span>
+<span class="sd">        to the end_temperature over time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_idle</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Chiller is not running! Please start the chiller before ramping the temperature.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># Get starting temperature</span>
+        <span class="n">start_temperature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_temperature</span><span class="p">()</span>
+        <span class="c1"># Temperature step, degrees per minute. Can be either positive or negative.</span>
+        <span class="n">ramp_step</span> <span class="o">=</span> <span class="p">(</span><span class="n">end_temperature</span> <span class="o">-</span> <span class="n">start_temperature</span><span class="p">)</span> <span class="o">/</span> <span class="n">time</span>
+        <span class="c1"># Check if the value is sane</span>
+        <span class="c1"># Upon manual testing, chiller was able to reliably ramp temperature to 40 °C over 900 minutes.</span>
+        <span class="c1"># This gives approximately 0.044 °C/min step</span>
+        <span class="c1"># 3 decimal places would be enough to minimize the error</span>
+        <span class="n">ramp_step</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">ramp_step</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ramp_step</span> <span class="o">&gt;</span> <span class="mf">5.0</span> <span class="ow">or</span> <span class="n">ramp_step</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Ramp step &lt;</span><span class="si">%s</span><span class="s2">&gt; °C/min is too steep to ramp reliably!&quot;</span><span class="p">,</span> <span class="n">ramp_step</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ramp_step</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Ramp step &lt;</span><span class="si">%s</span><span class="s2">&gt; °C/min is very low!&quot;</span><span class="p">,</span> <span class="n">ramp_step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ramp_temperature()::calculated ramp from &lt;</span><span class="si">%s</span><span class="s2">&gt; to &lt;</span><span class="si">%s</span><span class="s2">&gt; over &lt;</span><span class="si">%s</span><span class="s2">&gt; minutes; step - &lt;</span><span class="si">%s</span><span class="s2">&gt; degrees/min&quot;</span><span class="p">,</span>
+                          <span class="n">start_temperature</span><span class="p">,</span> <span class="n">end_temperature</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">ramp_step</span><span class="p">)</span>
+
+        <span class="n">ramp_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ramp_runner</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">start_temperature</span><span class="p">,</span> <span class="n">ramp_step</span><span class="p">,</span> <span class="n">end_temperature</span><span class="p">),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ramp_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ramp_step</span></div>
+
+    <span class="k">def</span> <span class="nf">_ramp_runner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Worker function that actually does the ramp.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">current_temperature</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Ramp start.&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">step</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">current_temperature</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">step</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">current_temperature</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Ramping from </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">, current step &lt;</span><span class="si">%s</span><span class="s2">&gt;, </span><span class="si">%s</span><span class="s2"> minutes left&quot;</span><span class="p">,</span>
+                             <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">current_temperature</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">current_temperature</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="n">current_temperature</span><span class="p">)</span>
+            <span class="c1"># Calculate next value</span>
+            <span class="n">current_temperature</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">current_temperature</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Ramp end.&quot;</span><span class="p">)</span>
+        <span class="c1"># Set temperature to final value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_cooling_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_cooling_power">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_cooling_power</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the value of the chiller cooling power in %</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_MAX_COOL_PWR</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.set_cooling_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_cooling_power">[docs]</a>    <span class="k">def</span> <span class="nf">set_cooling_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cooling_power</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the value of the chiller cooling power in %</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># According to manual, &quot;Enter the value with a preceding negative sign!&quot;</span>
+        <span class="n">cooling_power</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">cooling_power</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_COOL_PWR</span><span class="p">,</span> <span class="n">cooling_power</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_heating_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power">[docs]</a>    <span class="k">def</span> <span class="nf">get_heating_power</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current heating power in %.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_HEAT_PWR</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_heating_power_setpoint"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_heating_power_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the value of the heating power setpoint in %</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_MAX_HEAT_PWR</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.set_heating_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_heating_power">[docs]</a>    <span class="k">def</span> <span class="nf">set_heating_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heating_power</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the heating power of the chiller, in percent [10-100%].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">heating_power</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">heating_power</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_HEAT_PWR</span><span class="p">,</span> <span class="n">heating_power</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.set_recirculation_pump_speed"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_recirculation_pump_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_recirculation_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the recirculation pump speed (4 different speeds allowed).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PUMP_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CF41Chiller.get_recirculation_pump_speed"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_recirculation_pump_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_recirculation_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the recirculation pump speed:</span>
+<span class="sd">        1 (low flow rate) --&gt; 4 (high flow rate)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_SPEED</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

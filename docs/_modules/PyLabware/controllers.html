@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.controllers &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> PyLabware
+            <img src="../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>PyLabware.controllers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PyLabware.controllers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyLabware device controllers.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">ABC</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">import</span> <span class="nn">queue</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">.connections</span> <span class="kn">import</span> <span class="p">(</span><span class="n">HTTPConnection</span><span class="p">,</span> <span class="n">SerialConnection</span><span class="p">,</span> <span class="n">TCPIPConnection</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="p">(</span><span class="n">PLConnectionError</span><span class="p">,</span> <span class="n">PLConnectionTimeoutError</span><span class="p">,</span> <span class="n">PLDeviceError</span><span class="p">,</span> <span class="n">PLDeviceCommandError</span><span class="p">,</span> <span class="n">PLDeviceReplyError</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AbstractLabDevice</span><span class="p">,</span> <span class="n">ConnectionParameters</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">parsers</span> <span class="k">as</span> <span class="n">parser</span>
+
+
+<div class="viewcode-block" id="in_simulation_device_returns"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.in_simulation_device_returns">[docs]</a><span class="k">def</span> <span class="nf">in_simulation_device_returns</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Decorator that patched the device send() method</span>
+<span class="sd">    to return the value passed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper_inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="c1"># Extract object to patch from self argument</span>
+            <span class="c1"># Self is always passed first</span>
+            <span class="n">slf</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">nonlocal</span> <span class="n">value</span>
+            <span class="c1"># Make a copy so that the original decorator argument won&#39;t get</span>
+            <span class="c1"># mutated between the calls. Important if value is a placeholder</span>
+            <span class="c1"># (see below)</span>
+            <span class="n">dec_retval</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">simulation</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">slf</span><span class="p">,</span> <span class="s2">&quot;simulation&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">simulation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="c1"># Find the value that we need to return. In most cases that would be</span>
+                <span class="c1"># a decorator argument. However, in particularly pesky cases the</span>
+                <span class="c1"># wrapped function would expect to read back one of it&#39;s arguments.</span>
+                <span class="c1"># To implement that, {$args[&lt;number&gt;]} string as decorator argument</span>
+                <span class="c1"># is treated specially.</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s2">&quot;{$args[&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                        <span class="c1"># Try to find positional argument number for the wrapped</span>
+                        <span class="c1"># method call that we want to use as return value by inspecting</span>
+                        <span class="c1"># the decorator arguments</span>
+                        <span class="n">argnum</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">value</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">)]</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">argnum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">argnum</span><span class="p">)</span>
+                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                            <span class="n">slf</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;SIM:: Can&#39;t extract argument number from {$args[]}, check syntax!&quot;</span><span class="p">)</span>
+                            <span class="n">dec_retval</span> <span class="o">=</span> <span class="kc">None</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="c1"># Get the actual wrapped method argument from the list</span>
+                            <span class="n">dec_retval</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">argnum</span><span class="p">]</span>
+                        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                            <span class="n">slf</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;SIM:: Can&#39;t find argument number </span><span class="si">%s</span><span class="s2"> in arguments list &lt;</span><span class="si">%s</span><span class="s2">&gt;!&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+                            <span class="n">dec_retval</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="c1"># value is non-iterable</span>
+                    <span class="k">pass</span>
+                <span class="c1"># Save reference to original send()</span>
+                <span class="n">orig_send</span> <span class="o">=</span> <span class="n">slf</span><span class="o">.</span><span class="n">send</span>
+                <span class="c1"># Replace it with lambda returning the value we want - either a</span>
+                <span class="c1"># static decorator argument or dynamic value from the wrapped</span>
+                <span class="c1"># function call syntax</span>
+                <span class="n">slf</span><span class="o">.</span><span class="n">send</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">dec_retval</span>
+                <span class="n">slf</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SIM :: Patched send() to return &lt;</span><span class="si">%s</span><span class="s2">&gt;, calling &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                <span class="c1"># Get return value (if any) for the actual function - other</span>
+                <span class="c1"># functions in the call chain may rely on it</span>
+                <span class="n">retval</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="c1"># Restore original send() back</span>
+                <span class="n">slf</span><span class="o">.</span><span class="n">send</span> <span class="o">=</span> <span class="n">orig_send</span>
+                <span class="k">return</span> <span class="n">retval</span>
+            <span class="c1"># No simulation - return original function</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper_inner</span>
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+<div class="viewcode-block" id="LabDevice"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice">[docs]</a><span class="k">class</span> <span class="nc">LabDevice</span><span class="p">(</span><span class="n">AbstractLabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base controller class for all labware devices.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Default constructor. This function performs object initialization.</span>
+<span class="sd">        All device-specific hardware initialization procedures should be inside</span>
+<span class="sd">        the :py:meth:`~PyLabware.models.AbstractLabDevice.initialise_device()` method.</span>
+
+<span class="sd">        This method has to be redefined in child classes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            device_name: Device name (for logging purposes).</span>
+<span class="sd">            connection_mode: Physical connection mode (defines the connection</span>
+<span class="sd">                             adapter used).</span>
+<span class="sd">            connection_parameters: Dictionary with connection-specific settings.</span>
+<span class="sd">                                   These vary depending on the connection_mode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Instance name</span>
+        <span class="k">if</span> <span class="n">device_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">device_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device_name</span> <span class="o">=</span> <span class="n">device_name</span>
+
+        <span class="c1"># Logger object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_name</span><span class="p">)</span>
+
+        <span class="c1"># Flags</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_simulation</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Lock object for thread-safe access to connection object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">RLock</span><span class="p">()</span>
+        <span class="c1"># Pool of threads for keepalive/background tasks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LabDeviceTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Protocol settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="c1"># Delimiter between the command and argument(s list)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args_delimiter</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="n">connection_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">connection_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Choose &amp; instantiate right connection object</span>
+        <span class="k">if</span> <span class="n">connection_mode</span> <span class="o">==</span> <span class="s2">&quot;serial&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">SerialConnection</span><span class="p">(</span><span class="n">connection_parameters</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">connection_mode</span> <span class="o">==</span> <span class="s2">&quot;tcpip&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">TCPIPConnection</span><span class="p">(</span><span class="n">connection_parameters</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">connection_mode</span> <span class="o">==</span> <span class="s2">&quot;http&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">HTTPConnection</span><span class="p">(</span><span class="n">connection_parameters</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported connection mode &lt;</span><span class="si">{</span><span class="n">connection_mode</span><span class="si">}</span><span class="s2">&gt; for &lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Determines whether the device behaves as as a real or simulated one.</span>
+<span class="sd">            Simulated device just logs all the commands.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation</span>
+
+    <span class="nd">@simulation</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Setter for the simulation property</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_simulation</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LabDevice.connect"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Connects to the device.</span>
+
+<span class="sd">        This method normally shouldn&#39;t be redefined in child classes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SIM :: Opened connection.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">open_connection</span><span class="p">()</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">PLConnectionError</span><span class="p">,</span> <span class="n">PLConnectionTimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t connect to device &lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&gt;!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Opened connection.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabDevice.disconnect"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.disconnect">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Disconnects from the device.</span>
+
+<span class="sd">        This method normally shouldn&#39;t be redefined in child classes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SIM :: Closed connection&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># Stop all background tasks if any</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Background tasks running, stopping them before disconnect.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stop_all_tasks</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">close_connection</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Closed connection.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabDevice.send"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method takes the command to be sent and runs all necessary</span>
+<span class="sd">        checks on the command parameter if present and required. Then the</span>
+<span class="sd">        command get wrapped with the necessary prefix/terminator and connection</span>
+<span class="sd">        lock is acquired. The command string is sent to the device using</span>
+<span class="sd">        appropriate connection adapter and _recv() is invoked if a reply is</span>
+<span class="sd">        expected. Only after that the connection lock is released.</span>
+
+<span class="sd">        This method normally shouldn&#39;t be redefined in child classes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cmd: The command to send.</span>
+<span class="sd">            value: Command parameter, if any.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_value</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_message</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SIM :: Pretending to send message &lt;</span><span class="si">%r</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># Check if we need to get reply back for this command</span>
+        <span class="n">reply_expected</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;reply&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">transmit</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sent message &lt;</span><span class="si">%r</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">reply_expected</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recv</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabDevice.check_value"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.check_value">[docs]</a>    <span class="k">def</span> <span class="nf">check_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Checks the value provided against the definitions in command dict.</span>
+<span class="sd">        Then does any value conversion/formatting/type casting as needed.</span>
+
+<span class="sd">        This method may be redefined in child classes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cmd: Device command definition.</span>
+<span class="sd">            value: Command parameter to check.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (Any): Processed value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Value type casting</span>
+        <span class="c1"># TODO think about moving type to check dictionary</span>
+        <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">cmd</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">](</span><span class="n">value</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_value()::type casted value &lt;</span><span class="si">%s</span><span class="s2">&gt; to &lt;</span><span class="si">%s</span><span class="s2">&gt;.&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">])</span>
+            <span class="c1"># Invalid type definition</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;check_value()::Illegal type &lt;</span><span class="si">%s</span><span class="s2">&gt; specification in command &lt;</span><span class="si">%s</span><span class="s2">&gt; definition.&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">],</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="c1"># Type cast error</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t cast value &lt;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt; to type &lt;</span><span class="si">{</span><span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_value()::type casting not required - skipped.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check if any checking/processing is required acc. to cmd definition</span>
+        <span class="n">check_needed</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;check&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">check_needed</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+
+        <span class="c1"># Value checking</span>
+        <span class="k">if</span> <span class="s2">&quot;check&quot;</span> <span class="ow">in</span> <span class="n">cmd</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;check&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># Min/max check</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;check&quot;</span><span class="p">][</span><span class="s2">&quot;min&quot;</span><span class="p">]:</span>
+                    <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested value &lt;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt; is below limit &lt;</span><span class="si">{</span><span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">][</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt; !&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_value()::min check &lt;</span><span class="si">%s</span><span class="s2">&gt; &lt; &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">][</span><span class="s1">&#39;min&#39;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;check&quot;</span><span class="p">][</span><span class="s2">&quot;max&quot;</span><span class="p">]:</span>
+                    <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested value &lt;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt; is above limit &lt;</span><span class="si">{</span><span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">][</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt; !&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_value()::max check &lt;</span><span class="si">%s</span><span class="s2">&gt; &gt; &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">][</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+            <span class="c1"># No cmd[&quot;check&quot;][&quot;min&quot;] or cmd[&quot;check&quot;][&quot;max&quot;]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_value()::min/max check not required - skipped.&quot;</span><span class="p">)</span>
+            <span class="c1"># Invalid value in cmd[&quot;check&quot;][&quot;min&quot;] or cmd[&quot;check&quot;][&quot;max&quot;]</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Illegal min/max values specification in command &lt;</span><span class="si">%s</span><span class="s2">&gt; definition!&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+
+            <span class="c1"># Value in range check</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;check&quot;</span><span class="p">][</span><span class="s2">&quot;values&quot;</span><span class="p">]:</span>
+                    <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested value &lt;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt; not in the allowed range &lt;</span><span class="si">{</span><span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">][</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt;.&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_value()::range check &lt;</span><span class="si">%s</span><span class="s2">&gt; in range &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;check&quot;</span><span class="p">][</span><span class="s2">&quot;values&quot;</span><span class="p">])</span>
+            <span class="c1"># No cmd[&quot;check&quot;][&quot;range&quot;]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_value()::range check not required - skipped.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Illegal range specification in command &lt;</span><span class="si">%s</span><span class="s2">&gt; definition.&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="LabDevice.prepare_message"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.prepare_message">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;This function does all preparations needed to make the command</span>
+<span class="sd">        compliant with device protocol, e.g. type casts the parameters, checks</span>
+<span class="sd">        that their values are in range, adds termination sequences, etc.</span>
+
+<span class="sd">        This method may be redefined in child classes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cmd: Device command definition.</span>
+<span class="sd">            value: Command parameter to set, if any.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (str): Checked &amp; prepared command string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_prefix</span> <span class="o">+</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span>
+        <span class="c1"># Else</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_prefix</span> <span class="o">+</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">args_delimiter</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span></div>
+
+    <span class="k">def</span> <span class="nf">_recv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Locks the connection object, reads back the reply and re-assembles it</span>
+<span class="sd">        if it is chunked. Then parses the reply if necessary and passes it back.</span>
+
+<span class="sd">        This method normally shouldn&#39;t be redefined in child classes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            parse: If reply parsing is required.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (str): Reply from the device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SIM :: Received reply.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">receive</span><span class="p">()</span>
+            <span class="c1"># Check if we got complete reply in case it is chunked</span>
+            <span class="c1"># If not, keep reading out data until the terminator</span>
+            <span class="c1"># TODO how (any) parameters should be appended to reply object?</span>
+            <span class="k">if</span> <span class="n">reply</span><span class="o">.</span><span class="n">content_type</span> <span class="o">==</span> <span class="s2">&quot;chunked&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                    <span class="k">while</span> <span class="ow">not</span> <span class="n">reply</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;_recv()::reply terminator not found, reading next chunk.&quot;</span><span class="p">)</span>
+                        <span class="n">reply_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">receive</span><span class="p">()</span>
+                        <span class="n">reply</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">body</span> <span class="o">+</span> <span class="n">reply_chunk</span><span class="o">.</span><span class="n">body</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Received chunked reply, but reply terminator is not set - reassembly not possible!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Raw reply from the device: &lt;</span><span class="si">%r</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+
+        <span class="c1"># Usually, we don&#39;t expect empty replies when we are waiting for them</span>
+        <span class="k">if</span> <span class="n">reply</span><span class="o">.</span><span class="n">body</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Empty reply from device!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Run parsing</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_reply</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+
+        <span class="c1"># Run type casting</span>
+        <span class="c1"># This would work properly only between base Python types</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;cast_reply_type()::complex data type &lt;</span><span class="si">%s</span><span class="s2">&gt;, skipping casting.&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">reply</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">reply</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cast_reply_type</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LabDevice.parse_reply"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.parse_reply">[docs]</a>    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;This function takes a LabDeviceReply object and does all necessary</span>
+<span class="sd">        processing to return a reply string back. Parsing is done according to</span>
+<span class="sd">        command specification.</span>
+
+<span class="sd">        This method may be redefined in child classes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reply: Reply from the device</span>
+<span class="sd">            cmd: Command definition to look the parsing workflow in.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (any): Processed reply</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># The condition below is always True unless parse_reply()</span>
+        <span class="c1"># has been redefined in the child class and this is being executed</span>
+        <span class="c1"># in a super() call after the actual string has already been extracted</span>
+        <span class="c1"># from the LabDeviceReply object.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">body</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="c1"># Always strip off prefix and terminator before proceeding</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">stripper</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_prefix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span><span class="p">)</span>
+
+        <span class="c1"># Get parser function</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">function</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">][</span><span class="s2">&quot;parser&quot;</span><span class="p">]</span>
+            <span class="c1"># Then get parser function arguments</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;args&quot;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parse_reply()::got parser &lt;</span><span class="si">%s</span><span class="s2">&gt;, arguments &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+            <span class="c1"># Run parsing</span>
+            <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parse_reply()::parsed reply &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Parsing function &lt;</span><span class="si">%s</span><span class="s2">&gt; defined for command &lt;</span><span class="si">%s</span><span class="s2">&gt; is not callable!&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># No parser found in command definition</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parse_reply()::parsing not defined for command &lt;</span><span class="si">%s</span><span class="s2">&gt; - skipped.&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">reply</span></div>
+
+<div class="viewcode-block" id="LabDevice.cast_reply_type"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.cast_reply_type">[docs]</a>    <span class="k">def</span> <span class="nf">cast_reply_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Casts reply type based on the type provided in command definition.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reply: Reply string.</span>
+<span class="sd">            cmd: Command definition to look the type value in.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (any): Reply casted to the correct type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Special case - &quot;0&quot; string should be casted to boolean False</span>
+            <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="ow">and</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
+                <span class="n">casted_reply</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="c1"># Special case - returned value is a string representing float (e.g.</span>
+            <span class="c1"># &quot;0.0&quot;) and we need to cast it to int. int(&quot;0.0&quot;) would give a</span>
+            <span class="c1"># ValueError, so we need to convert it to float first</span>
+            <span class="k">if</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+                <span class="n">casted_reply</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">reply</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">casted_reply</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">](</span><span class="n">reply</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;cast_reply_type()::casted reply type to </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;reply&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">])</span>
+        <span class="c1"># No cmd[&quot;reply&quot;][&quot;type&quot;] node found</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;cast_reply_type()::no type definition found - skipped.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">reply</span>
+        <span class="c1"># cmd[&quot;reply&quot;][&quot;type&quot;] does not point to a proper data type</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Illegal parse type &lt;</span><span class="si">%s</span><span class="s2">&gt; specification in command &lt;</span><span class="si">%s</span><span class="s2">&gt; definition.&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">],</span> <span class="n">cmd</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">reply</span>
+        <span class="c1"># Type casting error</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t cast reply &lt;</span><span class="si">{</span><span class="n">reply</span><span class="si">}</span><span class="s2">&gt; to type &lt;</span><span class="si">{</span><span class="n">cmd</span><span class="p">[</span><span class="s1">&#39;reply&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">casted_reply</span></div>
+
+<div class="viewcode-block" id="LabDevice.wait_until_ready"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.wait_until_ready">[docs]</a>    <span class="k">def</span> <span class="nf">wait_until_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check_ready</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Acquires device lock, waits till device is ready and returns.</span>
+<span class="sd">        If no method is provided for checking, self._is_idle is used.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            check_ready: A method to use for checking whether the device is ready or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">check_ready</span><span class="o">=</span><span class="n">check_ready</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabDevice.execute_when_ready"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.execute_when_ready">[docs]</a>    <span class="k">def</span> <span class="nf">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">check_ready</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Acquires device lock, waits till device is ready and runs specified</span>
+<span class="sd">        action. If no method is provided for checking, :py:meth:`PyLabware.models.AbstractLabDevice._is_idle` is used.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">                 action: A method to run when the device is ready</span>
+<span class="sd">                   args: List of positional arguments for the method to run</span>
+<span class="sd">            check_ready: A method to use for checking whether the device is ready or not. (keyword-only)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (any): The return value of action.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">check_ready</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">check_ready</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_idle</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">check_ready</span><span class="p">():</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Waiting done. Device &lt;</span><span class="si">%s</span><span class="s2">&gt; ready.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">action</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">action</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="LabDevice.start_task"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.start_task">[docs]</a>    <span class="k">def</span> <span class="nf">start_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates a LabDeviceTask object, starts it and appends the reference</span>
+<span class="sd">        to the task instance to the list of tasks.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            interval: How often the method should be executed, in seconds</span>
+<span class="sd">            method: The function to run.</span>
+<span class="sd">            args: Arguments for the function, if any.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (LabDeviceTask): Created task object for further reference.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Prepare task object</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">LabDeviceTask</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting background task for &lt;</span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)&gt;&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">task</span></div>
+
+<div class="viewcode-block" id="LabDevice.stop_task"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.stop_task">[docs]</a>    <span class="k">def</span> <span class="nf">stop_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_to_stop</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops the LabDeviceTask object and remove the reference to it</span>
+<span class="sd">        from the list of tasks. If no argument is provided and only a single</span>
+<span class="sd">        task is running - stops that one.</span>
+
+<span class="sd">        Arg:</span>
+<span class="sd">            task_to_stop: LabDeviceTask object to stop.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If there&#39;s only a single task thread &amp; no arguments - stop it</span>
+        <span class="k">if</span> <span class="n">task_to_stop</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">task_to_stop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;More than one task present, don&#39;t know which to stop!&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span> <span class="o">==</span> <span class="n">task_to_stop</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Stopping task thread &lt;</span><span class="si">%s</span><span class="s2">&gt;.&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">ident</span><span class="p">)</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Task </span><span class="si">%s</span><span class="s2"> not found!&quot;</span><span class="p">,</span> <span class="n">task_to_stop</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabDevice.stop_all_tasks"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.stop_all_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">stop_all_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops all tasks currently running and resets internal list of tasks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Stopping background task &lt;</span><span class="si">%s</span><span class="s2">&gt;.&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">ident</span><span class="p">)</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="LabDevice.get_all_tasks"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDevice.get_all_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns internal list of tasks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_background_tasks</span></div></div>
+
+
+<div class="viewcode-block" id="LabDeviceTask"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDeviceTask">[docs]</a><span class="k">class</span> <span class="nc">LabDeviceTask</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simple class to implement periodically running device actions.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Default constructor&quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="c1"># Kill all tasks upon exit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span> <span class="k">if</span> <span class="n">args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+
+        <span class="c1"># Stop flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop_requested</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+
+        <span class="c1"># Logger object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LabDeviceTask.run"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDeviceTask.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts task activity.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Background task </span><span class="si">%s</span><span class="s2"> started. Executing &lt;</span><span class="si">%s</span><span class="s2">&gt; command every &lt;</span><span class="si">%s</span><span class="s2">&gt; seconds.&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">get_ident</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_requested</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">retval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Full</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Can&#39;t push background task return value &lt;</span><span class="si">%s</span><span class="s2">&gt; into the queue. The queue is full!&quot;</span><span class="p">,</span> <span class="n">retval</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stop_requested</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Background task &lt;</span><span class="si">%s</span><span class="s2">&gt; exiting.&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">get_ident</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="LabDeviceTask.stop"><a class="viewcode-back" href="../../api/controllers.html#PyLabware.controllers.LabDeviceTask.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the stop flag to signal for the thread to exit.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop_requested</span><span class="o">.</span><span class="n">set</span><span class="p">()</span></div></div>
+
+
+<span class="c1"># ############## Base abstract controller classes ###############</span>
+
+
+<div class="viewcode-block" id="AbstractTemperatureController"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController">[docs]</a><span class="k">class</span> <span class="nc">AbstractTemperatureController</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Any device capable of heating or cooling with temperature regulation.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractTemperatureController.start_temperature_regulation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController.start_temperature_regulation">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">start_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Starts temperature regulation.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractTemperatureController.start"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Starts the device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_temperature_regulation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractTemperatureController.stop_temperature_regulation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController.stop_temperature_regulation">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">stop_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops temperature regulation.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractTemperatureController.stop"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops the device.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_temperature_regulation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractTemperatureController.set_temperature"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController.set_temperature">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets desired temperature.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            temperature (float): Temperature setpoint in °C.</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          Default (0) is the internal probe.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractTemperatureController.get_temperature"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController.get_temperature">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets the actual temperature.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          Default (0) is the internal probe.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractTemperatureController.get_temperature_setpoint"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractTemperatureController.get_temperature_setpoint">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets desired temperature setpoint.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
+<span class="sd">                          Default (0) is the internal probe.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="AbstractStirringController"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController">[docs]</a><span class="k">class</span> <span class="nc">AbstractStirringController</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Any device capable of stirring.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractStirringController.start_stirring"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController.start_stirring">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">start_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Starts stirring.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractStirringController.start"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Starts the device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_stirring</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractStirringController.stop_stirring"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController.stop_stirring">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">stop_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops stirring.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractStirringController.stop"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops the device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_stirring</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractStirringController.set_speed"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController.set_speed">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets desired stirring speed, in RPM.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractStirringController.get_speed"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController.get_speed">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets the actual stirring speed, in RPM.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractStirringController.get_speed_setpoint"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractStirringController.get_speed_setpoint">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets desired stirring speed setpoint, in RPM.&quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="AbstractPressureController"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController">[docs]</a><span class="k">class</span> <span class="nc">AbstractPressureController</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Any device capable of regulating the pressure.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractPressureController.start_pressure_regulation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.start_pressure_regulation">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">start_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Starts regulating the pressure.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.start"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Starts the device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pressure_regulation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.stop_pressure_regulation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.stop_pressure_regulation">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">stop_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops regulating the pressure.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.stop"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops the device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_pressure_regulation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.vent_on"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.vent_on">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">vent_on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Vents the system to atmosphere.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.vent_off"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.vent_off">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">vent_off</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops venting the system to atmosphere.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.set_pressure"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.set_pressure">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets desired pressure.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.get_pressure"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.get_pressure">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets the actual pressure&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractPressureController.get_pressure_setpoint"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractPressureController.get_pressure_setpoint">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_pressure_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets desired pressure setpoint.&quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="AbstractDispensingController"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDispensingController">[docs]</a><span class="k">class</span> <span class="nc">AbstractDispensingController</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Any device capable of withdrawing and dispensing the material.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractDispensingController.set_speed"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDispensingController.set_speed">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets the dispensing speed.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractDispensingController.get_speed"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDispensingController.get_speed">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets the dispensing speed.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractDispensingController.withdraw"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDispensingController.withdraw">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Withdraws the defined amount of material.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractDispensingController.dispense"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDispensingController.dispense">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dispense</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Dispenses the defined amount of material.&quot;&quot;&quot;</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">AbstractDistributionController</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An N-to-M distribution device.&quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">move_home</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Resets the device distribution machinery to it&#39;s power on state.&quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">connect_ports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port1</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">port2</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Makes connection between provided input and output.&quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">disconnect_ports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port1</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">port2</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Breaks connection between provided input and output.&quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_port_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Gets a list of tuples (portX, portY) representing current connectivity.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="AbstractDistributionValve"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDistributionValve">[docs]</a><span class="k">class</span> <span class="nc">AbstractDistributionValve</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A 1-to-N distribution device.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractDistributionValve.move_home"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDistributionValve.move_home">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">move_home</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Resets the device distribution machinery to it&#39;s power on state.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractDistributionValve.set_valve_position"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDistributionValve.set_valve_position">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">set_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Connects the chosen distribution valve output to its input.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractDistributionValve.get_valve_position"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractDistributionValve.get_valve_position">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets currently selected distribution valve output.&quot;&quot;&quot;</span></div></div>
+
+
+<span class="c1"># ############## Derived abstract controller classes ###############</span>
+
+
+<div class="viewcode-block" id="AbstractHotplate"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractHotplate">[docs]</a><span class="k">class</span> <span class="nc">AbstractHotplate</span><span class="p">(</span><span class="n">AbstractTemperatureController</span><span class="p">,</span> <span class="n">AbstractStirringController</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A typical hotplate capable of heating and stirring simultaneously.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractHotplate.start"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractHotplate.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Starts the device.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_stirring</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_temperature_regulation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractHotplate.stop"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractHotplate.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops the device&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_temperature_regulation</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_stirring</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="AbstractRotavap"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap">[docs]</a><span class="k">class</span> <span class="nc">AbstractRotavap</span><span class="p">(</span><span class="n">AbstractTemperatureController</span><span class="p">,</span> <span class="n">AbstractStirringController</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A typical rotary evaporator, without integrated vacuum controller/pump.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractRotavap.lift_up"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.lift_up">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">lift_up</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Lifts the evaporation flask up.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.lift_down"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.lift_down">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">lift_down</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Lowers the evaporation flask down.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.start_rotation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.start_rotation">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">start_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Human-friendly wrapper for the start_stirring() of the parent class.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.stop_rotation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.stop_rotation">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">stop_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Human-friendly wrapper for the stop_stirring() of the parent class.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.start_stirring"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.start_stirring">[docs]</a>    <span class="k">def</span> <span class="nf">start_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Mandatory method inherited from the AbstractStirringController.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_rotation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.stop_stirring"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.stop_stirring">[docs]</a>    <span class="k">def</span> <span class="nf">stop_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Mandatory method inherited from the AbstractStirringController.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_rotation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.start_bath"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.start_bath">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">start_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Human-friendly wrapper for the start_temperature_regulation() of the parent class.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.stop_bath"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.stop_bath">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">stop_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Human-friendly wrapper for the stop_temperature_regulation() of the parent class.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.start_temperature_regulation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.start_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">start_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Mandatory method inherited from the AbstractTemperatureController.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_bath</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="AbstractRotavap.stop_temperature_regulation"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractRotavap.stop_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Mandatory method inherited from the AbstractTemperatureController.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_bath</span><span class="p">()</span></div></div>
+
+
+<span class="c1"># ###################################### Derived abstract classes ##################################################</span>
+
+
+<div class="viewcode-block" id="AbstractSyringePump"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractSyringePump">[docs]</a><span class="k">class</span> <span class="nc">AbstractSyringePump</span><span class="p">(</span><span class="n">AbstractDispensingController</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A syringe pump device.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AbstractSyringePump.move_home"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractSyringePump.move_home">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">move_home</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Moves the plunger to home position.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractSyringePump.move_plunger_absolute"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractSyringePump.move_plunger_absolute">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">move_plunger_absolute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Moves the plunger to an absolute position.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractSyringePump.move_plunger_relative"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractSyringePump.move_plunger_relative">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">move_plunger_relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Moves the plunger relative +/- to the current position.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AbstractSyringePump.get_plunger_position"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractSyringePump.get_plunger_position">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_plunger_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Gets the actual plunger position.&quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="AbstractFlashChromatographySystem"><a class="viewcode-back" href="../../data_model.html#PyLabware.controllers.AbstractFlashChromatographySystem">[docs]</a><span class="k">class</span> <span class="nc">AbstractFlashChromatographySystem</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A flash chromatography system. &quot;&quot;&quot;</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Cronin Group, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
