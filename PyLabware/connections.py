@@ -187,9 +187,11 @@ class SerialConnection(AbstractConnection):
         """Creates, sets up and opens serial connection.
         """
 
+        if self.is_connection_open():
+            self.logger.warning("Connection already open.")
+            return
         # Create serial connection object
         # port=None is required to prevent port from being immediately opened
-        # TODO add here & for TCPIP check is connection already open
         self._connection = serial.Serial(port=None)
         self._clear_data_buffer()
         # Load settings
@@ -367,6 +369,10 @@ class TCPIPConnection(AbstractConnection):
     def open_connection(self):
         """Creates, sets up and and opens the socket.
         """
+
+        if self.is_connection_open():
+            self.logger.warning("Connection already open.")
+            return
 
         try:
             # Initialize TCP socket connection object
