@@ -58,9 +58,9 @@ class KDP3000BalanceCommands(LabDeviceCommands):
     # Zero weight immediately
     SET_ZERO_IMMEDIATE = {"name": "ZI", "reply":{"type": str}}
     # Get stable weight
-    GET_WEIGHT = {"name": "S", "reply":{"type": float, "parser": parser.splitter, "args":[" ", -2, -1]}}
+    GET_WEIGHT = {"name": "S", "reply":{"type": float, "parser": str.split, "args":[" "]}}
     # Get weight immediately
-    GET_WEIGHT_IMMEDIATE = {"name": "SI", "reply":{"type": float, "parser": parser.splitter, "args":[" ", -2, -1]}}
+    GET_WEIGHT_IMMEDIATE = {"name": "SI", "reply":{"type": float, "parser": str.split, "args":[" "]}}
     # Record calibration zero point
     CALIBRATE_ZERO = {"name": "JZ", "reply":{"type": str}}
     # Record max weight calibration point
@@ -246,6 +246,8 @@ class KDP3000Balance(AbstractBalance):
         """
 
         if stable is True:
-            return self.send(self.cmd.GET_WEIGHT)
+            weight, unit = self.send(self.cmd.GET_WEIGHT)
         else:
-            return self.send(self.cmd.GET_WEIGHT_IMMEDIATE)
+            weight, unit = self.send(self.cmd.GET_WEIGHT_IMMEDIATE)
+
+        return (float(weight), unit)
