@@ -322,7 +322,7 @@ class SerialConnection(AbstractConnection):
             failed_attempts = 0
             # Timeout here ensures upper level code wouldn't lock forever if no reply is received
             # It has to be long enough to give time for connection_listener() thread to do it's job
-            while self._data_ready.wait(timeout=self.receive_timeout * 10) is False:
+            while self._data_ready.wait(timeout=self.receive_timeout) is False:
                 failed_attempts += 1
                 if failed_attempts > retries:
                     # No reply after timeout
