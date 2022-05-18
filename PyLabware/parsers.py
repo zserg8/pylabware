@@ -1,9 +1,10 @@
 """PyLabware utility functions for reply parsing"""
 
 import re
+from typing import List, Union
 
 
-def slicer(reply: str, *args) -> str:
+def slicer(reply: str, *args) -> Union[List, str]:
     """This is a wrapper function for reply parsing to provide consistent
     arguments order.
 
@@ -14,7 +15,12 @@ def slicer(reply: str, *args) -> str:
         (any): Slice of the original object.
     """
 
-    return reply[slice(*args)]
+    #FIXME
+    # Make behavior consistent with list[index] access
+    reply = reply[slice(*args)]
+    if (len(reply) == 1):
+        reply = str(reply[0])
+    return reply
 
 
 def researcher(reply, *args):
@@ -53,3 +59,15 @@ def stripper(reply: str, prefix=None, suffix=None) -> str:
         reply = reply[:-len(suffix)]
 
     return reply
+
+def splitter(reply: str, separator: str, *slice_positions):
+    """ This is a combination of str.split() followed by slicing.
+        Allows to avoid using RegExes for simple cases.
+
+    Args:
+        reply (str): String to process
+        separator (str): Separator for str.split().
+    """
+
+    reply = reply.split(separator)
+    return slicer(reply, *slice_positions)
