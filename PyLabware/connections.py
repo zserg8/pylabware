@@ -70,7 +70,7 @@ class AbstractConnection(ABC):
 
         # Merge default dict with provided dict to give connection parameter dict
         self.connection_parameters = {**self.DEFAULT_CONNECTION_PARAMETERS, **connection_parameters}
-        self.logger.info("Creating connection object with the following settings: \n%s", self.connection_parameters)
+        self.logger.debug("Creating connection object with the following settings: \n%s", self.connection_parameters)
 
         # Empty connection object
         self._connection: Any = None
