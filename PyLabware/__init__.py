@@ -21,6 +21,9 @@ from .devices.ika_rv10 import RV10Rotovap
 # JULABO
 from .devices.julabo_cf41 import CF41Chiller
 
+# Kern
+from .devices.kern_kdp3000 import KDP3000Balance
+
 # Tricontinent
 from .devices.tricontinent_c3000 import C3000SyringePump
 
