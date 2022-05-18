@@ -25,7 +25,7 @@ class AbstractConnection(ABC):
         "address": None,
 
         # Connection port
-        "port": "",
+        "port": None,
 
         # Default encoding for text data
         "encoding": "UTF-8",
@@ -264,7 +264,7 @@ class SerialConnection(AbstractConnection):
             self._connection.close()
             self.logger.info("Port %s closed.", self._connection.port)
         else:
-            self.logger.warning("Trying to close port <%s> that is not open", self._connection.port)
+            self.logger.warning("Trying to close connection that is not open")
 
     def is_connection_open(self) -> bool:
         """Checks whether the serial port is opened.
@@ -354,7 +354,7 @@ class TCPIPConnection(AbstractConnection):
         # Default IP connection settings
         self.address = self.connection_parameters.get("address")
         self.port = self.connection_parameters.get("port")
-        self.protocol = self.connection_parameters["protocol"].upper()
+        self.protocol = self.connection_parameters.get("protocol").upper()
 
         # Connection listener thread settings
         self.listener = None
@@ -375,7 +375,7 @@ class TCPIPConnection(AbstractConnection):
             return
 
         try:
-            # Initialize TCP socket connection object
+            # Initialize corresponding socket connection object
             if self.protocol == "TCP":
                 self._connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             elif self.protocol == "UDP":
