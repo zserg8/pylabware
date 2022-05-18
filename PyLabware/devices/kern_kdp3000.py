@@ -79,7 +79,7 @@ class KDP3000Balance(AbstractBalance):
     version 1.01 based on the operation manual KDP-BA_IA-e-1710 Version 1.0 2017-11 GB
     """
 
-    def __init__(self, device_name: str, connection_mode: str, address: Optional[str], port: Union[str, int]):
+    def __init__(self, device_name: str, connection_mode: str, address: Optional[str] = None, port: Optional[Union[str, int]] = None):
         """Default constructor
         """
 

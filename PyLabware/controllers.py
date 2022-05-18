@@ -5,6 +5,7 @@ import logging
 import threading
 from abc import abstractmethod, ABC
 from functools import wraps
+import sys
 import queue
 from time import sleep
 from typing import Optional, Union, Callable, Any, List, Dict, Tuple
@@ -154,10 +155,41 @@ class LabDevice(AbstractLabDevice):
 
         This method normally shouldn't be redefined in child classes.
         """
-        #TODO Device auto-discovery
+
         if self._simulation is True:
             self.logger.info("SIM :: Opened connection.")
             return
+        # Serial device auto-discovery (currently for serial connection only)
+        port = self.connection.connection_parameters.get("port")
+        if isinstance(self.connection, SerialConnection) and (port == "" or port is None):
+            if sys.platform == "win32":
+                # Check which ports are physically present
+                self.logger.info("Serial port name not provided, trying autodiscovery.")
+                for i in range(1,255):
+                    port_name = f"COM{i}"
+                    try:
+                        self.connection.connection_parameters["port"] = port_name
+                        self.connection.open_connection()
+                        # Check if there is correct device on the port found
+                        self.logger.info("Found serial port %s, checking device...", port_name)
+                        # is_connected() usually checks an id string which devices reply rather fast
+                        # so makes sense to temporarily decrease timeout here to loop faster
+                        timeout = self.connection.receive_timeout
+                        self.connection.receive_timeout = 0.1
+                        if self.is_connected():
+                            self.logger.info("Device found!")
+                            self.logger.info("Opened connection.")
+                            self.connection.receive_timeout = timeout
+                            return
+                        else:
+                            self.connection.receive_timeout = timeout
+                            self.connection.close_connection()
+                            self.logger.info("Device not found.")
+                    except PLConnectionError:
+                        pass
+                self.connection.connection_parameters["port"] = None
+                self.logger.info("No device found on any available serial port")
+                return
         try:
             self.connection.open_connection()
         except (PLConnectionError, PLConnectionTimeoutError) as e:
