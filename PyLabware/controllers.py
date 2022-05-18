@@ -738,6 +738,9 @@ class AbstractDistributionValve(LabDevice):
         """Gets currently selected distribution valve output."""
 
 
+class AbstractFlashChromatographySystem(LabDevice):
+    """ A flash chromatography system. """
+
 # ############## Derived abstract controller classes ###############
 
 
@@ -799,9 +802,6 @@ class AbstractRotavap(AbstractTemperatureController, AbstractStirringController)
         return self.stop_bath()
 
 
-# ###################################### Derived abstract classes ##################################################
-
-
 class AbstractSyringePump(AbstractDispensingController):
     """A syringe pump device."""
 
@@ -821,6 +821,3 @@ class AbstractSyringePump(AbstractDispensingController):
     def get_plunger_position(self) -> int:
         """Gets the actual plunger position."""
 
-
-class AbstractFlashChromatographySystem(LabDevice):
-    """ A flash chromatography system. """
