@@ -154,7 +154,7 @@ class LabDevice(AbstractLabDevice):
 
         This method normally shouldn't be redefined in child classes.
         """
-
+        #TODO Device auto-discovery
         if self._simulation is True:
             self.logger.info("SIM :: Opened connection.")
             return
@@ -738,13 +738,56 @@ class AbstractDistributionValve(LabDevice):
         """Gets currently selected distribution valve output."""
 
 
+class AbstractBalance(LabDevice):
+    """Any device capable of typical weighting operations."""
+
+    @abstractmethod
+    def set_zero(self, stable: bool = True) -> None:
+        """Zeroes out current weight reading.
+        Args:
+            stable (bool, optional): Wait for the weight reading to stabilize. Defaults to True.
+        """
+
+    @abstractmethod
+    def set_tare(self, stable: bool = False) -> None:
+        """Stores current weight reading and zeroes the scale.
+
+        Args:
+            stable (bool, optional): Wait for the weight reading to stabilize. Defaults to True.
+        """
+
+    @abstractmethod
+    def calibrate(self, internal: bool) -> bool:
+        """Runs the balance calibration according to the manufacturer specifications.
+           This might be an interactive method requiring user actions, e.g. putting on/off the weights for external calibration.
+
+        Args:
+            internal (bool): Calibrate using internal weight (if available).
+
+        Returns:
+            bool: True if calibration has completed successfully.
+        """
+
+    @abstractmethod
+    def get_weight(self, stable: bool = False) -> Tuple[float, str]:
+        """Gets current weight value
+
+        Args:
+            stable (bool, optional): Wait for the weight reading to stabilize. Defaults to True.
+
+        Returns:
+            Tuple[float, str]: Weight value and weighting unit.
+        """
+
+
 class AbstractFlashChromatographySystem(LabDevice):
     """ A flash chromatography system. """
+
 
 # ############## Derived abstract controller classes ###############
 
 
-class AbstractHotplate(AbstractTemperatureController, AbstractStirringController, ABC):
+class AbstractHotplate(AbstractTemperatureController, AbstractStirringController):
     """A typical hotplate capable of heating and stirring simultaneously."""
 
     def start(self) -> None:
