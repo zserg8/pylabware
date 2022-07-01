@@ -177,7 +177,7 @@ class LabDevice(AbstractLabDevice):
                         timeout = self.connection.receive_timeout
                         self.connection.receive_timeout = 0.1
                         if self.is_connected():
-                            self.logger.info("Device found!")
+                            self.logger.info("Device %s found on %s.", self.name, port_name)
                             self.logger.info("Opened connection.")
                             self.connection.receive_timeout = timeout
                             return
