@@ -20,6 +20,8 @@ from .devices.ika_rv10 import RV10Rotovap
 
 # JULABO
 from .devices.julabo_cf41 import CF41Chiller
+# Kern
+from .devices.kern_kdp3000 import KDP3000Balance
 
 # Mettler Toledo
 from .devices.mt_ms3002s import MS3002SBalance
