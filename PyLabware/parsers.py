@@ -16,10 +16,20 @@ def slicer(reply: str, *args) -> Union[List, str]:
     """
 
     #FIXME
-    # Make behavior consistent with list[index] access
-    reply = reply[slice(*args)]
+    # Remove type casting
+
+    # Makes behavior consistent with list[index] access
+    if len(args) == 1:
+        start = args[0]
+        if start == -1:
+            reply = reply[slice(start, None)]
+        else:
+            reply = reply[slice(start, start+1)]
+
+    else:
+        reply = reply[slice(*args)]
     if (len(reply) == 1):
-        reply = str(reply[0])
+        reply = reply[0]
     return reply
 
 

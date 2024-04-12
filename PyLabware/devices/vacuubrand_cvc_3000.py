@@ -121,7 +121,7 @@ class CVC3000VacuumPumpCommands(LabDeviceCommands):
 
     # ################## Control Commands ###################################
     # Information requests (config, status, version)
-    GET_NAME = {"name": "IN_VER", "reply": {"type": str, "parser": parser.slicer, "args": [-7]}}
+    GET_NAME = {"name": "IN_VER", "reply": {"type": str, "parser": parser.slicer, "args": [0, 8]}}
     GET_VERSION = {"name": "IN_VER", "reply": {"type": float, "parser": parser.slicer, "args": [11, 15]}}
     GET_CONFIG = {"name": "IN_CFG", "reply": {"type": str}}
     GET_STATUS = {"name": "IN_STAT", "reply": {"type": str}}
@@ -257,7 +257,12 @@ class CVC3000VacuumPump(AbstractPressureController):
         """
 
         # Echo on
-        self.set_echo(True)
+        try:
+            self.set_echo(True)
+        # There seems to be a buggy behavior on FW v. 2.14 when no echo is emitted if the
+        # device is not yet in the remote mode.
+        except PLDeviceReplyError:
+            self.logger.warning("No echo reply received from the device!")
 
         # Remote on
         self.set_remote(True)
@@ -317,8 +322,7 @@ class CVC3000VacuumPump(AbstractPressureController):
         not allowing manual actions on the front panel.
         """
 
-        readback = self.send(self.cmd.SET_REMOTE, value)
-        self._check_readback(bool(value), readback)
+        self.send(self.cmd.SET_REMOTE, value)
 
     @in_simulation_device_returns(CVC3000VacuumPumpCommands.EXAMPLE_STATUS)
     def get_status(self, verbose: bool = False):
@@ -525,6 +529,7 @@ class CVC3000VacuumPump(AbstractPressureController):
 
         # Convert time in seconds to hh:mm string required by the pump
         timeout = time.strftime('%H:%M', time.gmtime(int(timeout)))
+        self.logger.debug("Formatted timeout: %s", timeout)
         readback = self.send(self.cmd.SET_TIMER, timeout)
         self._check_readback(readback, timeout)
 

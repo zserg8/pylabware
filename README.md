@@ -46,3 +46,4 @@ The full documentation can be found [here](https://zserg8.github.io/pylabware/)
 ## License
 This project is licensed under [MIT license](LICENSE).
 © 2021 [Cronin group](http://croninlab.com)
+© 2022-2024 [Sergey Zalesskiy]
