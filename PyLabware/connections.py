@@ -25,7 +25,7 @@ class AbstractConnection(ABC):
         "address": None,
 
         # Connection port
-        "port": "",
+        "port": None,
 
         # Default encoding for text data
         "encoding": "UTF-8",
@@ -70,7 +70,7 @@ class AbstractConnection(ABC):
 
         # Merge default dict with provided dict to give connection parameter dict
         self.connection_parameters = {**self.DEFAULT_CONNECTION_PARAMETERS, **connection_parameters}
-        self.logger.info("Creating connection object with the following settings: \n%s", self.connection_parameters)
+        self.logger.debug("Creating connection object with the following settings: \n%s", self.connection_parameters)
 
         # Empty connection object
         self._connection: Any = None
@@ -187,9 +187,11 @@ class SerialConnection(AbstractConnection):
         """Creates, sets up and opens serial connection.
         """
 
+        if self.is_connection_open():
+            self.logger.warning("Connection already open.")
+            return
         # Create serial connection object
         # port=None is required to prevent port from being immediately opened
-        # TODO add here & for TCPIP check is connection already open
         self._connection = serial.Serial(port=None)
         self._clear_data_buffer()
         # Load settings
@@ -262,7 +264,7 @@ class SerialConnection(AbstractConnection):
             self._connection.close()
             self.logger.info("Port %s closed.", self._connection.port)
         else:
-            self.logger.warning("Trying to close port <%s> that is not open", self._connection.port)
+            self.logger.warning("Trying to close connection that is not open")
 
     def is_connection_open(self) -> bool:
         """Checks whether the serial port is opened.
@@ -320,7 +322,7 @@ class SerialConnection(AbstractConnection):
             failed_attempts = 0
             # Timeout here ensures upper level code wouldn't lock forever if no reply is received
             # It has to be long enough to give time for connection_listener() thread to do it's job
-            while self._data_ready.wait(timeout=self.receive_timeout * 10) is False:
+            while self._data_ready.wait(timeout=self.receive_timeout) is False:
                 failed_attempts += 1
                 if failed_attempts > retries:
                     # No reply after timeout
@@ -352,7 +354,7 @@ class TCPIPConnection(AbstractConnection):
         # Default IP connection settings
         self.address = self.connection_parameters.get("address")
         self.port = self.connection_parameters.get("port")
-        self.protocol = self.connection_parameters["protocol"].upper()
+        self.protocol = self.connection_parameters.get("protocol").upper()
 
         # Connection listener thread settings
         self.listener = None
@@ -368,8 +370,12 @@ class TCPIPConnection(AbstractConnection):
         """Creates, sets up and and opens the socket.
         """
 
+        if self.is_connection_open():
+            self.logger.warning("Connection already open.")
+            return
+
         try:
-            # Initialize TCP socket connection object
+            # Initialize corresponding socket connection object
             if self.protocol == "TCP":
                 self._connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             elif self.protocol == "UDP":

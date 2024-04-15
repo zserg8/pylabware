@@ -20,6 +20,17 @@ from .devices.ika_rv10 import RV10Rotovap
 
 # JULABO
 from .devices.julabo_cf41 import CF41Chiller
+# Kern
+from .devices.kern_kdp3000 import KDP3000Balance
+
+# Mettler Toledo
+from .devices.mt_ms3002s import MS3002SBalance
+
+# Metrohm
+from .devices.metrohm_781ph import Metrohm781pHMeter
+
+# TECAN
+from .devices.tecan_cavro_xlp6000 import XLP6000SyringePump
 
 # Tricontinent
 from .devices.tricontinent_c3000 import C3000SyringePump

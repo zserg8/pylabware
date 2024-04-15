@@ -1,4 +1,4 @@
-![PyLabware](docs/images/_static/logo_with_text_600px.png)
+![PyLabware](docs/src/images/_static/logo_with_text_600px.png)
 ============
 
 This is a simple Python 3 library to control the common range of the hardware found in the chemistry labs - hotplates, stirrers, rotary evaporators, vacuum pumps etc. using a common interface.
@@ -37,6 +37,13 @@ Clone this repo to your PC and run `pip install .` from the repository folder.
 ```
 ---
 
+## Documentation
+
+The full documentation can be found [here](https://zserg8.github.io/pylabware/)
+
+---
+
 ## License
 This project is licensed under [MIT license](LICENSE).
 © 2021 [Cronin group](http://croninlab.com)
+© 2022-2024 [Sergey Zalesskiy]
