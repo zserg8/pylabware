@@ -1,4 +1,4 @@
-PyLabware.devices.tecan\_cavro\_xlp6000 module
+TECAN Cavro XLP6000
 ==============================================
 
 .. automodule:: PyLabware.devices.tecan_cavro_xlp6000

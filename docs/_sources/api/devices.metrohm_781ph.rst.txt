@@ -1,4 +1,4 @@
-PyLabware.devices.metrohm\_781ph module
+Metrohm 781
 =======================================
 
 .. automodule:: PyLabware.devices.metrohm_781ph

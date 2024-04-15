@@ -1,4 +1,4 @@
-PyLabware.devices.mt\_ms3002s module
+Mettler Toledo MS3002S
 ====================================
 
 .. automodule:: PyLabware.devices.mt_ms3002s

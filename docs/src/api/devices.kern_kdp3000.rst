@@ -1,4 +1,4 @@
-PyLabware.devices.kern\_kdp3000 module
+Kern KDP3000
 ======================================
 
 .. automodule:: PyLabware.devices.kern_kdp3000
