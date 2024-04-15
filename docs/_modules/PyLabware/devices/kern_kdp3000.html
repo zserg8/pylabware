@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.devices.kern_kdp3000 &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.kern_kdp3000</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PyLabware.devices.kern_kdp3000</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyLabware driver for Kern KDP3000 digital weighting platform (balance).&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+
+<span class="c1"># Core imports</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">parsers</span> <span class="k">as</span> <span class="n">parser</span>
+<span class="kn">from</span> <span class="nn">..controllers</span> <span class="kn">import</span> <span class="n">AbstractBalance</span><span class="p">,</span> <span class="n">in_simulation_device_returns</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">PLConnectionError</span><span class="p">,</span> <span class="n">PLDeviceCommandError</span><span class="p">,</span> <span class="n">PLDeviceError</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
+
+
+<div class="viewcode-block" id="KDP3000BalanceCommands">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000BalanceCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">KDP3000BalanceCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of commands for Kern KDP3000 balance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+        <span class="c1"># ##########################  Constants ##################################</span>
+    <span class="c1"># ID string to check that correct device is connected</span>
+    <span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s2">&quot;KDP3000&quot;</span>
+    <span class="c1"># Maximum allowed weight, in grams</span>
+    <span class="n">MAX_WEIGHT</span> <span class="o">=</span> <span class="mi">3000</span>
+    <span class="c1"># Response and error codes. These differ a bit from command to command, unfortunately.</span>
+    <span class="n">RESPONSE_CODES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;Acknowledged.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;More data to follow.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="s2">&quot;Stable.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="s2">&quot;Dynamic.&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">ERROR_CODES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="s2">&quot;Logical error or invalid parameter.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="s2">&quot;Internal error.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ES&quot;</span><span class="p">:</span> <span class="s2">&quot;Syntax error.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;+&quot;</span><span class="p">:</span> <span class="s2">&quot;Overweight!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-&quot;</span><span class="p">:</span> <span class="s2">&quot;Underweight!&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># ################### Control commands ###################################</span>
+    <span class="c1"># Get list of commands</span>
+    <span class="n">GET_CMD_LIST</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I0&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get command interface level and version</span>
+    <span class="n">GET_CMD_VER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I1&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get balance name</span>
+    <span class="n">GET_NAME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I2&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}}</span>
+    <span class="c1"># Get software version</span>
+    <span class="n">GET_SW_VER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I3&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}}</span>
+    <span class="c1"># Get serial number</span>
+    <span class="n">GET_SER_NUM</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I4&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}}</span>
+    <span class="c1"># Get software id number</span>
+    <span class="n">GET_SW_ID</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I5&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Set tare weight</span>
+    <span class="n">SET_TARE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set tare weight immediately</span>
+    <span class="n">SET_TARE_IMMEDIATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;TI&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Zero weight</span>
+    <span class="n">SET_ZERO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Zero weight immediately</span>
+    <span class="n">SET_ZERO_IMMEDIATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ZI&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Get stable weight</span>
+    <span class="n">GET_WEIGHT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get weight immediately</span>
+    <span class="n">GET_WEIGHT_IMMEDIATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;SI&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Record calibration zero point</span>
+    <span class="n">CALIBRATE_ZERO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;JZ&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Record max weight calibration point</span>
+    <span class="n">CALIBRATE_MAX</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;JG&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Save calibration data</span>
+    <span class="n">CALIBRATION_SAVE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;JS&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># ################### Configuration commands #############################</span>
+
+    <span class="c1"># Reset device</span>
+    <span class="n">RESET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span></div>
+
+
+
+<div class="viewcode-block" id="KDP3000Balance">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance">[docs]</a>
+<span class="k">class</span> <span class="nc">KDP3000Balance</span><span class="p">(</span><span class="n">AbstractBalance</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This provides a Python class for the Kern KDP3000 balance using KERN KCP protocol</span>
+<span class="sd">    version 1.01 based on the operation manual KDP-BA_IA-e-1710 Version 1.0 2017-11 GB</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Load commands from helper class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">KDP3000BalanceCommands</span>
+
+        <span class="c1"># Connection settings</span>
+        <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;baudrate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9600</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;bytesize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">EIGHTBITS</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;parity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">device_name</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">)</span>
+
+        <span class="c1"># Protocol settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args_delimiter</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+
+<div class="viewcode-block" id="KDP3000Balance.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Issue reset command.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Device initialized.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.is_connected">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.is_connected">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">([</span><span class="n">KDP3000BalanceCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Check if the device is connected via GET_NAME command.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NAME</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_NAME</span> <span class="ow">in</span> <span class="n">reply</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.parse_reply">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.parse_reply">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overloaded method from base class. We need to do chop off command echo and status before geting to the actual reply.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Strip reply terminator and prefix</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">stripper</span><span class="p">(</span><span class="n">reply</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_prefix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span><span class="p">)</span>
+        <span class="c1"># Split into parts</span>
+        <span class="n">command</span><span class="p">,</span> <span class="n">response_code</span><span class="p">,</span> <span class="o">*</span><span class="n">reply</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="c1"># Analyze response code</span>
+        <span class="k">if</span> <span class="n">response_code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERROR_CODES</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response_code</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERROR_CODES</span><span class="p">[</span><span class="n">response_code</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">response_code</span> <span class="o">==</span> <span class="s2">&quot;ES&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERROR_CODES</span><span class="p">[</span><span class="n">response_code</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">response_code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">RESPONSE_CODES</span><span class="p">:</span>
+            <span class="c1"># All fine</span>
+            <span class="c1"># Glue reply back into string and strip empty spaces and quotes</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Invoking parse_reply() of the base class with argument &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_reply</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown response code &lt;</span><span class="si">{</span><span class="n">response_code</span><span class="si">}</span><span class="s2">&gt; received from the device!&quot;</span><span class="p">)</span></div>
+
+
+    <span class="c1"># TODO Maybe put power on/off in start/stop ?</span>
+<div class="viewcode-block" id="KDP3000Balance.start">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.start">[docs]</a>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.stop">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.stop">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.is_idle">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.is_idle">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.get_status">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.check_errors">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.calibrate">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.calibrate">[docs]</a>
+    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">internal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs the balance calibration according to the manufacturer specifications.</span>
+<span class="sd">           This is an interactive method requiring user to putting on/off the weights for external calibration.</span>
+<span class="sd">           The procedure is based on the original user manual page, section 9 &quot;Adjustment&quot;, page 14.</span>
+<span class="sd">           The commands listed there differ from the ones in the latest KCP protocol specification!</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            internal (bool): Calibrate using internal weight (if available).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if calibration has completed successfully.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">internal</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This balance doesn&#39;t support internal calibration!&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please insure that the balance are leveled on a hard surface and the weighting pan is empty. Press &lt;Enter&gt; when ready.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running zero point calibration...&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">CALIBRATE_ZERO</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLDeviceError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Zero calibration failed! </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span>
+
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please put the calibration weight (3kg, class F1) in the weighting pan and press &lt;Enter&gt;.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running max point calibration...&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">CALIBRATE_MAX</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLDeviceError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Maximum weight calibration failed! </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span>
+
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please remove the calibration weight from the weighting pan and press &lt;Enter&gt;.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Storing calibration data...&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">CALIBRATION_SAVE</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLDeviceError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Storing calibration data failed! </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calibration done!&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.set_tare">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.set_tare">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_tare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets tare weight to the currently measured value.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stable (bool, optional): Whether to wait for the reading to stable. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">stable</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TARE</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TARE_IMMEDIATE</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.set_zero">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.set_zero">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Zeros current balance reading.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stable (bool, optional): Whether to wait for the reading to stable. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">stable</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ZERO</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ZERO_IMMEDIATE</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="KDP3000Balance.get_weight">
+<a class="viewcode-back" href="../../../api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance.get_weight">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current weight reading.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stable (bool, optional): Whether to wait for the reading to stable. Defaults to True.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: current weight reading.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">stable</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">weight</span><span class="p">,</span> <span class="n">unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_WEIGHT</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">weight</span><span class="p">,</span> <span class="n">unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_WEIGHT_IMMEDIATE</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span> <span class="n">unit</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

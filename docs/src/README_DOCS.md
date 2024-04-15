@@ -28,6 +28,6 @@ To remove the old html files run:
 
 To generated new templates for API docs run:
 
-`make apidocs`
+`make apidoc`
 
-The resulting RST files would be created under _PyLabware_ subdirectory.
+The resulting RST files would be created under _api_ subdirectory.

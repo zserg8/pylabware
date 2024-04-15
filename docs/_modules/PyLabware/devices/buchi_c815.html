@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.devices.buchi_c815 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.devices.buchi_c815</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.buchi_c815</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -83,8 +90,10 @@
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">ConnectionParameters</span><span class="p">,</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">LabDeviceReply</span>
 
 
-<div class="viewcode-block" id="C815Commands"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815Commands">[docs]</a><span class="k">class</span> <span class="nc">C815Commands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collection of command definitions for C815 flash chromatography system.</span>
+<div class="viewcode-block" id="C815Commands">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815Commands">[docs]</a>
+<span class="k">class</span> <span class="nc">C815Commands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for C815 flash chromatography system.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ################### Configuration constants #############################</span>
@@ -189,8 +198,11 @@
     <span class="n">SET_UVDETECTOR_SENSITIVITY</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;SET_UVDETECTOR_SENSITIVITY&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;endpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/v1/Process&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;check&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">]},</span> <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;uvDetector&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitivity&#39;</span><span class="p">]}</span></div>
 
 
-<div class="viewcode-block" id="C815FlashChromatographySystem"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem">[docs]</a><span class="k">class</span> <span class="nc">C815FlashChromatographySystem</span><span class="p">(</span><span class="n">AbstractFlashChromatographySystem</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem">[docs]</a>
+<span class="k">class</span> <span class="nc">C815FlashChromatographySystem</span><span class="p">(</span><span class="n">AbstractFlashChromatographySystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This provides a Python class for the Buchi C815 flash chromatography system</span>
 <span class="sd">    based on the Buchi OpenAPI specification v.1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -226,8 +238,10 @@
         <span class="c1"># Disable requests warnings about Buchi self-signed certificate</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;InsecureRequestWarning&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.prepare_message"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.prepare_message">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Checks parameter value if necessary and prepares JSON payload</span>
+<div class="viewcode-block" id="C815FlashChromatographySystem.prepare_message">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.prepare_message">[docs]</a>
+    <span class="k">def</span> <span class="nf">prepare_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks parameter value if necessary and prepares JSON payload</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">message</span> <span class="o">=</span> <span class="p">{}</span>
@@ -255,8 +269,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;prepare_message()::constructed payload &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">message</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.parse_reply"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.parse_reply">[docs]</a>    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">LabDeviceReply</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Parses JSON payload and returns device reply.</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.parse_reply">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.parse_reply">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">LabDeviceReply</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Parses JSON payload and returns device reply.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Extract and load reply body</span>
@@ -273,14 +290,20 @@
         <span class="c1"># Run text parsing / type casting, if any</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_reply</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.initialize_device"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Initialization sequence</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Initialization sequence</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
+
         <span class="c1"># TODO Add any initialization if necessary</span>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.is_connected"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_connected">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">C815Commands</span><span class="o">.</span><span class="n">C815_SYSTEMMODEL</span><span class="p">)</span>
+<div class="viewcode-block" id="C815FlashChromatographySystem.is_connected">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_connected">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">C815Commands</span><span class="o">.</span><span class="n">C815_SYSTEMMODEL</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Stateless device - always connected</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Stateless device - always connected</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -288,578 +311,868 @@
         <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.is_idle"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_idle">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">C815Commands</span><span class="o">.</span><span class="n">C815_IDLE_STATE</span><span class="p">)</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.is_idle">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.is_idle">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">C815Commands</span><span class="o">.</span><span class="n">C815_IDLE_STATE</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Checks whether the device is idle</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks whether the device is idle</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_runningstate</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">C815_IDLE_STATE</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.check_errors"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Not supported on this model</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.check_errors">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Not supported on this model</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.clear_errors"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Not supported on this model</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Not supported on this model</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_status"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Gets device status.</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_status">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Gets device status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_runningstate</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemclass"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemclass">[docs]</a>    <span class="k">def</span> <span class="nf">get_systemclass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemclass">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemclass">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_systemclass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYSTEMCLASS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemline"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemline">[docs]</a>    <span class="k">def</span> <span class="nf">get_systemline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemline">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemline">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_systemline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYSTEMLINE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemname"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemname">[docs]</a>    <span class="k">def</span> <span class="nf">get_systemname</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemname">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemname">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_systemname</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYSTEMNAME</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemmodel"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemmodel">[docs]</a>    <span class="k">def</span> <span class="nf">get_systemmodel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_systemmodel">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_systemmodel">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_systemmodel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYSTEMMODEL</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_detectors"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_detectors">[docs]</a>    <span class="k">def</span> <span class="nf">get_detectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_detectors">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_detectors">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_detectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_DETECTORS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_pump_pumptype"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_pumptype">[docs]</a>    <span class="k">def</span> <span class="nf">get_pump_pumptype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_pump_pumptype">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_pumptype">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pump_pumptype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_PUMPTYPE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_pump_firmware"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_firmware">[docs]</a>    <span class="k">def</span> <span class="nf">get_pump_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_pump_firmware">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_firmware">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pump_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_FIRMWARE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_pump_hardware"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_hardware">[docs]</a>    <span class="k">def</span> <span class="nf">get_pump_hardware</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_pump_hardware">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_pump_hardware">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pump_hardware</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_HARDWARE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_firmware"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_firmware">[docs]</a>    <span class="k">def</span> <span class="nf">get_fractioncollector_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_firmware">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_firmware">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_fractioncollector_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_FRACTIONCOLLECTOR_FIRMWARE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_trays"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_trays">[docs]</a>    <span class="k">def</span> <span class="nf">get_fractioncollector_trays</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_trays">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_trays">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_fractioncollector_trays</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_FRACTIONCOLLECTOR_TRAYS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_column_version"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_version">[docs]</a>    <span class="k">def</span> <span class="nf">get_column_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_column_version">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_version">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_column_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_COLUMN_VERSION</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_column_columnname"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_columnname">[docs]</a>    <span class="k">def</span> <span class="nf">get_column_columnname</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_column_columnname">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_columnname">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_column_columnname</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_COLUMN_COLUMNNAME</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_column_data"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_column_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_column_data">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_column_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_column_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_COLUMN_DATA</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_runningstate"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runningstate">[docs]</a>    <span class="k">def</span> <span class="nf">get_runningstate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_runningstate">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runningstate">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_runningstate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_RUNNINGSTATE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_runmode"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runmode">[docs]</a>    <span class="k">def</span> <span class="nf">get_runmode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_runmode">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_runmode">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_runmode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_RUNMODE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_solventpressureafterpump"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureafterpump">[docs]</a>    <span class="k">def</span> <span class="nf">get_sensors_solventpressureafterpump</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_solventpressureafterpump">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureafterpump">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sensors_solventpressureafterpump</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SENSORS_SOLVENTPRESSUREAFTERPUMP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_solventpressureaftercolumn"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureaftercolumn">[docs]</a>    <span class="k">def</span> <span class="nf">get_sensors_solventpressureaftercolumn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_solventpressureaftercolumn">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventpressureaftercolumn">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sensors_solventpressureaftercolumn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SENSORS_SOLVENTPRESSUREAFTERCOLUMN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_airpressurenebulizer"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressurenebulizer">[docs]</a>    <span class="k">def</span> <span class="nf">get_sensors_airpressurenebulizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_airpressurenebulizer">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressurenebulizer">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sensors_airpressurenebulizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SENSORS_AIRPRESSURENEBULIZER</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_airpressureinlet"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressureinlet">[docs]</a>    <span class="k">def</span> <span class="nf">get_sensors_airpressureinlet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_airpressureinlet">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_airpressureinlet">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sensors_airpressureinlet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SENSORS_AIRPRESSUREINLET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_vaporlevel"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_vaporlevel">[docs]</a>    <span class="k">def</span> <span class="nf">get_sensors_vaporlevel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_vaporlevel">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_vaporlevel">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sensors_vaporlevel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SENSORS_VAPORLEVEL</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_solventlevels"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventlevels">[docs]</a>    <span class="k">def</span> <span class="nf">get_sensors_solventlevels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_solventlevels">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_solventlevels">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sensors_solventlevels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SENSORS_SOLVENTLEVELS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_wastelevel"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_wastelevel">[docs]</a>    <span class="k">def</span> <span class="nf">get_sensors_wastelevel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_sensors_wastelevel">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_sensors_wastelevel">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sensors_wastelevel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SENSORS_WASTELEVEL</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_airsystem_isenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_isenabled">[docs]</a>    <span class="k">def</span> <span class="nf">get_airsystem_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_airsystem_isenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_isenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_airsystem_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_AIRSYSTEM_ISENABLED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_airsystem_valvepos"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_valvepos">[docs]</a>    <span class="k">def</span> <span class="nf">get_airsystem_valvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_airsystem_valvepos">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_airsystem_valvepos">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_airsystem_valvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_AIRSYSTEM_VALVEPOS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_laserisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laserisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">get_elsddetector_laserisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_laserisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laserisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elsddetector_laserisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ELSDDETECTOR_LASERISENABLED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_laservoltage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laservoltage">[docs]</a>    <span class="k">def</span> <span class="nf">get_elsddetector_laservoltage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_laservoltage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_laservoltage">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elsddetector_laservoltage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ELSDDETECTOR_LASERVOLTAGE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_shuttlevalveisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_shuttlevalveisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">get_elsddetector_shuttlevalveisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_shuttlevalveisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_shuttlevalveisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elsddetector_shuttlevalveisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ELSDDETECTOR_SHUTTLEVALVEISENABLED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_carrierflowisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_carrierflowisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">get_elsddetector_carrierflowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_carrierflowisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_carrierflowisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elsddetector_carrierflowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ELSDDETECTOR_CARRIERFLOWISENABLED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_sensitivity"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_sensitivity">[docs]</a>    <span class="k">def</span> <span class="nf">get_elsddetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_sensitivity">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_sensitivity">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elsddetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ELSDDETECTOR_SENSITIVITY</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_signal_timesincestart"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_timesincestart">[docs]</a>    <span class="k">def</span> <span class="nf">get_elsddetector_signal_timesincestart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_signal_timesincestart">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_timesincestart">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elsddetector_signal_timesincestart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ELSDDETECTOR_SIGNAL_TIMESINCESTART</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_signal_signal"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_signal">[docs]</a>    <span class="k">def</span> <span class="nf">get_elsddetector_signal_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_elsddetector_signal_signal">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_elsddetector_signal_signal">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elsddetector_signal_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ELSDDETECTOR_SIGNAL_SIGNAL</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_position_tray"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_tray">[docs]</a>    <span class="k">def</span> <span class="nf">get_fractioncollector_position_tray</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_position_tray">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_tray">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_fractioncollector_position_tray</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_FRACTIONCOLLECTOR_POSITION_TRAY</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_position_vial"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_vial">[docs]</a>    <span class="k">def</span> <span class="nf">get_fractioncollector_position_vial</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_position_vial">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_position_vial">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_fractioncollector_position_vial</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_FRACTIONCOLLECTOR_POSITION_VIAL</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_collectiontask_action"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_collectiontask_action">[docs]</a>    <span class="k">def</span> <span class="nf">get_fractioncollector_collectiontask_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_fractioncollector_collectiontask_action">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_fractioncollector_collectiontask_action">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_fractioncollector_collectiontask_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_flowisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_flowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_flowisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_flowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_FLOWISENABLED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_flowrate"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowrate">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_flowrate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_flowrate">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_flowrate">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_flowrate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_FLOWRATE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line1percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line1percentage">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line1percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line1percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line1percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line1percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line2percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line2percentage">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line2percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line2percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line2percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line2percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line3percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line3percentage">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line3percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line3percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line3percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line3percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line4percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line4percentage">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line4percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_solventmixture_line4percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_solventmixture_line4percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_solventmixture_line4percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_sampleinjectionvalvepos"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_sampleinjectionvalvepos">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_sampleinjectionvalvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_sampleinjectionvalvepos">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_sampleinjectionvalvepos">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_sampleinjectionvalvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_mode"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_solventsystem_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_solventsystem_mode">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_solventsystem_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solventsystem_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENTSYSTEM_MODE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_timesincestart"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_timesincestart">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_timesincestart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_timesincestart">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_timesincestart">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_timesincestart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ABSORBANCE_TIMESINCESTART</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch1"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch1">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch1">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch1">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ABSORBANCE_CH1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch2"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch2">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch2">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch2">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ABSORBANCE_CH2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch3"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch3">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch3">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch3">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ABSORBANCE_CH3</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch4"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch4">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_ch4">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ABSORBANCE_CH4</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_scan"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_scan">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_absorbance_scan">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_absorbance_scan">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_absorbance_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ABSORBANCE_SCAN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch1"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch1">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch1">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch1">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_WAVELENGTHS_CH1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch2"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch2">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch2">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch2">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_WAVELENGTHS_CH2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch3"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch3">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch3">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch3">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_WAVELENGTHS_CH3</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch4"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch4">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_ch4">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_WAVELENGTHS_CH4</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_scanstart"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanstart">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_scanstart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_scanstart">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanstart">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_scanstart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_WAVELENGTHS_SCANSTART</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_scanend"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanend">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_scanend</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_wavelengths_scanend">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_wavelengths_scanend">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_wavelengths_scanend</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_WAVELENGTHS_SCANEND</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch1"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch1">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch1">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch1">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ENABLEDCHANNELS_CH1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch2"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch2">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch2">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch2">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ENABLEDCHANNELS_CH2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch3"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch3">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch3">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch3">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ENABLEDCHANNELS_CH3</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch4"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch4">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch4">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ENABLEDCHANNELS_CH4</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_scan"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_scan">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_enabledchannels_scan">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_enabledchannels_scan">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_enabledchannels_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_ENABLEDCHANNELS_SCAN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_sensitivity"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_sensitivity">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_sensitivity">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_sensitivity">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_SENSITIVITY</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_spectrum_timesincestart"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_timesincestart">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_spectrum_timesincestart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_spectrum_timesincestart">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_timesincestart">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_spectrum_timesincestart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_SPECTRUM_TIMESINCESTART</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_spectrum_values"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_uvdetector_spectrum_values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.get_uvdetector_spectrum_values">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.get_uvdetector_spectrum_values">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_uvdetector_spectrum_values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_UVDETECTOR_SPECTRUM_VALUES</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_runmode"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_runmode">[docs]</a>    <span class="k">def</span> <span class="nf">set_runmode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_runmode">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_runmode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_runmode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_RUNMODE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_airsystem_isenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_isenabled">[docs]</a>    <span class="k">def</span> <span class="nf">set_airsystem_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_airsystem_isenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_isenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_airsystem_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_AIRSYSTEM_ISENABLED</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_airsystem_valvepos"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_valvepos">[docs]</a>    <span class="k">def</span> <span class="nf">set_airsystem_valvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_airsystem_valvepos">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_airsystem_valvepos">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_airsystem_valvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_AIRSYSTEM_VALVEPOS</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_laserisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_laserisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">set_elsddetector_laserisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_laserisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_laserisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_elsddetector_laserisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ELSDDETECTOR_LASERISENABLED</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_shuttlevalveisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_shuttlevalveisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">set_elsddetector_shuttlevalveisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_shuttlevalveisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_shuttlevalveisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_elsddetector_shuttlevalveisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ELSDDETECTOR_SHUTTLEVALVEISENABLED</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_carrierflowisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_carrierflowisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">set_elsddetector_carrierflowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_carrierflowisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_carrierflowisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_elsddetector_carrierflowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ELSDDETECTOR_CARRIERFLOWISENABLED</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_sensitivity"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_sensitivity">[docs]</a>    <span class="k">def</span> <span class="nf">set_elsddetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_elsddetector_sensitivity">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_elsddetector_sensitivity">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_elsddetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ELSDDETECTOR_SENSITIVITY</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_fractioncollector_position_tray"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_tray">[docs]</a>    <span class="k">def</span> <span class="nf">set_fractioncollector_position_tray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_fractioncollector_position_tray">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_tray">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_fractioncollector_position_tray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_FRACTIONCOLLECTOR_POSITION_TRAY</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_fractioncollector_position_vial"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_vial">[docs]</a>    <span class="k">def</span> <span class="nf">set_fractioncollector_position_vial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_fractioncollector_position_vial">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_position_vial">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_fractioncollector_position_vial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_FRACTIONCOLLECTOR_POSITION_VIAL</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_fractioncollector_collectiontask_action"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_collectiontask_action">[docs]</a>    <span class="k">def</span> <span class="nf">set_fractioncollector_collectiontask_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_fractioncollector_collectiontask_action">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_fractioncollector_collectiontask_action">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_fractioncollector_collectiontask_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_FRACTIONCOLLECTOR_COLLECTIONTASK_ACTION</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_flowisenabled"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowisenabled">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_flowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_flowisenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowisenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_flowisenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_FLOWISENABLED</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_flowrate"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowrate">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_flowrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_flowrate">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_flowrate">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_flowrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_FLOWRATE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line1percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line1percentage">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line1percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line1percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line1percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line1percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE1PERCENTAGE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line2percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line2percentage">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line2percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line2percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line2percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line2percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE2PERCENTAGE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line3percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line3percentage">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line3percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line3percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line3percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line3percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE3PERCENTAGE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line4percentage"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line4percentage">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line4percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_solventmixture_line4percentage">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_solventmixture_line4percentage">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_solventmixture_line4percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_SOLVENTMIXTURE_LINE4PERCENTAGE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_sampleinjectionvalvepos"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_sampleinjectionvalvepos">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_sampleinjectionvalvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_sampleinjectionvalvepos">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_sampleinjectionvalvepos">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_sampleinjectionvalvepos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_SAMPLEINJECTIONVALVEPOS</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_mode"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_solventsystem_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_solventsystem_mode">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_solventsystem_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solventsystem_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOLVENTSYSTEM_MODE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch1"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch1">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch1">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch1">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_WAVELENGTHS_CH1</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch2"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch2">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch2">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch2">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_WAVELENGTHS_CH2</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch3"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch3">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch3">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch3">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_WAVELENGTHS_CH3</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch4"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch4">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_ch4">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_WAVELENGTHS_CH4</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_scanstart"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanstart">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_scanstart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_scanstart">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanstart">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_scanstart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_WAVELENGTHS_SCANSTART</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_scanend"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanend">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_scanend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_wavelengths_scanend">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_wavelengths_scanend">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_wavelengths_scanend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_WAVELENGTHS_SCANEND</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch1"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch1">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch1">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch1">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_ENABLEDCHANNELS_CH1</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch2"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch2">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch2">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch2">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_ENABLEDCHANNELS_CH2</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch3"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch3">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch3">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch3">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_ENABLEDCHANNELS_CH3</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch4"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch4">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch4">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_ENABLEDCHANNELS_CH4</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_scan"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_scan">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_enabledchannels_scan">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_enabledchannels_scan">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_enabledchannels_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_ENABLEDCHANNELS_SCAN</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_sensitivity"><a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_sensitivity">[docs]</a>    <span class="k">def</span> <span class="nf">set_uvdetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C815FlashChromatographySystem.set_uvdetector_sensitivity">
+<a class="viewcode-back" href="../../../api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem.set_uvdetector_sensitivity">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_uvdetector_sensitivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_SENSITIVITY</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_UVDETECTOR_SENSITIVITY</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>
@@ -869,7 +1182,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

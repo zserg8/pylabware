@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.devices.tricontinent_c3000 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.devices.tricontinent_c3000</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.tricontinent_c3000</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -86,8 +93,10 @@
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">LabDeviceReply</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
 
 
-<div class="viewcode-block" id="C3000SyringePumpCommands"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands">[docs]</a><span class="k">class</span> <span class="nc">C3000SyringePumpCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collection of command definitions for C3000 pump, DT protocol.</span>
+<div class="viewcode-block" id="C3000SyringePumpCommands">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">C3000SyringePumpCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for C3000 pump, DT protocol.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ################### Configuration constants #############################</span>
@@ -358,15 +367,18 @@
     <span class="n">SET_MOT_RUN</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span></div>
 
 
-<div class="viewcode-block" id="C3000SyringePump"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump">[docs]</a><span class="k">class</span> <span class="nc">C3000SyringePump</span><span class="p">(</span><span class="n">AbstractSyringePump</span><span class="p">,</span> <span class="n">AbstractDistributionValve</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C3000SyringePump">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump">[docs]</a>
+<span class="k">class</span> <span class="nc">C3000SyringePump</span><span class="p">(</span><span class="n">AbstractSyringePump</span><span class="p">,</span> <span class="n">AbstractDistributionValve</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This provides a Python class for the Tricontinent C3000 syringe pump</span>
 <span class="sd">    based on the the original operation manual 8694-12 E</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
                  <span class="n">switch_address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">valve_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;3PORT_DISTR_IOBE&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Default constructor.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Load commands from helper class</span>
@@ -376,7 +388,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_valve_type</span> <span class="o">=</span> <span class="n">C3000SyringePumpCommands</span><span class="o">.</span><span class="n">VALVE_TYPES</span><span class="p">[</span><span class="n">valve_type</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="s2">&quot;Invalid valve type &lt;</span><span class="si">{}</span><span class="s2">&gt; provided!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valve_type</span><span class="p">))</span> <span class="kn">from</span> <span class="bp">None</span>
+            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="s2">&quot;Invalid valve type &lt;</span><span class="si">{}</span><span class="s2">&gt; provided!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valve_type</span><span class="p">))</span> <span class="kn">from</span> <span class="kc">None</span>
 
         <span class="c1"># Connection settings</span>
         <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="p">{}</span>
@@ -394,7 +406,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">switch_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SWITCH_ADDRESSES</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">switch_address</span><span class="p">)]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="s2">&quot;Invalid switch address &lt;</span><span class="si">{}</span><span class="s2">&gt; supplied!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">switch_address</span><span class="p">))</span> <span class="kn">from</span> <span class="bp">None</span>
+            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="s2">&quot;Invalid switch address &lt;</span><span class="si">{}</span><span class="s2">&gt; supplied!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">switch_address</span><span class="p">))</span> <span class="kn">from</span> <span class="kc">None</span>
 
         <span class="c1"># Protocol settings</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">command_prefix</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">switch_address</span>
@@ -408,7 +420,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">autorun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Property showing if the commands should be executed immediately,</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property showing if the commands should be executed immediately,</span>
 <span class="sd">        or queued instead.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -416,7 +428,7 @@
 
     <span class="nd">@autorun</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">autorun</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Setter for the autorun property.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Setter for the autorun property.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
@@ -424,8 +436,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
 
-<div class="viewcode-block" id="C3000SyringePump.parse_reply"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.parse_reply">[docs]</a>    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Overloaded method from base class. We need to do some more</span>
+<div class="viewcode-block" id="C3000SyringePump.parse_reply">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.parse_reply">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overloaded method from base class. We need to do some more</span>
 <span class="sd">        complex processing here for the status byte manipulations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -439,8 +453,11 @@
         <span class="c1"># Chop off status byte &amp; do standard processing</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_reply</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">reply</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.check_errors"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Checks error bits in the status byte of the pump reply.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.check_errors">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks error bits in the status byte of the pump reply.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_errors()::checking errors on byte &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span><span class="p">)</span>
@@ -458,8 +475,11 @@
             <span class="c1"># (which completely copies the manual)</span>
             <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="s2">&quot;Unknown error! Status byte: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span><span class="p">)))</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.is_connected"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_connected">[docs]</a>    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks whether the device is connected by</span>
+
+<div class="viewcode-block" id="C3000SyringePump.is_connected">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_connected">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether the device is connected by</span>
 <span class="sd">        checking it&#39;s firmware version.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -470,18 +490,27 @@
         <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.get_status"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.get_status">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
+
         <span class="c1"># TODO implement through status byte analysis</span>
 
-<div class="viewcode-block" id="C3000SyringePump.clear_errors"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Happens automatically upon errors read-out,</span>
+<div class="viewcode-block" id="C3000SyringePump.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Happens automatically upon errors read-out,</span>
 <span class="sd">        except those requiring pump re-initialization.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.initialize_device"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valve_enumeration_direction</span><span class="o">=</span><span class="s2">&quot;CW&quot;</span><span class="p">,</span> <span class="n">input_port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_port</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Runs pump initialization.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valve_enumeration_direction</span><span class="o">=</span><span class="s2">&quot;CW&quot;</span><span class="p">,</span> <span class="n">input_port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_port</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs pump initialization.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Select appropriate command depending on the direction</span>
@@ -518,9 +547,12 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Device initialized.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.is_initialized"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_initialized">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<div class="viewcode-block" id="C3000SyringePump.is_initialized">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_initialized">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Check if pump has been initialized properly after power-up.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if pump has been initialized properly after power-up.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -529,9 +561,12 @@
         <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.is_idle"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_idle">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">LabDeviceReply</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">C3000SyringePumpCommands</span><span class="o">.</span><span class="n">DEFAULT_STATUS</span><span class="p">))</span>
+
+<div class="viewcode-block" id="C3000SyringePump.is_idle">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_idle">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">LabDeviceReply</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">C3000SyringePumpCommands</span><span class="o">.</span><span class="n">DEFAULT_STATUS</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if pump is in idle state.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if pump is in idle state.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send status request command and read back reply with no parsing</span>
@@ -555,41 +590,62 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::true.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.start"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Starts program execution.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C3000SyringePump.start">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.start">[docs]</a>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts program execution.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autorun</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Sending run command with autorun enabled is not required.&quot;</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">PRG_RUN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.stop"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Stops executing current program/action immediately.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="C3000SyringePump.stop">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.stop">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Stops executing current program/action immediately.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">PRG_TERM</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_speed"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets maximum velocity (top of the ramp) for the syringe motor.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_speed">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets maximum velocity (top of the ramp) for the syringe motor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_VEL</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.get_speed"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="C3000SyringePump.get_speed">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Getting speed is not supported on this model.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_predefined_speed"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_predefined_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_predefined_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocity_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets maximum velocity (top of the ramp) for the syringe motor.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_predefined_speed">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_predefined_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_predefined_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocity_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets maximum velocity (top of the ramp) for the syringe motor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_VEL_CODE</span><span class="p">,</span> <span class="n">velocity_code</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.move_home"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_home">[docs]</a>    <span class="k">def</span> <span class="nf">move_home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="C3000SyringePump.move_home">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_home">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.move_plunger_absolute"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_absolute">[docs]</a>    <span class="k">def</span> <span class="nf">move_plunger_absolute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Makes absolute plunger move.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.move_plunger_absolute">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_absolute">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_plunger_absolute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes absolute plunger move.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">set_busy</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
@@ -599,15 +655,21 @@
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.get_plunger_position"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_plunger_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_plunger_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns absolute plunger position.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.get_plunger_position">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_plunger_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_plunger_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns absolute plunger position.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYR_POS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.move_plunger_relative"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_relative">[docs]</a>    <span class="k">def</span> <span class="nf">move_plunger_relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Makes relative plunger move. This is a wrapper for</span>
+
+<div class="viewcode-block" id="C3000SyringePump.move_plunger_relative">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_relative">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_plunger_relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes relative plunger move. This is a wrapper for</span>
 <span class="sd">        dispense()/withdraw().</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -616,8 +678,11 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispense</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">position</span><span class="p">),</span> <span class="n">set_busy</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.dispense"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.dispense">[docs]</a>    <span class="k">def</span> <span class="nf">dispense</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">increments</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Makes relative dispense.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.dispense">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.dispense">[docs]</a>
+    <span class="k">def</span> <span class="nf">dispense</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">increments</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes relative dispense.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">set_busy</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
@@ -628,8 +693,11 @@
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">increments</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.withdraw"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.withdraw">[docs]</a>    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">increments</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Makes relative aspiration.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.withdraw">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.withdraw">[docs]</a>
+    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">increments</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes relative aspiration.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">set_busy</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
@@ -639,8 +707,11 @@
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">increments</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_valve_position"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_position">[docs]</a>    <span class="k">def</span> <span class="nf">set_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requested_position</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the distribution valve position.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_valve_position">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requested_position</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the distribution valve position.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">requested_position</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">requested_position</span><span class="p">)</span>
@@ -674,43 +745,61 @@
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.get_valve_position"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_valve_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Reads current position of the valve.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.get_valve_position">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_valve_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads current position of the valve.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VALVE_POS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_ramp_slope"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_ramp_slope">[docs]</a>    <span class="k">def</span> <span class="nf">set_ramp_slope</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ramp_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets slope of acceleration/deceleration ramp for the syringe motor.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_ramp_slope">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_ramp_slope">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_ramp_slope</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ramp_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets slope of acceleration/deceleration ramp for the syringe motor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_RAMP_PLOPE</span><span class="p">,</span> <span class="n">ramp_code</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_start_velocity"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_start_velocity">[docs]</a>    <span class="k">def</span> <span class="nf">set_start_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_velocity</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets starting velocity for the syringe motor.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_start_velocity">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_start_velocity">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_start_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_velocity</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets starting velocity for the syringe motor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_START_VEL</span><span class="p">,</span> <span class="n">start_velocity</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_stop_velocity"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_stop_velocity">[docs]</a>    <span class="k">def</span> <span class="nf">set_stop_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_velocity</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets stopping velocity for the syringe motor.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_stop_velocity">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_stop_velocity">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_stop_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_velocity</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets stopping velocity for the syringe motor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_STOP_VEL</span><span class="p">,</span> <span class="n">stop_velocity</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_resolution_mode"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_resolution_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_resolution_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets plunger resolution mode.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_resolution_mode">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_resolution_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_resolution_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets plunger resolution mode.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Send command &amp; check reply for errors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_RES_MODE</span><span class="p">,</span> <span class="n">resolution_mode</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.set_valve_type"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_valve_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valve_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">confirm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets valve type. This command requires power-cycle to activate new settings!</span>
+
+<div class="viewcode-block" id="C3000SyringePump.set_valve_type">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_type">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_valve_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valve_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">confirm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets valve type. This command requires power-cycle to activate new settings!</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Changing the valve type would require power-cycling the pump!&quot;</span><span class="p">)</span>
@@ -727,11 +816,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PUMP_CONF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valve_type</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Valve type updated successfully. Don&#39;t forget to power-cycle the pump!&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="C3000SyringePump.get_pump_configuration"><a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_pump_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_pump_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Reads pump EEPROM configuration.</span>
+
+<div class="viewcode-block" id="C3000SyringePump.get_pump_configuration">
+<a class="viewcode-back" href="../../../api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_pump_configuration">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pump_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads pump EEPROM configuration.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Send command &amp; check reply for errors</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_EEPROM_DATA</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_EEPROM_DATA</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>
@@ -741,7 +835,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

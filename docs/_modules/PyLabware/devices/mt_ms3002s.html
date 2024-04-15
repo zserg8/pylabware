@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.devices.mt_ms3002s &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.mt_ms3002s</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PyLabware.devices.mt_ms3002s</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyLabware driver for Mettler Toledo MS3002S balance.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+
+<span class="c1"># Core imports</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">parsers</span> <span class="k">as</span> <span class="n">parser</span>
+<span class="kn">from</span> <span class="nn">..controllers</span> <span class="kn">import</span> <span class="n">LabDevice</span><span class="p">,</span> <span class="n">in_simulation_device_returns</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">PLConnectionError</span><span class="p">,</span> <span class="n">PLDeviceCommandError</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
+
+
+<div class="viewcode-block" id="MS3002SBalanceCommands">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">MS3002SBalanceCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for Mettler Toledo MS3002S balances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ##########################  Constants ##################################</span>
+    <span class="c1"># Default reply to GET_TYPE command</span>
+    <span class="n">DEFAULT_TYPE</span> <span class="o">=</span> <span class="s2">&quot;MS3002S/01&quot;</span>
+    <span class="c1"># Maximum allowed weight, in grams</span>
+    <span class="n">MAX_WEIGHT</span> <span class="o">=</span> <span class="mi">3200</span>
+
+    <span class="c1"># ################### Control commands ###################################</span>
+    <span class="c1"># Get list of commands</span>
+    <span class="n">GET_CMD_LIST</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I0&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get command interface level and version</span>
+    <span class="n">GET_CMD_VER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I1&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get balance info string</span>
+    <span class="n">GET_INFO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I2&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get software version</span>
+    <span class="n">GET_SW_VER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I3&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get serial number</span>
+    <span class="n">GET_SER_NUM</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I4&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get software id number</span>
+    <span class="n">GET_SW_ID</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I5&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get individual unit id string</span>
+    <span class="n">GET_ID</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I10&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Get balance type/model</span>
+    <span class="n">GET_NAME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I11&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">]}}</span>
+    <span class="c1"># Set tare weight</span>
+    <span class="n">SET_TARE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set tare weight immediately</span>
+    <span class="n">SET_TARE_IMMEDIATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;TI&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Get tare weight/ set tare weight to a specified value</span>
+    <span class="n">GET_TARE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;TA&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]}}</span>
+    <span class="c1"># Clear tare weight</span>
+    <span class="n">CLEAR_TARE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;TAC&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Zero weight</span>
+    <span class="n">ZERO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Zero weight immediately</span>
+    <span class="n">ZERO_IMMEDIATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ZI&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Get stable weight</span>
+    <span class="n">GET_WEIGHT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]}}</span>
+    <span class="c1"># Get weight immediately</span>
+    <span class="n">GET_WEIGHT_IMMEDIATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;SI&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]}}</span>
+    <span class="c1"># Get stable weight with unit</span>
+    <span class="n">GET_WEIGHT_UNIT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;SU&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]}}</span>
+    <span class="c1"># Get weight immediately</span>
+    <span class="n">GET_WEIGHT_UNIT_IMMEDIATE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;SIU&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">splitter</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]}}</span>
+
+    <span class="c1"># ################### Configuration commands #############################</span>
+
+    <span class="c1"># Reset device</span>
+    <span class="n">RESET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span></div>
+
+
+
+<div class="viewcode-block" id="MS3002SBalance">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance">[docs]</a>
+<span class="k">class</span> <span class="nc">MS3002SBalance</span><span class="p">(</span><span class="n">LabDevice</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This provides a Python class for the Mettler Toledo MS3002S balance</span>
+<span class="sd">    based on the original operation manual 11781259 0309/2.12.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Load commands from helper class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">MS3002SBalanceCommands</span>
+
+        <span class="c1"># Connection settings</span>
+        <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;baudrate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9600</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;bytesize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">EIGHTBITS</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;parity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">device_name</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">)</span>
+
+        <span class="c1"># Protocol settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args_delimiter</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+
+<div class="viewcode-block" id="MS3002SBalance.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Issue reset command.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Device initialized.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.is_connected">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.is_connected">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">([</span><span class="n">MS3002SBalanceCommands</span><span class="o">.</span><span class="n">DEFAULT_TYPE</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Check if the device is connected via GET_NAME command.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NAME</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">reply</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_TYPE</span> <span class="ow">in</span> <span class="n">reply</span></div>
+
+
+    <span class="c1"># TODO Maybe put power on/off in start/stop ?</span>
+<div class="viewcode-block" id="MS3002SBalance.start">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.start">[docs]</a>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.stop">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.stop">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.is_idle">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.is_idle">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.get_status">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.check_errors">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.set_tare">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.set_tare">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_tare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weight</span><span class="p">:</span><span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets tare weight to the currently measured or the specified value</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            weight (float, optional): Desired tare weight. Defaults to None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># FIXME can be checked later in check_value when f-strings are supported</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">MAX_WEIGHT</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Illegal tare weight </span><span class="si">{</span><span class="n">weight</span><span class="si">}</span><span class="s2"> (min - 0 max - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">MAX_WEIGHT</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TARE</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">weight</span><span class="si">}</span><span class="s2"> g&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TARE</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.get_tare_weight">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.get_tare_weight">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_tare_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets currently stored tare weight</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: tare weight in grams</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TARE</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.clear_tare_weight">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.clear_tare_weight">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_tare_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clears currently stored tare weight</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">CLEAR_TARE</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.zero_weight">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.zero_weight">[docs]</a>
+    <span class="k">def</span> <span class="nf">zero_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stabilize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Zeros current balance reading.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stabilize (bool, optional): Whether to wait for the reading to stabilize. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">stabilize</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ZERO</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ZERO_IMMEDIATE</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MS3002SBalance.get_weight">
+<a class="viewcode-back" href="../../../api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance.get_weight">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stabilize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current weight reading.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stabilize (bool, optional): Whether to wait for the reading to stabilize. Defaults to True.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: current weight reading.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">stabilize</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_WEIGHT</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_WEIGHT_IMMEDIATE</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

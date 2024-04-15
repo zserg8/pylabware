@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Julabo CF41 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tricontinent C3000" href="devices.tricontinent_c3000.html" />
-    <link rel="prev" title="IDEX mxII" href="devices.idex_mxii.html" /> 
+    <link rel="next" title="PyLabware.devices.tecan_cavro_xlp6000 module" href="devices.tecan_cavro_xlp6000.html" />
+    <link rel="prev" title="PyLabware.devices.mt_ms3002s module" href="devices.mt_ms3002s.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -27,18 +30,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PyLabware
-            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
@@ -59,7 +66,15 @@
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_rv10.html">IKA RV10</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Julabo CF41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.kern_kdp3000.html">PyLabware.devices.kern_kdp3000 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.metrohm_781ph.html">PyLabware.devices.metrohm_781ph module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.mt_ms3002s.html">PyLabware.devices.mt_ms3002s module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Julabo CF41</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.julabo_cf41.CF41Chiller"><code class="docutils literal notranslate"><span class="pre">CF41Chiller</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands"><code class="docutils literal notranslate"><span class="pre">CF41ChillerCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tecan_cavro_xlp6000.html">PyLabware.devices.tecan_cavro_xlp6000 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
 </ul>
@@ -83,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="main.html">API Reference</a> &raquo;</li>
-          <li><a href="devices.html">&lt;no title&gt;</a> &raquo;</li>
-      <li>Julabo CF41</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="devices.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">Julabo CF41</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/devices.julabo_cf41.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,43 +112,43 @@
            <div itemprop="articleBody">
              
   <section id="module-PyLabware.devices.julabo_cf41">
-<span id="julabo-cf41"></span><h1>Julabo CF41<a class="headerlink" href="#module-PyLabware.devices.julabo_cf41" title="Permalink to this headline"></a></h1>
+<span id="julabo-cf41"></span><h1>Julabo CF41<a class="headerlink" href="#module-PyLabware.devices.julabo_cf41" title="Link to this heading"></a></h1>
 <p>PyLabware driver for Julabo CF41 chiller.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.julabo_cf41.</span></span><span class="sig-name descname"><span class="pre">CF41Chiller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractTemperatureController" title="PyLabware.controllers.AbstractTemperatureController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractTemperatureController</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.julabo_cf41.</span></span><span class="sig-name descname"><span class="pre">CF41Chiller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractTemperatureController" title="PyLabware.controllers.AbstractTemperatureController"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperatureController</span></code></a></p>
 <p>This provides a Python class for the Julabo CF41 chiller based on the
 the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 <p>Default constructor</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>device_name</strong> (<em>str</em>) – </p></li>
 <li><p><strong>connection_mode</strong> (<em>str</em>) – </p></li>
-<li><p><strong>address</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>port</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>address</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>port</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.check_errors">
-<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.check_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.check_errors" title="Link to this definition"></a></dt>
 <dd><p>Checks device for errors.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.clear_errors">
-<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.clear_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.clear_errors" title="Link to this definition"></a></dt>
 <dd><p>Not yet implemented. #TODO</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_active_setpoint">
-<span class="sig-name descname"><span class="pre">get_active_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_active_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_active_setpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_active_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_active_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_active_setpoint" title="Link to this definition"></a></dt>
 <dd><p>Gets currently active temperature setpoint.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -141,10 +156,10 @@ the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_cooling_power">
-<span class="sig-name descname"><span class="pre">get_cooling_power</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_cooling_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_cooling_power" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_cooling_power</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_cooling_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_cooling_power" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the chiller cooling power in %</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -152,10 +167,10 @@ the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power">
-<span class="sig-name descname"><span class="pre">get_heating_power</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_heating_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_heating_power</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_heating_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power" title="Link to this definition"></a></dt>
 <dd><p>Returns the current heating power in %.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -163,10 +178,10 @@ the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power_setpoint">
-<span class="sig-name descname"><span class="pre">get_heating_power_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_heating_power_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power_setpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_heating_power_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_heating_power_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power_setpoint" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the heating power setpoint in %</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -174,11 +189,11 @@ the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_recirculation_pump_speed">
-<span class="sig-name descname"><span class="pre">get_recirculation_pump_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_recirculation_pump_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_recirculation_pump_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_recirculation_pump_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_recirculation_pump_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_recirculation_pump_speed" title="Link to this definition"></a></dt>
 <dd><p>Returns the recirculation pump speed:
 1 (low flow rate) –&gt; 4 (high flow rate)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -186,10 +201,10 @@ the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_regulation_mode">
-<span class="sig-name descname"><span class="pre">get_regulation_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_regulation_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_regulation_mode" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_regulation_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_regulation_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_regulation_mode" title="Link to this definition"></a></dt>
 <dd><p>Gets current temperature regulation mdoe.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -197,10 +212,10 @@ the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_status">
-<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_status" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_status" title="Link to this definition"></a></dt>
 <dd><p>Gets chiller status.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -208,15 +223,15 @@ the original operation manual 1.951.4871-V3 11/15 26.11.15</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature">
-<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature" title="Link to this definition"></a></dt>
 <dd><p>Retrieves the current temperature of the chiller.
 This can be the internal or external temperature, depending
 in what mode the chiller is currently operating.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -224,15 +239,15 @@ in what mode the chiller is currently operating.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature_setpoint">
-<span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature_setpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature_setpoint" title="Link to this definition"></a></dt>
 <dd><p>Reads the current temperature setpoint.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
 This device uses a shared setpoint for all temperature probes.
 Hence, this argument has no effect here.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -240,16 +255,16 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.initialize_device">
-<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.initialize_device" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.initialize_device" title="Link to this definition"></a></dt>
 <dd><p>This chiller doesn’t have initialization method.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.is_connected">
-<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.is_connected" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.is_connected" title="Link to this definition"></a></dt>
 <dd><p>Checks if teh chiller is connected.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -257,10 +272,10 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.is_idle">
-<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.is_idle" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.is_idle" title="Link to this definition"></a></dt>
 <dd><p>Returns true if the chiller is off: pump and temperature control</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -268,11 +283,11 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.ramp_temperature">
-<span class="sig-name descname"><span class="pre">ramp_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.ramp_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.ramp_temperature" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ramp_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.ramp_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.ramp_temperature" title="Link to this definition"></a></dt>
 <dd><p>Ramps chiller temperature from the current temperature
 to the end_temperature over time.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>end_temperature</strong> (<em>float</em>) – </p></li>
 <li><p><strong>time</strong> (<em>float</em>) – </p></li>
@@ -283,10 +298,10 @@ to the end_temperature over time.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.set_cooling_power">
-<span class="sig-name descname"><span class="pre">set_cooling_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cooling_power</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_cooling_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_cooling_power" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_cooling_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cooling_power</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_cooling_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_cooling_power" title="Link to this definition"></a></dt>
 <dd><p>Sets the value of the chiller cooling power in %</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>cooling_power</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -294,10 +309,10 @@ to the end_temperature over time.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.set_heating_power">
-<span class="sig-name descname"><span class="pre">set_heating_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heating_power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_heating_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_heating_power" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_heating_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heating_power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_heating_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_heating_power" title="Link to this definition"></a></dt>
 <dd><p>Sets the heating power of the chiller, in percent [10-100%].</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>heating_power</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -305,10 +320,10 @@ to the end_temperature over time.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.set_recirculation_pump_speed">
-<span class="sig-name descname"><span class="pre">set_recirculation_pump_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_recirculation_pump_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_recirculation_pump_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_recirculation_pump_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_recirculation_pump_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_recirculation_pump_speed" title="Link to this definition"></a></dt>
 <dd><p>Sets the recirculation pump speed (4 different speeds allowed).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>speed</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -316,10 +331,10 @@ to the end_temperature over time.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.set_regulation_mode">
-<span class="sig-name descname"><span class="pre">set_regulation_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_regulation_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_regulation_mode" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_regulation_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_regulation_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_regulation_mode" title="Link to this definition"></a></dt>
 <dd><p>Sets chiller temperature regulation mode.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mode</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -327,10 +342,10 @@ to the end_temperature over time.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.set_temperature">
-<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_temperature" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.set_temperature" title="Link to this definition"></a></dt>
 <dd><p>Sets the target temperature of the chiller.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>temperature</strong> (<em>float</em>) – Temperature setpoint in °C.</p></li>
 <li><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
@@ -343,13 +358,13 @@ shared by the external and internal probe. Thus, the sensor variable has no effe
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.start_temperature_regulation">
-<span class="sig-name descname"><span class="pre">start_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.start_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.start_temperature_regulation" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.start_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.start_temperature_regulation" title="Link to this definition"></a></dt>
 <dd><p>Starts the chiller</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41Chiller.stop_temperature_regulation">
-<span class="sig-name descname"><span class="pre">stop_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.stop_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.stop_temperature_regulation" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41Chiller.stop_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41Chiller.stop_temperature_regulation" title="Link to this definition"></a></dt>
 <dd><p>Stops the chiller</p>
 </dd></dl>
 
@@ -357,408 +372,408 @@ shared by the external and internal probe. Thus, the sensor variable has no effe
 
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.julabo_cf41.</span></span><span class="sig-name descname"><span class="pre">CF41ChillerCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41ChillerCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.models.LabDeviceCommands</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.julabo_cf41.</span></span><span class="sig-name descname"><span class="pre">CF41ChillerCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/julabo_cf41.html#CF41ChillerCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LabDeviceCommands</span></code></p>
 <p>Collection of command definitions for CF41 chiller.</p>
 <p>This class shouldn’t be instantiated</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.CONTROL_DYNAMCIS_MODES">
-<span class="sig-name descname"><span class="pre">CONTROL_DYNAMCIS_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'APERIODIC',</span> <span class="pre">1:</span> <span class="pre">'STANDARD'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.CONTROL_DYNAMCIS_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">CONTROL_DYNAMCIS_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'APERIODIC',</span> <span class="pre">1:</span> <span class="pre">'STANDARD'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.CONTROL_DYNAMCIS_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.DEFAULT_NAME">
-<span class="sig-name descname"><span class="pre">DEFAULT_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'JULABO</span> <span class="pre">CRYOCOMPACT</span> <span class="pre">CF41'</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.DEFAULT_NAME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">DEFAULT_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'JULABO</span> <span class="pre">CRYOCOMPACT</span> <span class="pre">CF41'</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.DEFAULT_NAME" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.ERRORS">
-<span class="sig-name descname"><span class="pre">ERRORS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'-01':</span> <span class="pre">'Coolant</span> <span class="pre">level</span> <span class="pre">critically</span> <span class="pre">low!',</span> <span class="pre">'-03':</span> <span class="pre">'Coolant</span> <span class="pre">temperature</span> <span class="pre">too</span> <span class="pre">high!',</span> <span class="pre">'-04':</span> <span class="pre">'Coolant</span> <span class="pre">temperature</span> <span class="pre">too</span> <span class="pre">low!',</span> <span class="pre">'-05':</span> <span class="pre">'Working</span> <span class="pre">temperature</span> <span class="pre">sensor</span> <span class="pre">short-circuited</span> <span class="pre">or</span> <span class="pre">open!',</span> <span class="pre">'-06':</span> <span class="pre">'Temperature</span> <span class="pre">difference</span> <span class="pre">between</span> <span class="pre">working</span> <span class="pre">and</span> <span class="pre">safety</span> <span class="pre">temperature</span> <span class="pre">is</span> <span class="pre">above</span> <span class="pre">35°C!',</span> <span class="pre">'-07':</span> <span class="pre">'Internal</span> <span class="pre">I2C</span> <span class="pre">bus</span> <span class="pre">error!',</span> <span class="pre">'-08':</span> <span class="pre">'Invalid</span> <span class="pre">command!',</span> <span class="pre">'-09':</span> <span class="pre">'Invalid</span> <span class="pre">command</span> <span class="pre">in</span> <span class="pre">current</span> <span class="pre">operating</span> <span class="pre">mode!',</span> <span class="pre">'-12':</span> <span class="pre">'Internal</span> <span class="pre">ADC</span> <span class="pre">error!',</span> <span class="pre">'-13':</span> <span class="pre">'Set</span> <span class="pre">temperature</span> <span class="pre">value</span> <span class="pre">exceeds</span> <span class="pre">safety</span> <span class="pre">limits!',</span> <span class="pre">'-14':</span> <span class="pre">'Excess</span> <span class="pre">temperature</span> <span class="pre">protection</span> <span class="pre">alarm'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.ERRORS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ERRORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'-01':</span> <span class="pre">'Coolant</span> <span class="pre">level</span> <span class="pre">critically</span> <span class="pre">low!',</span> <span class="pre">'-03':</span> <span class="pre">'Coolant</span> <span class="pre">temperature</span> <span class="pre">too</span> <span class="pre">high!',</span> <span class="pre">'-04':</span> <span class="pre">'Coolant</span> <span class="pre">temperature</span> <span class="pre">too</span> <span class="pre">low!',</span> <span class="pre">'-05':</span> <span class="pre">'Working</span> <span class="pre">temperature</span> <span class="pre">sensor</span> <span class="pre">short-circuited</span> <span class="pre">or</span> <span class="pre">open!',</span> <span class="pre">'-06':</span> <span class="pre">'Temperature</span> <span class="pre">difference</span> <span class="pre">between</span> <span class="pre">working</span> <span class="pre">and</span> <span class="pre">safety</span> <span class="pre">temperature</span> <span class="pre">is</span> <span class="pre">above</span> <span class="pre">35°C!',</span> <span class="pre">'-07':</span> <span class="pre">'Internal</span> <span class="pre">I2C</span> <span class="pre">bus</span> <span class="pre">error!',</span> <span class="pre">'-08':</span> <span class="pre">'Invalid</span> <span class="pre">command!',</span> <span class="pre">'-09':</span> <span class="pre">'Invalid</span> <span class="pre">command</span> <span class="pre">in</span> <span class="pre">current</span> <span class="pre">operating</span> <span class="pre">mode!',</span> <span class="pre">'-12':</span> <span class="pre">'Internal</span> <span class="pre">ADC</span> <span class="pre">error!',</span> <span class="pre">'-13':</span> <span class="pre">'Set</span> <span class="pre">temperature</span> <span class="pre">value</span> <span class="pre">exceeds</span> <span class="pre">safety</span> <span class="pre">limits!',</span> <span class="pre">'-14':</span> <span class="pre">'Excess</span> <span class="pre">temperature</span> <span class="pre">protection</span> <span class="pre">alarm'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.ERRORS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.EXTPROG_MODES">
-<span class="sig-name descname"><span class="pre">EXTPROG_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'EXT_VOLTAGE',</span> <span class="pre">1:</span> <span class="pre">'EXT_CURRENT'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.EXTPROG_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">EXTPROG_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'EXT_VOLTAGE',</span> <span class="pre">1:</span> <span class="pre">'EXT_CURRENT'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.EXTPROG_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BAND_LIM_HI">
-<span class="sig-name descname"><span class="pre">GET_BAND_LIM_HI</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_15',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BAND_LIM_HI" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_BAND_LIM_HI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_15',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BAND_LIM_HI" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BAND_LIM_LO">
-<span class="sig-name descname"><span class="pre">GET_BAND_LIM_LO</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_16',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BAND_LIM_LO" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_BAND_LIM_LO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_16',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BAND_LIM_LO" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_BAND_LIMIT">
-<span class="sig-name descname"><span class="pre">GET_BATH_BAND_LIMIT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_BAND_LIMIT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_BATH_BAND_LIMIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_BAND_LIMIT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_TE_EXT">
-<span class="sig-name descname"><span class="pre">GET_BATH_TE_EXT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_TE_EXT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_BATH_TE_EXT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_TE_EXT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_TE_INT">
-<span class="sig-name descname"><span class="pre">GET_BATH_TE_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_TE_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_BATH_TE_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_BATH_TE_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_CHILLER_STATE">
-<span class="sig-name descname"><span class="pre">GET_CHILLER_STATE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_MODE_05',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_CHILLER_STATE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_CHILLER_STATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_MODE_05',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_CHILLER_STATE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_DYN_MODE">
-<span class="sig-name descname"><span class="pre">GET_DYN_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_MODE_08',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_DYN_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_DYN_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_MODE_08',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_DYN_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_EXTPROG_MODE">
-<span class="sig-name descname"><span class="pre">GET_EXTPROG_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_MODE_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_EXTPROG_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_EXTPROG_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_MODE_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_EXTPROG_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_EXT_FLOWRATE">
-<span class="sig-name descname"><span class="pre">GET_EXT_FLOWRATE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_08',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_EXT_FLOWRATE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_EXT_FLOWRATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_08',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_EXT_FLOWRATE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_HEAT_PWR">
-<span class="sig-name descname"><span class="pre">GET_HEAT_PWR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_HEAT_PWR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_HEAT_PWR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_HEAT_PWR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_MAX_COOL_PWR">
-<span class="sig-name descname"><span class="pre">GET_MAX_COOL_PWR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_HIL_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_MAX_COOL_PWR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_MAX_COOL_PWR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_HIL_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_MAX_COOL_PWR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_MAX_HEAT_PWR">
-<span class="sig-name descname"><span class="pre">GET_MAX_HEAT_PWR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_HIL_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_MAX_HEAT_PWR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_MAX_HEAT_PWR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_HIL_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_MAX_HEAT_PWR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_NAME">
-<span class="sig-name descname"><span class="pre">GET_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'VERSION',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[0,</span> <span class="pre">23],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_NAME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'VERSION',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[0,</span> <span class="pre">23],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_NAME" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PKPH0">
-<span class="sig-name descname"><span class="pre">GET_PKPH0</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_05',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PKPH0" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_PKPH0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_05',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PKPH0" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PROP_CAS">
-<span class="sig-name descname"><span class="pre">GET_PROP_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_10',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PROP_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_PROP_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_10',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PROP_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PUMP_SPEED">
-<span class="sig-name descname"><span class="pre">GET_PUMP_SPEED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_07',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PUMP_SPEED" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_PUMP_SPEED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_07',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_PUMP_SPEED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_SELFTUNE_MODE">
-<span class="sig-name descname"><span class="pre">GET_SELFTUNE_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_MODE_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_SELFTUNE_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SELFTUNE_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_MODE_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_SELFTUNE_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_SI">
-<span class="sig-name descname"><span class="pre">GET_SI</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_SI" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_SI" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_STATUS">
-<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STATUS',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[0,</span> <span class="pre">2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_STATUS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STATUS',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[0,</span> <span class="pre">2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_STATUS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_CAS_MAX">
-<span class="sig-name descname"><span class="pre">GET_TEMP_CAS_MAX</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_13',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_CAS_MAX" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_CAS_MAX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_13',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_CAS_MAX" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_CAS_MIN">
-<span class="sig-name descname"><span class="pre">GET_TEMP_CAS_MIN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_14',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_CAS_MIN" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_CAS_MIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_14',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_CAS_MIN" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_DELTA">
-<span class="sig-name descname"><span class="pre">GET_TEMP_DELTA</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_DELTA" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_DELTA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_DELTA" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_EXT">
-<span class="sig-name descname"><span class="pre">GET_TEMP_EXT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_EXT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_EXT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_EXT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_EXTPROG">
-<span class="sig-name descname"><span class="pre">GET_TEMP_EXTPROG</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_05',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_EXTPROG" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_EXTPROG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_05',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_EXTPROG" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_INT">
-<span class="sig-name descname"><span class="pre">GET_TEMP_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_LIM_HI">
-<span class="sig-name descname"><span class="pre">GET_TEMP_LIM_HI</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_LIM_HI" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_LIM_HI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_LIM_HI" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_LIM_LO">
-<span class="sig-name descname"><span class="pre">GET_TEMP_LIM_LO</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_LIM_LO" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_LIM_LO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_LIM_LO" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_REG_MODE">
-<span class="sig-name descname"><span class="pre">GET_TEMP_REG_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_MODE_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_REG_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_REG_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_MODE_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_REG_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SAFE">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SAFE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SAFE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SAFE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_03',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SAFE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SAFE_SET">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SAFE_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SAFE_SET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SAFE_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_04',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SAFE_SET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_MODE_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_MODE_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP1">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SP1</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SP1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_00',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP1" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP2">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SP2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SP2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_01',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP2" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP3">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SP3</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP3" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SP3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_02',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_SP3" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_UNITS">
-<span class="sig-name descname"><span class="pre">GET_TEMP_UNITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_06',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_UNITS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_UNITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_06',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TEMP_UNITS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TN_CAS">
-<span class="sig-name descname"><span class="pre">GET_TN_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_11',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TN_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TN_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_11',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TN_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TN_INT">
-<span class="sig-name descname"><span class="pre">GET_TN_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_07',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TN_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TN_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_07',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TN_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TV_CAS">
-<span class="sig-name descname"><span class="pre">GET_TV_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_12',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TV_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TV_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_12',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TV_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TV_INT">
-<span class="sig-name descname"><span class="pre">GET_TV_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_08',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TV_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TV_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_08',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_TV_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_VERSION">
-<span class="sig-name descname"><span class="pre">GET_VERSION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'VERSION',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-3],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_VERSION" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'VERSION',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-3],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_VERSION" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_XP_CAS">
-<span class="sig-name descname"><span class="pre">GET_XP_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_09',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_XP_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_XP_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_09',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_XP_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_XP_INT">
-<span class="sig-name descname"><span class="pre">GET_XP_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PAR_06',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_XP_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_XP_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PAR_06',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.GET_XP_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.PUMP_SPEED_MODES">
-<span class="sig-name descname"><span class="pre">PUMP_SPEED_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.PUMP_SPEED_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PUMP_SPEED_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.PUMP_SPEED_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.REGULATION_MODES">
-<span class="sig-name descname"><span class="pre">REGULATION_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'INTERNAL',</span> <span class="pre">1:</span> <span class="pre">'EXTERNAL'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.REGULATION_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">REGULATION_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'INTERNAL',</span> <span class="pre">1:</span> <span class="pre">'EXTERNAL'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.REGULATION_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SELFTUNE_MODES">
-<span class="sig-name descname"><span class="pre">SELFTUNE_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'SELFTUNE_OFF',</span> <span class="pre">1:</span> <span class="pre">'SELFTUNE_ONCE',</span> <span class="pre">2:</span> <span class="pre">'SELFTUNE_ALWAYS'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SELFTUNE_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SELFTUNE_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'SELFTUNE_OFF',</span> <span class="pre">1:</span> <span class="pre">'SELFTUNE_ONCE',</span> <span class="pre">2:</span> <span class="pre">'SELFTUNE_ALWAYS'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SELFTUNE_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SETPOINT_MODES">
-<span class="sig-name descname"><span class="pre">SETPOINT_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'SP1',</span> <span class="pre">1:</span> <span class="pre">'SP2',</span> <span class="pre">2:</span> <span class="pre">'SP3'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SETPOINT_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SETPOINT_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'SP1',</span> <span class="pre">1:</span> <span class="pre">'SP2',</span> <span class="pre">2:</span> <span class="pre">'SP3'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SETPOINT_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_BAND_LIM_HI">
-<span class="sig-name descname"><span class="pre">SET_BAND_LIM_HI</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">200,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_15',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_BAND_LIM_HI" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_BAND_LIM_HI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">200,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_15',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_BAND_LIM_HI" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_BAND_LIM_LO">
-<span class="sig-name descname"><span class="pre">SET_BAND_LIM_LO</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">200,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_16',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_BAND_LIM_LO" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_BAND_LIM_LO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">200,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_16',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_BAND_LIM_LO" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_CONTROL_MODE">
-<span class="sig-name descname"><span class="pre">SET_CONTROL_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'APERIODIC',</span> <span class="pre">1:</span> <span class="pre">'STANDARD'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_08',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_CONTROL_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_CONTROL_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'APERIODIC',</span> <span class="pre">1:</span> <span class="pre">'STANDARD'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_08',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_CONTROL_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_COSPEED_EXT">
-<span class="sig-name descname"><span class="pre">SET_COSPEED_EXT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">5,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_04',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_COSPEED_EXT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_COSPEED_EXT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">5,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_04',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_COSPEED_EXT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_EXTPROG_MODE">
-<span class="sig-name descname"><span class="pre">SET_EXTPROG_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'EXT_VOLTAGE',</span> <span class="pre">1:</span> <span class="pre">'EXT_CURRENT'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_03',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_EXTPROG_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_EXTPROG_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'EXT_VOLTAGE',</span> <span class="pre">1:</span> <span class="pre">'EXT_CURRENT'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_03',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_EXTPROG_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_HEATER_VALUE">
-<span class="sig-name descname"><span class="pre">SET_HEATER_VALUE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">100,</span> <span class="pre">'min':</span> <span class="pre">-100},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_06',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_HEATER_VALUE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_HEATER_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">100,</span> <span class="pre">'min':</span> <span class="pre">-100},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_06',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_HEATER_VALUE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_MAX_COOL_PWR">
-<span class="sig-name descname"><span class="pre">SET_MAX_COOL_PWR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">0,</span> <span class="pre">'min':</span> <span class="pre">-100},</span> <span class="pre">'name':</span> <span class="pre">'OUT_HIL_00',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_MAX_COOL_PWR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MAX_COOL_PWR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">0,</span> <span class="pre">'min':</span> <span class="pre">-100},</span> <span class="pre">'name':</span> <span class="pre">'OUT_HIL_00',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_MAX_COOL_PWR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_MAX_HEAT_PWR">
-<span class="sig-name descname"><span class="pre">SET_MAX_HEAT_PWR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">100,</span> <span class="pre">'min':</span> <span class="pre">10},</span> <span class="pre">'name':</span> <span class="pre">'OUT_HIL_01',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_MAX_HEAT_PWR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MAX_HEAT_PWR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">100,</span> <span class="pre">'min':</span> <span class="pre">10},</span> <span class="pre">'name':</span> <span class="pre">'OUT_HIL_01',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_MAX_HEAT_PWR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_PROP_CAS">
-<span class="sig-name descname"><span class="pre">SET_PROP_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">99.9,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_10',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_PROP_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_PROP_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">99.9,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_10',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_PROP_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_PUMP_SPEED">
-<span class="sig-name descname"><span class="pre">SET_PUMP_SPEED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_07',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_PUMP_SPEED" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_PUMP_SPEED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_07',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_PUMP_SPEED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_SELFTUNE_MODE">
-<span class="sig-name descname"><span class="pre">SET_SELFTUNE_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'SELFTUNE_OFF',</span> <span class="pre">1:</span> <span class="pre">'SELFTUNE_ONCE',</span> <span class="pre">2:</span> <span class="pre">'SELFTUNE_ALWAYS'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_02',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_SELFTUNE_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_SELFTUNE_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'SELFTUNE_OFF',</span> <span class="pre">1:</span> <span class="pre">'SELFTUNE_ONCE',</span> <span class="pre">2:</span> <span class="pre">'SELFTUNE_ALWAYS'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_02',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_SELFTUNE_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_CAS_MAX">
-<span class="sig-name descname"><span class="pre">SET_TEMP_CAS_MAX</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'OUT_PAR_13',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_CAS_MAX" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_CAS_MAX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'OUT_PAR_13',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_CAS_MAX" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_CAS_MIN">
-<span class="sig-name descname"><span class="pre">SET_TEMP_CAS_MIN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'OUT_PAR_14',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_CAS_MIN" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_CAS_MIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'OUT_PAR_14',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_CAS_MIN" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_LIM_HI">
-<span class="sig-name descname"><span class="pre">SET_TEMP_LIM_HI</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">190,</span> <span class="pre">'min':</span> <span class="pre">20},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_03',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_LIM_HI" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_LIM_HI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">190,</span> <span class="pre">'min':</span> <span class="pre">20},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_03',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_LIM_HI" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_LIM_LO">
-<span class="sig-name descname"><span class="pre">SET_TEMP_LIM_LO</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">19,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_04',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_LIM_LO" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_LIM_LO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">19,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_04',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_LIM_LO" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_REG_MODE">
-<span class="sig-name descname"><span class="pre">SET_TEMP_REG_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'INTERNAL',</span> <span class="pre">1:</span> <span class="pre">'EXTERNAL'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_04',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_REG_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_REG_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'INTERNAL',</span> <span class="pre">1:</span> <span class="pre">'EXTERNAL'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_04',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_REG_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP">
-<span class="sig-name descname"><span class="pre">SET_TEMP_SP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'SP1',</span> <span class="pre">1:</span> <span class="pre">'SP2',</span> <span class="pre">2:</span> <span class="pre">'SP3'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_01',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_SP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">{0:</span> <span class="pre">'SP1',</span> <span class="pre">1:</span> <span class="pre">'SP2',</span> <span class="pre">2:</span> <span class="pre">'SP3'}},</span> <span class="pre">'name':</span> <span class="pre">'OUT_MODE_01',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP1">
-<span class="sig-name descname"><span class="pre">SET_TEMP_SP1</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">110,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_00',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_SP1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">110,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_00',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP1" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP2">
-<span class="sig-name descname"><span class="pre">SET_TEMP_SP2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">110,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_01',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_SP2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">110,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_01',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP2" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP3">
-<span class="sig-name descname"><span class="pre">SET_TEMP_SP3</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">110,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_02',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP3" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP_SP3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">110,</span> <span class="pre">'min':</span> <span class="pre">-40},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_02',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TEMP_SP3" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TN_CAS">
-<span class="sig-name descname"><span class="pre">SET_TN_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">9999,</span> <span class="pre">'min':</span> <span class="pre">3},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_11',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TN_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TN_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">9999,</span> <span class="pre">'min':</span> <span class="pre">3},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_11',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TN_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TN_INT">
-<span class="sig-name descname"><span class="pre">SET_TN_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">9999,</span> <span class="pre">'min':</span> <span class="pre">3},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_07',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TN_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TN_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">9999,</span> <span class="pre">'min':</span> <span class="pre">3},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_07',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TN_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TV_CAS">
-<span class="sig-name descname"><span class="pre">SET_TV_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">999,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_12',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TV_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TV_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">999,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_12',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TV_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TV_INT">
-<span class="sig-name descname"><span class="pre">SET_TV_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">999,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_08',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TV_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TV_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">999,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_08',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_TV_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_XP_CAS">
-<span class="sig-name descname"><span class="pre">SET_XP_CAS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">99.9,</span> <span class="pre">'min':</span> <span class="pre">0.1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_09',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_XP_CAS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_XP_CAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">99.9,</span> <span class="pre">'min':</span> <span class="pre">0.1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_09',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_XP_CAS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_XP_INT">
-<span class="sig-name descname"><span class="pre">SET_XP_INT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">99.9,</span> <span class="pre">'min':</span> <span class="pre">0.1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_06',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_XP_INT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_XP_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">99.9,</span> <span class="pre">'min':</span> <span class="pre">0.1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_PAR_06',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.SET_XP_INT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.START_CHILLER">
-<span class="sig-name descname"><span class="pre">START_CHILLER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'OUT_MODE_05</span> <span class="pre">1'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.START_CHILLER" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">START_CHILLER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'OUT_MODE_05</span> <span class="pre">1'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.START_CHILLER" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.STATUSES">
-<span class="sig-name descname"><span class="pre">STATUSES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'00':</span> <span class="pre">'STOPPED',</span> <span class="pre">'01':</span> <span class="pre">'STARTED',</span> <span class="pre">'02':</span> <span class="pre">'STOPPED',</span> <span class="pre">'03':</span> <span class="pre">'STARTED'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.STATUSES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STATUSES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'00':</span> <span class="pre">'STOPPED',</span> <span class="pre">'01':</span> <span class="pre">'STARTED',</span> <span class="pre">'02':</span> <span class="pre">'STOPPED',</span> <span class="pre">'03':</span> <span class="pre">'STARTED'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.STATUSES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.STOP_CHILLER">
-<span class="sig-name descname"><span class="pre">STOP_CHILLER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'OUT_MODE_05</span> <span class="pre">0'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.STOP_CHILLER" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STOP_CHILLER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'OUT_MODE_05</span> <span class="pre">0'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.STOP_CHILLER" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.julabo_cf41.CF41ChillerCommands.WARNINGS">
-<span class="sig-name descname"><span class="pre">WARNINGS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'-10':</span> <span class="pre">'Entered</span> <span class="pre">value</span> <span class="pre">too</span> <span class="pre">small!',</span> <span class="pre">'-11':</span> <span class="pre">'Entered</span> <span class="pre">value</span> <span class="pre">too</span> <span class="pre">large!',</span> <span class="pre">'-15':</span> <span class="pre">'External</span> <span class="pre">control</span> <span class="pre">selected,</span> <span class="pre">but</span> <span class="pre">Pt100</span> <span class="pre">sensor</span> <span class="pre">not</span> <span class="pre">connected.',</span> <span class="pre">'-20':</span> <span class="pre">'Check</span> <span class="pre">air</span> <span class="pre">cooled</span> <span class="pre">condenser.',</span> <span class="pre">'-21':</span> <span class="pre">'Compressor</span> <span class="pre">stage</span> <span class="pre">1</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">work.',</span> <span class="pre">'-26':</span> <span class="pre">'Stand-by</span> <span class="pre">plug</span> <span class="pre">is</span> <span class="pre">missing.',</span> <span class="pre">'-33':</span> <span class="pre">'Safety</span> <span class="pre">temperature</span> <span class="pre">sensor</span> <span class="pre">short-circuited</span> <span class="pre">or</span> <span class="pre">open!',</span> <span class="pre">'-38':</span> <span class="pre">'External</span> <span class="pre">Pt100</span> <span class="pre">sensor</span> <span class="pre">error!',</span> <span class="pre">'-40':</span> <span class="pre">'Coolant</span> <span class="pre">level</span> <span class="pre">low'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.WARNINGS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WARNINGS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'-10':</span> <span class="pre">'Entered</span> <span class="pre">value</span> <span class="pre">too</span> <span class="pre">small!',</span> <span class="pre">'-11':</span> <span class="pre">'Entered</span> <span class="pre">value</span> <span class="pre">too</span> <span class="pre">large!',</span> <span class="pre">'-15':</span> <span class="pre">'External</span> <span class="pre">control</span> <span class="pre">selected,</span> <span class="pre">but</span> <span class="pre">Pt100</span> <span class="pre">sensor</span> <span class="pre">not</span> <span class="pre">connected.',</span> <span class="pre">'-20':</span> <span class="pre">'Check</span> <span class="pre">air</span> <span class="pre">cooled</span> <span class="pre">condenser.',</span> <span class="pre">'-21':</span> <span class="pre">'Compressor</span> <span class="pre">stage</span> <span class="pre">1</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">work.',</span> <span class="pre">'-26':</span> <span class="pre">'Stand-by</span> <span class="pre">plug</span> <span class="pre">is</span> <span class="pre">missing.',</span> <span class="pre">'-33':</span> <span class="pre">'Safety</span> <span class="pre">temperature</span> <span class="pre">sensor</span> <span class="pre">short-circuited</span> <span class="pre">or</span> <span class="pre">open!',</span> <span class="pre">'-38':</span> <span class="pre">'External</span> <span class="pre">Pt100</span> <span class="pre">sensor</span> <span class="pre">error!',</span> <span class="pre">'-40':</span> <span class="pre">'Coolant</span> <span class="pre">level</span> <span class="pre">low'}</span></em><a class="headerlink" href="#PyLabware.devices.julabo_cf41.CF41ChillerCommands.WARNINGS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -769,14 +784,14 @@ shared by the external and internal probe. Thus, the sensor variable has no effe
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devices.idex_mxii.html" class="btn btn-neutral float-left" title="IDEX mxII" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devices.tricontinent_c3000.html" class="btn btn-neutral float-right" title="Tricontinent C3000" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devices.mt_ms3002s.html" class="btn btn-neutral float-left" title="PyLabware.devices.mt_ms3002s module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devices.tecan_cavro_xlp6000.html" class="btn btn-neutral float-right" title="PyLabware.devices.tecan_cavro_xlp6000 module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

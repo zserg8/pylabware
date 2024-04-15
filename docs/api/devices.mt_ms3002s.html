@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.devices.mt_ms3002s module &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Julabo CF41" href="devices.julabo_cf41.html" />
+    <link rel="prev" title="PyLabware.devices.metrohm_781ph module" href="devices.metrohm_781ph.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_model.html">Data model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="connections.html">Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsers.html">Parsers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="main.html#devices">Devices</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="devices.buchi_c815.html">Buchi C815</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.buchi_r300.html">Buchi R300</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_hei_torque_100_precision.html">Heidolph HeiTorque 100 Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_rzr_2052_control.html">Heidolph RZR 2052 Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.huber_petite_fleur.html">Huber Petite Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_microstar_75.html">IKA Microstar 75</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rct_digital.html">IKA RCT Digital</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rv10.html">IKA RV10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.kern_kdp3000.html">PyLabware.devices.kern_kdp3000 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.metrohm_781ph.html">PyLabware.devices.metrohm_781ph module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PyLabware.devices.mt_ms3002s module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance"><code class="docutils literal notranslate"><span class="pre">MS3002SBalance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands"><code class="docutils literal notranslate"><span class="pre">MS3002SBalanceCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices.julabo_cf41.html">Julabo CF41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tecan_cavro_xlp6000.html">PyLabware.devices.tecan_cavro_xlp6000 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="devices.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.mt_ms3002s module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/devices.mt_ms3002s.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-PyLabware.devices.mt_ms3002s">
+<span id="pylabware-devices-mt-ms3002s-module"></span><h1>PyLabware.devices.mt_ms3002s module<a class="headerlink" href="#module-PyLabware.devices.mt_ms3002s" title="Link to this heading"></a></h1>
+<p>PyLabware driver for Mettler Toledo MS3002S balance.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.mt_ms3002s.</span></span><span class="sig-name descname"><span class="pre">MS3002SBalance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabDevice</span></code></a></p>
+<p>This provides a Python class for the Mettler Toledo MS3002S balance
+based on the original operation manual 11781259 0309/2.12.</p>
+<p>Default constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>connection_mode</strong> (<em>str</em>) – </p></li>
+<li><p><strong>address</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>port</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.check_errors">
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.check_errors" title="Link to this definition"></a></dt>
+<dd><p>Not supported on this device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.clear_errors">
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.clear_errors" title="Link to this definition"></a></dt>
+<dd><p>Not supported on this device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.clear_tare_weight">
+<span class="sig-name descname"><span class="pre">clear_tare_weight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.clear_tare_weight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.clear_tare_weight" title="Link to this definition"></a></dt>
+<dd><p>Clears currently stored tare weight</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.get_status" title="Link to this definition"></a></dt>
+<dd><p>Not supported on this device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.get_tare_weight">
+<span class="sig-name descname"><span class="pre">get_tare_weight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.get_tare_weight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.get_tare_weight" title="Link to this definition"></a></dt>
+<dd><p>Gets currently stored tare weight</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tare weight in grams</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.get_weight">
+<span class="sig-name descname"><span class="pre">get_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stabilize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.get_weight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.get_weight" title="Link to this definition"></a></dt>
+<dd><p>Gets current weight reading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stabilize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to wait for the reading to stabilize. Defaults to True.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>current weight reading.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.initialize_device">
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.initialize_device" title="Link to this definition"></a></dt>
+<dd><p>Issue reset command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.is_connected">
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.is_connected" title="Link to this definition"></a></dt>
+<dd><p>Check if the device is connected via GET_NAME command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.is_idle">
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.is_idle" title="Link to this definition"></a></dt>
+<dd><p>Not supported on this device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.set_tare">
+<span class="sig-name descname"><span class="pre">set_tare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.set_tare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.set_tare" title="Link to this definition"></a></dt>
+<dd><p>Sets tare weight to the currently measured or the specified value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>weight</strong> (<em>float</em><em>, </em><em>optional</em>) – Desired tare weight. Defaults to None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.start" title="Link to this definition"></a></dt>
+<dd><p>Not supported on this device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.stop" title="Link to this definition"></a></dt>
+<dd><p>Not supported on this device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalance.zero_weight">
+<span class="sig-name descname"><span class="pre">zero_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stabilize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalance.zero_weight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalance.zero_weight" title="Link to this definition"></a></dt>
+<dd><p>Zeros current balance reading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stabilize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to wait for the reading to stabilize. Defaults to True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.mt_ms3002s.</span></span><span class="sig-name descname"><span class="pre">MS3002SBalanceCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/mt_ms3002s.html#MS3002SBalanceCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LabDeviceCommands</span></code></p>
+<p>Collection of command definitions for Mettler Toledo MS3002S balances.</p>
+<p>This class shouldn’t be instantiated</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.CLEAR_TARE">
+<span class="sig-name descname"><span class="pre">CLEAR_TARE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'TAC',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.CLEAR_TARE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.DEFAULT_TYPE">
+<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MS3002S/01'</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.DEFAULT_TYPE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_CMD_LIST">
+<span class="sig-name descname"><span class="pre">GET_CMD_LIST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I0',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_CMD_LIST" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_CMD_VER">
+<span class="sig-name descname"><span class="pre">GET_CMD_VER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I1',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_CMD_VER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_ID">
+<span class="sig-name descname"><span class="pre">GET_ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I10',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_ID" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_INFO">
+<span class="sig-name descname"><span class="pre">GET_INFO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I2',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_INFO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_NAME">
+<span class="sig-name descname"><span class="pre">GET_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I11',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_NAME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_SER_NUM">
+<span class="sig-name descname"><span class="pre">GET_SER_NUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_SER_NUM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_SW_ID">
+<span class="sig-name descname"><span class="pre">GET_SW_ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I5',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_SW_ID" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_SW_VER">
+<span class="sig-name descname"><span class="pre">GET_SW_VER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'I3',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'split'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_SW_VER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_TARE">
+<span class="sig-name descname"><span class="pre">GET_TARE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'TA',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">',</span> <span class="pre">-2,</span> <span class="pre">-1],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">splitter&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_TARE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT">
+<span class="sig-name descname"><span class="pre">GET_WEIGHT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'S',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">',</span> <span class="pre">-2,</span> <span class="pre">-1],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">splitter&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT_IMMEDIATE">
+<span class="sig-name descname"><span class="pre">GET_WEIGHT_IMMEDIATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'SI',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">',</span> <span class="pre">-2,</span> <span class="pre">-1],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">splitter&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT_IMMEDIATE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT_UNIT">
+<span class="sig-name descname"><span class="pre">GET_WEIGHT_UNIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'SU',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">',</span> <span class="pre">-2,</span> <span class="pre">-1],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">splitter&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT_UNIT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT_UNIT_IMMEDIATE">
+<span class="sig-name descname"><span class="pre">GET_WEIGHT_UNIT_IMMEDIATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'SIU',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['</span> <span class="pre">',</span> <span class="pre">-2,</span> <span class="pre">-1],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">splitter&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.GET_WEIGHT_UNIT_IMMEDIATE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.MAX_WEIGHT">
+<span class="sig-name descname"><span class="pre">MAX_WEIGHT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3200</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.MAX_WEIGHT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.RESET">
+<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&#64;',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.RESET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.SET_TARE">
+<span class="sig-name descname"><span class="pre">SET_TARE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'T',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.SET_TARE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.SET_TARE_IMMEDIATE">
+<span class="sig-name descname"><span class="pre">SET_TARE_IMMEDIATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'TI',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.SET_TARE_IMMEDIATE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.ZERO">
+<span class="sig-name descname"><span class="pre">ZERO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'Z',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.ZERO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.ZERO_IMMEDIATE">
+<span class="sig-name descname"><span class="pre">ZERO_IMMEDIATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'ZI',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands.ZERO_IMMEDIATE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="devices.metrohm_781ph.html" class="btn btn-neutral float-left" title="PyLabware.devices.metrohm_781ph module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devices.julabo_cf41.html" class="btn btn-neutral float-right" title="Julabo CF41" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

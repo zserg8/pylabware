@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IKA RV10 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,18 +30,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PyLabware
-            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
@@ -57,9 +64,17 @@
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_microstar_75.html">IKA Microstar 75</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_rct_digital.html">IKA RCT Digital</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">IKA RV10</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">IKA RV10</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.ika_rv10.RV10Rotovap"><code class="docutils literal notranslate"><span class="pre">RV10Rotovap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands"><code class="docutils literal notranslate"><span class="pre">RV10RotovapCommands</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.kern_kdp3000.html">PyLabware.devices.kern_kdp3000 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.metrohm_781ph.html">PyLabware.devices.metrohm_781ph module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.mt_ms3002s.html">PyLabware.devices.mt_ms3002s module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.julabo_cf41.html">Julabo CF41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tecan_cavro_xlp6000.html">PyLabware.devices.tecan_cavro_xlp6000 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
 </ul>
@@ -83,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="main.html">API Reference</a> &raquo;</li>
-          <li><a href="devices.html">&lt;no title&gt;</a> &raquo;</li>
-      <li>IKA RV10</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="devices.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">IKA RV10</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/devices.ika_rv10.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,45 +112,45 @@
            <div itemprop="articleBody">
              
   <section id="module-PyLabware.devices.ika_rv10">
-<span id="ika-rv10"></span><h1>IKA RV10<a class="headerlink" href="#module-PyLabware.devices.ika_rv10" title="Permalink to this headline"></a></h1>
+<span id="ika-rv10"></span><h1>IKA RV10<a class="headerlink" href="#module-PyLabware.devices.ika_rv10" title="Link to this heading"></a></h1>
 <p>PyLabware driver for IKA RV10 rotavap.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rv10.</span></span><span class="sig-name descname"><span class="pre">RV10Rotovap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractRotavap" title="PyLabware.controllers.AbstractRotavap"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractRotavap</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rv10.</span></span><span class="sig-name descname"><span class="pre">RV10Rotovap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractRotavap" title="PyLabware.controllers.AbstractRotavap"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRotavap</span></code></a></p>
 <p>This provides a Python class for the IKA RV10 rotavap based on the
 english section of the original operation manuals for the rotavap and the
 heating bath, 20000005206 RV10 bd_082018 and 20000017436 HB digital_092017,
 respectively.</p>
 <p>Default constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>device_name</strong> (<em>str</em>) – </p></li>
 <li><p><strong>connection_mode</strong> (<em>str</em>) – </p></li>
-<li><p><strong>address</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>port</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>address</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>port</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.check_errors">
-<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.check_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.check_errors" title="Link to this definition"></a></dt>
 <dd><p>Not yet implemented. #TODO</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.clear_errors">
-<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.clear_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.clear_errors" title="Link to this definition"></a></dt>
 <dd><p>Not yet implemented. #TODO</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.get_speed">
-<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_speed" title="Link to this definition"></a></dt>
 <dd><p>Gets actual rotation speed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -143,10 +158,10 @@ respectively.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.get_speed_setpoint">
-<span class="sig-name descname"><span class="pre">get_speed_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_speed_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_speed_setpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_speed_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_speed_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_speed_setpoint" title="Link to this definition"></a></dt>
 <dd><p>Gets current rotation speed setpoint.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -154,21 +169,21 @@ respectively.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.get_status">
-<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_status" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_status" title="Link to this definition"></a></dt>
 <dd><p>Not yet implemented. #TODO</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature">
-<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature" title="Link to this definition"></a></dt>
 <dd><p>Gets current bath temperature.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
 This device has only an internal sensor.
 Thus, the sensor variable has no effect here.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -176,15 +191,15 @@ Thus, the sensor variable has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature_setpoint">
-<span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature_setpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.get_temperature_setpoint" title="Link to this definition"></a></dt>
 <dd><p>Reads the current temperature setpoint.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
 This device has only an internal sensor.
 Thus, the sensor variable has no effect here.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -192,16 +207,16 @@ Thus, the sensor variable has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.initialize_device">
-<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.initialize_device" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.initialize_device" title="Link to this definition"></a></dt>
 <dd><p>Performs reset and do a custom initialization sequence.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.is_connected">
-<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.is_connected" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.is_connected" title="Link to this definition"></a></dt>
 <dd><p>Checks if device is connected.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -209,10 +224,10 @@ Thus, the sensor variable has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.is_idle">
-<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.is_idle" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.is_idle" title="Link to this definition"></a></dt>
 <dd><p>Checks if device is ready - no explicit method for that.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -220,22 +235,22 @@ Thus, the sensor variable has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.lift_down">
-<span class="sig-name descname"><span class="pre">lift_down</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.lift_down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.lift_down" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lift_down</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.lift_down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.lift_down" title="Link to this definition"></a></dt>
 <dd><p>Move evaporation flask down.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.lift_up">
-<span class="sig-name descname"><span class="pre">lift_up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.lift_up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.lift_up" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lift_up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.lift_up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.lift_up" title="Link to this definition"></a></dt>
 <dd><p>Move evaporation flask up.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.set_speed">
-<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.set_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.set_speed" title="Link to this definition"></a></dt>
 <dd><p>Sets desired rotation speed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>speed</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -243,10 +258,10 @@ Thus, the sensor variable has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.set_temperature">
-<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.set_temperature" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.set_temperature" title="Link to this definition"></a></dt>
 <dd><p>Sets the desired bath temperature.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>temperature</strong> (<em>float</em>) – Temperature setpoint in °C.</p></li>
 <li><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
@@ -259,37 +274,37 @@ Thus, the sensor variable has no effect here.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.start" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.start" title="Link to this definition"></a></dt>
 <dd><p>Starts evaporation.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.start_bath">
-<span class="sig-name descname"><span class="pre">start_bath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.start_bath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.start_bath" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_bath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.start_bath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.start_bath" title="Link to this definition"></a></dt>
 <dd><p>Starts heating.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.start_rotation">
-<span class="sig-name descname"><span class="pre">start_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.start_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.start_rotation" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.start_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.start_rotation" title="Link to this definition"></a></dt>
 <dd><p>Starts rotation.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.stop" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.stop" title="Link to this definition"></a></dt>
 <dd><p>Stops evaporation.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.stop_bath">
-<span class="sig-name descname"><span class="pre">stop_bath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.stop_bath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.stop_bath" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop_bath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.stop_bath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.stop_bath" title="Link to this definition"></a></dt>
 <dd><p>Stops heating.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10Rotovap.stop_rotation">
-<span class="sig-name descname"><span class="pre">stop_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.stop_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.stop_rotation" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10Rotovap.stop_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10Rotovap.stop_rotation" title="Link to this definition"></a></dt>
 <dd><p>Stops rotation.</p>
 </dd></dl>
 
@@ -297,138 +312,138 @@ Thus, the sensor variable has no effect here.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rv10.</span></span><span class="sig-name descname"><span class="pre">RV10RotovapCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10RotovapCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.models.LabDeviceCommands</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rv10.</span></span><span class="sig-name descname"><span class="pre">RV10RotovapCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rv10.html#RV10RotovapCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LabDeviceCommands</span></code></p>
 <p>Collection of command definitions for RV10 rotavap.</p>
 <p>This class shouldn’t be instantiated</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.DEFAULT_NAME">
-<span class="sig-name descname"><span class="pre">DEFAULT_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'RV10Digital'</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.DEFAULT_NAME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">DEFAULT_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RV10Digital'</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.DEFAULT_NAME" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_NAME">
-<span class="sig-name descname"><span class="pre">GET_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_NAME',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">11],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_NAME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_NAME',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">11],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_NAME" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_SPEED">
-<span class="sig-name descname"><span class="pre">GET_SPEED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_SPEED" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SPEED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_SPEED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_SPEED_SET">
-<span class="sig-name descname"><span class="pre">GET_SPEED_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_SPEED_SET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SPEED_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_SPEED_SET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_STATUS">
-<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STATUS',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_STATUS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STATUS',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_STATUS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP">
-<span class="sig-name descname"><span class="pre">GET_TEMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_2',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_2',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP_SAFE">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SAFE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_3'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP_SAFE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SAFE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_3'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP_SAFE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP_SET">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_2',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP_SET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_2',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[None,</span> <span class="pre">-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_TEMP_SET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_VERSION">
-<span class="sig-name descname"><span class="pre">GET_VERSION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SOFTWARE',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_VERSION" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SOFTWARE',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.GET_VERSION" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.HEATING_MEDIUMS">
-<span class="sig-name descname"><span class="pre">HEATING_MEDIUMS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'Oil',</span> <span class="pre">1:</span> <span class="pre">'Water'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.HEATING_MEDIUMS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HEATING_MEDIUMS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'Oil',</span> <span class="pre">1:</span> <span class="pre">'Water'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.HEATING_MEDIUMS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.LIFT_DOWN">
-<span class="sig-name descname"><span class="pre">LIFT_DOWN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'OUT_SP_63</span> <span class="pre">1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.LIFT_DOWN" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">LIFT_DOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'OUT_SP_63</span> <span class="pre">1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.LIFT_DOWN" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.LIFT_UP">
-<span class="sig-name descname"><span class="pre">LIFT_UP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'OUT_SP_62</span> <span class="pre">1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.LIFT_UP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">LIFT_UP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'OUT_SP_62</span> <span class="pre">1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.LIFT_UP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.RESET">
-<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'RESET'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.RESET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'RESET'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.RESET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_INTERVAL_TIME">
-<span class="sig-name descname"><span class="pre">SET_INTERVAL_TIME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">60,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_61',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_INTERVAL_TIME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_INTERVAL_TIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">60,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_61',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_INTERVAL_TIME" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_SPEED">
-<span class="sig-name descname"><span class="pre">SET_SPEED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">280,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_4',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_SPEED" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_SPEED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">280,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_4',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_SPEED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_TEMP">
-<span class="sig-name descname"><span class="pre">SET_TEMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">180,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_2',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_TEMP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">180,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_2',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_TEMP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_TIMER_DURATION">
-<span class="sig-name descname"><span class="pre">SET_TIMER_DURATION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">199,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_60',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_TIMER_DURATION" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TIMER_DURATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">199,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_60',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.SET_TIMER_DURATION" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.START_HEAT">
-<span class="sig-name descname"><span class="pre">START_HEAT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'START_2'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_HEAT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">START_HEAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'START_2'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_HEAT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.START_INTERVAL">
-<span class="sig-name descname"><span class="pre">START_INTERVAL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'START_60'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_INTERVAL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">START_INTERVAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'START_60'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_INTERVAL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.START_ROTATION">
-<span class="sig-name descname"><span class="pre">START_ROTATION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'START_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_ROTATION" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">START_ROTATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'START_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_ROTATION" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.START_TIMER">
-<span class="sig-name descname"><span class="pre">START_TIMER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'START_61'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_TIMER" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">START_TIMER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'START_61'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.START_TIMER" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.STATUS_CODES">
-<span class="sig-name descname"><span class="pre">STATUS_CODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'0':</span> <span class="pre">'Manual</span> <span class="pre">operation',</span> <span class="pre">'1':</span> <span class="pre">'Remote</span> <span class="pre">operation',</span> <span class="pre">'E01':</span> <span class="pre">'No</span> <span class="pre">rotation',</span> <span class="pre">'E02':</span> <span class="pre">'No</span> <span class="pre">communication</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">heating</span> <span class="pre">bath'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STATUS_CODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STATUS_CODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'0':</span> <span class="pre">'Manual</span> <span class="pre">operation',</span> <span class="pre">'1':</span> <span class="pre">'Remote</span> <span class="pre">operation',</span> <span class="pre">'E01':</span> <span class="pre">'No</span> <span class="pre">rotation',</span> <span class="pre">'E02':</span> <span class="pre">'No</span> <span class="pre">communication</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">heating</span> <span class="pre">bath'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STATUS_CODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_HEAT">
-<span class="sig-name descname"><span class="pre">STOP_HEAT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STOP_2'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_HEAT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STOP_HEAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STOP_2'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_HEAT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_INTERVAL">
-<span class="sig-name descname"><span class="pre">STOP_INTERVAL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STOP_60'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_INTERVAL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STOP_INTERVAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STOP_60'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_INTERVAL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_ROTATION">
-<span class="sig-name descname"><span class="pre">STOP_ROTATION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STOP_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_ROTATION" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STOP_ROTATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STOP_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_ROTATION" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_TIMER">
-<span class="sig-name descname"><span class="pre">STOP_TIMER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STOP_61'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_TIMER" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STOP_TIMER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STOP_61'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rv10.RV10RotovapCommands.STOP_TIMER" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -446,7 +461,7 @@ Thus, the sensor variable has no effect here.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

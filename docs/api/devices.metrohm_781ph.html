@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.devices.metrohm_781ph module &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyLabware.devices.mt_ms3002s module" href="devices.mt_ms3002s.html" />
+    <link rel="prev" title="PyLabware.devices.kern_kdp3000 module" href="devices.kern_kdp3000.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_model.html">Data model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="connections.html">Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsers.html">Parsers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="main.html#devices">Devices</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="devices.buchi_c815.html">Buchi C815</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.buchi_r300.html">Buchi R300</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_hei_torque_100_precision.html">Heidolph HeiTorque 100 Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.heidolph_rzr_2052_control.html">Heidolph RZR 2052 Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.huber_petite_fleur.html">Huber Petite Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_microstar_75.html">IKA Microstar 75</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rct_digital.html">IKA RCT Digital</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.ika_rv10.html">IKA RV10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.kern_kdp3000.html">PyLabware.devices.kern_kdp3000 module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PyLabware.devices.metrohm_781ph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter"><code class="docutils literal notranslate"><span class="pre">Metrohm781pHMeter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands"><code class="docutils literal notranslate"><span class="pre">Metrohm781pHMeterCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devices.mt_ms3002s.html">PyLabware.devices.mt_ms3002s module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.julabo_cf41.html">Julabo CF41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tecan_cavro_xlp6000.html">PyLabware.devices.tecan_cavro_xlp6000 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="devices.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.metrohm_781ph module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/devices.metrohm_781ph.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-PyLabware.devices.metrohm_781ph">
+<span id="pylabware-devices-metrohm-781ph-module"></span><h1>PyLabware.devices.metrohm_781ph module<a class="headerlink" href="#module-PyLabware.devices.metrohm_781ph" title="Link to this heading"></a></h1>
+<p>PyLabware driver for Metrohm 781 pH/Ion meter.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.metrohm_781ph.</span></span><span class="sig-name descname"><span class="pre">Metrohm781pHMeter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="controllers.html#PyLabware.controllers.LabDevice" title="PyLabware.controllers.LabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabDevice</span></code></a></p>
+<p>This provides a Python class for the Metrohm 781 pH/Ion meter
+based on the original operation manual 8.781.1113 06.2004 / jb.</p>
+<p>Default constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>connection_mode</strong> (<em>str</em>) – </p></li>
+<li><p><strong>address</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>port</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.check_errors">
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.check_errors" title="Link to this definition"></a></dt>
+<dd><p>Gets device errors.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.clear_errors">
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.clear_errors" title="Link to this definition"></a></dt>
+<dd><p>Not supported on this device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_ph">
+<span class="sig-name descname"><span class="pre">get_ph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.get_ph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_ph" title="Link to this definition"></a></dt>
+<dd><p>Gets current viscosity rend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_speed">
+<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_speed" title="Link to this definition"></a></dt>
+<dd><p>Gets current stirring speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_status" title="Link to this definition"></a></dt>
+<dd><p>Gets global device status.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_temperature">
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.get_temperature" title="Link to this definition"></a></dt>
+<dd><p>Gets temperature (secondary measurement in pH mode)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.initialize_device">
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.initialize_device" title="Link to this definition"></a></dt>
+<dd><p>Set default operation mode &amp; reset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.is_connected">
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.is_connected" title="Link to this definition"></a></dt>
+<dd><p>Check if the device is connected via GET_FW_VER command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.is_idle">
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.is_idle" title="Link to this definition"></a></dt>
+<dd><p>Returns True if no measurement is active.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.set_speed">
+<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.set_speed" title="Link to this definition"></a></dt>
+<dd><p>Sets desired speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.start" title="Link to this definition"></a></dt>
+<dd><p>Main method that starts device’s intended activity.
+E.g if it’s a stirrer, starts stirring. If it’s a stirring hotplate -
+starts both stirring and heating. For granular control child classes for
+the devices capable of multiple activities (e.g. stirring hotplate)
+must implement separate methods defined in the respective derivate
+abstract classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.start_stirring">
+<span class="sig-name descname"><span class="pre">start_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.start_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.start_stirring" title="Link to this definition"></a></dt>
+<dd><p>Starts stirring.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.stop" title="Link to this definition"></a></dt>
+<dd><p>Stops all device activities and brings it back to idle state.
+According to the definition of is_idle() above, is_idle() ran after
+stop() must return True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.stop_stirring">
+<span class="sig-name descname"><span class="pre">stop_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeter.stop_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter.stop_stirring" title="Link to this definition"></a></dt>
+<dd><p>Stops stirring.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.metrohm_781ph.</span></span><span class="sig-name descname"><span class="pre">Metrohm781pHMeterCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/metrohm_781ph.html#Metrohm781pHMeterCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LabDeviceCommands</span></code></p>
+<p>Collection of command definitions for Metrohm 781 pH/Ion meter.</p>
+<p>This class shouldn’t be instantiated</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.DEFAULT_FW_VER">
+<span class="sig-name descname"><span class="pre">DEFAULT_FW_VER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'5.781.0010'</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.DEFAULT_FW_VER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.FW_VER_REGEX">
+<span class="sig-name descname"><span class="pre">FW_VER_REGEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\\d\\.\\d{3}\\.\\d{4}'</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.FW_VER_REGEX" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_FW_VER">
+<span class="sig-name descname"><span class="pre">GET_FW_VER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&amp;Config.Aux.Prog</span> <span class="pre">$Q',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['\\d\\.\\d{3}\\.\\d{4}'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">researcher&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_FW_VER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_PRIMARY_MEAS">
+<span class="sig-name descname"><span class="pre">GET_PRIMARY_MEAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&amp;Info.ActualInfo.MeasValue.Primary</span> <span class="pre">$Q',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['&quot;',</span> <span class="pre">'&quot;'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">stripper&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_PRIMARY_MEAS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_SECONDARY_MEAS">
+<span class="sig-name descname"><span class="pre">GET_SECONDARY_MEAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&amp;Info.ActualInfo.MeasValue.Secondary</span> <span class="pre">$Q',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['&quot;',</span> <span class="pre">'&quot;'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">stripper&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_SECONDARY_MEAS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_SPEED_SET">
+<span class="sig-name descname"><span class="pre">GET_SPEED_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&amp;Mode.pH.MeasPara.Stirrer.Rate</span> <span class="pre">$Q',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['&quot;',</span> <span class="pre">'&quot;'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">stripper&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_SPEED_SET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_STATUS">
+<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'$D',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_STATUS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_STIRRER_STATUS">
+<span class="sig-name descname"><span class="pre">GET_STIRRER_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&amp;Mode.pH.MeasPara.Stirrer.Status</span> <span class="pre">$Q',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">['&quot;',</span> <span class="pre">'&quot;'],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">stripper&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GET_STIRRER_STATUS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GLOBAL_STATUSES">
+<span class="sig-name descname"><span class="pre">GLOBAL_STATUSES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'$G':</span> <span class="pre">'Running',</span> <span class="pre">'$R':</span> <span class="pre">'Idle',</span> <span class="pre">'$S':</span> <span class="pre">'Stopped'}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.GLOBAL_STATUSES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.SET_SPEED">
+<span class="sig-name descname"><span class="pre">SET_SPEED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">['&quot;1&quot;',</span> <span class="pre">'&quot;2&quot;',</span> <span class="pre">'&quot;3&quot;',</span> <span class="pre">'&quot;4&quot;',</span> <span class="pre">'&quot;5&quot;',</span> <span class="pre">'&quot;6&quot;',</span> <span class="pre">'&quot;7&quot;',</span> <span class="pre">'&quot;8&quot;',</span> <span class="pre">'&quot;9&quot;',</span> <span class="pre">'&quot;10&quot;',</span> <span class="pre">'&quot;11&quot;',</span> <span class="pre">'&quot;12&quot;',</span> <span class="pre">'&quot;13&quot;',</span> <span class="pre">'&quot;14&quot;',</span> <span class="pre">'&quot;15&quot;']},</span> <span class="pre">'name':</span> <span class="pre">'&amp;Mode.pH.MeasPara.Stirrer.Rate',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.SET_SPEED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.START_STIR">
+<span class="sig-name descname"><span class="pre">START_STIR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&amp;Mode.pH.MeasPara.Stirrer.Status</span> <span class="pre">&quot;ON&quot;'}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.START_STIR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.STIRRER_STATUSES">
+<span class="sig-name descname"><span class="pre">STIRRER_STATUSES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'OFF':</span> <span class="pre">False,</span> <span class="pre">'ON':</span> <span class="pre">True}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.STIRRER_STATUSES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.STOP_STIR">
+<span class="sig-name descname"><span class="pre">STOP_STIR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'&amp;Mode.pH.MeasPara.Stirrer.Status</span> <span class="pre">&quot;OFF&quot;'}</span></em><a class="headerlink" href="#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands.STOP_STIR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="devices.kern_kdp3000.html" class="btn btn-neutral float-left" title="PyLabware.devices.kern_kdp3000 module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devices.mt_ms3002s.html" class="btn btn-neutral float-right" title="PyLabware.devices.mt_ms3002s module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

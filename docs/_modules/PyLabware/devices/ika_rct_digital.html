@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.devices.ika_rct_digital &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.devices.ika_rct_digital</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.ika_rct_digital</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,8 +89,10 @@
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
 
 
-<div class="viewcode-block" id="RCTDigitalHotplateCommands"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands">[docs]</a><span class="k">class</span> <span class="nc">RCTDigitalHotplateCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collection of command definitions for for IKA RCT Digital stirring hotplate.</span>
+<div class="viewcode-block" id="RCTDigitalHotplateCommands">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">RCTDigitalHotplateCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for for IKA RCT Digital stirring hotplate.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ##########################  Constants ##################################</span>
@@ -132,15 +141,18 @@
     <span class="n">RESET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RESET&quot;</span><span class="p">}</span></div>
 
 
-<div class="viewcode-block" id="RCTDigitalHotplate"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate">[docs]</a><span class="k">class</span> <span class="nc">RCTDigitalHotplate</span><span class="p">(</span><span class="n">AbstractHotplate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate">[docs]</a>
+<span class="k">class</span> <span class="nc">RCTDigitalHotplate</span><span class="p">(</span><span class="n">AbstractHotplate</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This provides a Python class for the IKA RCT Digital hotplate</span>
 <span class="sd">    based on the english section of the original</span>
 <span class="sd">    operation manual 201811_IKAPlate-Lab_A1_25002139a.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Default constructor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Load commands from helper class</span>
@@ -165,17 +177,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stirring</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.initialize_device"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Set default operation mode &amp; reset.</span>
+<div class="viewcode-block" id="RCTDigitalHotplate.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set default operation mode &amp; reset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MODE_A</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Device initialized.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.is_connected"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_connected">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">RCTDigitalHotplateCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.is_connected">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_connected">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">RCTDigitalHotplateCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Check if the device is connected via GET_NAME command.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Check if the device is connected via GET_NAME command.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -184,56 +201,83 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">reply</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_NAME</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.is_idle"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_idle">[docs]</a>    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns True if no stirring or heating is active.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.is_idle">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_idle">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns True if no stirring or heating is active.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stirring</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.get_status"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.get_status">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.check_errors"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.check_errors">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.clear_errors"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.start_temperature_regulation"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">start_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Starts heating.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.start_temperature_regulation">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_temperature_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts heating.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START_HEAT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.stop_temperature_regulation"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stops heating.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.stop_temperature_regulation">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_temperature_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops heating.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP_HEAT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_heating</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.start_stirring"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_stirring">[docs]</a>    <span class="k">def</span> <span class="nf">start_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Starts stirring.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.start_stirring">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_stirring">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts stirring.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START_STIR</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stirring</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.stop_stirring"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_stirring">[docs]</a>    <span class="k">def</span> <span class="nf">stop_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stops stirring.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.stop_stirring">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_stirring">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops stirring.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP_STIR</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stirring</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.get_temperature"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the actual temperature.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.get_temperature">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the actual temperature.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            sensor (int): Specify which temperature probe to read.</span>
@@ -246,8 +290,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid sensor provided! Allowed values are: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">TEMP_SENSORS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.get_temperature_setpoint"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.get_temperature_setpoint">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
@@ -257,8 +304,11 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_SET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.set_temperature"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the desired temperature.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.set_temperature">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the desired temperature.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            temperature (float): Temperature setpoint in °C.</span>
@@ -269,29 +319,43 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.get_speed"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the actual stirring speed.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.get_speed">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the actual stirring speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SPEED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.get_speed_setpoint"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets desired stirring speed setpoint.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.get_speed_setpoint">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets desired stirring speed setpoint.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SPEED_SET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.set_speed"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets desired speed.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.set_speed">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets desired speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RCTDigitalHotplate.get_viscosity_trend"><a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_viscosity_trend">[docs]</a>    <span class="k">def</span> <span class="nf">get_viscosity_trend</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets current viscosity rend.</span>
+
+<div class="viewcode-block" id="RCTDigitalHotplate.get_viscosity_trend">
+<a class="viewcode-back" href="../../../api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_viscosity_trend">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_viscosity_trend</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current viscosity rend.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VISC</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VISC</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>
@@ -301,7 +365,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

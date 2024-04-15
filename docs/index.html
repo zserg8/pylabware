@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware documentation &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -26,18 +29,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> PyLabware
-            <img src="_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="#" class="icon icon-home">
+            PyLabware
+              <img src="_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
@@ -60,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>PyLabware documentation</li>
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">PyLabware documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,9 +79,9 @@
            <div itemprop="articleBody">
              
   <section id="pylabware-documentation">
-<h1>PyLabware documentation<a class="headerlink" href="#pylabware-documentation" title="Permalink to this headline"></a></h1>
+<h1>PyLabware documentation<a class="headerlink" href="#pylabware-documentation" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#features">Features</a></li>
@@ -117,29 +124,273 @@
 <li class="toctree-l3"><a class="reference internal" href="data_model.html#making-custom-parsers">Making custom parsers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="data_model.html#device-reply-structure">Device reply structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_model.html#abstract-classes-hierarchy">Abstract classes hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#device-reply-structure">Device reply structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.models.LabDeviceReply"><code class="docutils literal notranslate"><span class="pre">LabDeviceReply</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#abstract-classes-hierarchy">Abstract classes hierarchy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.check_errors"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.check_errors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.clear_errors"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.clear_errors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.connect"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.disconnect"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.execute_when_ready"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.execute_when_ready()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.get_status"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.get_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.initialize_device"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.initialize_device()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.is_connected"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.is_connected()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.is_idle"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.is_idle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.simulation"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.simulation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.start"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.stop"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.models.AbstractLabDevice.wait_until_ready"><code class="docutils literal notranslate"><span class="pre">AbstractLabDevice.wait_until_ready()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController.get_temperature"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController.get_temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController.get_temperature_setpoint"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController.get_temperature_setpoint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController.set_temperature"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController.set_temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController.start"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController.start_temperature_regulation"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController.start_temperature_regulation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController.stop"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractTemperatureController.stop_temperature_regulation"><code class="docutils literal notranslate"><span class="pre">AbstractTemperatureController.stop_temperature_regulation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.get_pressure"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.get_pressure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.get_pressure_setpoint"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.get_pressure_setpoint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.set_pressure"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.set_pressure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.start"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.start_pressure_regulation"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.start_pressure_regulation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.stop"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.stop_pressure_regulation"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.stop_pressure_regulation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.vent_off"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.vent_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractPressureController.vent_on"><code class="docutils literal notranslate"><span class="pre">AbstractPressureController.vent_on()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController.get_speed"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController.get_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController.get_speed_setpoint"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController.get_speed_setpoint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController.set_speed"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController.set_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController.start"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController.start_stirring"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController.start_stirring()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController.stop"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractStirringController.stop_stirring"><code class="docutils literal notranslate"><span class="pre">AbstractStirringController.stop_stirring()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDispensingController"><code class="docutils literal notranslate"><span class="pre">AbstractDispensingController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDispensingController.dispense"><code class="docutils literal notranslate"><span class="pre">AbstractDispensingController.dispense()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDispensingController.get_speed"><code class="docutils literal notranslate"><span class="pre">AbstractDispensingController.get_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDispensingController.set_speed"><code class="docutils literal notranslate"><span class="pre">AbstractDispensingController.set_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDispensingController.withdraw"><code class="docutils literal notranslate"><span class="pre">AbstractDispensingController.withdraw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractHotplate"><code class="docutils literal notranslate"><span class="pre">AbstractHotplate</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractHotplate.start"><code class="docutils literal notranslate"><span class="pre">AbstractHotplate.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractHotplate.stop"><code class="docutils literal notranslate"><span class="pre">AbstractHotplate.stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractSyringePump"><code class="docutils literal notranslate"><span class="pre">AbstractSyringePump</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractSyringePump.get_plunger_position"><code class="docutils literal notranslate"><span class="pre">AbstractSyringePump.get_plunger_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractSyringePump.move_home"><code class="docutils literal notranslate"><span class="pre">AbstractSyringePump.move_home()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractSyringePump.move_plunger_absolute"><code class="docutils literal notranslate"><span class="pre">AbstractSyringePump.move_plunger_absolute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractSyringePump.move_plunger_relative"><code class="docutils literal notranslate"><span class="pre">AbstractSyringePump.move_plunger_relative()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDistributionValve"><code class="docutils literal notranslate"><span class="pre">AbstractDistributionValve</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDistributionValve.get_valve_position"><code class="docutils literal notranslate"><span class="pre">AbstractDistributionValve.get_valve_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDistributionValve.move_home"><code class="docutils literal notranslate"><span class="pre">AbstractDistributionValve.move_home()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractDistributionValve.set_valve_position"><code class="docutils literal notranslate"><span class="pre">AbstractDistributionValve.set_valve_position()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.lift_down"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.lift_down()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.lift_up"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.lift_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.start_bath"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.start_bath()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.start_rotation"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.start_rotation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.start_stirring"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.start_stirring()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.start_temperature_regulation"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.start_temperature_regulation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.stop_bath"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.stop_bath()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.stop_rotation"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.stop_rotation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.stop_stirring"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.stop_stirring()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractRotavap.stop_temperature_regulation"><code class="docutils literal notranslate"><span class="pre">AbstractRotavap.stop_temperature_regulation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#PyLabware.controllers.AbstractFlashChromatographySystem"><code class="docutils literal notranslate"><span class="pre">AbstractFlashChromatographySystem</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/main.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/connections.html">Connections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/controllers.html">Controllers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/exceptions.html">Exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/parsers.html">Parsers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/connections.html">Connections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection"><code class="docutils literal notranslate"><span class="pre">AbstractConnection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection.DEFAULT_CONNECTION_PARAMETERS"><code class="docutils literal notranslate"><span class="pre">AbstractConnection.DEFAULT_CONNECTION_PARAMETERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection.close_connection"><code class="docutils literal notranslate"><span class="pre">AbstractConnection.close_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection.is_connection_open"><code class="docutils literal notranslate"><span class="pre">AbstractConnection.is_connection_open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection.open_connection"><code class="docutils literal notranslate"><span class="pre">AbstractConnection.open_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection.receive"><code class="docutils literal notranslate"><span class="pre">AbstractConnection.receive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.AbstractConnection.transmit"><code class="docutils literal notranslate"><span class="pre">AbstractConnection.transmit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/connections.html#PyLabware.connections.HTTPConnection"><code class="docutils literal notranslate"><span class="pre">HTTPConnection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.HTTPConnection.HTTP_DEFAULT_CONNECTION_PARAMETERS"><code class="docutils literal notranslate"><span class="pre">HTTPConnection.HTTP_DEFAULT_CONNECTION_PARAMETERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.HTTPConnection.close_connection"><code class="docutils literal notranslate"><span class="pre">HTTPConnection.close_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.HTTPConnection.is_connection_open"><code class="docutils literal notranslate"><span class="pre">HTTPConnection.is_connection_open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.HTTPConnection.open_connection"><code class="docutils literal notranslate"><span class="pre">HTTPConnection.open_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.HTTPConnection.receive"><code class="docutils literal notranslate"><span class="pre">HTTPConnection.receive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.HTTPConnection.transmit"><code class="docutils literal notranslate"><span class="pre">HTTPConnection.transmit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection"><code class="docutils literal notranslate"><span class="pre">SerialConnection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection.SERIAL_DEFAULT_CONNECTION_PARAMETERS"><code class="docutils literal notranslate"><span class="pre">SerialConnection.SERIAL_DEFAULT_CONNECTION_PARAMETERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection.close_connection"><code class="docutils literal notranslate"><span class="pre">SerialConnection.close_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection.connection_listener"><code class="docutils literal notranslate"><span class="pre">SerialConnection.connection_listener()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection.is_connection_open"><code class="docutils literal notranslate"><span class="pre">SerialConnection.is_connection_open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection.open_connection"><code class="docutils literal notranslate"><span class="pre">SerialConnection.open_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection.receive"><code class="docutils literal notranslate"><span class="pre">SerialConnection.receive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.SerialConnection.transmit"><code class="docutils literal notranslate"><span class="pre">SerialConnection.transmit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection.TCPIP_DEFAULT_CONNECTION_PARAMETERS"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection.TCPIP_DEFAULT_CONNECTION_PARAMETERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection.close_connection"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection.close_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection.connection_listener"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection.connection_listener()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection.is_connection_open"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection.is_connection_open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection.open_connection"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection.open_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection.receive"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection.receive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/connections.html#PyLabware.connections.TCPIPConnection.transmit"><code class="docutils literal notranslate"><span class="pre">TCPIPConnection.transmit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/controllers.html">Controllers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.in_simulation_device_returns"><code class="docutils literal notranslate"><span class="pre">in_simulation_device_returns()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice"><code class="docutils literal notranslate"><span class="pre">LabDevice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.cast_reply_type"><code class="docutils literal notranslate"><span class="pre">LabDevice.cast_reply_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.check_value"><code class="docutils literal notranslate"><span class="pre">LabDevice.check_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.connect"><code class="docutils literal notranslate"><span class="pre">LabDevice.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.disconnect"><code class="docutils literal notranslate"><span class="pre">LabDevice.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.execute_when_ready"><code class="docutils literal notranslate"><span class="pre">LabDevice.execute_when_ready()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.get_all_tasks"><code class="docutils literal notranslate"><span class="pre">LabDevice.get_all_tasks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.parse_reply"><code class="docutils literal notranslate"><span class="pre">LabDevice.parse_reply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.prepare_message"><code class="docutils literal notranslate"><span class="pre">LabDevice.prepare_message()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.send"><code class="docutils literal notranslate"><span class="pre">LabDevice.send()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.simulation"><code class="docutils literal notranslate"><span class="pre">LabDevice.simulation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.start_task"><code class="docutils literal notranslate"><span class="pre">LabDevice.start_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.stop_all_tasks"><code class="docutils literal notranslate"><span class="pre">LabDevice.stop_all_tasks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.stop_task"><code class="docutils literal notranslate"><span class="pre">LabDevice.stop_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDevice.wait_until_ready"><code class="docutils literal notranslate"><span class="pre">LabDevice.wait_until_ready()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDeviceTask"><code class="docutils literal notranslate"><span class="pre">LabDeviceTask</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDeviceTask.run"><code class="docutils literal notranslate"><span class="pre">LabDeviceTask.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/controllers.html#PyLabware.controllers.LabDeviceTask.stop"><code class="docutils literal notranslate"><span class="pre">LabDeviceTask.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/exceptions.html">Exceptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/exceptions.html#PyLabware.exceptions.PLConnectionError"><code class="docutils literal notranslate"><span class="pre">PLConnectionError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/exceptions.html#PyLabware.exceptions.PLConnectionProtocolError"><code class="docutils literal notranslate"><span class="pre">PLConnectionProtocolError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/exceptions.html#PyLabware.exceptions.PLConnectionTimeoutError"><code class="docutils literal notranslate"><span class="pre">PLConnectionTimeoutError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/exceptions.html#PyLabware.exceptions.PLDeviceCommandError"><code class="docutils literal notranslate"><span class="pre">PLDeviceCommandError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/exceptions.html#PyLabware.exceptions.PLDeviceError"><code class="docutils literal notranslate"><span class="pre">PLDeviceError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/exceptions.html#PyLabware.exceptions.PLDeviceInternalError"><code class="docutils literal notranslate"><span class="pre">PLDeviceInternalError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/exceptions.html#PyLabware.exceptions.PLDeviceReplyError"><code class="docutils literal notranslate"><span class="pre">PLDeviceReplyError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/parsers.html">Parsers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/parsers.html#PyLabware.parsers.researcher"><code class="docutils literal notranslate"><span class="pre">researcher()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/parsers.html#PyLabware.parsers.slicer"><code class="docutils literal notranslate"><span class="pre">slicer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/parsers.html#PyLabware.parsers.splitter"><code class="docutils literal notranslate"><span class="pre">splitter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/parsers.html#PyLabware.parsers.stripper"><code class="docutils literal notranslate"><span class="pre">stripper()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="api/main.html#devices">Devices</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.buchi_c815.html">Buchi C815</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.buchi_r300.html">Buchi R300</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.heidolph_hei_torque_100_precision.html">Heidolph HeiTorque 100 Precision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.heidolph_rzr_2052_control.html">Heidolph RZR 2052 Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.huber_petite_fleur.html">Huber Petite Fleur</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_microstar_75.html">IKA Microstar 75</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_rct_digital.html">IKA RCT Digital</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_rv10.html">IKA RV10</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.idex_mxii.html">IDEX mxII</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.julabo_cf41.html">Julabo CF41</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.buchi_c815.html">Buchi C815</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815Commands"><code class="docutils literal notranslate"><span class="pre">C815Commands</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.buchi_c815.html#PyLabware.devices.buchi_c815.C815FlashChromatographySystem"><code class="docutils literal notranslate"><span class="pre">C815FlashChromatographySystem</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.buchi_r300.html">Buchi R300</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap"><code class="docutils literal notranslate"><span class="pre">R300Rotovap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300RotovapCommands"><code class="docutils literal notranslate"><span class="pre">R300RotovapCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.heidolph_hei_torque_100_precision.html">Heidolph HeiTorque 100 Precision</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.heidolph_hei_torque_100_precision.html#PyLabware.devices.heidolph_hei_torque_100_precision.HeiTorque100PrecisionStirrer"><code class="docutils literal notranslate"><span class="pre">HeiTorque100PrecisionStirrer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.heidolph_hei_torque_100_precision.html#PyLabware.devices.heidolph_hei_torque_100_precision.HeiTorque100PrecisionStirrerCommands"><code class="docutils literal notranslate"><span class="pre">HeiTorque100PrecisionStirrerCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.heidolph_rzr_2052_control.html">Heidolph RZR 2052 Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.heidolph_rzr_2052_control.html#PyLabware.devices.heidolph_rzr_2052_control.RZR2052ControlStirrer"><code class="docutils literal notranslate"><span class="pre">RZR2052ControlStirrer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.heidolph_rzr_2052_control.html#PyLabware.devices.heidolph_rzr_2052_control.RZR2052ControlStirrerCommands"><code class="docutils literal notranslate"><span class="pre">RZR2052ControlStirrerCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.huber_petite_fleur.html">Huber Petite Fleur</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.huber_petite_fleur.html#PyLabware.devices.huber_petite_fleur.PetiteFleurChiller"><code class="docutils literal notranslate"><span class="pre">PetiteFleurChiller</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.huber_petite_fleur.html#PyLabware.devices.huber_petite_fleur.PetiteFleurChillerCommands"><code class="docutils literal notranslate"><span class="pre">PetiteFleurChillerCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_microstar_75.html">IKA Microstar 75</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer"><code class="docutils literal notranslate"><span class="pre">Microstar75Stirrer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75StirrerCommands"><code class="docutils literal notranslate"><span class="pre">Microstar75StirrerCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_rct_digital.html">IKA RCT Digital</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate"><code class="docutils literal notranslate"><span class="pre">RCTDigitalHotplate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_rct_digital.html#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands"><code class="docutils literal notranslate"><span class="pre">RCTDigitalHotplateCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_ret_control_visc.html">IKA RET Control Visc</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_ret_control_visc.html#PyLabware.devices.ika_ret_control_visc.RETControlViscHotplate"><code class="docutils literal notranslate"><span class="pre">RETControlViscHotplate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_ret_control_visc.html#PyLabware.devices.ika_ret_control_visc.RETControlViscHotplateCommands"><code class="docutils literal notranslate"><span class="pre">RETControlViscHotplateCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.ika_rv10.html">IKA RV10</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10Rotovap"><code class="docutils literal notranslate"><span class="pre">RV10Rotovap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.ika_rv10.html#PyLabware.devices.ika_rv10.RV10RotovapCommands"><code class="docutils literal notranslate"><span class="pre">RV10RotovapCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.idex_mxii.html">IDEX mxII</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.idex_mxii.html#PyLabware.devices.idex_mxii.IDEXMXIIValve"><code class="docutils literal notranslate"><span class="pre">IDEXMXIIValve</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.idex_mxii.html#PyLabware.devices.idex_mxii.IDEXMXIIValveCommands"><code class="docutils literal notranslate"><span class="pre">IDEXMXIIValveCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.kern_kdp3000.html">PyLabware.devices.kern_kdp3000 module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000Balance"><code class="docutils literal notranslate"><span class="pre">KDP3000Balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.kern_kdp3000.html#PyLabware.devices.kern_kdp3000.KDP3000BalanceCommands"><code class="docutils literal notranslate"><span class="pre">KDP3000BalanceCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.metrohm_781ph.html">PyLabware.devices.metrohm_781ph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.metrohm_781ph.html#PyLabware.devices.metrohm_781ph.Metrohm781pHMeter"><code class="docutils literal notranslate"><span class="pre">Metrohm781pHMeter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.metrohm_781ph.html#PyLabware.devices.metrohm_781ph.Metrohm781pHMeterCommands"><code class="docutils literal notranslate"><span class="pre">Metrohm781pHMeterCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.mt_ms3002s.html">PyLabware.devices.mt_ms3002s module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalance"><code class="docutils literal notranslate"><span class="pre">MS3002SBalance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.mt_ms3002s.html#PyLabware.devices.mt_ms3002s.MS3002SBalanceCommands"><code class="docutils literal notranslate"><span class="pre">MS3002SBalanceCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.julabo_cf41.html">Julabo CF41</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller"><code class="docutils literal notranslate"><span class="pre">CF41Chiller</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41ChillerCommands"><code class="docutils literal notranslate"><span class="pre">CF41ChillerCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.tecan_cavro_xlp6000.html">PyLabware.devices.tecan_cavro_xlp6000 module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump"><code class="docutils literal notranslate"><span class="pre">XLP6000SyringePump</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePumpCommands"><code class="docutils literal notranslate"><span class="pre">XLP6000SyringePumpCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.tricontinent_c3000.html">Tricontinent C3000</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePump"><code class="docutils literal notranslate"><span class="pre">C3000SyringePump</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.tricontinent_c3000.html#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands"><code class="docutils literal notranslate"><span class="pre">C3000SyringePumpCommands</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump"><code class="docutils literal notranslate"><span class="pre">CVC3000VacuumPump</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPumpCommands"><code class="docutils literal notranslate"><span class="pre">CVC3000VacuumPumpCommands</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -159,7 +410,7 @@
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -177,7 +428,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

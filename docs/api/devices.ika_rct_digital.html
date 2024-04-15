@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IKA RCT Digital &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,18 +30,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PyLabware
-            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
@@ -55,11 +62,19 @@
 <li class="toctree-l3"><a class="reference internal" href="devices.heidolph_rzr_2052_control.html">Heidolph RZR 2052 Control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.huber_petite_fleur.html">Huber Petite Fleur</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_microstar_75.html">IKA Microstar 75</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">IKA RCT Digital</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">IKA RCT Digital</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate"><code class="docutils literal notranslate"><span class="pre">RCTDigitalHotplate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands"><code class="docutils literal notranslate"><span class="pre">RCTDigitalHotplateCommands</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_rv10.html">IKA RV10</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.kern_kdp3000.html">PyLabware.devices.kern_kdp3000 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.metrohm_781ph.html">PyLabware.devices.metrohm_781ph module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.mt_ms3002s.html">PyLabware.devices.mt_ms3002s module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.julabo_cf41.html">Julabo CF41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tecan_cavro_xlp6000.html">PyLabware.devices.tecan_cavro_xlp6000 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.tricontinent_c3000.html">Tricontinent C3000</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
 </ul>
@@ -83,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="main.html">API Reference</a> &raquo;</li>
-          <li><a href="devices.html">&lt;no title&gt;</a> &raquo;</li>
-      <li>IKA RCT Digital</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="devices.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">IKA RCT Digital</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/devices.ika_rct_digital.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,44 +112,44 @@
            <div itemprop="articleBody">
              
   <section id="module-PyLabware.devices.ika_rct_digital">
-<span id="ika-rct-digital"></span><h1>IKA RCT Digital<a class="headerlink" href="#module-PyLabware.devices.ika_rct_digital" title="Permalink to this headline"></a></h1>
+<span id="ika-rct-digital"></span><h1>IKA RCT Digital<a class="headerlink" href="#module-PyLabware.devices.ika_rct_digital" title="Link to this heading"></a></h1>
 <p>PyLabware driver for IKA RCT Digital stirring hotplate.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rct_digital.</span></span><span class="sig-name descname"><span class="pre">RCTDigitalHotplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractHotplate" title="PyLabware.controllers.AbstractHotplate"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractHotplate</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rct_digital.</span></span><span class="sig-name descname"><span class="pre">RCTDigitalHotplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractHotplate" title="PyLabware.controllers.AbstractHotplate"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractHotplate</span></code></a></p>
 <p>This provides a Python class for the IKA RCT Digital hotplate
 based on the english section of the original
 operation manual 201811_IKAPlate-Lab_A1_25002139a.</p>
 <p>Default constructor</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>device_name</strong> (<em>str</em>) – </p></li>
 <li><p><strong>connection_mode</strong> (<em>str</em>) – </p></li>
-<li><p><strong>address</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>port</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>address</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>port</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.check_errors">
-<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.check_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.check_errors" title="Link to this definition"></a></dt>
 <dd><p>Not supported on this device.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.clear_errors">
-<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.clear_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.clear_errors" title="Link to this definition"></a></dt>
 <dd><p>Not supported on this device.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed">
-<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed" title="Link to this definition"></a></dt>
 <dd><p>Gets the actual stirring speed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -142,10 +157,10 @@ operation manual 201811_IKAPlate-Lab_A1_25002139a.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed_setpoint">
-<span class="sig-name descname"><span class="pre">get_speed_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_speed_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed_setpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_speed_setpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_speed_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_speed_setpoint" title="Link to this definition"></a></dt>
 <dd><p>Gets desired stirring speed setpoint.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -153,19 +168,19 @@ operation manual 201811_IKAPlate-Lab_A1_25002139a.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_status">
-<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_status" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_status" title="Link to this definition"></a></dt>
 <dd><p>Not supported on this device.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature">
-<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature" title="Link to this definition"></a></dt>
 <dd><p>Gets the actual temperature.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe to read.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -173,15 +188,15 @@ operation manual 201811_IKAPlate-Lab_A1_25002139a.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature_setpoint">
-<span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature_setpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_temperature_setpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_temperature_setpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_temperature_setpoint" title="Link to this definition"></a></dt>
 <dd><p>Reads the current temperature setpoint.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
 This device uses a shared setpoint for all temperature probes.
 Hence, this argument has no effect here.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -189,10 +204,10 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_viscosity_trend">
-<span class="sig-name descname"><span class="pre">get_viscosity_trend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_viscosity_trend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_viscosity_trend" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_viscosity_trend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.get_viscosity_trend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.get_viscosity_trend" title="Link to this definition"></a></dt>
 <dd><p>Gets current viscosity rend.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -200,16 +215,16 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.initialize_device">
-<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.initialize_device" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.initialize_device" title="Link to this definition"></a></dt>
 <dd><p>Set default operation mode &amp; reset.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_connected">
-<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_connected" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_connected" title="Link to this definition"></a></dt>
 <dd><p>Check if the device is connected via GET_NAME command.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -217,10 +232,10 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_idle">
-<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_idle" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.is_idle" title="Link to this definition"></a></dt>
 <dd><p>Returns True if no stirring or heating is active.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -228,10 +243,10 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_speed">
-<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_speed" title="Link to this definition"></a></dt>
 <dd><p>Sets desired speed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>speed</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -239,10 +254,10 @@ Hence, this argument has no effect here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_temperature">
-<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_temperature" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.set_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.set_temperature" title="Link to this definition"></a></dt>
 <dd><p>Sets the desired temperature.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>temperature</strong> (<em>float</em>) – Temperature setpoint in °C.</p></li>
 <li><p><strong>sensor</strong> (<em>int</em>) – Specify which temperature probe the setpoint applies to.
@@ -255,25 +270,25 @@ Hence, this argument has no effect here.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_stirring">
-<span class="sig-name descname"><span class="pre">start_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.start_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_stirring" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.start_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_stirring" title="Link to this definition"></a></dt>
 <dd><p>Starts stirring.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_temperature_regulation">
-<span class="sig-name descname"><span class="pre">start_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.start_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_temperature_regulation" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.start_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.start_temperature_regulation" title="Link to this definition"></a></dt>
 <dd><p>Starts heating.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_stirring">
-<span class="sig-name descname"><span class="pre">stop_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.stop_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_stirring" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop_stirring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.stop_stirring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_stirring" title="Link to this definition"></a></dt>
 <dd><p>Stops stirring.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_temperature_regulation">
-<span class="sig-name descname"><span class="pre">stop_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.stop_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_temperature_regulation" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop_temperature_regulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplate.stop_temperature_regulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplate.stop_temperature_regulation" title="Link to this definition"></a></dt>
 <dd><p>Stops heating.</p>
 </dd></dl>
 
@@ -281,108 +296,108 @@ Hence, this argument has no effect here.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rct_digital.</span></span><span class="sig-name descname"><span class="pre">RCTDigitalHotplateCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplateCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.models.LabDeviceCommands</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.ika_rct_digital.</span></span><span class="sig-name descname"><span class="pre">RCTDigitalHotplateCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/ika_rct_digital.html#RCTDigitalHotplateCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LabDeviceCommands</span></code></p>
 <p>Collection of command definitions for for IKA RCT Digital stirring hotplate.</p>
 <p>This class shouldn’t be instantiated</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.DEFAULT_NAME">
-<span class="sig-name descname"><span class="pre">DEFAULT_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'RCT</span> <span class="pre">digital'</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.DEFAULT_NAME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">DEFAULT_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RCT</span> <span class="pre">digital'</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.DEFAULT_NAME" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_NAME">
-<span class="sig-name descname"><span class="pre">GET_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_NAME',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_NAME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_NAME',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_NAME" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SAFE_TEMP_SET">
-<span class="sig-name descname"><span class="pre">GET_SAFE_TEMP_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_3',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SAFE_TEMP_SET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SAFE_TEMP_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_3',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SAFE_TEMP_SET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SPEED">
-<span class="sig-name descname"><span class="pre">GET_SPEED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SPEED" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SPEED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SPEED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SPEED_SET">
-<span class="sig-name descname"><span class="pre">GET_SPEED_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SPEED_SET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SPEED_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_4',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_SPEED_SET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP">
-<span class="sig-name descname"><span class="pre">GET_TEMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_2',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_2',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP_EXT">
-<span class="sig-name descname"><span class="pre">GET_TEMP_EXT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_1',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP_EXT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_EXT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_1',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP_EXT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP_SET">
-<span class="sig-name descname"><span class="pre">GET_TEMP_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_SP_1',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP_SET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_TEMP_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_SP_1',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_TEMP_SET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_VISC">
-<span class="sig-name descname"><span class="pre">GET_VISC</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'IN_PV_5',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_VISC" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_VISC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'IN_PV_5',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[-2],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.GET_VISC" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.RESET">
-<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'RESET'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.RESET" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'RESET'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.RESET" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_A">
-<span class="sig-name descname"><span class="pre">SET_MODE_A</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'SET_MODE_A'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_A" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MODE_A</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'SET_MODE_A'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_A" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_B">
-<span class="sig-name descname"><span class="pre">SET_MODE_B</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'SET_MODE_B'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_B" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MODE_B</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'SET_MODE_B'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_B" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_D">
-<span class="sig-name descname"><span class="pre">SET_MODE_D</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'SET_MODE_D'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_D" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MODE_D</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'SET_MODE_D'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_MODE_D" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_SPEED">
-<span class="sig-name descname"><span class="pre">SET_SPEED</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">1500,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_4',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_SPEED" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_SPEED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">1500,</span> <span class="pre">'min':</span> <span class="pre">0},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_4',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_SPEED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_TEMP">
-<span class="sig-name descname"><span class="pre">SET_TEMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">310,</span> <span class="pre">'min':</span> <span class="pre">20},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_1',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_TEMP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_TEMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">310,</span> <span class="pre">'min':</span> <span class="pre">20},</span> <span class="pre">'name':</span> <span class="pre">'OUT_SP_1',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.SET_TEMP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.START_HEAT">
-<span class="sig-name descname"><span class="pre">START_HEAT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'START_1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.START_HEAT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">START_HEAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'START_1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.START_HEAT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.START_STIR">
-<span class="sig-name descname"><span class="pre">START_STIR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'START_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.START_STIR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">START_STIR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'START_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.START_STIR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.STOP_HEAT">
-<span class="sig-name descname"><span class="pre">STOP_HEAT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STOP_1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.STOP_HEAT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STOP_HEAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STOP_1'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.STOP_HEAT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.STOP_STIR">
-<span class="sig-name descname"><span class="pre">STOP_STIR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'STOP_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.STOP_STIR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">STOP_STIR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'STOP_4'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.STOP_STIR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.TEMP_SENSORS">
-<span class="sig-name descname"><span class="pre">TEMP_SENSORS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'INTERNAL',</span> <span class="pre">1:</span> <span class="pre">'EXTERNAL'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.TEMP_SENSORS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">TEMP_SENSORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'INTERNAL',</span> <span class="pre">1:</span> <span class="pre">'EXTERNAL'}</span></em><a class="headerlink" href="#PyLabware.devices.ika_rct_digital.RCTDigitalHotplateCommands.TEMP_SENSORS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -400,7 +415,7 @@ Hence, this argument has no effect here.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

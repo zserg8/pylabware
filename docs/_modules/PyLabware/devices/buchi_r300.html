@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.devices.buchi_r300 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.devices.buchi_r300</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.buchi_r300</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,8 +89,10 @@
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">ConnectionParameters</span><span class="p">,</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">LabDeviceReply</span>
 
 
-<div class="viewcode-block" id="R300RotovapCommands"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300RotovapCommands">[docs]</a><span class="k">class</span> <span class="nc">R300RotovapCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collection of command definitions for Buchi R300 rotavap.</span>
+<div class="viewcode-block" id="R300RotovapCommands">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300RotovapCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">R300RotovapCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for Buchi R300 rotavap.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DEFAULT_SYSTEM_LINE</span> <span class="o">=</span> <span class="s2">&quot;R-300&quot;</span>
 
@@ -204,8 +213,11 @@
     <span class="n">GET_LEAKTESTS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GET_LEAKTESTS&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;endpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/v1/health&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;leakTests&#39;</span><span class="p">],</span> <span class="s1">&#39;reply&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">}}</span></div>
 
 
-<div class="viewcode-block" id="R300Rotovap"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap">[docs]</a><span class="k">class</span> <span class="nc">R300Rotovap</span><span class="p">(</span><span class="n">AbstractRotavap</span><span class="p">,</span> <span class="n">AbstractPressureController</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap">[docs]</a>
+<span class="k">class</span> <span class="nc">R300Rotovap</span><span class="p">(</span><span class="n">AbstractRotavap</span><span class="p">,</span> <span class="n">AbstractPressureController</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This provides a Python class for the R300 rotavap</span>
 <span class="sd">    based on the Buchi OpenAPI specification v. 0.10.0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -241,8 +253,10 @@
         <span class="c1"># Disable requests warnings about Buchi self-signed certificate</span>
         <span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">()</span>
 
-<div class="viewcode-block" id="R300Rotovap.prepare_message"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.prepare_message">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Checks parameter value if necessary and prepares JSON payload</span>
+<div class="viewcode-block" id="R300Rotovap.prepare_message">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.prepare_message">[docs]</a>
+    <span class="k">def</span> <span class="nf">prepare_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks parameter value if necessary and prepares JSON payload</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">message</span> <span class="o">=</span> <span class="p">{}</span>
@@ -270,8 +284,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;prepare_message()::constructed payload &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">message</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.parse_reply"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.parse_reply">[docs]</a>    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">LabDeviceReply</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Parses JSON payload and returns device reply.</span>
+
+<div class="viewcode-block" id="R300Rotovap.parse_reply">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.parse_reply">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">LabDeviceReply</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Parses JSON payload and returns device reply.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Extract and load reply body</span>
@@ -288,59 +305,89 @@
         <span class="c1"># Run text parsing / type casting, if any</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_reply</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">reply</span><span class="p">)</span></div>
 
+
 <span class="c1">#   ### General methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.initialize_device"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Initialization sequence</span>
+<div class="viewcode-block" id="R300Rotovap.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Initialization sequence</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
+
         <span class="c1"># TODO Add any initialization if necessary - e.g. setting default method</span>
 
-<div class="viewcode-block" id="R300Rotovap.is_connected"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_connected">[docs]</a>    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Checks whether the right device is connected.</span>
+<div class="viewcode-block" id="R300Rotovap.is_connected">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_connected">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks whether the right device is connected.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYSTEMLINE</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_SYSTEM_LINE</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.is_idle"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_idle">[docs]</a>    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Checks whether the device is idle</span>
+
+<div class="viewcode-block" id="R300Rotovap.is_idle">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_idle">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks whether the device is idle</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_GLOBALSTATUS_RUNNING</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.check_errors"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Returns last error code</span>
+
+<div class="viewcode-block" id="R300Rotovap.check_errors">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns last error code</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO check the manual for error codes &amp; interpert them.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_GLOBALSTATUS_CURRENTERROR</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.clear_errors"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Not supported on this model</span>
+
+<div class="viewcode-block" id="R300Rotovap.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Not supported on this model</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_status"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Gets device status.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_status">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Gets device status.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_systemclass"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_systemclass">[docs]</a>    <span class="k">def</span> <span class="nf">get_systemclass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets system type</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_systemclass">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_systemclass">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_systemclass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets system type</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYSTEMCLASS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_systemname"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_systemname">[docs]</a>    <span class="k">def</span> <span class="nf">get_systemname</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets system name (as set from the I-300)</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_systemname">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_systemname">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_systemname</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets system name (as set from the I-300)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYSTEMNAME</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_mode"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the current operation mode of the R300.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_mode">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the current operation mode of the R300.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_MODE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_mode"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets the operation mode of the R300. Valid modes are</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_mode">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the operation mode of the R300. Valid modes are</span>
 <span class="sd">        &#39;Manual&#39;, &#39;AuotDest&#39;, &#39;Timer&#39;, &#39;Dry&#39;, &#39;CloudDest&#39;, &#39;Method&#39;,</span>
 <span class="sd">        &#39;Solvent&#39;, &#39;TightnessTest&#39;, &#39;Calibration&#39;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -352,8 +399,11 @@
         <span class="c1">#   (see github.com/buchi-labortechnik-ag/openinterface_rotavapor/issues/1)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MODE</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_timer_time"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_timer_time">[docs]</a>    <span class="k">def</span> <span class="nf">set_timer_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets the time variable for the Timer program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_timer_time">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_timer_time">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_timer_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the time variable for the Timer program.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
         <span class="c1"># Defining the time for the Timer program only has an effect</span>
@@ -365,8 +415,11 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TIMER_TIME</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_timer_set_time"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_timer_set_time">[docs]</a>    <span class="k">def</span> <span class="nf">get_timer_set_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the time variable for the Timer program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_timer_set_time">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_timer_set_time">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_timer_set_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the time variable for the Timer program.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
         <span class="c1"># Check that &#39;Timer&#39; program is enabled.</span>
@@ -382,8 +435,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TIMER_SET_TIME</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_timer_remaining_time"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_timer_remaining_time">[docs]</a>    <span class="k">def</span> <span class="nf">get_timer_remaining_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the remaining time of the timer method.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_timer_remaining_time">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_timer_remaining_time">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_timer_remaining_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the remaining time of the timer method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
         <span class="c1"># Check that &#39;Timer&#39; program is enabled.</span>
@@ -399,8 +455,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TIMER_REMAINING_TIME</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_solvent_name"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_solvent_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_solvent_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solvent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets the solvent name for the &#39;Solvent&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_solvent_name">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_solvent_name">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_solvent_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solvent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the solvent name for the &#39;Solvent&#39; program.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            solvent (str): Solvent name. If the solvent is in the solvent</span>
@@ -430,8 +489,11 @@
                                        <span class="s2">&quot;library (on the I-300Pro interface under &#39;Libraies&#39; &quot;</span>
                                        <span class="s2">&quot;-&gt; &#39;Own solvent library&#39;)&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_solvent_name"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_solvent_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_solvent_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the name of the selected solvent for the &#39;Solvent&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_solvent_name">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_solvent_name">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_solvent_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the name of the selected solvent for the &#39;Solvent&#39; program.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
         <span class="c1"># Check that &#39;Solvent&#39; program is enabled.</span>
@@ -447,8 +509,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOLVENT_NAME</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_method_name"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_method_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets the method name for the &#39;Method&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_method_name">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_method_name">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the method name for the &#39;Method&#39; program.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            method (str): Method name. The R300 will load the</span>
@@ -476,8 +541,11 @@
                                        <span class="s2">&quot;the device (on the I-300Pro interface under &#39;Operating &quot;</span>
                                        <span class="s2">&quot;modes&#39; -&gt; &#39;Methods&#39;)&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_method_name"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_method_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the name of the selected method for the &#39;Method&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_method_name">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_method_name">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the name of the selected method for the &#39;Method&#39; program.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
         <span class="c1"># Check that &#39;Solvent&#39; program is enabled.</span>
@@ -493,8 +561,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_METHOD_NAME</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_clouddest_mode"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_clouddest_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_clouddest_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets the mode name for the &#39;CloudDest&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_clouddest_mode">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_clouddest_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_clouddest_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the mode name for the &#39;CloudDest&#39; program.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            method (str): Mode name. Valide mode names are</span>
@@ -510,8 +581,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_CLOUDDEST_MODE</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_clouddest_mode"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_clouddest_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_clouddest_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the current mode of the &#39;CloudDest&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_clouddest_mode">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_clouddest_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_clouddest_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the current mode of the &#39;CloudDest&#39; program.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
         <span class="c1"># Check that &#39;CloudDest&#39; program is enabled.</span>
@@ -527,8 +601,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_CLOUDDEST_MODE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_clouddest_flask_size"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_clouddest_flask_size">[docs]</a>    <span class="k">def</span> <span class="nf">set_clouddest_flask_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flask_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets the flask size parameter of the &#39;CloudDest&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_clouddest_flask_size">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_clouddest_flask_size">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_clouddest_flask_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flask_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the flask size parameter of the &#39;CloudDest&#39; program.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            flask_size (int): Flask size.</span>
@@ -544,8 +621,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_CLOUDDEST_FLASK_SIZE</span><span class="p">,</span> <span class="n">flask_size</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_clouddest_flask_size"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_clouddest_flask_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_clouddest_flask_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Gets the current flask size parameter of the &#39;CloudDest&#39; program.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_clouddest_flask_size">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_clouddest_flask_size">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_clouddest_flask_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the current flask size parameter of the &#39;CloudDest&#39; program.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
         <span class="c1"># Check that &#39;CloudDest&#39; program is enabled.</span>
@@ -561,14 +641,20 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_CLOUDDEST_FLASK_SIZE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.start"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Starts current method</span>
+
+<div class="viewcode-block" id="R300Rotovap.start">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start">[docs]</a>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts current method</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_GLOBALSTATUS_RUNNING</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.stop"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Stops current method</span>
+
+<div class="viewcode-block" id="R300Rotovap.stop">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops current method</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Chemputer specifics - see #23 on Gitlab</span>
@@ -579,28 +665,40 @@
         <span class="c1"># by pressing STOP on I-300</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stop_chiller</span><span class="p">()</span></div>
 
+
 <span class="c1">#   ### Bath control methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.start_bath"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_bath">[docs]</a>    <span class="k">def</span> <span class="nf">start_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Starts heating the bath.</span>
+<div class="viewcode-block" id="R300Rotovap.start_bath">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_bath">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts heating the bath.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_HEATING_RUNNING</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.stop_bath"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_bath">[docs]</a>    <span class="k">def</span> <span class="nf">stop_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stops heating the bath.</span>
+
+<div class="viewcode-block" id="R300Rotovap.stop_bath">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_bath">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_bath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops heating the bath.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_HEATING_RUNNING</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.is_heating_running"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_heating_running">[docs]</a>    <span class="k">def</span> <span class="nf">is_heating_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Checks whether bath heating is running.</span>
+
+<div class="viewcode-block" id="R300Rotovap.is_heating_running">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_heating_running">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_heating_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks whether bath heating is running.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_HEATING_RUNNING</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the desired bath temperature.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the desired bath temperature.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            temperature (float): Temperature setpoint in °C.</span>
@@ -611,8 +709,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_HEATING_SET</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets current bath temperature.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current bath temperature.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
@@ -622,8 +723,11 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_HEATING_ACT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_temperature_setpoint"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_temperature_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_temperature_setpoint">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_temperature_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
@@ -633,540 +737,803 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_HEATING_SET</span><span class="p">)</span></div>
 
+
 <span class="c1">#   ### Chiller control methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.start_chiller"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_chiller">[docs]</a>    <span class="k">def</span> <span class="nf">start_chiller</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Starts recirculation chiller.</span>
+<div class="viewcode-block" id="R300Rotovap.start_chiller">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_chiller">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_chiller</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts recirculation chiller.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_COOLING_RUNNING</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.stop_chiller"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_chiller">[docs]</a>    <span class="k">def</span> <span class="nf">stop_chiller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stops recirculation chiller.</span>
+
+<div class="viewcode-block" id="R300Rotovap.stop_chiller">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_chiller">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_chiller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops recirculation chiller.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_COOLING_RUNNING</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.is_chiller_running"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_chiller_running">[docs]</a>    <span class="k">def</span> <span class="nf">is_chiller_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if recirculation chiller is running.</span>
+
+<div class="viewcode-block" id="R300Rotovap.is_chiller_running">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_chiller_running">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_chiller_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if recirculation chiller is running.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_COOLING_RUNNING</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_chiller_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_chiller_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">set_chiller_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets desired chiller temperature</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_chiller_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_chiller_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_chiller_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets desired chiller temperature</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_COOLING_SET</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_chiller_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_chiller_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_chiller_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets current chiller temperature.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_chiller_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_chiller_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_chiller_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current chiller temperature.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_COOLING_ACT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_chiller_temperature_setpoint"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_chiller_temperature_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_chiller_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets chiller temperature setpoint.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_chiller_temperature_setpoint">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_chiller_temperature_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_chiller_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets chiller temperature setpoint.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_COOLING_SET</span><span class="p">)</span></div>
 
+
 <span class="c1">#   ### Rotation control methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.start_rotation"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_rotation">[docs]</a>    <span class="k">def</span> <span class="nf">start_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Starts rotation.</span>
+<div class="viewcode-block" id="R300Rotovap.start_rotation">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_rotation">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts rotation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_RUNNING</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.stop_rotation"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_rotation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Stops rotation.</span>
+
+<div class="viewcode-block" id="R300Rotovap.stop_rotation">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_rotation">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops rotation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_RUNNING</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.is_rotation_running"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_rotation_running">[docs]</a>    <span class="k">def</span> <span class="nf">is_rotation_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks whether flask rotation is running.</span>
+
+<div class="viewcode-block" id="R300Rotovap.is_rotation_running">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.is_rotation_running">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_rotation_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether flask rotation is running.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ROTATION_RUNNING</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_speed"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Sets rotation speed.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_speed">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets rotation speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_SET</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_speed"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets actual rotation speed.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_speed">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets actual rotation speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ROTATION_ACT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_speed_setpoint"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_speed_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets rotation speed setpoint.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_speed_setpoint">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_speed_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets rotation speed setpoint.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ROTATION_SET</span><span class="p">)</span></div>
 
+
 <span class="c1">#   ### Lift control methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.set_lift_pos"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_lift_pos">[docs]</a>    <span class="k">def</span> <span class="nf">set_lift_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets lift position.</span>
+<div class="viewcode-block" id="R300Rotovap.set_lift_pos">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_lift_pos">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_lift_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets lift position.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># BUG</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Setting arbitrary lift position doesn&#39;t work in the current version of API&quot;</span><span class="p">)</span></div>
+
         <span class="c1"># self.send(self.cmd.SET_LIFT_SET, position)</span>
 
-<div class="viewcode-block" id="R300Rotovap.get_lift_position"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_lift_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns current lift position</span>
+<div class="viewcode-block" id="R300Rotovap.get_lift_position">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lift_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns current lift position</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LIFT_ACT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.lift_up"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.lift_up">[docs]</a>    <span class="k">def</span> <span class="nf">lift_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Moves evaporation flask up.</span>
+
+<div class="viewcode-block" id="R300Rotovap.lift_up">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.lift_up">[docs]</a>
+    <span class="k">def</span> <span class="nf">lift_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Moves evaporation flask up.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Can&#39;t reuse set_lift_pos due to bug above</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_LIFT_SET</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_LIFT_SET</span><span class="p">[</span><span class="s2">&quot;check&quot;</span><span class="p">][</span><span class="s2">&quot;min&quot;</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.lift_down"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.lift_down">[docs]</a>    <span class="k">def</span> <span class="nf">lift_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Moves evaporation flask down.</span>
+
+<div class="viewcode-block" id="R300Rotovap.lift_down">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.lift_down">[docs]</a>
+    <span class="k">def</span> <span class="nf">lift_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Moves evaporation flask down.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Can&#39;t reuse set_lift_pos due to bug above</span>
         <span class="n">bottom_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lift_limit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_LIFT_SET</span><span class="p">,</span> <span class="n">bottom_limit</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_lift_limit"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_limit">[docs]</a>    <span class="k">def</span> <span class="nf">get_lift_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets lift bottom position limit.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_lift_limit">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_limit">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lift_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets lift bottom position limit.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LIFT_LIMIT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_lift_set"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_set">[docs]</a>    <span class="k">def</span> <span class="nf">get_lift_set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns lift position setpoint</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_lift_set">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_set">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lift_set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns lift position setpoint</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LIFT_SET</span><span class="p">)</span></div>
 
+
 <span class="c1">#   ### Pump control methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.start_pressure_regulation"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_pressure_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">start_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="R300Rotovap.start_pressure_regulation">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.start_pressure_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
             <span class="s1">&#39;Pressure regulation can only be started along with everything else. Use `device.start()`.&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.stop_pressure_regulation"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_pressure_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="R300Rotovap.stop_pressure_regulation">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.stop_pressure_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
             <span class="s1">&#39;Pressure regulation can only be stopped along with everything else. Use `device.stop()`.&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_pressure"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_pressure">[docs]</a>    <span class="k">def</span> <span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets desired pressure.</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_pressure">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_pressure">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets desired pressure.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_SET</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_pressure"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_pressure">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mf">1013.25</span><span class="p">)</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_pressure">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_pressure">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mf">1013.25</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Gets current pressure.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Gets current pressure.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_ACT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_pressure_setpoint"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_pressure_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_pressure_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets desired pressure setpoint.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_pressure_setpoint">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_pressure_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pressure_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets desired pressure setpoint.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_SET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.vent_on"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.vent_on">[docs]</a>    <span class="k">def</span> <span class="nf">vent_on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Vents the system.</span>
+
+<div class="viewcode-block" id="R300Rotovap.vent_on">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.vent_on">[docs]</a>
+    <span class="k">def</span> <span class="nf">vent_on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Vents the system.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_AERATEVALVEOPEN</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.vent_off"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.vent_off">[docs]</a>    <span class="k">def</span> <span class="nf">vent_off</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Stops venting the system.</span>
+
+<div class="viewcode-block" id="R300Rotovap.vent_off">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.vent_off">[docs]</a>
+    <span class="k">def</span> <span class="nf">vent_off</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops venting the system.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_AERATEVALVEOPEN</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.vent_pulse"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.vent_pulse">[docs]</a>    <span class="k">def</span> <span class="nf">vent_pulse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Pulses vent valve open for a short time.</span>
+
+<div class="viewcode-block" id="R300Rotovap.vent_pulse">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.vent_pulse">[docs]</a>
+    <span class="k">def</span> <span class="nf">vent_pulse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pulses vent valve open for a short time.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_AERATEVALVEPULSE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
+
 <span class="c1">#   ### Distillation sensors methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.get_vapor_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vapor_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_vapor_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets vapour temperature.</span>
+<div class="viewcode-block" id="R300Rotovap.get_vapor_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vapor_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vapor_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets vapour temperature.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_VAPORTEMP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_water_in_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_water_in_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_water_in_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets temperature of the water entering condenser.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_water_in_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_water_in_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_water_in_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets temperature of the water entering condenser.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_AUTODESTIN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_water_out_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_water_out_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_water_out_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets temperature of the water leaving condenser.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_water_out_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_water_out_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_water_out_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets temperature of the water leaving condenser.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_AUTODESTOUT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_aeratevalveopen"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_aeratevalveopen">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_aeratevalveopen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets status of aeration valve (optional).</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_aeratevalveopen">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_aeratevalveopen">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_aeratevalveopen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets status of aeration valve (optional).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_AERATEVALVEOPEN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_vacuumvalveopen"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_vacuumvalveopen">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_vacuumvalveopen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets status of vacuum valve (optional, for non-Buchi pumps).</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_vacuumvalveopen">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_vacuumvalveopen">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_vacuumvalveopen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets status of vacuum valve (optional, for non-Buchi pumps).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_VACUUMVALVEOPEN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_powerpercentact"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_powerpercentact">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_powerpercentact</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets current vacuum pump power percentage.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_powerpercentact">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_powerpercentact">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_powerpercentact</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current vacuum pump power percentage.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_POWERPERCENTACT</span><span class="p">)</span></div>
 
+
 <span class="c1">#   ### Configuration methods ###</span>
 
-<div class="viewcode-block" id="R300Rotovap.get_globalstatus_onhold"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_globalstatus_onhold">[docs]</a>    <span class="k">def</span> <span class="nf">get_globalstatus_onhold</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets hold mode status.</span>
+<div class="viewcode-block" id="R300Rotovap.get_globalstatus_onhold">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_globalstatus_onhold">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_globalstatus_onhold</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets hold mode status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_GLOBALSTATUS_ONHOLD</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_globalstatus_foamactive"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_globalstatus_foamactive">[docs]</a>    <span class="k">def</span> <span class="nf">get_globalstatus_foamactive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets foam sensor status.</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_globalstatus_foamactive">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_globalstatus_foamactive">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_globalstatus_foamactive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets foam sensor status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_GLOBALSTATUS_FOAMACTIVE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_globalstatus_onhold"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_globalstatus_onhold">[docs]</a>    <span class="k">def</span> <span class="nf">set_globalstatus_onhold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_globalstatus_onhold">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_globalstatus_onhold">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_globalstatus_onhold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_GLOBALSTATUS_ONHOLD</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_network_dhcp"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_dhcp">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_dhcp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_network_dhcp">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_dhcp">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_network_dhcp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NETWORK_DHCP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_network_ip"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_ip">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_network_ip">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_ip">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_network_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NETWORK_IP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_network_subnet"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_subnet">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_subnet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_network_subnet">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_subnet">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_network_subnet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NETWORK_SUBNET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_network_gateway"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_gateway">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_network_gateway">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_gateway">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_network_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NETWORK_GATEWAY</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_network_dns"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_dns">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_dns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_network_dns">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_dns">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_network_dns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NETWORK_DNS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_network_cloudip"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_cloudip">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_cloudip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_network_cloudip">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_cloudip">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_network_cloudip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NETWORK_CLOUDIP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_network_cloudenabled"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_cloudenabled">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_cloudenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_network_cloudenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_network_cloudenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_network_cloudenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_NETWORK_CLOUDENABLED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_display_language"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_language">[docs]</a>    <span class="k">def</span> <span class="nf">get_display_language</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_display_language">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_language">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_display_language</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_DISPLAY_LANGUAGE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_display_brightness"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_brightness">[docs]</a>    <span class="k">def</span> <span class="nf">get_display_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_display_brightness">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_brightness">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_display_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_DISPLAY_BRIGHTNESS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_display_units_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_units_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_display_units_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_display_units_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_units_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_display_units_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_DISPLAY_UNITS_TEMPERATURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_display_units_pressure"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_units_pressure">[docs]</a>    <span class="k">def</span> <span class="nf">get_display_units_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_display_units_pressure">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_display_units_pressure">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_display_units_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_DISPLAY_UNITS_PRESSURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_sounds_buttontone"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_sounds_buttontone">[docs]</a>    <span class="k">def</span> <span class="nf">get_sounds_buttontone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_sounds_buttontone">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_sounds_buttontone">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sounds_buttontone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOUNDS_BUTTONTONE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_sounds_playsoundonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_sounds_playsoundonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">get_sounds_playsoundonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_sounds_playsoundonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_sounds_playsoundonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sounds_playsoundonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SOUNDS_PLAYSOUNDONFINISH</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_pressurehysteresis"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_pressurehysteresis">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_pressurehysteresis</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_pressurehysteresis">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_pressurehysteresis">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_pressurehysteresis</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_PRESSUREHYSTERESIS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_altitude"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_altitude">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_altitude</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_altitude">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_altitude">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_altitude</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_ALTITUDE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_maxpermpressure"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_maxpermpressure">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_maxpermpressure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_maxpermpressure">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_maxpermpressure">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_maxpermpressure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_MAXPERMPRESSURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_maxpumpoutput"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_maxpumpoutput">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_maxpumpoutput</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_maxpumpoutput">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_maxpumpoutput">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_maxpumpoutput</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_MAXPUMPOUTPUT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_vacuum_ventonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_ventonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">get_vacuum_ventonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_vacuum_ventonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_vacuum_ventonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vacuum_ventonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VACUUM_VENTONFINISH</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_rotation_startrotationonstart"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_rotation_startrotationonstart">[docs]</a>    <span class="k">def</span> <span class="nf">get_rotation_startrotationonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_rotation_startrotationonstart">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_rotation_startrotationonstart">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_rotation_startrotationonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ROTATION_STARTROTATIONONSTART</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_rotation_stoprotationonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_rotation_stoprotationonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">get_rotation_stoprotationonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_rotation_stoprotationonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_rotation_stoprotationonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_rotation_stoprotationonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ROTATION_STOPROTATIONONFINISH</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_heating_maxtemperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_heating_maxtemperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_heating_maxtemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_heating_maxtemperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_heating_maxtemperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_heating_maxtemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_HEATING_MAXTEMPERATURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_heating_stopheatingonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_heating_stopheatingonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">get_heating_stopheatingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_heating_stopheatingonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_heating_stopheatingonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_heating_stopheatingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_HEATING_STOPHEATINGONFINISH</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_cooling_stopcoolingonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_cooling_stopcoolingonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">get_cooling_stopcoolingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_cooling_stopcoolingonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_cooling_stopcoolingonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cooling_stopcoolingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_COOLING_STOPCOOLINGONFINISH</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_lift_depthstop"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_depthstop">[docs]</a>    <span class="k">def</span> <span class="nf">get_lift_depthstop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_lift_depthstop">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_depthstop">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lift_depthstop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LIFT_DEPTHSTOP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_lift_immerseonstart"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_immerseonstart">[docs]</a>    <span class="k">def</span> <span class="nf">get_lift_immerseonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_lift_immerseonstart">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_immerseonstart">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lift_immerseonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LIFT_IMMERSEONSTART</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_lift_liftoutflaskonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_liftoutflaskonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">get_lift_liftoutflaskonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_lift_liftoutflaskonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_lift_liftoutflaskonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lift_liftoutflaskonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LIFT_LIFTOUTFLASKONFINISH</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_program_eco_isenabled"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_isenabled">[docs]</a>    <span class="k">def</span> <span class="nf">get_program_eco_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_program_eco_isenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_isenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_program_eco_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PROGRAM_ECO_ISENABLED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_program_eco_activationaftermins"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_activationaftermins">[docs]</a>    <span class="k">def</span> <span class="nf">get_program_eco_activationaftermins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_program_eco_activationaftermins">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_activationaftermins">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_program_eco_activationaftermins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PROGRAM_ECO_ACTIVATIONAFTERMINS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_program_eco_heatingbathtemperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_heatingbathtemperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_program_eco_heatingbathtemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_program_eco_heatingbathtemperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_heatingbathtemperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_program_eco_heatingbathtemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PROGRAM_ECO_HEATINGBATHTEMPERATURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_program_eco_coolanttemperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_coolanttemperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_program_eco_coolanttemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_program_eco_coolanttemperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_program_eco_coolanttemperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_program_eco_coolanttemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PROGRAM_ECO_COOLANTTEMPERATURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_display_language"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_language">[docs]</a>    <span class="k">def</span> <span class="nf">set_display_language</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_display_language">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_language">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_display_language</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_DISPLAY_LANGUAGE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_display_brightness"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_brightness">[docs]</a>    <span class="k">def</span> <span class="nf">set_display_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_display_brightness">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_brightness">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_display_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_DISPLAY_BRIGHTNESS</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_display_units_temperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_units_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">set_display_units_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_display_units_temperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_units_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_display_units_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_DISPLAY_UNITS_TEMPERATURE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_display_units_pressure"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_units_pressure">[docs]</a>    <span class="k">def</span> <span class="nf">set_display_units_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_display_units_pressure">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_display_units_pressure">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_display_units_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_DISPLAY_UNITS_PRESSURE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_sounds_buttontone"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_sounds_buttontone">[docs]</a>    <span class="k">def</span> <span class="nf">set_sounds_buttontone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_sounds_buttontone">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_sounds_buttontone">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_sounds_buttontone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOUNDS_BUTTONTONE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_sounds_playsoundonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_sounds_playsoundonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">set_sounds_playsoundonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_sounds_playsoundonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_sounds_playsoundonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_sounds_playsoundonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SOUNDS_PLAYSOUNDONFINISH</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_vacuum_pressurehysteresis"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_pressurehysteresis">[docs]</a>    <span class="k">def</span> <span class="nf">set_vacuum_pressurehysteresis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_vacuum_pressurehysteresis">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_pressurehysteresis">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_vacuum_pressurehysteresis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_PRESSUREHYSTERESIS</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_vacuum_altitude"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_altitude">[docs]</a>    <span class="k">def</span> <span class="nf">set_vacuum_altitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_vacuum_altitude">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_altitude">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_vacuum_altitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_ALTITUDE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_vacuum_maxpermpressure"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_maxpermpressure">[docs]</a>    <span class="k">def</span> <span class="nf">set_vacuum_maxpermpressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_vacuum_maxpermpressure">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_maxpermpressure">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_vacuum_maxpermpressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_MAXPERMPRESSURE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_vacuum_maxpumpoutput"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_maxpumpoutput">[docs]</a>    <span class="k">def</span> <span class="nf">set_vacuum_maxpumpoutput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_vacuum_maxpumpoutput">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_maxpumpoutput">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_vacuum_maxpumpoutput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_MAXPUMPOUTPUT</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_vacuum_ventonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_ventonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">set_vacuum_ventonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_vacuum_ventonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_vacuum_ventonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_vacuum_ventonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_VACUUM_VENTONFINISH</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_rotation_startrotationonstart"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_rotation_startrotationonstart">[docs]</a>    <span class="k">def</span> <span class="nf">set_rotation_startrotationonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_rotation_startrotationonstart">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_rotation_startrotationonstart">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_rotation_startrotationonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_STARTROTATIONONSTART</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_rotation_stoprotationonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_rotation_stoprotationonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">set_rotation_stoprotationonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_rotation_stoprotationonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_rotation_stoprotationonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_rotation_stoprotationonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_STOPROTATIONONFINISH</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_heating_stopheatingonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_heating_stopheatingonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">set_heating_stopheatingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_heating_stopheatingonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_heating_stopheatingonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_heating_stopheatingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_HEATING_STOPHEATINGONFINISH</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_cooling_stopcoolingonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_cooling_stopcoolingonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">set_cooling_stopcoolingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_cooling_stopcoolingonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_cooling_stopcoolingonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_cooling_stopcoolingonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_COOLING_STOPCOOLINGONFINISH</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_lift_immerseonstart"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_lift_immerseonstart">[docs]</a>    <span class="k">def</span> <span class="nf">set_lift_immerseonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_lift_immerseonstart">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_lift_immerseonstart">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_lift_immerseonstart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_LIFT_IMMERSEONSTART</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_lift_liftoutflaskonfinish"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_lift_liftoutflaskonfinish">[docs]</a>    <span class="k">def</span> <span class="nf">set_lift_liftoutflaskonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_lift_liftoutflaskonfinish">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_lift_liftoutflaskonfinish">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_lift_liftoutflaskonfinish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_LIFT_LIFTOUTFLASKONFINISH</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_program_eco_isenabled"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_isenabled">[docs]</a>    <span class="k">def</span> <span class="nf">set_program_eco_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_program_eco_isenabled">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_isenabled">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_program_eco_isenabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PROGRAM_ECO_ISENABLED</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_program_eco_activationaftermins"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_activationaftermins">[docs]</a>    <span class="k">def</span> <span class="nf">set_program_eco_activationaftermins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_program_eco_activationaftermins">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_activationaftermins">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_program_eco_activationaftermins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PROGRAM_ECO_ACTIVATIONAFTERMINS</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_program_eco_heatingbathtemperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_heatingbathtemperature">[docs]</a>    <span class="k">def</span> <span class="nf">set_program_eco_heatingbathtemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_program_eco_heatingbathtemperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_heatingbathtemperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_program_eco_heatingbathtemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PROGRAM_ECO_HEATINGBATHTEMPERATURE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.set_program_eco_coolanttemperature"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_coolanttemperature">[docs]</a>    <span class="k">def</span> <span class="nf">set_program_eco_coolanttemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.set_program_eco_coolanttemperature">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.set_program_eco_coolanttemperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_program_eco_coolanttemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PROGRAM_ECO_COOLANTTEMPERATURE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="R300Rotovap.get_leaktests"><a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_leaktests">[docs]</a>    <span class="k">def</span> <span class="nf">get_leaktests</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="R300Rotovap.get_leaktests">
+<a class="viewcode-back" href="../../../api/devices.buchi_r300.html#PyLabware.devices.buchi_r300.R300Rotovap.get_leaktests">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_leaktests</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LEAKTESTS</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_LEAKTESTS</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>
@@ -1176,7 +1543,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

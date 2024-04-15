@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.models &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.models</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.models</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -108,19 +115,21 @@
 
 
 <span class="k">class</span> <span class="nc">LabDeviceCommands</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; This class acts as a container for all device command string</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; This class acts as a container for all device command string</span>
 <span class="sd">        and provides the basic features for value checking and reply parsing.</span>
 <span class="sd">        If more advanced device-specific processing is needed</span>
 <span class="sd">        it has to be done in device driver classes by custom parsing functions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This class shouldn&#39;t be instantiated&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This class shouldn&#39;t be instantiated&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 
-<div class="viewcode-block" id="LabDeviceReply"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.LabDeviceReply">[docs]</a><span class="k">class</span> <span class="nc">LabDeviceReply</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; This class defines the data model for a device reply for all transport types (plain text, HTTP REST, ...)</span>
+<div class="viewcode-block" id="LabDeviceReply">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.LabDeviceReply">[docs]</a>
+<span class="k">class</span> <span class="nc">LabDeviceReply</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; This class defines the data model for a device reply for all transport types (plain text, HTTP REST, ...)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">,</span> <span class="s2">&quot;content_type&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">]</span>
@@ -131,38 +140,49 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="n">content_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span></div>
 
+
 <span class="c1"># ###################################### Base abstract classes ##################################################</span>
 
 
-<div class="viewcode-block" id="AbstractLabDevice"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice">[docs]</a><span class="k">class</span> <span class="nc">AbstractLabDevice</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base abstract class for all labware devices.</span>
+<div class="viewcode-block" id="AbstractLabDevice">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice">[docs]</a>
+<span class="k">class</span> <span class="nc">AbstractLabDevice</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base abstract class for all labware devices.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Determines whether the device behaves as as a real or simulated one.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Determines whether the device behaves as as a real or simulated one.</span>
 <span class="sd">            Simulated device just logs all the commands.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="nd">@simulation</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Setter for the simulation property</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Setter for the simulation property</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AbstractLabDevice.connect"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.connect">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractLabDevice.connect">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.connect">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Connects to the device.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Connects to the device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.disconnect"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.disconnect">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.disconnect">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.disconnect">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Disconnects from the device.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Disconnects from the device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.is_connected"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.is_connected">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.is_connected">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.is_connected">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Checks if connection to the device is active.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if connection to the device is active.</span>
 <span class="sd">        This method should issue a device-specific command</span>
 <span class="sd">        (e.g. status/info command) and check the reply from the device</span>
 <span class="sd">        to figure out whether the device is actually responsive,</span>
@@ -176,9 +196,12 @@
 <span class="sd">            (bool): Whether device is connected or not.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.is_idle"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.is_idle">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.is_idle">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.is_idle">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Checks whether the device is in idle state.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether the device is in idle state.</span>
 <span class="sd">        The idle state is defined as following:</span>
 
 <span class="sd">        * The device has just been powered on AND is_connected() is True</span>
@@ -202,35 +225,50 @@
 <span class="sd">            (bool): Device ready status</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.initialize_device"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.initialize_device">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.initialize_device">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.initialize_device">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Many devices require hardware initialization before they can be used.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Many devices require hardware initialization before they can be used.</span>
 <span class="sd">        This method should run hardware initialization/resetting or setting</span>
 <span class="sd">        all the necessary parameters.</span>
 
 <span class="sd">        This method has to be redefined in child classes.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.get_status"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.get_status">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.get_status">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.get_status">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets device internal status, if implemented in the device.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets device internal status, if implemented in the device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.check_errors"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.check_errors">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.check_errors">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.check_errors">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets errors from the device (if the device supports it) and raises</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets errors from the device (if the device supports it) and raises</span>
 <span class="sd">        SLDeviceInternalError with error-specific message if any errors are</span>
 <span class="sd">        present.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.clear_errors"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.clear_errors">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.clear_errors">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.clear_errors">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Clears internal device errors, if any.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clears internal device errors, if any.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.start"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.start">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.start">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.start">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Main method that starts device&#39;s intended activity.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main method that starts device&#39;s intended activity.</span>
 <span class="sd">        E.g if it&#39;s a stirrer, starts stirring. If it&#39;s a stirring hotplate -</span>
 <span class="sd">        starts both stirring and heating. For granular control child classes for</span>
 <span class="sd">        the devices capable of multiple activities (e.g. stirring hotplate)</span>
@@ -238,16 +276,22 @@
 <span class="sd">        abstract classes.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.stop"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.stop">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.stop">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.stop">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Stops all device activities and brings it back to idle state.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Stops all device activities and brings it back to idle state.</span>
 <span class="sd">        According to the definition of is_idle() above, is_idle() ran after</span>
 <span class="sd">        stop() must return True.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.execute_when_ready"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.execute_when_ready">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.execute_when_ready">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.execute_when_ready">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">check_ready</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Acquires device lock, waits till device is ready</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Acquires device lock, waits till device is ready</span>
 <span class="sd">        and runs device method.</span>
 
 <span class="sd">        Args:</span>
@@ -258,16 +302,21 @@
 
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="AbstractLabDevice.wait_until_ready"><a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.wait_until_ready">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="AbstractLabDevice.wait_until_ready">
+<a class="viewcode-back" href="../../data_model.html#PyLabware.models.AbstractLabDevice.wait_until_ready">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">wait_until_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check_ready</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Acquires device lock, waits till device is ready</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Acquires device lock, waits till device is ready</span>
 <span class="sd">        and returns.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            check_ready: A method to use for checking whether</span>
 <span class="sd">                        the device is ready or not.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+</div>
+
 </pre></div>
 
            </div>
@@ -277,7 +326,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

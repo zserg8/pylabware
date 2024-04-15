@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Controllers &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,25 +30,54 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PyLabware
-            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_model.html">Data model</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="connections.html">Connections</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Controllers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Controllers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.controllers.in_simulation_device_returns"><code class="docutils literal notranslate"><span class="pre">in_simulation_device_returns()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.controllers.LabDevice"><code class="docutils literal notranslate"><span class="pre">LabDevice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.cast_reply_type"><code class="docutils literal notranslate"><span class="pre">LabDevice.cast_reply_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.check_value"><code class="docutils literal notranslate"><span class="pre">LabDevice.check_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.connect"><code class="docutils literal notranslate"><span class="pre">LabDevice.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.disconnect"><code class="docutils literal notranslate"><span class="pre">LabDevice.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.execute_when_ready"><code class="docutils literal notranslate"><span class="pre">LabDevice.execute_when_ready()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.get_all_tasks"><code class="docutils literal notranslate"><span class="pre">LabDevice.get_all_tasks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.parse_reply"><code class="docutils literal notranslate"><span class="pre">LabDevice.parse_reply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.prepare_message"><code class="docutils literal notranslate"><span class="pre">LabDevice.prepare_message()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.send"><code class="docutils literal notranslate"><span class="pre">LabDevice.send()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.simulation"><code class="docutils literal notranslate"><span class="pre">LabDevice.simulation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.start_task"><code class="docutils literal notranslate"><span class="pre">LabDevice.start_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.stop_all_tasks"><code class="docutils literal notranslate"><span class="pre">LabDevice.stop_all_tasks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.stop_task"><code class="docutils literal notranslate"><span class="pre">LabDevice.stop_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDevice.wait_until_ready"><code class="docutils literal notranslate"><span class="pre">LabDevice.wait_until_ready()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.controllers.LabDeviceTask"><code class="docutils literal notranslate"><span class="pre">LabDeviceTask</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDeviceTask.run"><code class="docutils literal notranslate"><span class="pre">LabDeviceTask.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.controllers.LabDeviceTask.stop"><code class="docutils literal notranslate"><span class="pre">LabDeviceTask.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parsers.html">Parsers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main.html#devices">Devices</a></li>
@@ -68,9 +100,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="main.html">API Reference</a> &raquo;</li>
-      <li>Controllers</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Controllers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/controllers.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,49 +113,49 @@
            <div itemprop="articleBody">
              
   <section id="controllers">
-<h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline"></a></h1>
+<h1>Controllers<a class="headerlink" href="#controllers" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="PyLabware.controllers.in_simulation_device_returns">
-<span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">in_simulation_device_returns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#in_simulation_device_returns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.in_simulation_device_returns" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">in_simulation_device_returns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#in_simulation_device_returns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.in_simulation_device_returns" title="Link to this definition"></a></dt>
 <dd><p>Decorator that patched the device send() method
 to return the value passed.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">LabDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.models.AbstractLabDevice" title="PyLabware.models.AbstractLabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.models.AbstractLabDevice</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">LabDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.models.AbstractLabDevice" title="PyLabware.models.AbstractLabDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractLabDevice</span></code></a></p>
 <p>Base controller class for all labware devices.</p>
 <p>Default constructor. This function performs object initialization.
 All device-specific hardware initialization procedures should be inside
 the <code class="xref py py-meth docutils literal notranslate"><span class="pre">initialise_device()</span></code> method.</p>
 <p>This method has to be redefined in child classes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>device_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Device name (for logging purposes).</p></li>
-<li><p><strong>connection_mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Physical connection mode (defines the connection
+<li><p><strong>device_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Device name (for logging purposes).</p></li>
+<li><p><strong>connection_mode</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Physical connection mode (defines the connection
 adapter used).</p></li>
-<li><p><strong>connection_parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]) – Dictionary with connection-specific settings.
+<li><p><strong>connection_parameters</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>) – Dictionary with connection-specific settings.
 These vary depending on the connection_mode.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.cast_reply_type">
-<span class="sig-name descname"><span class="pre">cast_reply_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reply</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.cast_reply_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.cast_reply_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cast_reply_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reply</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.cast_reply_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.cast_reply_type" title="Link to this definition"></a></dt>
 <dd><p>Casts reply type based on the type provided in command definition.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>reply</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – Reply string.</p></li>
-<li><p><strong>cmd</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Command definition to look the type value in.</p></li>
+<li><p><strong>reply</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Reply string.</p></li>
+<li><p><strong>cmd</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>) – Command definition to look the type value in.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Reply casted to the correct type.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(any)</p>
 </dd>
 </dl>
@@ -131,21 +163,21 @@ These vary depending on the connection_mode.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.check_value">
-<span class="sig-name descname"><span class="pre">check_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.check_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.check_value" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.check_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.check_value" title="Link to this definition"></a></dt>
 <dd><p>Checks the value provided against the definitions in command dict.
 Then does any value conversion/formatting/type casting as needed.</p>
 <p>This method may be redefined in child classes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cmd</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Device command definition.</p></li>
-<li><p><strong>value</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – Command parameter to check.</p></li>
+<li><p><strong>cmd</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>) – Device command definition.</p></li>
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Command parameter to check.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Processed value.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(Any)</p>
 </dd>
 </dl>
@@ -153,39 +185,39 @@ Then does any value conversion/formatting/type casting as needed.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.connect">
-<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.connect" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.connect" title="Link to this definition"></a></dt>
 <dd><p>Connects to the device.</p>
 <p>This method normally shouldn’t be redefined in child classes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.disconnect">
-<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.disconnect" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.disconnect" title="Link to this definition"></a></dt>
 <dd><p>Disconnects from the device.</p>
 <p>This method normally shouldn’t be redefined in child classes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.execute_when_ready">
-<span class="sig-name descname"><span class="pre">execute_when_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ready</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.execute_when_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.execute_when_ready" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">execute_when_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ready</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.execute_when_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.execute_when_ready" title="Link to this definition"></a></dt>
 <dd><p>Acquires device lock, waits till device is ready and runs specified
 action. If no method is provided for checking, <code class="xref py py-meth docutils literal notranslate"><span class="pre">PyLabware.models.AbstractLabDevice._is_idle()</span></code> is used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>action</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – <dl class="simple">
+<li><p><strong>action</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – <dl class="simple">
 <dt>A method to run when the device is ready</dt><dd><p>args: List of positional arguments for the method to run</p>
 </dd>
 </dl>
 <p>check_ready: A method to use for checking whether the device is ready or not. (keyword-only)</p>
 </p></li>
-<li><p><strong>check_ready</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>]</em>) – </p></li>
+<li><p><strong>check_ready</strong> (<em>Callable</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The return value of action.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(any)</p>
 </dd>
 </dl>
@@ -193,28 +225,28 @@ action. If no method is provided for checking, <code class="xref py py-meth docu
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.get_all_tasks">
-<span class="sig-name descname"><span class="pre">get_all_tasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.get_all_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.get_all_tasks" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_all_tasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.get_all_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.get_all_tasks" title="Link to this definition"></a></dt>
 <dd><p>Returns internal list of tasks.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.parse_reply">
-<span class="sig-name descname"><span class="pre">parse_reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reply</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.parse_reply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.parse_reply" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">parse_reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reply</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.parse_reply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.parse_reply" title="Link to this definition"></a></dt>
 <dd><p>This function takes a LabDeviceReply object and does all necessary
 processing to return a reply string back. Parsing is done according to
 command specification.</p>
 <p>This method may be redefined in child classes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>reply</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – Reply from the device</p></li>
-<li><p><strong>cmd</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Command definition to look the parsing workflow in.</p></li>
+<li><p><strong>reply</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Reply from the device</p></li>
+<li><p><strong>cmd</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>) – Command definition to look the parsing workflow in.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Processed reply</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(any)</p>
 </dd>
 </dl>
@@ -222,22 +254,22 @@ command specification.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.prepare_message">
-<span class="sig-name descname"><span class="pre">prepare_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.prepare_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.prepare_message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">prepare_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.prepare_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.prepare_message" title="Link to this definition"></a></dt>
 <dd><p>This function does all preparations needed to make the command
 compliant with device protocol, e.g. type casts the parameters, checks
 that their values are in range, adds termination sequences, etc.</p>
 <p>This method may be redefined in child classes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cmd</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>) – Device command definition.</p></li>
-<li><p><strong>value</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – Command parameter to set, if any.</p></li>
+<li><p><strong>cmd</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></span>) – Device command definition.</p></li>
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Command parameter to set, if any.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Checked &amp; prepared command string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(str)</p>
 </dd>
 </dl>
@@ -245,7 +277,7 @@ that their values are in range, adds termination sequences, etc.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.send">
-<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.send" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.send" title="Link to this definition"></a></dt>
 <dd><p>This method takes the command to be sent and runs all necessary
 checks on the command parameter if present and required. Then the
 command get wrapped with the necessary prefix/terminator and connection
@@ -254,7 +286,7 @@ appropriate connection adapter and _recv() is invoked if a reply is
 expected. Only after that the connection lock is released.</p>
 <p>This method normally shouldn’t be redefined in child classes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cmd</strong> – The command to send.</p></li>
 <li><p><strong>value</strong> – Command parameter, if any.</p></li>
@@ -265,28 +297,28 @@ expected. Only after that the connection lock is released.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.simulation">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">simulation</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#PyLabware.controllers.LabDevice.simulation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">simulation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#PyLabware.controllers.LabDevice.simulation" title="Link to this definition"></a></dt>
 <dd><p>Determines whether the device behaves as as a real or simulated one.
 Simulated device just logs all the commands.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.start_task">
-<span class="sig-name descname"><span class="pre">start_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.start_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.start_task" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.start_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.start_task" title="Link to this definition"></a></dt>
 <dd><p>Creates a LabDeviceTask object, starts it and appends the reference
 to the task instance to the list of tasks.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>interval</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – How often the method should be executed, in seconds</p></li>
-<li><p><strong>method</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – The function to run.</p></li>
+<li><p><strong>interval</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – How often the method should be executed, in seconds</p></li>
+<li><p><strong>method</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – The function to run.</p></li>
 <li><p><strong>args</strong> – Arguments for the function, if any.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Created task object for further reference.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(<a class="reference internal" href="#PyLabware.controllers.LabDeviceTask" title="PyLabware.controllers.LabDeviceTask">LabDeviceTask</a>)</p>
 </dd>
 </dl>
@@ -294,13 +326,13 @@ to the task instance to the list of tasks.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.stop_all_tasks">
-<span class="sig-name descname"><span class="pre">stop_all_tasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.stop_all_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.stop_all_tasks" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop_all_tasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.stop_all_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.stop_all_tasks" title="Link to this definition"></a></dt>
 <dd><p>Stops all tasks currently running and resets internal list of tasks.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.stop_task">
-<span class="sig-name descname"><span class="pre">stop_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_to_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.stop_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.stop_task" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_to_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.stop_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.stop_task" title="Link to this definition"></a></dt>
 <dd><p>Stops the LabDeviceTask object and remove the reference to it
 from the list of tasks. If no argument is provided and only a single
 task is running - stops that one.</p>
@@ -312,12 +344,12 @@ task is running - stops that one.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDevice.wait_until_ready">
-<span class="sig-name descname"><span class="pre">wait_until_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_ready</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.wait_until_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.wait_until_ready" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">wait_until_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_ready</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDevice.wait_until_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDevice.wait_until_ready" title="Link to this definition"></a></dt>
 <dd><p>Acquires device lock, waits till device is ready and returns.
 If no method is provided for checking, self._is_idle is used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>check_ready</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A method to use for checking whether the device is ready or not.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>check_ready</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]</span>) – A method to use for checking whether the device is ready or not.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -326,12 +358,12 @@ If no method is provided for checking, self._is_idle is used.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDeviceTask">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">LabDeviceTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDeviceTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDeviceTask" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">threading.Thread</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.controllers.</span></span><span class="sig-name descname"><span class="pre">LabDeviceTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDeviceTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDeviceTask" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
 <p>Simple class to implement periodically running device actions.</p>
 <p>Default constructor</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>interval</strong> (<em>int</em>) – </p></li>
 <li><p><strong>method</strong> (<em>Callable</em>) – </p></li>
@@ -340,13 +372,13 @@ If no method is provided for checking, self._is_idle is used.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDeviceTask.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDeviceTask.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDeviceTask.run" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDeviceTask.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDeviceTask.run" title="Link to this definition"></a></dt>
 <dd><p>Starts task activity.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.controllers.LabDeviceTask.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDeviceTask.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDeviceTask.stop" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/controllers.html#LabDeviceTask.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.controllers.LabDeviceTask.stop" title="Link to this definition"></a></dt>
 <dd><p>Sets the stop flag to signal for the thread to exit.</p>
 </dd></dl>
 
@@ -365,7 +397,7 @@ If no method is provided for checking, self._is_idle is used.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

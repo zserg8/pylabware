@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parsers &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,18 +30,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PyLabware
-            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
@@ -47,7 +54,13 @@
 <li class="toctree-l2"><a class="reference internal" href="connections.html">Connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Parsers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parsers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.parsers.researcher"><code class="docutils literal notranslate"><span class="pre">researcher()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.parsers.slicer"><code class="docutils literal notranslate"><span class="pre">slicer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.parsers.splitter"><code class="docutils literal notranslate"><span class="pre">splitter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.parsers.stripper"><code class="docutils literal notranslate"><span class="pre">stripper()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="main.html#devices">Devices</a></li>
 </ul>
 </li>
@@ -68,9 +81,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="main.html">API Reference</a> &raquo;</li>
-      <li>Parsers</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Parsers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/parsers.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,21 +94,21 @@
            <div itemprop="articleBody">
              
   <section id="module-PyLabware.parsers">
-<span id="parsers"></span><h1>Parsers<a class="headerlink" href="#module-PyLabware.parsers" title="Permalink to this headline"></a></h1>
+<span id="parsers"></span><h1>Parsers<a class="headerlink" href="#module-PyLabware.parsers" title="Link to this heading"></a></h1>
 <p>PyLabware utility functions for reply parsing</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="PyLabware.parsers.researcher">
-<span class="sig-prename descclassname"><span class="pre">PyLabware.parsers.</span></span><span class="sig-name descname"><span class="pre">researcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reply</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/parsers.html#researcher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.parsers.researcher" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">PyLabware.parsers.</span></span><span class="sig-name descname"><span class="pre">researcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reply</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/parsers.html#researcher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.parsers.researcher" title="Link to this definition"></a></dt>
 <dd><p>This is a wrapper function for reply parsing to provide consistent
 arguments order.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>reply</strong> – Reply to parse with regular expression.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Regular expression match object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(re.Match)</p>
 </dd>
 </dl>
@@ -103,41 +116,58 @@ arguments order.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="PyLabware.parsers.slicer">
-<span class="sig-prename descclassname"><span class="pre">PyLabware.parsers.</span></span><span class="sig-name descname"><span class="pre">slicer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reply</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/parsers.html#slicer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.parsers.slicer" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">PyLabware.parsers.</span></span><span class="sig-name descname"><span class="pre">slicer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reply</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/parsers.html#slicer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.parsers.slicer" title="Link to this definition"></a></dt>
 <dd><p>This is a wrapper function for reply parsing to provide consistent
 arguments order.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>reply</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Sequence object to slice.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>reply</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Sequence object to slice.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Slice of the original object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(any)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="PyLabware.parsers.splitter">
+<span class="sig-prename descclassname"><span class="pre">PyLabware.parsers.</span></span><span class="sig-name descname"><span class="pre">splitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">slice_positions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/parsers.html#splitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.parsers.splitter" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>This is a combination of str.split() followed by slicing.</dt><dd><p>Allows to avoid using RegExes for simple cases.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reply</strong> (<em>str</em>) – String to process</p></li>
+<li><p><strong>separator</strong> (<em>str</em>) – Sparator for str.split().</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="PyLabware.parsers.stripper">
-<span class="sig-prename descclassname"><span class="pre">PyLabware.parsers.</span></span><span class="sig-name descname"><span class="pre">stripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/parsers.html#stripper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.parsers.stripper" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">PyLabware.parsers.</span></span><span class="sig-name descname"><span class="pre">stripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reply</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/parsers.html#stripper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.parsers.stripper" title="Link to this definition"></a></dt>
 <dd><p>This is a helper function used to strip off reply prefix and
 terminator. Standard Python str.strip() doesn’t work reliably because
 it operates on character-by-character basis, while prefix/terminator
 is usually a group of characters.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>reply</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – String to be stripped.</p></li>
+<li><p><strong>reply</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – String to be stripped.</p></li>
 <li><p><strong>prefix</strong> – Substring to remove from the beginning of the line.</p></li>
 <li><p><strong>suffix</strong> – Substring to remove from the end of the line.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Naked reply.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(str)</p>
 </dd>
 </dl>
@@ -156,7 +186,7 @@ is usually a group of characters.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

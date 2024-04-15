@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tricontinent C3000 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Vacuubrand CVC3000" href="devices.vacuubrand_cvc_3000.html" />
-    <link rel="prev" title="Julabo CF41" href="devices.julabo_cf41.html" /> 
+    <link rel="prev" title="PyLabware.devices.tecan_cavro_xlp6000 module" href="devices.tecan_cavro_xlp6000.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -27,18 +30,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PyLabware
-            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
@@ -59,8 +66,16 @@
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_ret_control_visc.html">IKA RET Control Visc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.ika_rv10.html">IKA RV10</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.idex_mxii.html">IDEX mxII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.kern_kdp3000.html">PyLabware.devices.kern_kdp3000 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.metrohm_781ph.html">PyLabware.devices.metrohm_781ph module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.mt_ms3002s.html">PyLabware.devices.mt_ms3002s module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devices.julabo_cf41.html">Julabo CF41</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Tricontinent C3000</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devices.tecan_cavro_xlp6000.html">PyLabware.devices.tecan_cavro_xlp6000 module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tricontinent C3000</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump"><code class="docutils literal notranslate"><span class="pre">C3000SyringePump</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands"><code class="docutils literal notranslate"><span class="pre">C3000SyringePumpCommands</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devices.vacuubrand_cvc_3000.html">Vacuubrand CVC3000</a></li>
 </ul>
 </li>
@@ -83,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="main.html">API Reference</a> &raquo;</li>
-          <li><a href="devices.html">&lt;no title&gt;</a> &raquo;</li>
-      <li>Tricontinent C3000</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="devices.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">Tricontinent C3000</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/devices.tricontinent_c3000.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,53 +112,53 @@
            <div itemprop="articleBody">
              
   <section id="module-PyLabware.devices.tricontinent_c3000">
-<span id="tricontinent-c3000"></span><h1>Tricontinent C3000<a class="headerlink" href="#module-PyLabware.devices.tricontinent_c3000" title="Permalink to this headline"></a></h1>
+<span id="tricontinent-c3000"></span><h1>Tricontinent C3000<a class="headerlink" href="#module-PyLabware.devices.tricontinent_c3000" title="Link to this heading"></a></h1>
 <p>PyLabware driver for Tricontinent С3000 syringe pump with integrated valve.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.tricontinent_c3000.</span></span><span class="sig-name descname"><span class="pre">C3000SyringePump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">switch_address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valve_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'3PORT_DISTR_IOBE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractSyringePump" title="PyLabware.controllers.AbstractSyringePump"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractSyringePump</span></code></a>, <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractDistributionValve" title="PyLabware.controllers.AbstractDistributionValve"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.controllers.AbstractDistributionValve</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.tricontinent_c3000.</span></span><span class="sig-name descname"><span class="pre">C3000SyringePump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">switch_address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valve_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'3PORT_DISTR_IOBE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractSyringePump" title="PyLabware.controllers.AbstractSyringePump"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractSyringePump</span></code></a>, <a class="reference internal" href="../data_model.html#PyLabware.controllers.AbstractDistributionValve" title="PyLabware.controllers.AbstractDistributionValve"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractDistributionValve</span></code></a></p>
 <p>This provides a Python class for the Tricontinent C3000 syringe pump
 based on the the original operation manual 8694-12 E</p>
 <p>Default constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>device_name</strong> (<em>str</em>) – </p></li>
 <li><p><strong>connection_mode</strong> (<em>str</em>) – </p></li>
-<li><p><strong>address</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>port</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em>) – </p></li>
-<li><p><strong>switch_address</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>address</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>port</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
+<li><p><strong>switch_address</strong> (<em>str</em><em> | </em><em>int</em><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>valve_type</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.autorun">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">autorun</span></span><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.autorun" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">autorun</span></span><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.autorun" title="Link to this definition"></a></dt>
 <dd><p>Property showing if the commands should be executed immediately,
 or queued instead.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.check_errors">
-<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.check_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.check_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.check_errors" title="Link to this definition"></a></dt>
 <dd><p>Checks error bits in the status byte of the pump reply.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.clear_errors">
-<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.clear_errors" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clear_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.clear_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.clear_errors" title="Link to this definition"></a></dt>
 <dd><p>Happens automatically upon errors read-out,
 except those requiring pump re-initialization.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.dispense">
-<span class="sig-name descname"><span class="pre">dispense</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.dispense"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.dispense" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dispense</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.dispense"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.dispense" title="Link to this definition"></a></dt>
 <dd><p>Makes relative dispense.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>increments</strong> (<em>float</em>) – </p></li>
 <li><p><strong>set_busy</strong> (<em>bool</em>) – </p></li>
@@ -154,10 +169,10 @@ except those requiring pump re-initialization.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_plunger_position">
-<span class="sig-name descname"><span class="pre">get_plunger_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_plunger_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_plunger_position" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_plunger_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_plunger_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_plunger_position" title="Link to this definition"></a></dt>
 <dd><p>Returns absolute plunger position.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -165,28 +180,28 @@ except those requiring pump re-initialization.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_pump_configuration">
-<span class="sig-name descname"><span class="pre">get_pump_configuration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_pump_configuration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_pump_configuration" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_pump_configuration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_pump_configuration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_pump_configuration" title="Link to this definition"></a></dt>
 <dd><p>Reads pump EEPROM configuration.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_speed">
-<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_speed" title="Link to this definition"></a></dt>
 <dd><p>Gets the dispensing speed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_status">
-<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_status" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_status" title="Link to this definition"></a></dt>
 <dd><p>Not supported on this device.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_valve_position">
-<span class="sig-name descname"><span class="pre">get_valve_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_valve_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_valve_position" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_valve_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.get_valve_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.get_valve_position" title="Link to this definition"></a></dt>
 <dd><p>Reads current position of the valve.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -194,17 +209,17 @@ except those requiring pump re-initialization.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.initialize_device">
-<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valve_enumeration_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CW'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.initialize_device" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">initialize_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valve_enumeration_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CW'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.initialize_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.initialize_device" title="Link to this definition"></a></dt>
 <dd><p>Runs pump initialization.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_connected">
-<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_connected" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.is_connected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_connected" title="Link to this definition"></a></dt>
 <dd><p>Checks whether the device is connected by
 checking it’s firmware version.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -212,10 +227,10 @@ checking it’s firmware version.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_idle">
-<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_idle" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_idle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.is_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_idle" title="Link to this definition"></a></dt>
 <dd><p>Checks if pump is in idle state.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -223,10 +238,10 @@ checking it’s firmware version.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_initialized">
-<span class="sig-name descname"><span class="pre">is_initialized</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.is_initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_initialized" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_initialized</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.is_initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.is_initialized" title="Link to this definition"></a></dt>
 <dd><p>Check if pump has been initialized properly after power-up.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -234,16 +249,16 @@ checking it’s firmware version.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_home">
-<span class="sig-name descname"><span class="pre">move_home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.move_home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_home" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">move_home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.move_home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_home" title="Link to this definition"></a></dt>
 <dd><p>Moves the plunger to home position.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_absolute">
-<span class="sig-name descname"><span class="pre">move_plunger_absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.move_plunger_absolute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_absolute" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">move_plunger_absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.move_plunger_absolute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_absolute" title="Link to this definition"></a></dt>
 <dd><p>Makes absolute plunger move.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>position</strong> (<em>int</em>) – </p></li>
 <li><p><strong>set_busy</strong> (<em>bool</em>) – </p></li>
@@ -254,11 +269,11 @@ checking it’s firmware version.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_relative">
-<span class="sig-name descname"><span class="pre">move_plunger_relative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.move_plunger_relative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_relative" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">move_plunger_relative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.move_plunger_relative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.move_plunger_relative" title="Link to this definition"></a></dt>
 <dd><p>Makes relative plunger move. This is a wrapper for
 dispense()/withdraw().</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>position</strong> (<em>int</em>) – </p></li>
 <li><p><strong>set_busy</strong> (<em>bool</em>) – </p></li>
@@ -269,17 +284,17 @@ dispense()/withdraw().</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.parse_reply">
-<span class="sig-name descname"><span class="pre">parse_reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reply</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.parse_reply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.parse_reply" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">parse_reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reply</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.parse_reply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.parse_reply" title="Link to this definition"></a></dt>
 <dd><p>Overloaded method from base class. We need to do some more
 complex processing here for the status byte manipulations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cmd</strong> (<em>Dict</em>) – </p></li>
 <li><p><strong>reply</strong> (<em>Any</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
 </dd>
 </dl>
@@ -287,10 +302,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_predefined_speed">
-<span class="sig-name descname"><span class="pre">set_predefined_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocity_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_predefined_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_predefined_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_predefined_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocity_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_predefined_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_predefined_speed" title="Link to this definition"></a></dt>
 <dd><p>Sets maximum velocity (top of the ramp) for the syringe motor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>velocity_code</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -298,10 +313,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_ramp_slope">
-<span class="sig-name descname"><span class="pre">set_ramp_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ramp_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_ramp_slope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_ramp_slope" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_ramp_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ramp_code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_ramp_slope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_ramp_slope" title="Link to this definition"></a></dt>
 <dd><p>Sets slope of acceleration/deceleration ramp for the syringe motor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ramp_code</strong> (<em>str</em>) – </p>
 </dd>
 </dl>
@@ -309,10 +324,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_resolution_mode">
-<span class="sig-name descname"><span class="pre">set_resolution_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resolution_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_resolution_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_resolution_mode" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_resolution_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resolution_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_resolution_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_resolution_mode" title="Link to this definition"></a></dt>
 <dd><p>Sets plunger resolution mode.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>resolution_mode</strong> (<em>str</em>) – </p>
 </dd>
 </dl>
@@ -320,10 +335,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_speed">
-<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_speed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_speed" title="Link to this definition"></a></dt>
 <dd><p>Sets maximum velocity (top of the ramp) for the syringe motor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>speed</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -331,10 +346,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_start_velocity">
-<span class="sig-name descname"><span class="pre">set_start_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_velocity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_start_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_start_velocity" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_start_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_velocity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_start_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_start_velocity" title="Link to this definition"></a></dt>
 <dd><p>Sets starting velocity for the syringe motor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>start_velocity</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -342,10 +357,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_stop_velocity">
-<span class="sig-name descname"><span class="pre">set_stop_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_velocity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_stop_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_stop_velocity" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_stop_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_velocity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_stop_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_stop_velocity" title="Link to this definition"></a></dt>
 <dd><p>Sets stopping velocity for the syringe motor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>stop_velocity</strong> (<em>int</em>) – </p>
 </dd>
 </dl>
@@ -353,10 +368,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_position">
-<span class="sig-name descname"><span class="pre">set_valve_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_valve_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_position" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_valve_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_valve_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_position" title="Link to this definition"></a></dt>
 <dd><p>Sets the distribution valve position.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>requested_position</strong> (<em>str</em>) – </p>
 </dd>
 </dl>
@@ -364,10 +379,10 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_type">
-<span class="sig-name descname"><span class="pre">set_valve_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valve_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_valve_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_valve_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valve_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.set_valve_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.set_valve_type" title="Link to this definition"></a></dt>
 <dd><p>Sets valve type. This command requires power-cycle to activate new settings!</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>valve_type</strong> (<em>str</em>) – </p></li>
 <li><p><strong>confirm</strong> (<em>bool</em>) – </p></li>
@@ -378,22 +393,22 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.start" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.start" title="Link to this definition"></a></dt>
 <dd><p>Starts program execution.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.stop" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.stop" title="Link to this definition"></a></dt>
 <dd><p>Stops executing current program/action immediately.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePump.withdraw">
-<span class="sig-name descname"><span class="pre">withdraw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.withdraw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.withdraw" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">withdraw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_busy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePump.withdraw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePump.withdraw" title="Link to this definition"></a></dt>
 <dd><p>Makes relative aspiration.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>increments</strong> (<em>float</em>) – </p></li>
 <li><p><strong>set_busy</strong> (<em>bool</em>) – </p></li>
@@ -406,308 +421,308 @@ complex processing here for the status byte manipulations.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.tricontinent_c3000.</span></span><span class="sig-name descname"><span class="pre">C3000SyringePumpCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePumpCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.models.LabDeviceCommands</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.devices.tricontinent_c3000.</span></span><span class="sig-name descname"><span class="pre">C3000SyringePumpCommands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/PyLabware/devices/tricontinent_c3000.html#C3000SyringePumpCommands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LabDeviceCommands</span></code></p>
 <p>Collection of command definitions for C3000 pump, DT protocol.</p>
 <p>This class shouldn’t be instantiated</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.DEFAULT_STATUS">
-<span class="sig-name descname"><span class="pre">DEFAULT_STATUS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'/0`1'</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.DEFAULT_STATUS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">DEFAULT_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/0`1'</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.DEFAULT_STATUS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.ERROR_CODES">
-<span class="sig-name descname"><span class="pre">ERROR_CODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{0:</span> <span class="pre">'No</span> <span class="pre">error.',</span> <span class="pre">1:</span> <span class="pre">'Initialization</span> <span class="pre">failure!',</span> <span class="pre">2:</span> <span class="pre">'Invalid</span> <span class="pre">command!',</span> <span class="pre">3:</span> <span class="pre">'Invalid</span> <span class="pre">operand!',</span> <span class="pre">4:</span> <span class="pre">'Invalid</span> <span class="pre">checksum!',</span> <span class="pre">6:</span> <span class="pre">'EEPROM</span> <span class="pre">failure!',</span> <span class="pre">7:</span> <span class="pre">'Device</span> <span class="pre">not</span> <span class="pre">initialized!',</span> <span class="pre">8:</span> <span class="pre">'CAN</span> <span class="pre">bus</span> <span class="pre">failure!',</span> <span class="pre">9:</span> <span class="pre">'Plunger</span> <span class="pre">overload!',</span> <span class="pre">10:</span> <span class="pre">'Valve</span> <span class="pre">overload!',</span> <span class="pre">11:</span> <span class="pre">'Plunger</span> <span class="pre">move</span> <span class="pre">not</span> <span class="pre">allowed!</span> <span class="pre">Check</span> <span class="pre">valve</span> <span class="pre">position.',</span> <span class="pre">15:</span> <span class="pre">'Command</span> <span class="pre">overflow!'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.ERROR_CODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ERROR_CODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'No</span> <span class="pre">error.',</span> <span class="pre">1:</span> <span class="pre">'Initialization</span> <span class="pre">failure!',</span> <span class="pre">2:</span> <span class="pre">'Invalid</span> <span class="pre">command!',</span> <span class="pre">3:</span> <span class="pre">'Invalid</span> <span class="pre">operand!',</span> <span class="pre">4:</span> <span class="pre">'Invalid</span> <span class="pre">checksum!',</span> <span class="pre">6:</span> <span class="pre">'EEPROM</span> <span class="pre">failure!',</span> <span class="pre">7:</span> <span class="pre">'Device</span> <span class="pre">not</span> <span class="pre">initialized!',</span> <span class="pre">8:</span> <span class="pre">'CAN</span> <span class="pre">bus</span> <span class="pre">failure!',</span> <span class="pre">9:</span> <span class="pre">'Plunger</span> <span class="pre">overload!',</span> <span class="pre">10:</span> <span class="pre">'Valve</span> <span class="pre">overload!',</span> <span class="pre">11:</span> <span class="pre">'Plunger</span> <span class="pre">move</span> <span class="pre">not</span> <span class="pre">allowed!</span> <span class="pre">Check</span> <span class="pre">valve</span> <span class="pre">position.',</span> <span class="pre">15:</span> <span class="pre">'Command</span> <span class="pre">overflow!'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.ERROR_CODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_BACK_INC">
-<span class="sig-name descname"><span class="pre">GET_BACK_INC</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?12',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_BACK_INC" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_BACK_INC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?12',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_BACK_INC" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_EEPROM_DATA">
-<span class="sig-name descname"><span class="pre">GET_EEPROM_DATA</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?27',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[5],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_EEPROM_DATA" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_EEPROM_DATA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?27',</span> <span class="pre">'reply':</span> <span class="pre">{'args':</span> <span class="pre">[5],</span> <span class="pre">'parser':</span> <span class="pre">&lt;function</span> <span class="pre">slicer&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_EEPROM_DATA" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_FW_VER">
-<span class="sig-name descname"><span class="pre">GET_FW_VER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?23',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_FW_VER" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_FW_VER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?23',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_FW_VER" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_INIT_STATUS">
-<span class="sig-name descname"><span class="pre">GET_INIT_STATUS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?19',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_INIT_STATUS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_INIT_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?19',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_INIT_STATUS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MAX_VEL">
-<span class="sig-name descname"><span class="pre">GET_MAX_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?2',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MAX_VEL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_MAX_VEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?2',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MAX_VEL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MOT_HOLD">
-<span class="sig-name descname"><span class="pre">GET_MOT_HOLD</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?25',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MOT_HOLD" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_MOT_HOLD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?25',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MOT_HOLD" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MOT_RUN">
-<span class="sig-name descname"><span class="pre">GET_MOT_RUN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?26',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MOT_RUN" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_MOT_RUN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?26',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_MOT_RUN" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_START_VEL">
-<span class="sig-name descname"><span class="pre">GET_START_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?1',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_START_VEL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_START_VEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?1',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_START_VEL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STATUS">
-<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?Q',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STATUS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?Q',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STATUS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STEP_RAMP">
-<span class="sig-name descname"><span class="pre">GET_STEP_RAMP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?7',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STEP_RAMP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_STEP_RAMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?7',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STEP_RAMP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STOP_VEL">
-<span class="sig-name descname"><span class="pre">GET_STOP_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?3',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STOP_VEL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_STOP_VEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?3',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_STOP_VEL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_SYR_POS">
-<span class="sig-name descname"><span class="pre">GET_SYR_POS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_SYR_POS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_SYR_POS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_SYR_POS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_VALVE_POS">
-<span class="sig-name descname"><span class="pre">GET_VALVE_POS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'?6',</span> <span class="pre">'reply':</span> <span class="pre">{'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'upper'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_VALVE_POS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">GET_VALVE_POS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'?6',</span> <span class="pre">'reply':</span> <span class="pre">{'parser':</span> <span class="pre">&lt;method</span> <span class="pre">'upper'</span> <span class="pre">of</span> <span class="pre">'str'</span> <span class="pre">objects&gt;,</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.GET_VALVE_POS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_ALL_CCW">
-<span class="sig-name descname"><span class="pre">INIT_ALL_CCW</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'Y',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_ALL_CCW" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">INIT_ALL_CCW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'Y',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_ALL_CCW" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_ALL_CW">
-<span class="sig-name descname"><span class="pre">INIT_ALL_CW</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'Z',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_ALL_CW" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">INIT_ALL_CW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'Z',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_ALL_CW" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_SYRINGE">
-<span class="sig-name descname"><span class="pre">INIT_SYRINGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'W',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_SYRINGE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">INIT_SYRINGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'W',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_SYRINGE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_VALVE">
-<span class="sig-name descname"><span class="pre">INIT_VALVE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'w',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_VALVE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">INIT_VALVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'w',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.INIT_VALVE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_DELAY_EXEC">
-<span class="sig-name descname"><span class="pre">PRG_DELAY_EXEC</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'M'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_DELAY_EXEC" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_DELAY_EXEC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'M'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_DELAY_EXEC" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_EEPROM_EXEC">
-<span class="sig-name descname"><span class="pre">PRG_EEPROM_EXEC</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'e',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_EEPROM_EXEC" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_EEPROM_EXEC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'e',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_EEPROM_EXEC" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_EEPROM_ST">
-<span class="sig-name descname"><span class="pre">PRG_EEPROM_ST</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'s',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_EEPROM_ST" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_EEPROM_ST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'s',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_EEPROM_ST" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_HALT">
-<span class="sig-name descname"><span class="pre">PRG_HALT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'H',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_HALT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_HALT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'H',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_HALT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_MARK_LOOP_END">
-<span class="sig-name descname"><span class="pre">PRG_MARK_LOOP_END</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'G'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_MARK_LOOP_END" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_MARK_LOOP_END</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'G'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_MARK_LOOP_END" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_MARK_LOOP_START">
-<span class="sig-name descname"><span class="pre">PRG_MARK_LOOP_START</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'g'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_MARK_LOOP_START" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_MARK_LOOP_START</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'g'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_MARK_LOOP_START" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_RPT_LAST">
-<span class="sig-name descname"><span class="pre">PRG_RPT_LAST</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'X',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_RPT_LAST" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_RPT_LAST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'X',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_RPT_LAST" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_RUN">
-<span class="sig-name descname"><span class="pre">PRG_RUN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'R',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_RUN" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_RUN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'R',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_RUN" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_TERM">
-<span class="sig-name descname"><span class="pre">PRG_TERM</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'T',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_TERM" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">PRG_TERM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'T',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.PRG_TERM" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.RAMP_PLOPE_MODES">
-<span class="sig-name descname"><span class="pre">RAMP_PLOPE_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'1':</span> <span class="pre">[2500,</span> <span class="pre">20000],</span> <span class="pre">'10':</span> <span class="pre">[25000,</span> <span class="pre">200000],</span> <span class="pre">'11':</span> <span class="pre">[27500,</span> <span class="pre">220000],</span> <span class="pre">'12':</span> <span class="pre">[30000,</span> <span class="pre">240000],</span> <span class="pre">'13':</span> <span class="pre">[32500,</span> <span class="pre">260000],</span> <span class="pre">'14':</span> <span class="pre">[35000,</span> <span class="pre">280000],</span> <span class="pre">'15':</span> <span class="pre">[37500,</span> <span class="pre">300000],</span> <span class="pre">'16':</span> <span class="pre">[40000,</span> <span class="pre">320000],</span> <span class="pre">'17':</span> <span class="pre">[42500,</span> <span class="pre">340000],</span> <span class="pre">'18':</span> <span class="pre">[45000,</span> <span class="pre">360000],</span> <span class="pre">'19':</span> <span class="pre">[47500,</span> <span class="pre">380000],</span> <span class="pre">'2':</span> <span class="pre">[5000,</span> <span class="pre">40000],</span> <span class="pre">'20':</span> <span class="pre">[50000,</span> <span class="pre">400000],</span> <span class="pre">'3':</span> <span class="pre">[7500,</span> <span class="pre">60000],</span> <span class="pre">'4':</span> <span class="pre">[10000,</span> <span class="pre">80000],</span> <span class="pre">'5':</span> <span class="pre">[12500,</span> <span class="pre">100000],</span> <span class="pre">'6':</span> <span class="pre">[15000,</span> <span class="pre">120000],</span> <span class="pre">'7':</span> <span class="pre">[17500,</span> <span class="pre">140000],</span> <span class="pre">'8':</span> <span class="pre">[20000,</span> <span class="pre">160000],</span> <span class="pre">'9':</span> <span class="pre">[22500,</span> <span class="pre">180000]}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.RAMP_PLOPE_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">RAMP_PLOPE_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'1':</span> <span class="pre">[2500,</span> <span class="pre">20000],</span> <span class="pre">'10':</span> <span class="pre">[25000,</span> <span class="pre">200000],</span> <span class="pre">'11':</span> <span class="pre">[27500,</span> <span class="pre">220000],</span> <span class="pre">'12':</span> <span class="pre">[30000,</span> <span class="pre">240000],</span> <span class="pre">'13':</span> <span class="pre">[32500,</span> <span class="pre">260000],</span> <span class="pre">'14':</span> <span class="pre">[35000,</span> <span class="pre">280000],</span> <span class="pre">'15':</span> <span class="pre">[37500,</span> <span class="pre">300000],</span> <span class="pre">'16':</span> <span class="pre">[40000,</span> <span class="pre">320000],</span> <span class="pre">'17':</span> <span class="pre">[42500,</span> <span class="pre">340000],</span> <span class="pre">'18':</span> <span class="pre">[45000,</span> <span class="pre">360000],</span> <span class="pre">'19':</span> <span class="pre">[47500,</span> <span class="pre">380000],</span> <span class="pre">'2':</span> <span class="pre">[5000,</span> <span class="pre">40000],</span> <span class="pre">'20':</span> <span class="pre">[50000,</span> <span class="pre">400000],</span> <span class="pre">'3':</span> <span class="pre">[7500,</span> <span class="pre">60000],</span> <span class="pre">'4':</span> <span class="pre">[10000,</span> <span class="pre">80000],</span> <span class="pre">'5':</span> <span class="pre">[12500,</span> <span class="pre">100000],</span> <span class="pre">'6':</span> <span class="pre">[15000,</span> <span class="pre">120000],</span> <span class="pre">'7':</span> <span class="pre">[17500,</span> <span class="pre">140000],</span> <span class="pre">'8':</span> <span class="pre">[20000,</span> <span class="pre">160000],</span> <span class="pre">'9':</span> <span class="pre">[22500,</span> <span class="pre">180000]}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.RAMP_PLOPE_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.RESOLUTION_MODES">
-<span class="sig-name descname"><span class="pre">RESOLUTION_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'N0':</span> <span class="pre">3000,</span> <span class="pre">'N1':</span> <span class="pre">24000,</span> <span class="pre">'N2':</span> <span class="pre">24000}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.RESOLUTION_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">RESOLUTION_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'N0':</span> <span class="pre">3000,</span> <span class="pre">'N1':</span> <span class="pre">24000,</span> <span class="pre">'N2':</span> <span class="pre">24000}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.RESOLUTION_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_BACK_INC">
-<span class="sig-name descname"><span class="pre">SET_BACK_INC</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'K',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_BACK_INC" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_BACK_INC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'K',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_BACK_INC" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_CALIB_CONF">
-<span class="sig-name descname"><span class="pre">SET_CALIB_CONF</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'u'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_CALIB_CONF" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_CALIB_CONF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'u'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_CALIB_CONF" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_EXT_OUT">
-<span class="sig-name descname"><span class="pre">SET_EXT_OUT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'J',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_EXT_OUT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_EXT_OUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'J',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_EXT_OUT" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_EXT_OUT_COND">
-<span class="sig-name descname"><span class="pre">SET_EXT_OUT_COND</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'j',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_EXT_OUT_COND" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_EXT_OUT_COND</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'j',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_EXT_OUT_COND" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MAX_VEL">
-<span class="sig-name descname"><span class="pre">SET_MAX_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">48000,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'V',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MAX_VEL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MAX_VEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">48000,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'V',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MAX_VEL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MAX_VEL_CODE">
-<span class="sig-name descname"><span class="pre">SET_MAX_VEL_CODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">dict_keys(['0',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6',</span> <span class="pre">'7',</span> <span class="pre">'8',</span> <span class="pre">'9',</span> <span class="pre">'10',</span> <span class="pre">'11',</span> <span class="pre">'12',</span> <span class="pre">'13',</span> <span class="pre">'14',</span> <span class="pre">'15',</span> <span class="pre">'16',</span> <span class="pre">'17',</span> <span class="pre">'18',</span> <span class="pre">'19',</span> <span class="pre">'20',</span> <span class="pre">'21',</span> <span class="pre">'22',</span> <span class="pre">'23',</span> <span class="pre">'24',</span> <span class="pre">'25',</span> <span class="pre">'26',</span> <span class="pre">'27',</span> <span class="pre">'28',</span> <span class="pre">'29',</span> <span class="pre">'30',</span> <span class="pre">'31',</span> <span class="pre">'32',</span> <span class="pre">'33',</span> <span class="pre">'34',</span> <span class="pre">'35',</span> <span class="pre">'36',</span> <span class="pre">'37',</span> <span class="pre">'38',</span> <span class="pre">'39',</span> <span class="pre">'40'])},</span> <span class="pre">'name':</span> <span class="pre">'S',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MAX_VEL_CODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MAX_VEL_CODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">dict_keys(['0',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6',</span> <span class="pre">'7',</span> <span class="pre">'8',</span> <span class="pre">'9',</span> <span class="pre">'10',</span> <span class="pre">'11',</span> <span class="pre">'12',</span> <span class="pre">'13',</span> <span class="pre">'14',</span> <span class="pre">'15',</span> <span class="pre">'16',</span> <span class="pre">'17',</span> <span class="pre">'18',</span> <span class="pre">'19',</span> <span class="pre">'20',</span> <span class="pre">'21',</span> <span class="pre">'22',</span> <span class="pre">'23',</span> <span class="pre">'24',</span> <span class="pre">'25',</span> <span class="pre">'26',</span> <span class="pre">'27',</span> <span class="pre">'28',</span> <span class="pre">'29',</span> <span class="pre">'30',</span> <span class="pre">'31',</span> <span class="pre">'32',</span> <span class="pre">'33',</span> <span class="pre">'34',</span> <span class="pre">'35',</span> <span class="pre">'36',</span> <span class="pre">'37',</span> <span class="pre">'38',</span> <span class="pre">'39',</span> <span class="pre">'40'])},</span> <span class="pre">'name':</span> <span class="pre">'S',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MAX_VEL_CODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MOT_HOLD">
-<span class="sig-name descname"><span class="pre">SET_MOT_HOLD</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'h',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MOT_HOLD" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MOT_HOLD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'h',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MOT_HOLD" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MOT_RUN">
-<span class="sig-name descname"><span class="pre">SET_MOT_RUN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'m',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MOT_RUN" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_MOT_RUN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'m',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_MOT_RUN" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_POS_CTR">
-<span class="sig-name descname"><span class="pre">SET_POS_CTR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'z',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_POS_CTR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_POS_CTR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'z',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_POS_CTR" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_PUMP_CONF">
-<span class="sig-name descname"><span class="pre">SET_PUMP_CONF</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'U'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_PUMP_CONF" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_PUMP_CONF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'U'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_PUMP_CONF" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_RAMP_PLOPE">
-<span class="sig-name descname"><span class="pre">SET_RAMP_PLOPE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">dict_keys(['1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6',</span> <span class="pre">'7',</span> <span class="pre">'8',</span> <span class="pre">'9',</span> <span class="pre">'10',</span> <span class="pre">'11',</span> <span class="pre">'12',</span> <span class="pre">'13',</span> <span class="pre">'14',</span> <span class="pre">'15',</span> <span class="pre">'16',</span> <span class="pre">'17',</span> <span class="pre">'18',</span> <span class="pre">'19',</span> <span class="pre">'20'])},</span> <span class="pre">'name':</span> <span class="pre">'L',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_RAMP_PLOPE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_RAMP_PLOPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">dict_keys(['1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6',</span> <span class="pre">'7',</span> <span class="pre">'8',</span> <span class="pre">'9',</span> <span class="pre">'10',</span> <span class="pre">'11',</span> <span class="pre">'12',</span> <span class="pre">'13',</span> <span class="pre">'14',</span> <span class="pre">'15',</span> <span class="pre">'16',</span> <span class="pre">'17',</span> <span class="pre">'18',</span> <span class="pre">'19',</span> <span class="pre">'20'])},</span> <span class="pre">'name':</span> <span class="pre">'L',</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_RAMP_PLOPE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_RES_MODE">
-<span class="sig-name descname"><span class="pre">SET_RES_MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">dict_keys(['N0',</span> <span class="pre">'N1',</span> <span class="pre">'N2'])},</span> <span class="pre">'name':</span> <span class="pre">'N',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_RES_MODE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_RES_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">dict_keys(['N0',</span> <span class="pre">'N1',</span> <span class="pre">'N2'])},</span> <span class="pre">'name':</span> <span class="pre">'N',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_RES_MODE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_START_VEL">
-<span class="sig-name descname"><span class="pre">SET_START_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">8000,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'v',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_START_VEL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_START_VEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">8000,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'v',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_START_VEL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_STOP_STEPS">
-<span class="sig-name descname"><span class="pre">SET_STOP_STEPS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'C',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_STOP_STEPS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_STOP_STEPS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'C',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_STOP_STEPS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_STOP_VEL">
-<span class="sig-name descname"><span class="pre">SET_STOP_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">21600,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'c',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_STOP_VEL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_STOP_VEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'max':</span> <span class="pre">21600,</span> <span class="pre">'min':</span> <span class="pre">1},</span> <span class="pre">'name':</span> <span class="pre">'c',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;},</span> <span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_STOP_VEL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_SYR_GAP">
-<span class="sig-name descname"><span class="pre">SET_SYR_GAP</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'R',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_SYR_GAP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SET_SYR_GAP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'R',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SET_SYR_GAP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SPEED_MODES">
-<span class="sig-name descname"><span class="pre">SPEED_MODES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'0':</span> <span class="pre">[6000,</span> <span class="pre">48000],</span> <span class="pre">'1':</span> <span class="pre">[5600,</span> <span class="pre">44800],</span> <span class="pre">'10':</span> <span class="pre">[1600,</span> <span class="pre">12800],</span> <span class="pre">'11':</span> <span class="pre">[1400,</span> <span class="pre">11200],</span> <span class="pre">'12':</span> <span class="pre">[1200,</span> <span class="pre">9600],</span> <span class="pre">'13':</span> <span class="pre">[1000,</span> <span class="pre">8000],</span> <span class="pre">'14':</span> <span class="pre">[800,</span> <span class="pre">6400],</span> <span class="pre">'15':</span> <span class="pre">[600,</span> <span class="pre">4800],</span> <span class="pre">'16':</span> <span class="pre">[400,</span> <span class="pre">3200],</span> <span class="pre">'17':</span> <span class="pre">[200,</span> <span class="pre">1600],</span> <span class="pre">'18':</span> <span class="pre">[190,</span> <span class="pre">1520],</span> <span class="pre">'19':</span> <span class="pre">[180,</span> <span class="pre">1440],</span> <span class="pre">'2':</span> <span class="pre">[5000,</span> <span class="pre">40000],</span> <span class="pre">'20':</span> <span class="pre">[170,</span> <span class="pre">1360],</span> <span class="pre">'21':</span> <span class="pre">[160,</span> <span class="pre">1280],</span> <span class="pre">'22':</span> <span class="pre">[150,</span> <span class="pre">1200],</span> <span class="pre">'23':</span> <span class="pre">[140,</span> <span class="pre">1120],</span> <span class="pre">'24':</span> <span class="pre">[130,</span> <span class="pre">1040],</span> <span class="pre">'25':</span> <span class="pre">[120,</span> <span class="pre">960],</span> <span class="pre">'26':</span> <span class="pre">[110,</span> <span class="pre">880],</span> <span class="pre">'27':</span> <span class="pre">[100,</span> <span class="pre">800],</span> <span class="pre">'28':</span> <span class="pre">[90,</span> <span class="pre">720],</span> <span class="pre">'29':</span> <span class="pre">[80,</span> <span class="pre">640],</span> <span class="pre">'3':</span> <span class="pre">[4400,</span> <span class="pre">35200],</span> <span class="pre">'30':</span> <span class="pre">[70,</span> <span class="pre">560],</span> <span class="pre">'31':</span> <span class="pre">[60,</span> <span class="pre">480],</span> <span class="pre">'32':</span> <span class="pre">[50,</span> <span class="pre">400],</span> <span class="pre">'33':</span> <span class="pre">[40,</span> <span class="pre">320],</span> <span class="pre">'34':</span> <span class="pre">[30,</span> <span class="pre">240],</span> <span class="pre">'35':</span> <span class="pre">[20,</span> <span class="pre">160],</span> <span class="pre">'36':</span> <span class="pre">[18,</span> <span class="pre">144],</span> <span class="pre">'37':</span> <span class="pre">[16,</span> <span class="pre">128],</span> <span class="pre">'38':</span> <span class="pre">[14,</span> <span class="pre">112],</span> <span class="pre">'39':</span> <span class="pre">[12,</span> <span class="pre">96],</span> <span class="pre">'4':</span> <span class="pre">[3800,</span> <span class="pre">30400],</span> <span class="pre">'40':</span> <span class="pre">[10,</span> <span class="pre">80],</span> <span class="pre">'5':</span> <span class="pre">[3200,</span> <span class="pre">25600],</span> <span class="pre">'6':</span> <span class="pre">[2600,</span> <span class="pre">20800],</span> <span class="pre">'7':</span> <span class="pre">[2200,</span> <span class="pre">17600],</span> <span class="pre">'8':</span> <span class="pre">[2000,</span> <span class="pre">16000],</span> <span class="pre">'9':</span> <span class="pre">[1800,</span> <span class="pre">14400]}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SPEED_MODES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SPEED_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'0':</span> <span class="pre">[6000,</span> <span class="pre">48000],</span> <span class="pre">'1':</span> <span class="pre">[5600,</span> <span class="pre">44800],</span> <span class="pre">'10':</span> <span class="pre">[1600,</span> <span class="pre">12800],</span> <span class="pre">'11':</span> <span class="pre">[1400,</span> <span class="pre">11200],</span> <span class="pre">'12':</span> <span class="pre">[1200,</span> <span class="pre">9600],</span> <span class="pre">'13':</span> <span class="pre">[1000,</span> <span class="pre">8000],</span> <span class="pre">'14':</span> <span class="pre">[800,</span> <span class="pre">6400],</span> <span class="pre">'15':</span> <span class="pre">[600,</span> <span class="pre">4800],</span> <span class="pre">'16':</span> <span class="pre">[400,</span> <span class="pre">3200],</span> <span class="pre">'17':</span> <span class="pre">[200,</span> <span class="pre">1600],</span> <span class="pre">'18':</span> <span class="pre">[190,</span> <span class="pre">1520],</span> <span class="pre">'19':</span> <span class="pre">[180,</span> <span class="pre">1440],</span> <span class="pre">'2':</span> <span class="pre">[5000,</span> <span class="pre">40000],</span> <span class="pre">'20':</span> <span class="pre">[170,</span> <span class="pre">1360],</span> <span class="pre">'21':</span> <span class="pre">[160,</span> <span class="pre">1280],</span> <span class="pre">'22':</span> <span class="pre">[150,</span> <span class="pre">1200],</span> <span class="pre">'23':</span> <span class="pre">[140,</span> <span class="pre">1120],</span> <span class="pre">'24':</span> <span class="pre">[130,</span> <span class="pre">1040],</span> <span class="pre">'25':</span> <span class="pre">[120,</span> <span class="pre">960],</span> <span class="pre">'26':</span> <span class="pre">[110,</span> <span class="pre">880],</span> <span class="pre">'27':</span> <span class="pre">[100,</span> <span class="pre">800],</span> <span class="pre">'28':</span> <span class="pre">[90,</span> <span class="pre">720],</span> <span class="pre">'29':</span> <span class="pre">[80,</span> <span class="pre">640],</span> <span class="pre">'3':</span> <span class="pre">[4400,</span> <span class="pre">35200],</span> <span class="pre">'30':</span> <span class="pre">[70,</span> <span class="pre">560],</span> <span class="pre">'31':</span> <span class="pre">[60,</span> <span class="pre">480],</span> <span class="pre">'32':</span> <span class="pre">[50,</span> <span class="pre">400],</span> <span class="pre">'33':</span> <span class="pre">[40,</span> <span class="pre">320],</span> <span class="pre">'34':</span> <span class="pre">[30,</span> <span class="pre">240],</span> <span class="pre">'35':</span> <span class="pre">[20,</span> <span class="pre">160],</span> <span class="pre">'36':</span> <span class="pre">[18,</span> <span class="pre">144],</span> <span class="pre">'37':</span> <span class="pre">[16,</span> <span class="pre">128],</span> <span class="pre">'38':</span> <span class="pre">[14,</span> <span class="pre">112],</span> <span class="pre">'39':</span> <span class="pre">[12,</span> <span class="pre">96],</span> <span class="pre">'4':</span> <span class="pre">[3800,</span> <span class="pre">30400],</span> <span class="pre">'40':</span> <span class="pre">[10,</span> <span class="pre">80],</span> <span class="pre">'5':</span> <span class="pre">[3200,</span> <span class="pre">25600],</span> <span class="pre">'6':</span> <span class="pre">[2600,</span> <span class="pre">20800],</span> <span class="pre">'7':</span> <span class="pre">[2200,</span> <span class="pre">17600],</span> <span class="pre">'8':</span> <span class="pre">[2000,</span> <span class="pre">16000],</span> <span class="pre">'9':</span> <span class="pre">[1800,</span> <span class="pre">14400]}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SPEED_MODES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SWITCH_ADDRESSES">
-<span class="sig-name descname"><span class="pre">SWITCH_ADDRESSES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'0':</span> <span class="pre">'1',</span> <span class="pre">'1':</span> <span class="pre">'2',</span> <span class="pre">'2':</span> <span class="pre">'3',</span> <span class="pre">'3':</span> <span class="pre">'4',</span> <span class="pre">'4':</span> <span class="pre">'5',</span> <span class="pre">'5':</span> <span class="pre">'6',</span> <span class="pre">'6':</span> <span class="pre">'7',</span> <span class="pre">'7':</span> <span class="pre">'8',</span> <span class="pre">'8':</span> <span class="pre">'9',</span> <span class="pre">'9':</span> <span class="pre">':',</span> <span class="pre">'A':</span> <span class="pre">';',</span> <span class="pre">'B':</span> <span class="pre">'&lt;',</span> <span class="pre">'C':</span> <span class="pre">'=',</span> <span class="pre">'D':</span> <span class="pre">'&gt;',</span> <span class="pre">'E':</span> <span class="pre">'?',</span> <span class="pre">'all':</span> <span class="pre">'-'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SWITCH_ADDRESSES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SWITCH_ADDRESSES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'0':</span> <span class="pre">'1',</span> <span class="pre">'1':</span> <span class="pre">'2',</span> <span class="pre">'2':</span> <span class="pre">'3',</span> <span class="pre">'3':</span> <span class="pre">'4',</span> <span class="pre">'4':</span> <span class="pre">'5',</span> <span class="pre">'5':</span> <span class="pre">'6',</span> <span class="pre">'6':</span> <span class="pre">'7',</span> <span class="pre">'7':</span> <span class="pre">'8',</span> <span class="pre">'8':</span> <span class="pre">'9',</span> <span class="pre">'9':</span> <span class="pre">':',</span> <span class="pre">'A':</span> <span class="pre">';',</span> <span class="pre">'B':</span> <span class="pre">'&lt;',</span> <span class="pre">'C':</span> <span class="pre">'=',</span> <span class="pre">'D':</span> <span class="pre">'&gt;',</span> <span class="pre">'E':</span> <span class="pre">'?',</span> <span class="pre">'all':</span> <span class="pre">'-'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SWITCH_ADDRESSES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_MOVE_ABS">
-<span class="sig-name descname"><span class="pre">SYR_MOVE_ABS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'A',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_MOVE_ABS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SYR_MOVE_ABS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'A',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_MOVE_ABS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_MOVE_ABS_NOBUSY">
-<span class="sig-name descname"><span class="pre">SYR_MOVE_ABS_NOBUSY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'a',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_MOVE_ABS_NOBUSY" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SYR_MOVE_ABS_NOBUSY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'a',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_MOVE_ABS_NOBUSY" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SPIT_REL">
-<span class="sig-name descname"><span class="pre">SYR_SPIT_REL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'D',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SPIT_REL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SYR_SPIT_REL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'D',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SPIT_REL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SPIT_REL_NOBUSY">
-<span class="sig-name descname"><span class="pre">SYR_SPIT_REL_NOBUSY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'d',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SPIT_REL_NOBUSY" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SYR_SPIT_REL_NOBUSY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'d',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SPIT_REL_NOBUSY" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SUCK_REL">
-<span class="sig-name descname"><span class="pre">SYR_SUCK_REL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'P',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SUCK_REL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SYR_SUCK_REL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'P',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SUCK_REL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SUCK_REL_NOBUSY">
-<span class="sig-name descname"><span class="pre">SYR_SUCK_REL_NOBUSY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'p',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SUCK_REL_NOBUSY" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SYR_SUCK_REL_NOBUSY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'p',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.SYR_SUCK_REL_NOBUSY" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_B">
-<span class="sig-name descname"><span class="pre">VALVE_MOVE_B</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'B',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_B" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VALVE_MOVE_B</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'B',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_B" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_E">
-<span class="sig-name descname"><span class="pre">VALVE_MOVE_E</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">'E',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_E" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VALVE_MOVE_E</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'name':</span> <span class="pre">'E',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_E" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_I">
-<span class="sig-name descname"><span class="pre">VALVE_MOVE_I</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">('',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6')},</span> <span class="pre">'name':</span> <span class="pre">'I',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_I" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VALVE_MOVE_I</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">('',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6')},</span> <span class="pre">'name':</span> <span class="pre">'I',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_I" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_O">
-<span class="sig-name descname"><span class="pre">VALVE_MOVE_O</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">('',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6')},</span> <span class="pre">'name':</span> <span class="pre">'O',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_O" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VALVE_MOVE_O</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'check':</span> <span class="pre">{'values':</span> <span class="pre">('',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6')},</span> <span class="pre">'name':</span> <span class="pre">'O',</span> <span class="pre">'reply':</span> <span class="pre">{'type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_MOVE_O" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_POSITIONS">
-<span class="sig-name descname"><span class="pre">VALVE_POSITIONS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">('',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6')</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_POSITIONS" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VALVE_POSITIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('',</span> <span class="pre">'1',</span> <span class="pre">'2',</span> <span class="pre">'3',</span> <span class="pre">'4',</span> <span class="pre">'5',</span> <span class="pre">'6')</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_POSITIONS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_TYPES">
-<span class="sig-name descname"><span class="pre">VALVE_TYPES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'3PORT_DISTR_IO':</span> <span class="pre">'11',</span> <span class="pre">'3PORT_DISTR_IOBE':</span> <span class="pre">'4',</span> <span class="pre">'3PORT_T':</span> <span class="pre">'5',</span> <span class="pre">'3PORT_Y':</span> <span class="pre">'1',</span> <span class="pre">'4PORT_90DEG':</span> <span class="pre">'2',</span> <span class="pre">'4PORT_LOOP':</span> <span class="pre">'9',</span> <span class="pre">'4PORT_T':</span> <span class="pre">'5',</span> <span class="pre">'6PORT_DISTR':</span> <span class="pre">'7'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_TYPES" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VALVE_TYPES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'3PORT_DISTR_IO':</span> <span class="pre">'11',</span> <span class="pre">'3PORT_DISTR_IOBE':</span> <span class="pre">'4',</span> <span class="pre">'3PORT_T':</span> <span class="pre">'5',</span> <span class="pre">'3PORT_Y':</span> <span class="pre">'1',</span> <span class="pre">'4PORT_90DEG':</span> <span class="pre">'2',</span> <span class="pre">'4PORT_LOOP':</span> <span class="pre">'9',</span> <span class="pre">'4PORT_T':</span> <span class="pre">'5',</span> <span class="pre">'6PORT_DISTR':</span> <span class="pre">'7'}</span></em><a class="headerlink" href="#PyLabware.devices.tricontinent_c3000.C3000SyringePumpCommands.VALVE_TYPES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -718,14 +733,14 @@ complex processing here for the status byte manipulations.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devices.julabo_cf41.html" class="btn btn-neutral float-left" title="Julabo CF41" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devices.tecan_cavro_xlp6000.html" class="btn btn-neutral float-left" title="PyLabware.devices.tecan_cavro_xlp6000 module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="devices.vacuubrand_cvc_3000.html" class="btn btn-neutral float-right" title="Vacuubrand CVC3000" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

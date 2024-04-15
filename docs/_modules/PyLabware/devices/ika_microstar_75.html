@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.devices.ika_microstar_75 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.devices.ika_microstar_75</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.ika_microstar_75</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,8 +89,10 @@
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
 
 
-<div class="viewcode-block" id="Microstar75StirrerCommands"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75StirrerCommands">[docs]</a><span class="k">class</span> <span class="nc">Microstar75StirrerCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collection of command definitions for Microstar 75 overhead stirrer.</span>
+<div class="viewcode-block" id="Microstar75StirrerCommands">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75StirrerCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">Microstar75StirrerCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for Microstar 75 overhead stirrer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ##########################  Constants ##################################</span>
@@ -136,15 +145,18 @@
     <span class="n">RESET</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RESET&quot;</span><span class="p">}</span></div>
 
 
-<div class="viewcode-block" id="Microstar75Stirrer"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer">[docs]</a><span class="k">class</span> <span class="nc">Microstar75Stirrer</span><span class="p">(</span><span class="n">AbstractStirringController</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer">[docs]</a>
+<span class="k">class</span> <span class="nc">Microstar75Stirrer</span><span class="p">(</span><span class="n">AbstractStirringController</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This provides a Python class for the Microstar 75 overhead stirrer</span>
 <span class="sd">    based on the english section of the original operation manual</span>
 <span class="sd">    20000008217b_EN_IKA MICROSTAR control_072019_web</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Default constructor.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Load commands from helper class</span>
@@ -174,23 +186,31 @@
         <span class="c1"># Running flag - this device doesn&#39;t have a status check command</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_running</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="Microstar75Stirrer.initialize_device"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Performs device initialization. Updates internal variable with the</span>
+<div class="viewcode-block" id="Microstar75Stirrer.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Performs device initialization. Updates internal variable with the</span>
 <span class="sd">        actual speed setpoint from the device.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">get_speed_setpoint</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Device initialized.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.reset"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Switches back to local control, according to the manual</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.reset">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.reset">[docs]</a>
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Switches back to local control, according to the manual</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">RESET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.is_connected"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.is_connected">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">Microstar75StirrerCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.is_connected">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.is_connected">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">Microstar75StirrerCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks whether device is connected.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether device is connected.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -199,70 +219,103 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">reply</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_NAME</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.is_idle"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.is_idle">[docs]</a>    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks whether device is ready.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.is_idle">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.is_idle">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether device is ready.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.get_status"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.get_status">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.check_errors"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.check_errors">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.clear_errors"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.start_stirring"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.start_stirring">[docs]</a>    <span class="k">def</span> <span class="nf">start_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Starts rotation.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.start_stirring">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.start_stirring">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts rotation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_running</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.stop_stirring"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.stop_stirring">[docs]</a>    <span class="k">def</span> <span class="nf">stop_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stops rotation.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.stop_stirring">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.stop_stirring">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_stirring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops rotation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_running</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.set_speed"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.set_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets rotation speed.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.set_speed">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.set_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets rotation speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span> <span class="o">=</span> <span class="n">speed</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.get_speed"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets actual rotation speed.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.get_speed">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets actual rotation speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SPEED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.get_speed_setpoint"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_speed_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets desired rotation speed.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.get_speed_setpoint">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_speed_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets desired rotation speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SPEED_SET</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_speed_setpoint</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.get_rotation_direction"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_rotation_direction">[docs]</a>    <span class="k">def</span> <span class="nf">get_rotation_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets current rotation direction.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.get_rotation_direction">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.get_rotation_direction">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_rotation_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current rotation direction.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_ROTATION_DIR</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ROTATION_DIRECTIONS</span><span class="p">[</span><span class="n">reply</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.set_rotation_direction"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.set_rotation_direction">[docs]</a>    <span class="k">def</span> <span class="nf">set_rotation_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CW&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets desired rotation direction - CW or CCW.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.set_rotation_direction">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.set_rotation_direction">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_rotation_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CW&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets desired rotation direction - CW or CCW.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
@@ -277,8 +330,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_DIR_CCW</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Microstar75Stirrer.change_rotation_direction"><a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.change_rotation_direction">[docs]</a>    <span class="k">def</span> <span class="nf">change_rotation_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Swaps current rotation direction.</span>
+
+<div class="viewcode-block" id="Microstar75Stirrer.change_rotation_direction">
+<a class="viewcode-back" href="../../../api/devices.ika_microstar_75.html#PyLabware.devices.ika_microstar_75.Microstar75Stirrer.change_rotation_direction">[docs]</a>
+    <span class="k">def</span> <span class="nf">change_rotation_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Swaps current rotation direction.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rotation_direction</span><span class="p">()</span>
@@ -287,7 +343,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_DIR_CCW</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ROTATION_DIR_CW</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+</div>
+
 </pre></div>
 
            </div>
@@ -297,7 +355,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

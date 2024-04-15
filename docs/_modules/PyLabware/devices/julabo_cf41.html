@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.devices.julabo_cf41 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.devices.julabo_cf41</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.julabo_cf41</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -88,8 +95,10 @@
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
 
 
-<div class="viewcode-block" id="CF41ChillerCommands"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41ChillerCommands">[docs]</a><span class="k">class</span> <span class="nc">CF41ChillerCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collection of command definitions for CF41 chiller.</span>
+<div class="viewcode-block" id="CF41ChillerCommands">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41ChillerCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">CF41ChillerCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for CF41 chiller.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ################### Configuration constants #############################</span>
@@ -304,14 +313,17 @@
     <span class="n">SET_BAND_LIM_LO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OUT_PAR_16&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}}</span></div>
 
 
-<div class="viewcode-block" id="CF41Chiller"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller">[docs]</a><span class="k">class</span> <span class="nc">CF41Chiller</span><span class="p">(</span><span class="n">AbstractTemperatureController</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CF41Chiller">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller">[docs]</a>
+<span class="k">class</span> <span class="nc">CF41Chiller</span><span class="p">(</span><span class="n">AbstractTemperatureController</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This provides a Python class for the Julabo CF41 chiller based on the</span>
 <span class="sd">    the original operation manual 1.951.4871-V3 11/15 26.11.15</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Default constructor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">CF41ChillerCommands</span>
@@ -333,19 +345,27 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">device_name</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">)</span>
 
-<div class="viewcode-block" id="CF41Chiller.initialize_device"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This chiller doesn&#39;t have initialization method.</span>
+<div class="viewcode-block" id="CF41Chiller.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This chiller doesn&#39;t have initialization method.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_status"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_status">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">)</span>  <span class="c1"># Stopped, no error</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_status">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_status">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">)</span>  <span class="c1"># Stopped, no error</span>
     <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets chiller status.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets chiller status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_STATUS</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.check_errors"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Checks device for errors.</span>
+
+<div class="viewcode-block" id="CF41Chiller.check_errors">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks device for errors.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
         <span class="c1"># All OK</span>
@@ -364,14 +384,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">errmsg</span><span class="p">)</span>
         <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="n">errmsg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.clear_errors"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not yet implemented. #TODO</span>
+
+<div class="viewcode-block" id="CF41Chiller.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not yet implemented. #TODO</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.is_connected"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.is_connected">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CF41ChillerCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CF41Chiller.is_connected">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.is_connected">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CF41ChillerCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if teh chiller is connected.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if teh chiller is connected.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -380,9 +406,12 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_NAME</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.is_idle"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.is_idle">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CF41Chiller.is_idle">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.is_idle">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns true if the chiller is off: pump and temperature control</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -391,26 +420,38 @@
         <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_CHILLER_STATE</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.start_temperature_regulation"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.start_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">start_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Starts the chiller</span>
+
+<div class="viewcode-block" id="CF41Chiller.start_temperature_regulation">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.start_temperature_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts the chiller</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START_CHILLER</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.stop_temperature_regulation"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.stop_temperature_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stops the chiller</span>
+
+<div class="viewcode-block" id="CF41Chiller.stop_temperature_regulation">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.stop_temperature_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_temperature_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops the chiller</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP_CHILLER</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_regulation_mode"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_regulation_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_regulation_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Gets current temperature regulation mdoe.</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_regulation_mode">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_regulation_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_regulation_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets current temperature regulation mdoe.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_REG_MODE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.set_regulation_mode"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_regulation_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_regulation_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets chiller temperature regulation mode.</span>
+
+<div class="viewcode-block" id="CF41Chiller.set_regulation_mode">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_regulation_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_regulation_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets chiller temperature regulation mode.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Check if we got valid mode</span>
@@ -418,9 +459,12 @@
             <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Invalid regulation mode provided!&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TEMP_REG_MODE</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.set_temperature"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_temperature">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;{$args[1]}&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CF41Chiller.set_temperature">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_temperature">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;{$args[1]}&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the target temperature of the chiller.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the target temperature of the chiller.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            temperature (float): Temperature setpoint in °C.</span>
@@ -442,15 +486,21 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid active SP &lt;</span><span class="si">{</span><span class="n">setpoint_active</span><span class="si">}</span><span class="s2">&gt; received from the device!&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_active_setpoint"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_active_setpoint">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_active_setpoint">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_active_setpoint">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_active_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Gets currently active temperature setpoint.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Gets currently active temperature setpoint.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_SP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_temperature"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Retrieves the current temperature of the chiller.</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_temperature">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieves the current temperature of the chiller.</span>
 <span class="sd">        This can be the internal or external temperature, depending</span>
 <span class="sd">        in what mode the chiller is currently operating.</span>
 
@@ -483,9 +533,12 @@
         <span class="k">if</span> <span class="n">sensor</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_EXT</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_temperature_setpoint"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature_setpoint">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_temperature_setpoint">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_temperature_setpoint">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_temperature_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads the current temperature setpoint.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            sensor (int): Specify which temperature probe the setpoint applies to.</span>
@@ -504,9 +557,12 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TEMP_SP3</span><span class="p">)</span>
         <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid active SP &lt;</span><span class="si">{</span><span class="n">setpoint_active</span><span class="si">}</span><span class="s2">&gt; received from the device!&quot;</span><span class="p">)</span></div>
 
+
     <span class="c1"># FIXME this should be refactored with new background tasks functionality</span>
-<div class="viewcode-block" id="CF41Chiller.ramp_temperature"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.ramp_temperature">[docs]</a>    <span class="k">def</span> <span class="nf">ramp_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ramps chiller temperature from the current temperature</span>
+<div class="viewcode-block" id="CF41Chiller.ramp_temperature">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.ramp_temperature">[docs]</a>
+    <span class="k">def</span> <span class="nf">ramp_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">end_temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ramps chiller temperature from the current temperature</span>
 <span class="sd">        to the end_temperature over time.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -533,8 +589,9 @@
         <span class="n">ramp_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">ramp_step</span></div>
 
+
     <span class="k">def</span> <span class="nf">_ramp_runner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Worker function that actually does the ramp.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Worker function that actually does the ramp.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">current_temperature</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">step</span>
@@ -550,51 +607,73 @@
         <span class="c1"># Set temperature to final value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
 
-<div class="viewcode-block" id="CF41Chiller.get_cooling_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_cooling_power">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="viewcode-block" id="CF41Chiller.get_cooling_power">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_cooling_power">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_cooling_power</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the value of the chiller cooling power in %</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the value of the chiller cooling power in %</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_MAX_COOL_PWR</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.set_cooling_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_cooling_power">[docs]</a>    <span class="k">def</span> <span class="nf">set_cooling_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cooling_power</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the value of the chiller cooling power in %</span>
+
+<div class="viewcode-block" id="CF41Chiller.set_cooling_power">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_cooling_power">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_cooling_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cooling_power</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the value of the chiller cooling power in %</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># According to manual, &quot;Enter the value with a preceding negative sign!&quot;</span>
         <span class="n">cooling_power</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">cooling_power</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_COOL_PWR</span><span class="p">,</span> <span class="n">cooling_power</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_heating_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power">[docs]</a>    <span class="k">def</span> <span class="nf">get_heating_power</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the current heating power in %.</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_heating_power">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_heating_power</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the current heating power in %.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_HEAT_PWR</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_heating_power_setpoint"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_heating_power_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the value of the heating power setpoint in %</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_heating_power_setpoint">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_heating_power_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_heating_power_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the value of the heating power setpoint in %</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_MAX_HEAT_PWR</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.set_heating_power"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_heating_power">[docs]</a>    <span class="k">def</span> <span class="nf">set_heating_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heating_power</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the heating power of the chiller, in percent [10-100%].</span>
+
+<div class="viewcode-block" id="CF41Chiller.set_heating_power">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_heating_power">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_heating_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heating_power</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the heating power of the chiller, in percent [10-100%].</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">heating_power</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">heating_power</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_HEAT_PWR</span><span class="p">,</span> <span class="n">heating_power</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.set_recirculation_pump_speed"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_recirculation_pump_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_recirculation_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the recirculation pump speed (4 different speeds allowed).</span>
+
+<div class="viewcode-block" id="CF41Chiller.set_recirculation_pump_speed">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.set_recirculation_pump_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_recirculation_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the recirculation pump speed (4 different speeds allowed).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PUMP_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CF41Chiller.get_recirculation_pump_speed"><a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_recirculation_pump_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_recirculation_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the recirculation pump speed:</span>
+
+<div class="viewcode-block" id="CF41Chiller.get_recirculation_pump_speed">
+<a class="viewcode-back" href="../../../api/devices.julabo_cf41.html#PyLabware.devices.julabo_cf41.CF41Chiller.get_recirculation_pump_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_recirculation_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the recirculation pump speed:</span>
 <span class="sd">        1 (low flow rate) --&gt; 4 (high flow rate)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_SPEED</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_SPEED</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>
@@ -604,7 +683,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

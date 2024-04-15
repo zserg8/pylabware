@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PyLabware.devices.vacuubrand_cvc_3000 &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,18 +27,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> PyLabware
-            <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
@@ -58,9 +65,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>PyLabware.devices.vacuubrand_cvc_3000</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.vacuubrand_cvc_3000</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -89,8 +96,10 @@
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
 
 
-<div class="viewcode-block" id="CVC3000VacuumPumpCommands"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPumpCommands">[docs]</a><span class="k">class</span> <span class="nc">CVC3000VacuumPumpCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collection of command definitions for CVC3000 vacuum controller.</span>
+<div class="viewcode-block" id="CVC3000VacuumPumpCommands">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPumpCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">CVC3000VacuumPumpCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for CVC3000 vacuum controller.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ################## Configuration constants ###########################</span>
@@ -193,7 +202,7 @@
 
     <span class="c1"># ################## Control Commands ###################################</span>
     <span class="c1"># Information requests (config, status, version)</span>
-    <span class="n">GET_NAME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_VER&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">]}}</span>
+    <span class="n">GET_NAME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_VER&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">]}}</span>
     <span class="n">GET_VERSION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_VER&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">]}}</span>
     <span class="n">GET_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_CFG&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
     <span class="n">GET_STATUS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_STAT&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
@@ -264,14 +273,17 @@
                  <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">slicer</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}}</span></div>
 
 
-<div class="viewcode-block" id="CVC3000VacuumPump"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump">[docs]</a><span class="k">class</span> <span class="nc">CVC3000VacuumPump</span><span class="p">(</span><span class="n">AbstractPressureController</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump">[docs]</a>
+<span class="k">class</span> <span class="nc">CVC3000VacuumPump</span><span class="p">(</span><span class="n">AbstractPressureController</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This provides a Python class for the Vacuubrand CVC3000 vacuum controller</span>
 <span class="sd">    based on the the original operation manual 20901228_EN_ONLINE</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Default constructor.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">CVC3000VacuumPumpCommands</span>
@@ -298,7 +310,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">device_name</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_recv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;When CVC 3000 is in echo mode, it echoes back any SET_x command</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;When CVC 3000 is in echo mode, it echoes back any SET_x command</span>
 <span class="sd">        parameter if the command has been interpreted correctly.</span>
 <span class="sd">        If not, it doesn&#39;t reply anything, which will generate exception</span>
 <span class="sd">        in _recv() after timeout. Thus we need to wrap it in try..catch.</span>
@@ -307,10 +319,10 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_recv</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">PLConnectionTimeoutError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="s2">&quot;No echo reply received from the device!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+            <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="s2">&quot;No echo reply received from the device!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_check_readback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">readback</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks the CVC3000 echo reply against the parameter value sent.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks the CVC3000 echo reply against the parameter value sent.</span>
 <span class="sd">        Raises PLDeviceReplyError in case readback value is wrong.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -320,8 +332,10 @@
             <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">readback</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Read-back check failed! Expected &lt;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt;, read back &lt;</span><span class="si">{</span><span class="n">readback</span><span class="si">}</span><span class="s2">&gt;.&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.initialize_device"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.initialize_device">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the following parameters:</span>
+<div class="viewcode-block" id="CVC3000VacuumPump.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the following parameters:</span>
 <span class="sd">        echo &#39;on&#39; for all SET_x commands, to check if the command was interpreted correctly</span>
 <span class="sd">        remote control active otherwise the device cannot accept any settings,</span>
 <span class="sd">        set the controller to CVC 3000 which is the most comprehensive</span>
@@ -329,7 +343,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Echo on</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_echo</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_echo</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># There seems to be a buggy behavior on FW v. 2.14 when no echo is emitted if the</span>
+        <span class="c1"># device is not yet in the remote mode.</span>
+        <span class="k">except</span> <span class="n">PLDeviceReplyError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No echo reply received from the device!&quot;</span><span class="p">)</span>
 
         <span class="c1"># Remote on</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_remote</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -347,9 +366,12 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Device initialized.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.is_connected"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.is_connected">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CVC3000VacuumPumpCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.is_connected">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.is_connected">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CVC3000VacuumPumpCommands</span><span class="o">.</span><span class="n">DEFAULT_NAME</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if the correct device is connected by asking the name.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the correct device is connected by asking the name.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -358,8 +380,11 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">reply</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">DEFAULT_NAME</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.is_idle"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.is_idle">[docs]</a>    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if the pump is in function at the moment.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.is_idle">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.is_idle">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the pump is in function at the moment.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
@@ -373,8 +398,11 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.set_echo"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_echo">[docs]</a>    <span class="k">def</span> <span class="nf">set_echo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Toggle echo mode of the device on/off.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.set_echo">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_echo">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_echo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Toggle echo mode of the device on/off.</span>
 <span class="sd">        When echo mode is on, pump replies with command argument for each</span>
 <span class="sd">        command correctly recognized. If echo mode is on, but the command</span>
 <span class="sd">        is wrong/unrecognized - the pump replies nothing.</span>
@@ -383,18 +411,23 @@
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_ECHO</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">readback</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.set_remote"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_remote">[docs]</a>    <span class="k">def</span> <span class="nf">set_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Toggle the remote control of the device on/off.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.set_remote">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_remote">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Toggle the remote control of the device on/off.</span>
 <span class="sd">        After the pump is disconnected it will remain in remote control state</span>
 <span class="sd">        not allowing manual actions on the front panel.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_REMOTE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">readback</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_REMOTE</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_status"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_status">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CVC3000VacuumPumpCommands</span><span class="o">.</span><span class="n">EXAMPLE_STATUS</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_status">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_status">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CVC3000VacuumPumpCommands</span><span class="o">.</span><span class="n">EXAMPLE_STATUS</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets device status and returns it as a list of integers</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets device status and returns it as a list of integers</span>
 <span class="sd">        or as a human-readable dictionary</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -415,9 +448,12 @@
             <span class="n">result</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STATUSES</span><span class="p">[</span><span class="n">parameter</span><span class="p">][</span><span class="n">value</span><span class="p">]}</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_configuration"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_configuration">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CVC3000VacuumPumpCommands</span><span class="o">.</span><span class="n">EXAMPLE_CONFIG</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_configuration">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_configuration">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">CVC3000VacuumPumpCommands</span><span class="o">.</span><span class="n">EXAMPLE_CONFIG</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets device configuration and returns it as a list of integers</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets device configuration and returns it as a list of integers</span>
 <span class="sd">        or as a human-readable dictionary</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -439,8 +475,11 @@
             <span class="n">result</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="n">parameter</span><span class="p">][</span><span class="n">value</span><span class="p">]}</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.check_errors"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.check_errors">[docs]</a>    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get the error string from the device and it translates it</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.check_errors">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the error string from the device and it translates it</span>
 <span class="sd">        into a readable string. As long as the error string can contain only 1 and 0,</span>
 <span class="sd">        unlike configuration and status strings, it can be treated as a bit field.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -454,13 +493,19 @@
                     <span class="n">errors_occurred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERRORS</span><span class="p">[</span><span class="n">error</span><span class="p">])</span>
             <span class="k">raise</span> <span class="n">PLDeviceInternalError</span><span class="p">(</span><span class="n">errors_occurred</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.clear_errors"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.clear_errors">[docs]</a>    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Not implemented in this device, requires manual checking.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not implemented in this device, requires manual checking.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.start_pressure_regulation"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.start_pressure_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">start_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Starts the pump.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.start_pressure_regulation">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.start_pressure_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">start_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts the pump.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_idle</span><span class="p">():</span>
@@ -468,22 +513,31 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">START</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.stop_pressure_regulation"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.stop_pressure_regulation">[docs]</a>    <span class="k">def</span> <span class="nf">stop_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stops the pump.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.stop_pressure_regulation">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.stop_pressure_regulation">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop_pressure_regulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops the pump.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">STOP</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_mode"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns pump operation mode.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_mode">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns pump operation mode.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.set_mode"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_mode">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;{$args[1]}&quot;</span><span class="p">)</span>  <span class="c1"># Return mode in simulation</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.set_mode">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_mode">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;{$args[1]}&quot;</span><span class="p">)</span>  <span class="c1"># Return mode in simulation</span>
     <span class="k">def</span> <span class="nf">set_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets pump operation mode.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets pump operation mode.</span>
 <span class="sd">           When set to extended auto modes (30, 31, 32), the controller would</span>
 <span class="sd">           always read back mode 3.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -502,24 +556,33 @@
             <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to switch pump to mode </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">readback_mode</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_pump_speed"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pump_speed">[docs]</a>    <span class="k">def</span> <span class="nf">get_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the current speed of the pump&#39;s motor in %.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_pump_speed">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pump_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the current speed of the pump&#39;s motor in %.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Getting/setting pump speed is not supported in VacuuLAN/Auto modes!&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_SPEED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_pump_speed_setpoint"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pump_speed_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_pump_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the maximum speed of the pump in %.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_pump_speed_setpoint">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pump_speed_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pump_speed_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the maximum speed of the pump in %.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Getting/setting pump speed is not supported in VacuuLAN/Auto modes!&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PUMP_SPEED_SET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.set_pump_speed"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_pump_speed">[docs]</a>    <span class="k">def</span> <span class="nf">set_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the maximum speed (1 - 100 %) the pump will reach.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.set_pump_speed">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_pump_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the maximum speed (1 - 100 %) the pump will reach.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
@@ -527,16 +590,22 @@
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PUMP_SPEED</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="n">readback</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_pressure"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pressure">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mf">1013.25</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_pressure">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pressure">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="mf">1013.25</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the current pressure. In simulation returns atmospheric</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the current pressure. In simulation returns atmospheric</span>
 <span class="sd">        pressure.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PRESSURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.set_pressure"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_pressure">[docs]</a>    <span class="k">def</span> <span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the pressure to be reached, in millibar.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.set_pressure">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_pressure">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the pressure to be reached, in millibar.</span>
 <span class="sd">        Takes pressure as a float to comply w/ AbstractPressureController,</span>
 <span class="sd">        but the device only understands mbar (int).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -548,14 +617,20 @@
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_PRESSURE_WITH_VENT</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="n">readback</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">pressure</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_pressure_setpoint"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pressure_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_pressure_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the pressure setpoint, in millibar.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_pressure_setpoint">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_pressure_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pressure_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the pressure setpoint, in millibar.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_PRESSURE_SET</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.set_end_pressure"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_end_pressure">[docs]</a>    <span class="k">def</span> <span class="nf">set_end_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the the end pressure for auto mode and pump down mode.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.set_end_pressure">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_end_pressure">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_end_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the the end pressure for auto mode and pump down mode.</span>
 <span class="sd">        After this pressure is reached or the timeout has elapsed</span>
 <span class="sd">        (whichever happens first), the pump switches off.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -572,14 +647,20 @@
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_OFF_PRESSURE</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="n">readback</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">pressure</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_end_pressure_setpoint"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_end_pressure_setpoint">[docs]</a>    <span class="k">def</span> <span class="nf">get_end_pressure_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the end pressure setpoint.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_end_pressure_setpoint">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_end_pressure_setpoint">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_end_pressure_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the end pressure setpoint.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_OFF_PRESSURE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.set_end_timeout"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_end_timeout">[docs]</a>    <span class="k">def</span> <span class="nf">set_end_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets end time for pump down and auto mode. After this time has elapsed</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.set_end_timeout">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.set_end_timeout">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_end_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets end time for pump down and auto mode. After this time has elapsed</span>
 <span class="sd">        or switch-off pressure is reached (whichever happens first),</span>
 <span class="sd">        the pump switches off.</span>
 
@@ -597,20 +678,27 @@
 
         <span class="c1"># Convert time in seconds to hh:mm string required by the pump</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">timeout</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Formatted timeout: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_TIMER</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="n">readback</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.get_end_timeout"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_end_timeout">[docs]</a>    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;00:30&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.get_end_timeout">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.get_end_timeout">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="s2">&quot;00:30&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_end_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets end time value in seconds.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets end time value in seconds.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_TIMER</span><span class="p">)</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">reply</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">reply</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">timeout</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.is_vent_open"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.is_vent_open">[docs]</a>    <span class="k">def</span> <span class="nf">is_vent_open</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Checks if the vent is open.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.is_vent_open">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.is_vent_open">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_vent_open</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the vent is open.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
@@ -618,30 +706,40 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.vent_on"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.vent_on">[docs]</a>    <span class="k">def</span> <span class="nf">vent_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Opens the air admittance valve.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.vent_on">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.vent_on">[docs]</a>
+    <span class="k">def</span> <span class="nf">vent_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Opens the air admittance valve.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VENT_ON</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="n">readback</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VENT_OPEN</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.vent_off"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.vent_off">[docs]</a>    <span class="k">def</span> <span class="nf">vent_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Closes the air admittance valve.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.vent_off">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.vent_off">[docs]</a>
+    <span class="k">def</span> <span class="nf">vent_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Closes the air admittance valve.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VENT_OFF</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="n">readback</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VENT_CLOSED</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CVC3000VacuumPump.vent_auto"><a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.vent_auto">[docs]</a>    <span class="k">def</span> <span class="nf">vent_auto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Automatically vents the pump to the atmospheric pressure.</span>
+
+<div class="viewcode-block" id="CVC3000VacuumPump.vent_auto">
+<a class="viewcode-back" href="../../../api/devices.vacuubrand_cvc_3000.html#PyLabware.devices.vacuubrand_cvc_3000.CVC3000VacuumPump.vent_auto">[docs]</a>
+    <span class="k">def</span> <span class="nf">vent_auto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Automatically vents the pump to the atmospheric pressure.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">readback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VENT_ON_TO_ATM</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readback</span><span class="p">(</span><span class="n">readback</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VENT_AUTO</span><span class="p">)</span></div>
 
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">unit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get pressure unit that the device is currently operating with.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get pressure unit that the device is currently operating with.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: Pressure unit that the device is currently operating with. One</span>
@@ -649,6 +747,7 @@
 <span class="sd">            been called then return ``None``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">CONFIGURATIONS</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]]</span></div>
+
 </pre></div>
 
            </div>
@@ -658,7 +757,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

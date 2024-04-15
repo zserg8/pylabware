@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath("../../"))
 # -- Project information -----------------------------------------------------
 
 project = 'PyLabware'
-copyright = 'Cronin Group, 2021'
+copyright = '2021-2024, Sergey Zalesskiy; 2021, Cronin Group'
 author = 'Sergey Zalesskiy'
 
 

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Exceptions &mdash; PyLabware  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,18 +30,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PyLabware
-            <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../_static/logo_white_200px.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
@@ -46,7 +53,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="connections.html">Connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Exceptions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exceptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.exceptions.PLConnectionError"><code class="docutils literal notranslate"><span class="pre">PLConnectionError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.exceptions.PLConnectionProtocolError"><code class="docutils literal notranslate"><span class="pre">PLConnectionProtocolError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.exceptions.PLConnectionTimeoutError"><code class="docutils literal notranslate"><span class="pre">PLConnectionTimeoutError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.exceptions.PLDeviceCommandError"><code class="docutils literal notranslate"><span class="pre">PLDeviceCommandError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.exceptions.PLDeviceError"><code class="docutils literal notranslate"><span class="pre">PLDeviceError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.exceptions.PLDeviceInternalError"><code class="docutils literal notranslate"><span class="pre">PLDeviceInternalError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#PyLabware.exceptions.PLDeviceReplyError"><code class="docutils literal notranslate"><span class="pre">PLDeviceReplyError</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="parsers.html">Parsers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main.html#devices">Devices</a></li>
 </ul>
@@ -68,9 +84,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="main.html">API Reference</a> &raquo;</li>
-      <li>Exceptions</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="main.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Exceptions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/exceptions.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,55 +97,55 @@
            <div itemprop="articleBody">
              
   <section id="module-PyLabware.exceptions">
-<span id="exceptions"></span><h1>Exceptions<a class="headerlink" href="#module-PyLabware.exceptions" title="Permalink to this headline"></a></h1>
+<span id="exceptions"></span><h1>Exceptions<a class="headerlink" href="#module-PyLabware.exceptions" title="Link to this heading"></a></h1>
 <p>PyLabware  exceptions</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="PyLabware.exceptions.PLConnectionError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLConnectionError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLConnectionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLConnectionError" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLConnectionError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLConnectionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLConnectionError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectionError</span></code></p>
 <p>Generic connection error, base class.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="PyLabware.exceptions.PLConnectionProtocolError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLConnectionProtocolError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLConnectionProtocolError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLConnectionProtocolError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLConnectionError" title="PyLabware.exceptions.PLConnectionError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.exceptions.PLConnectionError</span></code></a></p>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLConnectionProtocolError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLConnectionProtocolError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLConnectionProtocolError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLConnectionError" title="PyLabware.exceptions.PLConnectionError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PLConnectionError</span></code></a></p>
 <p>Error in transport protocol.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="PyLabware.exceptions.PLConnectionTimeoutError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLConnectionTimeoutError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLConnectionTimeoutError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLConnectionTimeoutError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLConnectionError" title="PyLabware.exceptions.PLConnectionError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.exceptions.PLConnectionError</span></code></a></p>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLConnectionTimeoutError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLConnectionTimeoutError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLConnectionTimeoutError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLConnectionError" title="PyLabware.exceptions.PLConnectionError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PLConnectionError</span></code></a></p>
 <p>Connection timeout error.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="PyLabware.exceptions.PLDeviceCommandError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceCommandError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceCommandError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceCommandError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLDeviceError" title="PyLabware.exceptions.PLDeviceError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.exceptions.PLDeviceError</span></code></a></p>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceCommandError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceCommandError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceCommandError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLDeviceError" title="PyLabware.exceptions.PLDeviceError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PLDeviceError</span></code></a></p>
 <p>Error in processing device command.</p>
 <p>This should be any error arising BEFORE the command has been sent to a device.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="PyLabware.exceptions.PLDeviceError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceError" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Generic device error, base class.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="PyLabware.exceptions.PLDeviceInternalError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceInternalError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceInternalError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceInternalError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLDeviceReplyError" title="PyLabware.exceptions.PLDeviceReplyError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.exceptions.PLDeviceReplyError</span></code></a></p>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceInternalError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceInternalError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceInternalError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLDeviceReplyError" title="PyLabware.exceptions.PLDeviceReplyError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PLDeviceReplyError</span></code></a></p>
 <p>Error returned by device as a response to command.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="PyLabware.exceptions.PLDeviceReplyError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceReplyError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceReplyError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceReplyError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLDeviceError" title="PyLabware.exceptions.PLDeviceError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyLabware.exceptions.PLDeviceError</span></code></a></p>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PyLabware.exceptions.</span></span><span class="sig-name descname"><span class="pre">PLDeviceReplyError</span></span><a class="reference internal" href="../_modules/PyLabware/exceptions.html#PLDeviceReplyError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#PyLabware.exceptions.PLDeviceReplyError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyLabware.exceptions.PLDeviceError" title="PyLabware.exceptions.PLDeviceError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PLDeviceError</span></code></a></p>
 <p>Error in processing device reply.</p>
 <p>This should be any error arising AFTER the command has been sent to the device.</p>
 </dd></dl>
@@ -147,7 +163,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright Cronin Group, 2021.</p>
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

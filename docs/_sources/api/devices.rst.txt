@@ -11,7 +11,11 @@
    devices.ika_ret_control_visc
    devices.ika_rv10
    devices.idex_mxii.rst
+   devices.kern_kdp3000.rst
+   devices.metrohm_781ph.rst
+   devices.mt_ms3002s.rst
    devices.julabo_cf41
+   devices.tecan_cavro_xlp6000.rst
    devices.tricontinent_c3000
    devices.vacuubrand_cvc_3000
 

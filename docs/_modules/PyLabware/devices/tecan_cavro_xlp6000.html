@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyLabware.devices.tecan_cavro_xlp6000 &mdash; PyLabware  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyLabware
+              <img src="../../../_static/logo_white_200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/main.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyLabware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">PyLabware.devices.tecan_cavro_xlp6000</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PyLabware.devices.tecan_cavro_xlp6000</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyLabware driver for the TECAN Cavro XLP 6000 syringe pump with integrated valve.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+
+<span class="c1"># Core import</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">parsers</span> <span class="k">as</span> <span class="n">parser</span>
+<span class="kn">from</span> <span class="nn">..controllers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AbstractSyringePump</span><span class="p">,</span>
+                           <span class="n">AbstractDistributionValve</span><span class="p">,</span>
+                           <span class="n">in_simulation_device_returns</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="p">(</span><span class="n">PLConnectionError</span><span class="p">,</span> <span class="n">PLDeviceCommandError</span><span class="p">,</span>
+                          <span class="n">PLDeviceError</span><span class="p">,</span> <span class="n">PLDeviceInternalError</span><span class="p">,</span>
+                          <span class="n">PLDeviceReplyError</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">LabDeviceCommands</span><span class="p">,</span> <span class="n">LabDeviceReply</span><span class="p">,</span> <span class="n">ConnectionParameters</span>
+
+
+<div class="viewcode-block" id="XLP6000SyringePumpCommands">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePumpCommands">[docs]</a>
+<span class="k">class</span> <span class="nc">XLP6000SyringePumpCommands</span><span class="p">(</span><span class="n">LabDeviceCommands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of command definitions for XLP6000 pump, DT protocol.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ################### Configuration constants #############################</span>
+
+    <span class="c1"># Mapping of rotary switch settings to apparent pump address on serial</span>
+    <span class="c1"># Please, note, position F is not used (see p.23 of the manual)</span>
+    <span class="n">SWITCH_ADDRESSES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;6&quot;</span><span class="p">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;7&quot;</span><span class="p">:</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;8&quot;</span><span class="p">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;9&quot;</span><span class="p">:</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="s2">&quot;?&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;all&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Allowed valve positions</span>
+    <span class="c1"># Y-valves, 90°-valves and T-valves use IOBE-notation</span>
+    <span class="c1"># 6-pos valves use I1..I6/O1..O6 notation (I - moves CW, O - moves CCW)</span>
+    <span class="c1"># 3-pos distribution valves can use either IOBE or I1..I3/O1..O3 depending how they were configured (Uxx command)</span>
+    <span class="n">VALVE_POSITIONS</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># This is to pass check when IOBE addressing is used and I or O is requested</span>
+        <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;7&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;8&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;9&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Valve types for Uxx command</span>
+    <span class="n">VALVE_TYPES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;3PORT_Y&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="c1"># IOBE control</span>
+        <span class="s2">&quot;3PORT_T&quot;</span><span class="p">:</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span>  <span class="c1"># IOBE control</span>
+        <span class="s2">&quot;3PORT_DISTR_IO&quot;</span><span class="p">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>  <span class="c1"># I1..In, O1..On control</span>
+        <span class="s2">&quot;4PORT_90DEG&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="c1"># IOBE control</span>
+        <span class="s2">&quot;4PORT_T&quot;</span><span class="p">:</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span>  <span class="c1"># IOBE control</span>
+        <span class="s2">&quot;4PORT_LOOP&quot;</span><span class="p">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span>  <span class="c1"># IOBE control</span>
+        <span class="s2">&quot;6PORT_DISTR&quot;</span><span class="p">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>  <span class="c1"># I1..In, O1..On control</span>
+        <span class="s2">&quot;9PORT_DISTR&quot;</span><span class="p">:</span> <span class="s2">&quot;8&quot;</span> <span class="c1"># I1..In, O1..On control</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Plunger motor resolution modes</span>
+    <span class="n">RESOLUTION_MODES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>  <span class="c1"># Normal mode, half-steps - power up default</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="mi">48000</span><span class="p">,</span>  <span class="c1"># Positioning micro-step mode</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="mi">48000</span>  <span class="c1"># Positioning &amp; velocity micro-step mode</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Plunger motor ramp slope modes. Key - ramp code, Value - list of ramp slope in increments/sec^2 for N0-N1 and N2 modes</span>
+    <span class="n">RAMP_SLOPE_MODES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2500</span><span class="p">,</span> <span class="mi">20000</span><span class="p">],</span>
+        <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">40000</span><span class="p">],</span>
+        <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7500</span><span class="p">,</span> <span class="mi">60000</span><span class="p">],</span>
+        <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">80000</span><span class="p">],</span>
+        <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12500</span><span class="p">,</span> <span class="mi">100000</span><span class="p">],</span>
+        <span class="s2">&quot;6&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15000</span><span class="p">,</span> <span class="mi">120000</span><span class="p">],</span>
+        <span class="s2">&quot;7&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">17500</span><span class="p">,</span> <span class="mi">140000</span><span class="p">],</span>
+        <span class="s2">&quot;8&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20000</span><span class="p">,</span> <span class="mi">160000</span><span class="p">],</span>
+        <span class="s2">&quot;9&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">22500</span><span class="p">,</span> <span class="mi">180000</span><span class="p">],</span>
+        <span class="s2">&quot;10&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25000</span><span class="p">,</span> <span class="mi">200000</span><span class="p">],</span>
+        <span class="s2">&quot;11&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">27500</span><span class="p">,</span> <span class="mi">220000</span><span class="p">],</span>
+        <span class="s2">&quot;12&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">30000</span><span class="p">,</span> <span class="mi">240000</span><span class="p">],</span>
+        <span class="s2">&quot;13&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32500</span><span class="p">,</span> <span class="mi">260000</span><span class="p">],</span>
+        <span class="s2">&quot;14&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">35000</span><span class="p">,</span> <span class="mi">280000</span><span class="p">],</span>  <span class="c1"># Power-up default</span>
+        <span class="s2">&quot;15&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">37500</span><span class="p">,</span> <span class="mi">300000</span><span class="p">],</span>
+        <span class="s2">&quot;16&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">40000</span><span class="p">,</span> <span class="mi">320000</span><span class="p">],</span>
+        <span class="s2">&quot;17&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">42500</span><span class="p">,</span> <span class="mi">340000</span><span class="p">],</span>
+        <span class="s2">&quot;18&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">45000</span><span class="p">,</span> <span class="mi">360000</span><span class="p">],</span>
+        <span class="s2">&quot;19&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">47500</span><span class="p">,</span> <span class="mi">380000</span><span class="p">],</span>
+        <span class="s2">&quot;20&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50000</span><span class="p">,</span> <span class="mi">400000</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Plunger motor speed. Key - speed code, Value - list of speeds in steps/sec for N0-N1 and N2 modes</span>
+    <span class="n">SPEED_MODES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">6000</span><span class="p">,</span> <span class="mi">48000</span><span class="p">],</span>
+        <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5600</span><span class="p">,</span> <span class="mi">44800</span><span class="p">],</span>
+        <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">40000</span><span class="p">],</span>
+        <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4400</span><span class="p">,</span> <span class="mi">35200</span><span class="p">],</span>
+        <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3800</span><span class="p">,</span> <span class="mi">30400</span><span class="p">],</span>
+        <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3200</span><span class="p">,</span> <span class="mi">25600</span><span class="p">],</span>
+        <span class="s2">&quot;6&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2600</span><span class="p">,</span> <span class="mi">20800</span><span class="p">],</span>
+        <span class="s2">&quot;7&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2200</span><span class="p">,</span> <span class="mi">17600</span><span class="p">],</span>
+        <span class="s2">&quot;8&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">16000</span><span class="p">],</span>
+        <span class="s2">&quot;9&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1800</span><span class="p">,</span> <span class="mi">14400</span><span class="p">],</span>
+        <span class="s2">&quot;10&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1600</span><span class="p">,</span> <span class="mi">12800</span><span class="p">],</span>
+        <span class="s2">&quot;11&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1400</span><span class="p">,</span> <span class="mi">11200</span><span class="p">],</span>  <span class="c1"># Power-up default</span>
+        <span class="s2">&quot;12&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">9600</span><span class="p">],</span>
+        <span class="s2">&quot;13&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">],</span>
+        <span class="s2">&quot;14&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">800</span><span class="p">,</span> <span class="mi">6400</span><span class="p">],</span>
+        <span class="s2">&quot;15&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="mi">4800</span><span class="p">],</span>
+        <span class="s2">&quot;16&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3200</span><span class="p">],</span>
+        <span class="s2">&quot;17&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">1600</span><span class="p">],</span>
+        <span class="s2">&quot;18&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">190</span><span class="p">,</span> <span class="mi">1520</span><span class="p">],</span>
+        <span class="s2">&quot;19&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">1440</span><span class="p">],</span>
+        <span class="s2">&quot;20&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">170</span><span class="p">,</span> <span class="mi">1360</span><span class="p">],</span>
+        <span class="s2">&quot;21&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">1280</span><span class="p">],</span>
+        <span class="s2">&quot;22&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">1200</span><span class="p">],</span>
+        <span class="s2">&quot;23&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">140</span><span class="p">,</span> <span class="mi">1120</span><span class="p">],</span>
+        <span class="s2">&quot;24&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">1040</span><span class="p">],</span>
+        <span class="s2">&quot;25&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">960</span><span class="p">],</span>
+        <span class="s2">&quot;26&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">110</span><span class="p">,</span> <span class="mi">880</span><span class="p">],</span>
+        <span class="s2">&quot;27&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span>
+        <span class="s2">&quot;28&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">720</span><span class="p">],</span>
+        <span class="s2">&quot;29&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">640</span><span class="p">],</span>
+        <span class="s2">&quot;30&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">560</span><span class="p">],</span>
+        <span class="s2">&quot;31&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">480</span><span class="p">],</span>
+        <span class="s2">&quot;32&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">],</span>
+        <span class="s2">&quot;33&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">320</span><span class="p">],</span>
+        <span class="s2">&quot;34&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">240</span><span class="p">],</span>
+        <span class="s2">&quot;35&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span>
+        <span class="s2">&quot;36&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">144</span><span class="p">],</span>
+        <span class="s2">&quot;37&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+        <span class="s2">&quot;38&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">112</span><span class="p">],</span>
+        <span class="s2">&quot;39&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">96</span><span class="p">],</span>
+        <span class="s2">&quot;40&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># ## C3000 error codes ###</span>
+    <span class="c1"># Error codes are represented as a bit field occupying 4 right-most bits of status byte, according to C3000 manual, page 90</span>
+    <span class="n">ERROR_CODES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mb">0b0000</span><span class="p">:</span> <span class="s2">&quot;No error.&quot;</span><span class="p">,</span>
+        <span class="mb">0b0001</span><span class="p">:</span> <span class="s2">&quot;Initialization failure!&quot;</span><span class="p">,</span>
+        <span class="mb">0b0010</span><span class="p">:</span> <span class="s2">&quot;Invalid command!&quot;</span><span class="p">,</span>
+        <span class="mb">0b0011</span><span class="p">:</span> <span class="s2">&quot;Invalid operand!&quot;</span><span class="p">,</span>
+        <span class="mb">0b0110</span><span class="p">:</span> <span class="s2">&quot;EEPROM failure!&quot;</span><span class="p">,</span>
+        <span class="mb">0b0111</span><span class="p">:</span> <span class="s2">&quot;Device not initialized!&quot;</span><span class="p">,</span>
+        <span class="mb">0b1000</span><span class="p">:</span> <span class="s2">&quot;Internal failure!&quot;</span><span class="p">,</span>
+        <span class="mb">0b1001</span><span class="p">:</span> <span class="s2">&quot;Plunger overload!&quot;</span><span class="p">,</span>
+        <span class="mb">0b1010</span><span class="p">:</span> <span class="s2">&quot;Valve overload&quot;</span><span class="p">,</span>
+        <span class="mb">0b1011</span><span class="p">:</span> <span class="s2">&quot;Plunger move not allowed! Check valve position.&quot;</span><span class="p">,</span>
+        <span class="mb">0b1100</span><span class="p">:</span> <span class="s2">&quot;Internal failure!&quot;</span><span class="p">,</span>
+        <span class="mb">0b1110</span><span class="p">:</span> <span class="s2">&quot;ADC failure!&quot;</span><span class="p">,</span>
+        <span class="mb">0b1111</span><span class="p">:</span> <span class="s2">&quot;Command overflow!&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Default status - pump initialized, idle, no error</span>
+    <span class="n">DEFAULT_STATUS</span> <span class="o">=</span> <span class="s2">&quot;`&quot;</span>
+
+    <span class="c1"># ################### Control commands ###################################</span>
+
+    <span class="c1"># ## Initialization commands ##</span>
+    <span class="c1"># Initialize plunger &amp; valves, valve numbering - CW from syringe (first on the left)</span>
+    <span class="c1"># For non-distribution valves - set valve to the right</span>
+    <span class="n">INIT_ALL_CW</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Initialize plunger &amp; valves, valve numbering - CCW from syringe (first on the right)</span>
+    <span class="c1"># For non-distribution valves - set valve to the left</span>
+    <span class="n">INIT_ALL_CCW</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Initialize syringe only</span>
+    <span class="n">INIT_SYRINGE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Initialize valve only</span>
+    <span class="n">INIT_VALVE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+
+    <span class="c1"># ## Plunger movement commands ##</span>
+    <span class="c1"># Move plunger to absolute position</span>
+    <span class="n">SYR_MOVE_ABS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Move plunger to absolute position, do not set busy flag</span>
+    <span class="n">SYR_MOVE_ABS_NOBUSY</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Relative pick-up</span>
+    <span class="n">SYR_SUCK_REL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Relative pick-up, do not set busy flag</span>
+    <span class="n">SYR_SUCK_REL_NOBUSY</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Relative dispense</span>
+    <span class="n">SYR_SPIT_REL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Relative dispense, do not set busy flag</span>
+    <span class="n">SYR_SPIT_REL_NOBUSY</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+
+    <span class="c1"># ## Valve movement commands ##</span>
+    <span class="c1"># Rotate valve to input position, or to position &lt;n&gt; clockwise (U11 configuration)</span>
+    <span class="n">VALVE_MOVE_I</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">VALVE_POSITIONS</span><span class="p">},</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Rotate valve to output position, or to position &lt;n&gt; counter-clockwise (U11 configuration)</span>
+    <span class="n">VALVE_MOVE_O</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">VALVE_POSITIONS</span><span class="p">},</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Rotate valve to bypass position. No check as there are no arguments.</span>
+    <span class="n">VALVE_MOVE_B</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Rotate valve to extra position. No check as there are no arguments.</span>
+    <span class="n">VALVE_MOVE_E</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+
+    <span class="c1"># ## Execution flow control commands ##</span>
+    <span class="c1"># Execute command string</span>
+    <span class="n">PRG_RUN</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Repeat last command</span>
+    <span class="n">PRG_RPT_LAST</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Store program string into EEPROM</span>
+    <span class="n">PRG_EEPROM_ST</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Execute program string from EEPROM</span>
+    <span class="n">PRG_EEPROM_EXEC</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Mark start of looped command sequence</span>
+    <span class="n">PRG_MARK_LOOP_START</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;g&quot;</span><span class="p">}</span>
+    <span class="c1"># Mark end of looped command sequence</span>
+    <span class="n">PRG_MARK_LOOP_END</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;G&quot;</span><span class="p">}</span>
+    <span class="c1"># Delay command execution</span>
+    <span class="n">PRG_DELAY_EXEC</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">}</span>
+    <span class="c1"># Halt command execution (wait for R command and/or ext. input change)</span>
+    <span class="n">PRG_HALT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Terminate commands execution</span>
+    <span class="n">PRG_TERM</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+
+    <span class="c1"># ## Report commands ##</span>
+    <span class="c1"># Query pump status</span>
+    <span class="n">GET_STATUS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query firmware version</span>
+    <span class="n">GET_FW_VER</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?23&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query EEPROM data</span>
+    <span class="n">GET_EEPROM_DATA</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?76&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query plunger absolute position</span>
+    <span class="n">GET_SYR_POS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="c1"># Query start velocity</span>
+    <span class="n">GET_START_VEL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?1&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query maximum velocity</span>
+    <span class="n">GET_MAX_VEL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?2&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query cut-off velocity</span>
+    <span class="n">GET_STOP_VEL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?3&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query acceleration/deceleration ramp</span>
+    <span class="n">GET_STEP_RAMP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?25&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query backlash increments setting</span>
+    <span class="n">GET_BACK_INC</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?12&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query supply voltage</span>
+    <span class="n">GET_VOLT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}}</span>
+    <span class="c1"># Query resolution mode</span>
+    <span class="n">GET_RES_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?28&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Query valve position</span>
+    <span class="n">GET_VALVE_POS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;?6&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">}}</span>
+
+    <span class="c1"># ################### Configuration commands #############################</span>
+
+    <span class="c1"># ## Configuration commands ##</span>
+    <span class="c1"># Set EEPROM values</span>
+    <span class="n">SET_EEPROM</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set dead volume</span>
+    <span class="n">SET_DEAD_VOL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set acceleration/deceleration ramp slope</span>
+    <span class="n">SET_RAMP_SLOPE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">RAMP_SLOPE_MODES</span><span class="o">.</span><span class="n">keys</span><span class="p">()}}</span>
+    <span class="c1"># Set start velocity (beginning of ramp)</span>
+    <span class="n">SET_START_VEL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">},</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set maximum velocity (top of ramp) in increments/second</span>
+    <span class="n">SET_MAX_VEL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">48000</span><span class="p">},</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set maximum velocity (top of ramp) with velocity code</span>
+    <span class="n">SET_MAX_VEL_CODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">SPEED_MODES</span><span class="o">.</span><span class="n">keys</span><span class="p">()},</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set cut-off velocity (end of ramp)</span>
+    <span class="n">SET_STOP_VEL</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">21600</span><span class="p">},</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set resolution (stepping mode)</span>
+    <span class="n">SET_RES_MODE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">RESOLUTION_MODES</span><span class="o">.</span><span class="n">keys</span><span class="p">()},</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span>
+    <span class="c1"># Set external outputs</span>
+    <span class="n">SET_EXT_OUT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;J&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}}</span></div>
+
+
+
+<div class="viewcode-block" id="XLP6000SyringePump">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump">[docs]</a>
+<span class="k">class</span> <span class="nc">XLP6000SyringePump</span><span class="p">(</span><span class="n">AbstractSyringePump</span><span class="p">,</span> <span class="n">AbstractDistributionValve</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This provides a Python class for the TECAN XLP6000 syringe pump</span>
+<span class="sd">    based on the the original operation manual 8694-12 E</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># As there can be multiple pumps on the same serial port, it&#39;s necessary to maintain a list</span>
+    <span class="c1"># Example: {&quot;COM3&quot;:{&quot;pumps&quot;:1, &quot;conn&quot;:&lt;PyLabware.connections.SerialConnection at 0x1111&gt;}}</span>
+    <span class="n">BUS_DEVICES</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">port</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+                 <span class="n">switch_address</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">syringe_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">valve_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;3PORT_DISTR_IO&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Default constructor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Load commands from helper class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">XLP6000SyringePumpCommands</span>
+
+        <span class="c1"># Flag to indicate that explicit volumetric calibration</span>
+        <span class="c1"># (comparing dispensed volume to required volume) has been performed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_volumetric_calibrated</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># Size of the syringe installed, in mL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_syringe_size</span> <span class="o">=</span> <span class="n">syringe_size</span>
+        <span class="c1"># Calibration factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_steps_per_ml</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Check that valid valve type has been passed</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_valve_type</span> <span class="o">=</span> <span class="n">XLP6000SyringePumpCommands</span><span class="o">.</span><span class="n">VALVE_TYPES</span><span class="p">[</span><span class="n">valve_type</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="s2">&quot;Invalid valve type &lt;</span><span class="si">{}</span><span class="s2">&gt; provided!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valve_type</span><span class="p">))</span> <span class="kn">from</span> <span class="kc">None</span>
+
+        <span class="c1"># Connection settings</span>
+        <span class="n">connection_parameters</span><span class="p">:</span> <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># TCP/IP relevant settings</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="c1"># Save port separately to access reference count in connect()/disconnect() later</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="c1"># RS-232/RS-485 relevant settings</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;baudrate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9600</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;bytesize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">EIGHTBITS</span>
+        <span class="n">connection_parameters</span><span class="p">[</span><span class="s2">&quot;parity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">PARITY_NONE</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">device_name</span><span class="p">,</span> <span class="n">connection_mode</span><span class="p">,</span> <span class="n">connection_parameters</span><span class="p">)</span>
+
+        <span class="c1"># Check if we already have the required COM port open</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">BUS_DEVICES</span><span class="p">[</span><span class="n">port</span><span class="p">][</span><span class="s2">&quot;conn&quot;</span><span class="p">]</span>
+            <span class="c1"># Increase reference count</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Existing connection for port &lt;</span><span class="si">%s</span><span class="s2">&gt; found, reusing &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
+            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">BUS_DEVICES</span><span class="p">[</span><span class="n">port</span><span class="p">][</span><span class="s2">&quot;pumps&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">BUS_DEVICES</span><span class="p">[</span><span class="n">port</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pumps&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;conn&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Storing new serial connection reference &lt;</span><span class="si">%s</span><span class="s2">&gt; for port &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+
+        <span class="c1"># Set switch address</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">switch_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SWITCH_ADDRESSES</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">switch_address</span><span class="p">)]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceError</span><span class="p">(</span><span class="s2">&quot;Invalid switch address &lt;</span><span class="si">{}</span><span class="s2">&gt; supplied!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">switch_address</span><span class="p">))</span> <span class="kn">from</span> <span class="kc">None</span>
+
+        <span class="c1"># Protocol settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_prefix</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">switch_address</span>
+        <span class="c1"># Run commands after sending them to pump by default (R appended)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">PRG_RUN</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_prefix</span> <span class="o">=</span> <span class="s2">&quot;/0&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x03\r\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args_delimiter</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="c1"># Pump status byte</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">autorun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property showing if the commands should be executed immediately,</span>
+<span class="sd">        or queued instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">PRG_RUN</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span>
+
+    <span class="nd">@autorun</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">autorun</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Setter for the autorun property.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">PRG_RUN</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">command_terminator</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">syringe_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syringe_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Syringe size not set! Functions with volumetric dosing are not available! Please set either step_per_ml or syringe_size properties.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syringe_size</span>
+
+    <span class="nd">@syringe_size</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">syringe_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_volumetric_calibrated</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Changing syringe size resetted volumetric calibration.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_syringe_size</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_volumetric_calibrated</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span> <span class="o">=</span> <span class="mi">6000</span> <span class="o">/</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">steps_per_ml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_steps_per_ml</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Calibration factor not set! Functions with volumetric dosing are not available! Please set either step_per_ml or syringe_size properties.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_steps_per_ml</span>
+
+    <span class="nd">@steps_per_ml</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">steps_per_ml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_steps_per_ml</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="XLP6000SyringePump.connect">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.connect">[docs]</a>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks whether the connection has been already opened, if not - opens it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">is_connection_open</span><span class="p">():</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connection already open.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.disconnect">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.disconnect">[docs]</a>
+    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Checks whether we are the last device using this port. If yes - closes the connection.</span>
+<span class="sd">            If not - decreases the reference count.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO check if we are closing the connection for ourselves!</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">is_connection_open</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Connection not open yet!&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># Check current reference count for the serial port open</span>
+        <span class="c1">#FIXME probably wouldn&#39;t work for other than serial connection</span>
+        <span class="n">current_refs</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">BUS_DEVICES</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">][</span><span class="s2">&quot;pumps&quot;</span><span class="p">]</span>
+        <span class="n">current_refs</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">current_refs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">BUS_DEVICES</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">BUS_DEVICES</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">][</span><span class="s2">&quot;pumps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_refs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> more devices left on the bus, leaving connection open.&quot;</span><span class="p">,</span> <span class="n">current_refs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.parse_reply">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.parse_reply">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">reply</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overloaded method from base class. We need to do some more</span>
+<span class="sd">        complex processing here for the status byte manipulations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Strip reply terminator and prefix</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">stripper</span><span class="p">(</span><span class="n">reply</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_prefix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_terminator</span><span class="p">)</span>
+        <span class="c1"># Then analyze status byte</span>
+        <span class="c1"># Status byte is the 1st byte of reply string, &amp; we need it&#39;s byte code.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">reply</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_errors</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parse_reply()::status byte checked, invoking parsing on &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="c1"># Chop off status byte &amp; do standard processing</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_reply</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">reply</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.check_errors">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.check_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks error bits in the status byte of the pump reply.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;check_errors()::checking errors on byte &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span><span class="p">)</span>
+        <span class="c1"># Error code is contained in 4 right-most bytes,</span>
+        <span class="c1"># so we need to chop off the rest</span>
+        <span class="n">error_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span> <span class="o">&amp;</span> <span class="mb">0b1111</span>
+        <span class="c1"># No error</span>
+        <span class="k">if</span> <span class="n">error_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceInternalError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">ERROR_CODES</span><span class="p">[</span><span class="n">error_code</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># This shouldn&#39;t really happen, means that pump replied with</span>
+            <span class="c1"># error code not in the ERROR_CODES dictionary</span>
+            <span class="c1"># (which completely copies the manual)</span>
+            <span class="k">raise</span> <span class="n">PLDeviceReplyError</span><span class="p">(</span><span class="s2">&quot;Unknown error! Status byte: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span><span class="p">)))</span> <span class="kn">from</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.is_connected">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.is_connected">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether the device is connected by</span>
+<span class="sd">        checking it&#39;s firmware version.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_FW_VER</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_connected()::Device connected; FW version &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.get_status">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.get_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Not supported on this device.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+        <span class="c1"># TODO implement through status byte analysis</span>
+
+<div class="viewcode-block" id="XLP6000SyringePump.clear_errors">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.clear_errors">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Happens automatically upon errors read-out,</span>
+<span class="sd">        except those requiring pump re-initialization.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.initialize_device">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.initialize_device">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valve_enumeration_direction</span><span class="o">=</span><span class="s2">&quot;CW&quot;</span><span class="p">,</span> <span class="n">input_port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_port</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs pump initialization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Select appropriate command depending on the direction</span>
+        <span class="k">if</span> <span class="n">valve_enumeration_direction</span> <span class="o">==</span> <span class="s2">&quot;CW&quot;</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">INIT_ALL_CW</span>
+        <span class="k">elif</span> <span class="n">valve_enumeration_direction</span> <span class="o">==</span> <span class="s2">&quot;CCW&quot;</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">INIT_ALL_CCW</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Invalid direction for valve initialization provided!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Initialization arguments. First - plunger initialization</span>
+        <span class="c1"># power(we are not using it).</span>
+        <span class="c1"># Second - number of input port for initialization (0 - default).</span>
+        <span class="c1"># Third - number of output port for initialization (0 - default).</span>
+        <span class="c1"># Second and third arguments are ignored for non-distribution valves</span>
+        <span class="c1"># (as been set by Ux command)</span>
+        <span class="n">arglist</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Check if we are asked to use specific input/output ports.</span>
+        <span class="c1"># Otherwise they will be first(I) and last(O) for CW init or</span>
+        <span class="c1"># last(I) and first(O) for CCW init</span>
+        <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="p">[</span><span class="n">input_port</span><span class="p">,</span> <span class="n">output_port</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">port</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">port</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_POSITIONS</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Invalid port for initialization was provided!&quot;</span><span class="p">)</span>
+                <span class="n">arglist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+
+        <span class="c1"># Glue arguments to the command they should be</span>
+        <span class="c1"># comma-separated list (0,0,0)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">arglist</span><span class="p">)</span>
+
+        <span class="c1"># Send commands &amp; check errors in the reply</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Device initialized.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.is_initialized">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.is_initialized">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">is_initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if pump has been initialized properly after power-up.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_STATUS</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># Busy/idle bit is 7th bit of the status byte. 0 - busy, 1 - idle</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::false.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::true.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.is_idle">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.is_idle">[docs]</a>
+    <span class="nd">@in_simulation_device_returns</span><span class="p">(</span><span class="n">LabDeviceReply</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">XLP6000SyringePumpCommands</span><span class="o">.</span><span class="n">DEFAULT_STATUS</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if pump is in idle state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_STATUS</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PLConnectionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># Busy/idle bit is 6th bit of the status byte. 0 - busy, 1 - idle</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_status</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::false.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is_idle()::true.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.start">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.start">[docs]</a>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts program execution.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autorun</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Sending run command with autorun enabled is not required.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">PRG_RUN</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.stop">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.stop">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Stops executing current program/action immediately.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">PRG_TERM</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_speed">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets maximum velocity (top of the ramp) for the syringe motor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_VEL</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.get_speed">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.get_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Getting speed is not supported on this model.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_predefined_speed">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_predefined_speed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_predefined_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocity_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets maximum velocity (top of the ramp) for the syringe motor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_MAX_VEL_CODE</span><span class="p">,</span> <span class="n">velocity_code</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.move_home">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.move_home">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.move_plunger_absolute">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.move_plunger_absolute">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_plunger_absolute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes absolute plunger move.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">set_busy</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_MOVE_ABS</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_MOVE_ABS_NOBUSY</span>
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.get_plunger_position">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.get_plunger_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_plunger_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns absolute plunger position.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="c1"># If autorun is not disabled for the ? command, pump reports an operand error</span>
+        <span class="n">autorun_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">autorun</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autorun</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_SYR_POS</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">autorun</span> <span class="o">=</span> <span class="n">autorun_state</span>
+        <span class="k">return</span> <span class="n">position</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.move_plunger_relative">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.move_plunger_relative">[docs]</a>
+    <span class="k">def</span> <span class="nf">move_plunger_relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes relative plunger move. This is a wrapper for</span>
+<span class="sd">        dispense()/withdraw().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">position</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">position</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispense</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">position</span><span class="p">),</span> <span class="n">set_busy</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.dispense">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.dispense">[docs]</a>
+    <span class="k">def</span> <span class="nf">dispense</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume_ml</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes relative dispense.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">increments</span> <span class="o">=</span> <span class="n">volume_ml</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span>
+        <span class="k">if</span> <span class="n">set_busy</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_SPIT_REL</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_SPIT_REL_NOBUSY</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">increments</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.withdraw">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.withdraw">[docs]</a>
+    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">volume_ml</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">set_busy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes relative aspiration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">increments</span> <span class="o">=</span> <span class="n">volume_ml</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span>
+        <span class="k">if</span> <span class="n">set_busy</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_SUCK_REL</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SYR_SUCK_REL_NOBUSY</span>
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">increments</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.prime_pump">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.prime_pump">[docs]</a>
+    <span class="k">def</span> <span class="nf">prime_pump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cycles</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">increments</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Primes the tubing and syringe to displace air</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cycles</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Priming the pump &lt;</span><span class="si">%s</span><span class="s2">&gt;, port </span><span class="si">%s</span><span class="s2">, cycle </span><span class="si">%s</span><span class="s2"> out of </span><span class="si">%s</span><span class="s2">...&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_name</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">cycles</span><span class="p">)</span>
+            <span class="c1"># 2000 - 1/3 full stroke</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="n">increments</span><span class="p">)</span>
+            <span class="c1"># Allow the liquid to settle down. Adequate speed should be used.</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wait_until_ready</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Priming cycle </span><span class="si">%s</span><span class="s2"> done&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_until_ready</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Priming done.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.transfer">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.transfer">[docs]</a>
+    <span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_from</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">port_to</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">volume_ml</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Transfers the required amount in mL from &lt;port_from&gt; to &lt;port_to&gt;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">increments</span> <span class="o">=</span> <span class="n">volume_ml</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span>
+        <span class="n">complete_strokes</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">increments</span> <span class="o">//</span> <span class="mi">6000</span><span class="p">)</span>
+        <span class="n">remainder</span> <span class="o">=</span> <span class="n">increments</span> <span class="o">%</span> <span class="mi">6000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Executing transfer of &lt;</span><span class="si">%s</span><span class="s2">&gt; mL from &lt;</span><span class="si">%s</span><span class="s2">&gt; to &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">volume_ml</span><span class="p">,</span> <span class="n">port_from</span><span class="p">,</span> <span class="n">port_to</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Calculated &lt;</span><span class="si">%s</span><span class="s2">&gt; full strokes plus &lt;</span><span class="si">%s</span><span class="s2">&gt; mL&quot;</span><span class="p">,</span> <span class="n">complete_strokes</span><span class="p">,</span> <span class="n">remainder</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span><span class="p">)</span>
+
+        <span class="c1"># Do full strokes</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">complete_strokes</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Doing full transfer cycle &lt;</span><span class="si">%s</span><span class="s2">&gt; of &lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">complete_strokes</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">,</span> <span class="n">port_from</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="mi">6000</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">,</span> <span class="n">port_to</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Do the remainder</span>
+        <span class="k">if</span> <span class="n">remainder</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Transferring remaining &lt;</span><span class="si">%s</span><span class="s2">&gt; mL&quot;</span><span class="p">,</span> <span class="n">remainder</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">,</span> <span class="n">port_from</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="n">remainder</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">,</span> <span class="n">port_to</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Wait for the final dispense to finish</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_until_ready</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Transfer done.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.calibrate_volume">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.calibrate_volume">[docs]</a>
+    <span class="k">def</span> <span class="nf">calibrate_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Runs interactive volume calibration to set steps_per_ml coefficient correctly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">port_from</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">port_to</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">volume_measured</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">calibration_steps</span> <span class="o">=</span> <span class="mi">2000</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting interactive volume calibration. Please check that the syringe is empty.&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">port_from</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_POSITIONS</span><span class="p">:</span>
+            <span class="n">port_from</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the port to withdraw the liquid from (1-9): &quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">port_to</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_POSITIONS</span><span class="p">:</span>
+            <span class="n">port_to</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the port to dispense the liquid to (1-9): &quot;</span><span class="p">)</span>
+        <span class="n">port_to</span> <span class="o">=</span> <span class="s2">&quot;I&quot;</span> <span class="o">+</span> <span class="n">port_to</span>
+        <span class="n">port_from</span> <span class="o">=</span> <span class="s2">&quot;I&quot;</span> <span class="o">+</span> <span class="n">port_from</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Priming...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prime_pump</span><span class="p">,</span> <span class="n">port_from</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Priming done.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Withdrawing...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="n">calibration_steps</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_valve_position</span><span class="p">,</span> <span class="n">port_to</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dispensing...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_plunger_absolute</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">volume_measured</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">volume_measured</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the exact volume of the liquid dispensed, mL: &quot;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="c1"># Set calibration factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_steps</span> <span class="o">/</span> <span class="n">volume_measured</span><span class="p">)</span>
+        <span class="c1"># If syringe volume was not set manually - back calculate it from the calibration factor</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syringe_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">syringe_size</span> <span class="o">=</span> <span class="mi">6000</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calibration done. Calibration factor (steps_per_ml): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">steps_per_ml</span><span class="si">}</span><span class="s2">. Calculated syringe volume: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">syringe_size</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mL.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_volumetric_calibrated</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_valve_position">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_valve_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requested_position</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the distribution valve position.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">requested_position</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">requested_position</span><span class="p">)</span>
+        <span class="c1"># We have to distinguish between IOBE and In/On valve position addressing</span>
+        <span class="c1"># &amp; check it against current valve type</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">requested_position</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># IOBE addressing allowed for all but 6-way distribution valves</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valve_type</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_TYPES</span><span class="p">[</span><span class="s2">&quot;6PORT_DISTR&quot;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Requested valve position doesn&#39;t seem to match valve type installed.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">requested_position</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># In/On addressing is allowed only for 6-way valves and 3-way valves.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valve_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_TYPES</span><span class="p">[</span><span class="s2">&quot;3PORT_DISTR_IO&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_TYPES</span><span class="p">[</span><span class="s2">&quot;6PORT_DISTR&quot;</span><span class="p">]]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Requested valve position doesn&#39;t seem to match valve type installed.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># The position requested is the actual command we have to send to the pump.</span>
+        <span class="c1"># But we need to match it against a defined command.</span>
+        <span class="k">if</span> <span class="n">requested_position</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;I&quot;</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_MOVE_I</span>
+        <span class="k">elif</span> <span class="n">requested_position</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_MOVE_O</span>
+        <span class="k">elif</span> <span class="n">requested_position</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_MOVE_B</span>
+        <span class="k">elif</span> <span class="n">requested_position</span> <span class="o">==</span> <span class="s2">&quot;E&quot;</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">VALVE_MOVE_E</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown valve position &lt;</span><span class="si">{</span><span class="n">requested_position</span><span class="si">}</span><span class="s2">&gt; requested!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Get numeric position (if I1..I6/O1..O6 notation is used)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">requested_position</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_when_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.get_valve_position">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.get_valve_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_valve_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads current position of the valve.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_VALVE_POS</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_ramp_slope">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_ramp_slope">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_ramp_slope</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ramp_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets slope of acceleration/deceleration ramp for the syringe motor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_RAMP_SLOPE</span><span class="p">,</span> <span class="n">ramp_code</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_start_velocity">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_start_velocity">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_start_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_velocity</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets starting velocity for the syringe motor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_START_VEL</span><span class="p">,</span> <span class="n">start_velocity</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_stop_velocity">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_stop_velocity">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_stop_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_velocity</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets stopping velocity for the syringe motor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_STOP_VEL</span><span class="p">,</span> <span class="n">stop_velocity</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_resolution_mode">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_resolution_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_resolution_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution_mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets plunger resolution mode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="c1"># FIXME this command doesn&#39;t seem to change anything on XLP6000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_RES_MODE</span><span class="p">,</span> <span class="n">resolution_mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.set_valve_type">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.set_valve_type">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_valve_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valve_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">confirm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets valve type. This command requires power-cycle to activate new settings!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Changing the valve type would require power-cycling the pump!&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">confirm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Please, execute set_valve_type(valve_type, confirm=True)&quot;</span>
+                             <span class="s2">&quot;to write new valve configuration to pump EEPROM.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Get correct valve code</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_valve_type</span> <span class="o">=</span> <span class="n">XLP6000SyringePumpCommands</span><span class="o">.</span><span class="n">VALVE_TYPES</span><span class="p">[</span><span class="n">valve_type</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PLDeviceCommandError</span><span class="p">(</span><span class="s2">&quot;Invalid valve type requested!&quot;</span><span class="p">)</span>
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">SET_EEPROM</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valve_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Valve type updated successfully. Don&#39;t forget to power-cycle the pump!&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XLP6000SyringePump.get_pump_configuration">
+<a class="viewcode-back" href="../../../api/devices.tecan_cavro_xlp6000.html#PyLabware.devices.tecan_cavro_xlp6000.XLP6000SyringePump.get_pump_configuration">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pump_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads pump EEPROM configuration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Send command &amp; check reply for errors</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">GET_EEPROM_DATA</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2024, Sergey Zalesskiy; 2021, Cronin Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
