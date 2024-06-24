@@ -17,7 +17,7 @@ from ..models import LabDeviceCommands, LabDeviceReply, ConnectionParameters
 
 
 class Cadent3SyringePumpCommands(LabDeviceCommands):
-    """Collection of command definitions for Cadent 3 pump, DT protocol base on the manual HUM023 Rev. 2.
+    """Collection of command definitions for Cadent 3 pump, DT protocol based on the manual HUM023 Rev. 2.
     """
 
     # ################### Configuration constants #############################
@@ -220,8 +220,8 @@ class Cadent3SyringePumpCommands(LabDeviceCommands):
 
 class Cadent3SyringePump(AbstractSyringePump, AbstractDistributionValve):
     """
-    This provides a Python class for the TECAN XLP6000 syringe pump
-    based on the the original operation manual 8694-12 E
+    This provides a Python class for the IMI Norgren Cadent 3 syringe pump
+    based on the the original operation manual HUM023 Rev. 2.
     """
 
     # As there can be multiple pumps on the same serial port, it's necessary to maintain a list
@@ -810,7 +810,9 @@ class Cadent3SyringePump(AbstractSyringePump, AbstractDistributionValve):
     def get_pump_configuration(self):
         """Reads pump EEPROM configuration.
         """
-        raise NotImplementedError("Getting speed is not supported on this model.")
+
+        # FIXME: This is supported but not implemented yet
+        raise NotImplementedError("Reading pump configuration is not supported yet.")
     
 
     def get_pump_resolution(self) -> int:
