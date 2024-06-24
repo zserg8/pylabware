@@ -241,6 +241,10 @@ class SerialConnection(AbstractConnection):
                         reply_bytes = self._connection.read(size=self.receive_buffer_size)
                         self.logger.debug("connection_listener()::got reply <%s>", reply_bytes)
                     try:
+                        #if command ends with \xff remove it
+                        if reply_bytes.endswith(b'\xff'):
+                            reply_bytes = reply_bytes[:-1]
+                            self.logger.debug("connection_listener()::stripped last byte as it was \\xff")
                         self._last_reply += reply_bytes.decode(self.encoding)
                     except UnicodeDecodeError:
                         self.logger.exception("Can't decode device reply!", exc_info=True)
