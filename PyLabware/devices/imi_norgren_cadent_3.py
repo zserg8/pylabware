@@ -1,8 +1,9 @@
-"""PyLabware driver for the TECAN Cavro XLP 6000 syringe pump with integrated valve."""
+"""PyLabware driver for IMI Norgren Cadent 3 syringe pump with integrated valve."""
 
 from typing import Optional, Union, Dict, Any
 from time import sleep
 import serial
+import ast
 
 # Core import
 from .. import parsers as parser
@@ -15,154 +16,83 @@ from ..exceptions import (PLConnectionError, PLDeviceCommandError,
 from ..models import LabDeviceCommands, LabDeviceReply, ConnectionParameters
 
 
-class XLP6000SyringePumpCommands(LabDeviceCommands):
-    """Collection of command definitions for XLP6000 pump, DT protocol.
+class Cadent3SyringePumpCommands(LabDeviceCommands):
+    """Collection of command definitions for Cadent 3 pump, DT protocol base on the manual HUM023 Rev. 2.
     """
 
     # ################### Configuration constants #############################
 
     # Mapping of rotary switch settings to apparent pump address on serial
-    # Please, note, position F is not used (see p.23 of the manual)
+    # Please note that switch position 0 is reserved for controller (see p.22 of the manual)
+    # Please note that when using address "all" the individual devices do not provide status responses to commands. (see p.23 of the manual)
     SWITCH_ADDRESSES = {
-        "0": "1",
-        "1": "2",
-        "2": "3",
-        "3": "4",
-        "4": "5",
-        "5": "6",
-        "6": "7",
-        "7": "8",
-        "8": "9",
-        "9": ":",
-        "A": ";",
-        "B": "<",
-        "C": "=",
-        "D": ">",
-        "E": "?",
-        "all": "-"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "A": ":",
+        "B": ";",
+        "C": "<",
+        "D": "=",
+        "E": ">",
+        "F": "?",
+        "all": "_"
     }
 
     # Allowed valve positions
-    # Y-valves, 90°-valves and T-valves use IOBE-notation
-    # 6-pos valves use I1..I6/O1..O6 notation (I - moves CW, O - moves CCW)
-    # 3-pos distribution valves can use either IOBE or I1..I3/O1..O3 depending how they were configured (Uxx command)
-    VALVE_POSITIONS = (
-        "",  # This is to pass check when IOBE addressing is used and I or O is requested
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9"
-    )
+    VALVE_POSITIONS = range(1,16)
 
     # Valve types for Uxx command
     VALVE_TYPES = {
-        "3PORT_Y": "1",  # IOBE control
-        "3PORT_T": "5",  # IOBE control
-        "3PORT_DISTR_IO": "11",  # I1..In, O1..On control
-        "4PORT_90DEG": "2",  # IOBE control
-        "4PORT_T": "5",  # IOBE control
-        "4PORT_LOOP": "9",  # IOBE control
-        "6PORT_DISTR": "7",  # I1..In, O1..On control
-        "9PORT_DISTR": "8" # I1..In, O1..On control
+        "3PORT_NDISTR": "1",  # 3 way non-distribution valve
+        "3PORT_DISTR": "2",  # 3 way distribution valve
+        "4PORT_NDISTR": "3",  # 4 way non-distribution valve
+        "4PORT_DISTR": "4",  # 4 way distribution valve
+        "5PORT_NDISTR": "5",  # 5 way non-distribution valve
+        "5PORT_DISTR": "6",  # 5 way distribution valve
+        "6PORT_NDISTR": "7",  # 6 way non-distribution valve
+        "6PORT_DISTR": "14",  # 6 way distribution valve
+        "8PORT_NDISTR": "9",  # 8 way non-distribution valve
+        "8PORT_DISTR": "10",  # 8 way distribution valve
+        "12PORT_DISTR": "11",  # 12 way non-distribution valve
+        "2PORT_DISTR": "13",  # 2 way distribution valve
+        "2PORT_SOL": "15",  # 2 way FAS solenoid valve
+        "NONE": "20202" # no valve installed
     }
 
-    # Plunger motor resolution modes
-    RESOLUTION_MODES = {
-        0: 3000,  # Normal mode, half-steps - power up default
-        1: 48000,  # Positioning micro-step mode
-        2: 48000  # Positioning & velocity micro-step mode
-    }
-
-    # Plunger motor ramp slope modes. Key - ramp code, Value - list of ramp slope in increments/sec^2 for N0-N1 and N2 modes
-    RAMP_SLOPE_MODES = {
-        "1": [2500, 20000],
-        "2": [5000, 40000],
-        "3": [7500, 60000],
-        "4": [10000, 80000],
-        "5": [12500, 100000],
-        "6": [15000, 120000],
-        "7": [17500, 140000],
-        "8": [20000, 160000],
-        "9": [22500, 180000],
-        "10": [25000, 200000],
-        "11": [27500, 220000],
-        "12": [30000, 240000],
-        "13": [32500, 260000],
-        "14": [35000, 280000],  # Power-up default
-        "15": [37500, 300000],
-        "16": [40000, 320000],
-        "17": [42500, 340000],
-        "18": [45000, 360000],
-        "19": [47500, 380000],
-        "20": [50000, 400000]
-    }
-
-    # Plunger motor speed. Key - speed code, Value - list of speeds in steps/sec for N0-N1 and N2 modes
-    SPEED_MODES = {
-        "0": [6000, 48000],
-        "1": [5600, 44800],
-        "2": [5000, 40000],
-        "3": [4400, 35200],
-        "4": [3800, 30400],
-        "5": [3200, 25600],
-        "6": [2600, 20800],
-        "7": [2200, 17600],
-        "8": [2000, 16000],
-        "9": [1800, 14400],
-        "10": [1600, 12800],
-        "11": [1400, 11200],  # Power-up default
-        "12": [1200, 9600],
-        "13": [1000, 8000],
-        "14": [800, 6400],
-        "15": [600, 4800],
-        "16": [400, 3200],
-        "17": [200, 1600],
-        "18": [190, 1520],
-        "19": [180, 1440],
-        "20": [170, 1360],
-        "21": [160, 1280],
-        "22": [150, 1200],
-        "23": [140, 1120],
-        "24": [130, 1040],
-        "25": [120, 960],
-        "26": [110, 880],
-        "27": [100, 800],
-        "28": [90, 720],
-        "29": [80, 640],
-        "30": [70, 560],
-        "31": [60, 480],
-        "32": [50, 400],
-        "33": [40, 320],
-        "34": [30, 240],
-        "35": [20, 160],
-        "36": [18, 144],
-        "37": [16, 128],
-        "38": [14, 112],
-        "39": [12, 96],
-        "40": [10, 80]
-    }
-
-    # ## C3000 error codes ###
-    # Error codes are represented as a bit field occupying 4 right-most bits of status byte, according to C3000 manual, page 90
+    # ## Cadent 3 error codes ###
+    # Error codes are represented as a bit field occupying 5 right-most bits of status byte (see p. 85 of the manual)
     ERROR_CODES = {
-        0b0000: "No error.",
-        0b0001: "Initialization failure!",
-        0b0010: "Invalid command!",
-        0b0011: "Invalid operand!",
-        0b0110: "EEPROM failure!",
-        0b0111: "Device not initialized!",
-        0b1000: "Internal failure!",
-        0b1001: "Plunger overload!",
-        0b1010: "Valve overload",
-        0b1011: "Plunger move not allowed! Check valve position.",
-        0b1100: "Internal failure!",
-        0b1110: "ADC failure!",
-        0b1111: "Command overflow!"
+        0b00000: "no error",
+        0b00001: "syringe failed to initialize",
+        0b00010: "invalid command",
+        0b00011: "invalid argument",
+        0b00100: "communication error",
+        0b00101: "invalid \"R\" command",
+        0b00110: "supply voltage too low",
+        0b00111: "device not initialized",
+        0b01000: "program in progress",
+        0b01001: "syringe overload",
+        0b01010: "valve overload",
+        0b01011: "syringe move not allowed",
+        0b01100: "cannot move against limit",
+        0b01111: "command buffer overflow",
+        0b10000: "use for 3-way valve only",
+        0b10001: "loops nested too deep",
+        0b10010: "program label not found",
+        0b10011: "end of program not found",
+        0b10100: "out of program space",
+        0b10101: "home not set",
+        0b10110: "too many program calls",
+        0b10111: "program not found",
+        0b11000: "valve position error",
+        0b11001: "syringe position corrupted",
+        0b11010: "syringe may go past home"
     }
 
     # Default status - pump initialized, idle, no error
@@ -171,25 +101,26 @@ class XLP6000SyringePumpCommands(LabDeviceCommands):
     # ################### Control commands ###################################
 
     # ## Initialization commands ##
+    INIT_ALL = {"name": "W4", "reply": {"type": str}}
     # Initialize plunger & valves, valve numbering - CW from syringe (first on the left)
     # For non-distribution valves - set valve to the right
-    INIT_ALL_CW = {"name": "Z", "reply": {"type": str}}
+    INIT_ALL_Z = {"name": "Z4", "reply": {"type": str}}
     # Initialize plunger & valves, valve numbering - CCW from syringe (first on the right)
     # For non-distribution valves - set valve to the left
-    INIT_ALL_CCW = {"name": "Y", "reply": {"type": str}}
+    INIT_ALL_Y = {"name": "Y4", "reply": {"type": str}}
     # Initialize syringe only
-    INIT_SYRINGE = {"name": "W", "reply": {"type": str}}
+    INIT_SYRINGE = {"name": "W10", "reply": {"type": str}}
     # Initialize valve only
-    INIT_VALVE = {"name": "w", "reply": {"type": str}}
+    INIT_VALVE = {"name": "W7", "reply": {"type": str}}
 
     # ## Plunger movement commands ##
     # Move plunger to absolute position
     SYR_MOVE_ABS = {"name": "A", "type":int, "reply": {"type": str}}
     # Move plunger to absolute position, do not set busy flag
     SYR_MOVE_ABS_NOBUSY = {"name": "a", "type": int, "reply": {"type": str}}
-    # Relative pick-up
+    # Relative pick-up (aspirate)
     SYR_SUCK_REL = {"name": "P", "type": int, "reply": {"type": str}}
-    # Relative pick-up, do not set busy flag
+    # Relative pick-up (aspirate), do not set busy flag 
     SYR_SUCK_REL_NOBUSY = {"name": "p", "type": int, "reply": {"type": str}}
     # Relative dispense
     SYR_SPIT_REL = {"name": "D", "type": int, "reply": {"type": str}}
@@ -197,85 +128,97 @@ class XLP6000SyringePumpCommands(LabDeviceCommands):
     SYR_SPIT_REL_NOBUSY = {"name": "d", "type": int, "reply": {"type": str}}
 
     # ## Valve movement commands ##
-    # Rotate valve to input position, or to position <n> clockwise (U11 configuration)
+
+    # Moves the valve to the position selected by n
+    VALVE_MOVE = {"name": "o", "type": str, "reply": {"type": str}}
+
+    # below commands only used with a three-way non-distribution valve!!!
+    # Move valve to input port using the shortest path.
     VALVE_MOVE_I = {"name": "I", "check": {"values": VALVE_POSITIONS}, "reply": {"type": str}}
-    # Rotate valve to output position, or to position <n> counter-clockwise (U11 configuration)
+    # Move valve to output port using shortest path. For rotary valves there must be a port designated as the output.
     VALVE_MOVE_O = {"name": "O", "check": {"values": VALVE_POSITIONS}, "reply": {"type": str}}
     # Rotate valve to bypass position. No check as there are no arguments.
     VALVE_MOVE_B = {"name": "B", "reply": {"type": str}}
-    # Rotate valve to extra position. No check as there are no arguments.
-    VALVE_MOVE_E = {"name": "E", "reply": {"type": str}}
 
     # ## Execution flow control commands ##
     # Execute command string
     PRG_RUN = {"name": "R", "reply": {"type": str}}
-    # Repeat last command
+    # Repeat last command string (background only)
     PRG_RPT_LAST = {"name": "X", "reply": {"type": str}}
     # Store program string into EEPROM
-    PRG_EEPROM_ST = {"name": "s", "reply": {"type": str}}
-    # Execute program string from EEPROM
-    PRG_EEPROM_EXEC = {"name": "e", "reply": {"type": str}}
+    PRG_EEPROM_ST = {"name": "E", "reply": {"type": str}}
+    # Load and run stored user script n in background (n: 1...99)
+    PRG_EEPROM_EXEC = {"name": "r", "reply": {"type": str}}
     # Mark start of looped command sequence
     PRG_MARK_LOOP_START = {"name": "g"}
     # Mark end of looped command sequence
     PRG_MARK_LOOP_END = {"name": "G"}
-    # Delay command execution
+    # Delay command execution n milliseconds
     PRG_DELAY_EXEC = {"name": "M"}
     # Halt command execution (wait for R command and/or ext. input change)
     PRG_HALT = {"name": "H", "reply": {"type": str}}
-    # Terminate commands execution
+    # Terminate commands execution or background script
     PRG_TERM = {"name": "T", "reply": {"type": str}}
 
     # ## Report commands ##
-    # Query pump status
+    # Query pump status, return ASCII rendition of binary code
     GET_STATUS = {"name": "Q", "reply": {"type": str}}
     # Query firmware version
-    GET_FW_VER = {"name": "?23", "reply": {"type": str}}
-    # Query EEPROM data
-    GET_EEPROM_DATA = {"name": "?76", "reply": {"type": str}}
-    # Query plunger absolute position
+    GET_FW_VER = {"name": "?32", "reply": {"type": str}}
+    # Query plunger absolute position in steps (reply: ‘?’ if invalid, else syringe position)
     GET_SYR_POS = {"name": "?", "reply": {"type": int}}
-    # Query start velocity
-    GET_START_VEL = {"name": "?1", "reply": {"type": str}}
-    # Query maximum velocity
-    GET_MAX_VEL = {"name": "?2", "reply": {"type": str}}
-    # Query cut-off velocity
-    GET_STOP_VEL = {"name": "?3", "reply": {"type": str}}
-    # Query acceleration/deceleration ramp
-    GET_STEP_RAMP = {"name": "?25", "reply": {"type": str}}
+    # Query start velocity [steps/sec]
+    GET_START_VEL = {"name": "?1", "reply": {"type": int}}
+    # Query maximum velocity [steps/sec]
+    GET_MAX_VEL = {"name": "?2", "reply": {"type": int}}
+    # Query cut-off velocity [steps/sec]
+    GET_STOP_VEL = {"name": "?3", "reply": {"type": int}}
+    # Query acceleration/deceleration ramp [steps/step]
+    GET_STEP_RAMP = {"name": "?30", "reply": {"type": str, "parser": parser.splitter, "args": [",", 0, 2]}}
     # Query backlash increments setting
-    GET_BACK_INC = {"name": "?12", "reply": {"type": str}}
-    # Query supply voltage
+    GET_BACK_INC = {"name": "?31", "reply": {"type": str}}
+    # Query stepper motor supply voltage [200mV units]
     GET_VOLT = {"name": "*", "reply": {"type": int}}
-    # Query resolution mode
-    GET_RES_MODE = {"name": "?28", "reply": {"type": str}}
-    # Query valve position
-    GET_VALVE_POS = {"name": "?6", "reply": {"type": str, "parser": str.upper}}
+    # Query valve position as port (reply: 1…16 = valve port number, ? = Invalid position)
+    GET_VALVE_POS = {"name": "?8", "reply": {"type": str, "parser": str.upper}}
 
     # ################### Configuration commands #############################
 
     # ## Configuration commands ##
-    # Set EEPROM values
-    SET_EEPROM = {"name": "U", "reply":{"type": str}}
-    # Set dead volume
-    SET_DEAD_VOL = {"name": "k", "reply": {"type": str}}
-    # Set acceleration/deceleration ramp slope
-    SET_RAMP_SLOPE = {"name": "L", "type": str, "check": {"values": RAMP_SLOPE_MODES.keys()}}
+    # Save current operational parameters in non-volatile configuration parameters
+    SAVE_TO_NVM = {"name": "!", "reply":{"type": str}}
+    # Get/Set valve type
+    GET_SET_VALVE_TYPE = {"name": "~V", "type": str, "reply": {"type": str}}
+    # Set the valve position which is used by the Yn command
+    SET_VALVE_Y_POS = {"name": "~Y", "type": str, "reply": {"type": str}}
+    # Set the valve position which is used by the Zn command
+    SET_VALVE_Z_POS = {"name": "~Z", "type": str, "reply": {"type": str}}
+
+    # ## Indirect Variables ##
+    # Syringe pump resolution (half steps) [rw]
+    GET_SET_SYR_RES = {"name": "?@26", "reply": {"type": int}}
+
+    # ## Motion Variable Command Definitions ##
     # Set start velocity (beginning of ramp)
-    SET_START_VEL = {"name": "v", "type": int, "check": {"min": 1, "max": 8000}, "reply": {"type": str}}
-    # Set maximum velocity (top of ramp) in increments/second
-    SET_MAX_VEL = {"name": "V", "type": int, "check": {"min": 1, "max": 48000}, "reply": {"type": str}}
-    # Set maximum velocity (top of ramp) with velocity code
-    SET_MAX_VEL_CODE = {"name": "S", "type": str, "check": {"values": SPEED_MODES.keys()}, "reply": {"type": str}}
+    SET_START_VEL = {"name": "v", "type": int, "check": {"min": 1, "max": 10000}, "reply": {"type": str}}
+    # Set maximum velocity (top of ramp) [steps/sec]
+    SET_MAX_VEL = {"name": "V", "type": int, "check": {"min": 1, "max": 10000}, "reply": {"type": str}}
     # Set cut-off velocity (end of ramp)
-    SET_STOP_VEL = {"name": "c", "type": int, "check": {"min": 1, "max": 21600}, "reply": {"type": str}}
-    # Set resolution (stepping mode)
-    SET_RES_MODE = {"name": "N", "type": int, "check": {"values": RESOLUTION_MODES.keys()}, "reply": {"type": str}}
-    # Set external outputs
-    SET_EXT_OUT = {"name": "J", "reply": {"type": str}}
+    SET_STOP_VEL = {"name": "c", "type": int, "check": {"min": 1, "max": 10000}, "reply": {"type": str}}  
+    # Set syringe acceleration slope in n step increments/step
+    # Note: Datasheet claims this sets acceleration AND deceleration slope, but it's not true
+    SET_ACEL_RAMP_SLOPE = {"name": "L", "type": int, "reply": {"type": str}}
+    # Set syringe deceleration slope in n step decrements/step.
+    SET_DEC_RAMP_SLOPE = {"name": "l", "type": int, "reply": {"type": str}}
+    
+    # ## Pump I/O Commands ##
+    # Set external output
+    SET_EXT_OUT = {"name": "U", "reply": {"type": str}}
+    # Reset external output
+    RESET_EXT_OUT = {"name": "u", "reply": {"type": str}}
 
 
-class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
+class Cadent3SyringePump(AbstractSyringePump, AbstractDistributionValve):
     """
     This provides a Python class for the TECAN XLP6000 syringe pump
     based on the the original operation manual 8694-12 E
@@ -286,12 +229,12 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
     BUS_DEVICES = {}
 
     def __init__(self, device_name: str, connection_mode: str, address: Optional[str], port: Union[str, int],
-                 switch_address: Union[int, str], syringe_size: Optional[float] = None, valve_type: str = "3PORT_DISTR_IO"):
+                 switch_address: Union[int, str], syringe_size: Optional[float] = None, valve_type: str = "3PORT_NDISTR"):
         """Default constructor.
         """
 
         # Load commands from helper class
-        self.cmd = XLP6000SyringePumpCommands
+        self.cmd = Cadent3SyringePumpCommands
 
         # Flag to indicate that explicit volumetric calibration
         # (comparing dispensed volume to required volume) has been performed
@@ -303,7 +246,7 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
 
         # Check that valid valve type has been passed
         try:
-            self._valve_type = XLP6000SyringePumpCommands.VALVE_TYPES[valve_type]
+            self._valve_type = Cadent3SyringePumpCommands.VALVE_TYPES[valve_type]
         except KeyError:
             raise PLDeviceError("Invalid valve type <{}> provided!".format(valve_type)) from None
 
@@ -340,9 +283,9 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         # Protocol settings
         self.command_prefix = "/" + switch_address
         # Run commands after sending them to pump by default (R appended)
-        self.command_terminator = self.cmd.PRG_RUN["name"] + "\r\n"
+        self.command_terminator = self.cmd.PRG_RUN["name"] + "\r"
         self.reply_prefix = "/0"
-        self.reply_terminator = "\x03\r\n"
+        self.reply_terminator = "\x03\r\n" # note that terminator is "\x03\r\n\xff" but "\xff" is dropped bc. we cannot parse it
         self.args_delimiter = ""
         # Pump status byte
         self._last_status = 0
@@ -361,9 +304,9 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         """
 
         if value is True:
-            self.command_terminator = self.cmd.PRG_RUN["name"] + "\r\n"
+            self.command_terminator = self.cmd.PRG_RUN["name"] + "\r"
         else:
-            self.command_terminator = "\r\n"
+            self.command_terminator = "\r"
 
     @property
     def syringe_size(self):
@@ -441,9 +384,9 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         """
 
         self.logger.debug("check_errors()::checking errors on byte <%s>", self._last_status)
-        # Error code is contained in 4 right-most bytes,
+        # Error code is contained in 5 right-most bits,
         # so we need to chop off the rest
-        error_code = self._last_status & 0b1111
+        error_code = self._last_status & 0b11111
         # No error
         if error_code == 0:
             return None
@@ -461,85 +404,96 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         """
 
         try:
+            self.autorun = False
             version = self.send(self.cmd.GET_FW_VER)
             self.logger.debug("is_connected()::Device connected; FW version <%s>", version)
             return True
         except PLConnectionError:
             return False
+        finally:
+            self.autorun = True
 
     def get_status(self):
-        """Not supported on this device.
+        """ Returns status byte of the pump.
         """
-        # TODO implement through status byte analysis
+
+        self.autorun = False
+        current_status = self.send(self.cmd.GET_STATUS)
+        self.autorun = True
+        return current_status
 
     def clear_errors(self):
         """Happens automatically upon errors read-out,
         except those requiring pump re-initialization.
         """
 
-    def initialize_device(self, valve_enumeration_direction="CW", input_port=None, output_port=None):
-        """Runs pump initialization.
+    def initialize_device(self, init_pos="in", input_port=None, output_port=None):
+        """Runs pump initialization. If input/output ports are provided,
+        input is set on Y variable, output on Z. Init position is the position of the valve
+        befor the plunger is moved. Default is input or A position if none given.
         """
 
         # Select appropriate command depending on the direction
-        if valve_enumeration_direction == "CW":
-            cmd = self.cmd.INIT_ALL_CW
-        elif valve_enumeration_direction == "CCW":
-            cmd = self.cmd.INIT_ALL_CCW
+        if init_pos == "in":
+            cmd = self.cmd.INIT_ALL_Y
+        elif init_pos == "out":
+            cmd = self.cmd.INIT_ALL_Z
         else:
             raise PLDeviceCommandError("Invalid direction for valve initialization provided!")
 
-        # Initialization arguments. First - plunger initialization
-        # power(we are not using it).
-        # Second - number of input port for initialization (0 - default).
-        # Third - number of output port for initialization (0 - default).
-        # Second and third arguments are ignored for non-distribution valves
-        # (as been set by Ux command)
-        arglist = [""]
-
         # Check if we are asked to use specific input/output ports.
-        # Otherwise they will be first(I) and last(O) for CW init or
-        # last(I) and first(O) for CCW init
-        for port in [input_port, output_port]:
-            if port is not None:
-                if port not in self.cmd.VALVE_POSITIONS:
-                    raise PLDeviceCommandError("Invalid port for initialization was provided!")
-                arglist.append(port)
-
-        # Glue arguments to the command they should be
-        # comma-separated list (0,0,0)
-        args = ",".join(str(a) for a in arglist)
-
+        # Set Y and Z positions accordingly.
+        self.autorun = False
+        if input_port is not None:
+            try:
+                if int(input_port) not in self.cmd.VALVE_POSITIONS:
+                    raise ValueError
+                self.send(self.cmd.SET_VALVE_Y_POS, str(input_port))
+            except ValueError:
+                raise PLDeviceCommandError("Invalid port for initialization was provided!")
+        if output_port is not None:
+            try:
+                if int(output_port) not in self.cmd.VALVE_POSITIONS:
+                    raise ValueError
+                self.send(self.cmd.SET_VALVE_Z_POS, str(output_port))
+            except ValueError:
+                raise PLDeviceCommandError("Invalid port for initialization was provided!")
+        self.autorun = True
         # Send commands & check errors in the reply
-        self.send(cmd, args)
-
+        self.send(cmd)
+        self.wait_until_ready()
         self.logger.info("Device initialized.")
 
     @in_simulation_device_returns(True)
     def is_initialized(self) -> bool:
         """Check if pump has been initialized properly after power-up.
         """
-
         try:
+            self.autorun = False
             _ = self.send(self.cmd.GET_STATUS)
         except PLConnectionError:
             return False
-        # Busy/idle bit is 7th bit of the status byte. 0 - busy, 1 - idle
-        if self._last_status & 1 << 6 == 0:
+        finally:
+            self.autorun = True
+        # Busy/idle bit is 6th bit of the status byte. 0 - busy, 1 - idle
+        if self._last_status & 1 << 5 == 0:
             self.logger.debug("is_idle()::false.")
             return False
         self.logger.debug("is_idle()::true.")
         return True
 
-    @in_simulation_device_returns(LabDeviceReply(body=XLP6000SyringePumpCommands.DEFAULT_STATUS))
+    @in_simulation_device_returns(LabDeviceReply(body=Cadent3SyringePumpCommands.DEFAULT_STATUS))
     def is_idle(self) -> bool:
         """Checks if pump is in idle state.
         """
 
         try:
+            self.autorun = False
             _ = self.send(self.cmd.GET_STATUS)
         except PLConnectionError:
             return False
+        finally:
+            self.autorun = True
         # Busy/idle bit is 6th bit of the status byte. 0 - busy, 1 - idle
         if self._last_status & 1 << 5 == 0:
             self.logger.debug("is_idle()::false.")
@@ -561,21 +515,14 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         self.send(self.cmd.PRG_TERM)
 
     def set_speed(self, speed: int):
-        """Sets maximum velocity (top of the ramp) for the syringe motor.
+        """ Sets maximum velocity (top of the ramp) for the syringe motor.
+            Velocity can be any value between 1 and 10000.
         """
 
-        # Send command & check reply for errors
-        self.send(self.cmd.SET_MAX_VEL, int(speed))
+        self.set_max_velocity(speed)
 
     def get_speed(self):
         raise NotImplementedError("Getting speed is not supported on this model.")
-
-    def set_predefined_speed(self, velocity_code: int):
-        """Sets maximum velocity (top of the ramp) for the syringe motor.
-        """
-
-        # Send command & check reply for errors
-        self.send(self.cmd.SET_MAX_VEL_CODE, velocity_code)
 
     def move_home(self):
         self.move_plunger_absolute(0)
@@ -612,14 +559,17 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
 
         position = int(position)
         if position > 0:
-            return self.withdraw(position, set_busy)
-        return self.dispense(abs(position), set_busy)
+            return self.withdraw(increments=position, set_busy=set_busy)
+        return self.dispense(increments=abs(position), set_busy=set_busy)
 
-    def dispense(self, volume_ml: float, set_busy: bool = True):
-        """Makes relative dispense.
+    def dispense(self, volume_ml: float = None, increments: int = None, set_busy: bool = True):
+        """Makes relative dispense. If increments are not provided, they are calculated from the volume.
         """
 
-        increments = volume_ml * self.steps_per_ml
+        if increments is None:
+            if volume_ml is None:
+                raise PLDeviceCommandError("Either increments or volume must be provided!")
+            increments = volume_ml * self.steps_per_ml
         if set_busy is True:
             cmd = self.cmd.SYR_SPIT_REL
         else:
@@ -628,11 +578,14 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         # Send command & check reply for errors
         self.execute_when_ready(self.send, cmd, increments)
 
-    def withdraw(self, volume_ml: float, set_busy: bool = True):
-        """Makes relative aspiration.
+    def withdraw(self, volume_ml: float = None, increments: int = None, set_busy: bool = True):
+        """Makes relative aspiration. If increments are not provided, they are calculated from the volume.
         """
 
-        increments = volume_ml * self.steps_per_ml
+        if increments is None:
+            if volume_ml is None:
+                raise PLDeviceCommandError("Either increments or volume must be provided!")
+            increments = volume_ml * self.steps_per_ml
         if set_busy is True:
             cmd = self.cmd.SYR_SUCK_REL
         else:
@@ -733,40 +686,28 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         print(f"Calibration done. Calibration factor (steps_per_ml): {self.steps_per_ml}. Calculated syringe volume: {self.syringe_size:.2f} mL.")
         self._volumetric_calibrated = True
 
-    def set_valve_position(self, requested_position: str):
-        """Sets the distribution valve position.
+    def set_valve_position(self, requested_position: int|str, override_direction: str = None):
+        """ Moves the distribution valve to the requested position on the shortest path 
+            or in the direction specified by override_direction.
         """
-
-        requested_position = str(requested_position)
-        # We have to distinguish between IOBE and In/On valve position addressing
-        # & check it against current valve type
-        if len(requested_position) == 1:
-            # IOBE addressing allowed for all but 6-way distribution valves
-            if self._valve_type == self.cmd.VALVE_TYPES["6PORT_DISTR"]:
-                self.logger.warning("Requested valve position doesn't seem to match valve type installed.")
-        elif len(requested_position) == 2:
-            # In/On addressing is allowed only for 6-way valves and 3-way valves.
-            if self._valve_type not in [self.cmd.VALVE_TYPES["3PORT_DISTR_IO"], self.cmd.VALVE_TYPES["6PORT_DISTR"]]:
-                self.logger.warning("Requested valve position doesn't seem to match valve type installed.")
-
-        # The position requested is the actual command we have to send to the pump.
-        # But we need to match it against a defined command.
-        if requested_position[:1] == "I":
-            cmd = self.cmd.VALVE_MOVE_I
-        elif requested_position[:1] == "O":
-            cmd = self.cmd.VALVE_MOVE_O
-        elif requested_position == "B":
-            cmd = self.cmd.VALVE_MOVE_B
-        elif requested_position == "E":
-            cmd = self.cmd.VALVE_MOVE_E
+        # select appropriate modifier if override_direction is provided
+        if override_direction is None:
+            dir_modifier = ""
+        elif override_direction == "CW":
+            dir_modifier = "+"
+        elif override_direction == "CCW":
+            dir_modifier = "-"
         else:
+            raise PLDeviceCommandError("Invalid override direction provided!")
+        try:
+            if int(requested_position) not in self.cmd.VALVE_POSITIONS:
+                raise ValueError
+            requested_position = str(requested_position)
+        except ValueError:
             raise PLDeviceCommandError(f"Unknown valve position <{requested_position}> requested!")
-
-        # Get numeric position (if I1..I6/O1..O6 notation is used)
-        args = requested_position[1:]
-
+        args = dir_modifier+requested_position
         # Send command & check reply for errors
-        self.execute_when_ready(self.send, cmd, args)
+        self.execute_when_ready(self.send, self.cmd.VALVE_MOVE, args)
 
     def get_valve_position(self) -> str:
         """Reads current position of the valve.
@@ -775,19 +716,37 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         # Send command & check reply for errors
         return self.send(self.cmd.GET_VALVE_POS)
 
-    def set_ramp_slope(self, ramp_code: str):
+    def set_ramp_slope(self, accel_slope: int, decel_slope: int):
         """Sets slope of acceleration/deceleration ramp for the syringe motor.
         """
 
         # Send command & check reply for errors
-        self.send(self.cmd.SET_RAMP_SLOPE, ramp_code)
+        self.send(self.cmd.SET_ACEL_RAMP_SLOPE, accel_slope)
+        self.send(self.cmd.SET_DEC_RAMP_SLOPE, decel_slope)
 
+    def get_ramp_slope(self) -> tuple[int, int]:
+        """ Reads slope of acceleration/deceleration ramp for the syringe motor.
+            Returns tuple of two integers: acceleration slope, deceleration slope.
+        """
+        
+        self.autorun = False
+        slope = self.send(self.cmd.GET_STEP_RAMP)
+        self.autorun = True
+        return tuple([int(s.strip()) for s in slope])
+    
     def set_start_velocity(self, start_velocity: int):
         """Sets starting velocity for the syringe motor.
         """
 
         # Send command & check reply for errors
         self.send(self.cmd.SET_START_VEL, start_velocity)
+    
+    def set_max_velocity(self, max_velocity: int):
+        """Sets maximum velocity for the syringe motor.
+        """ 
+
+        # Send command & check reply for errors
+        self.send(self.cmd.SET_MAX_VEL, max_velocity)
 
     def set_stop_velocity(self, stop_velocity: int):
         """Sets stopping velocity for the syringe motor.
@@ -796,34 +755,71 @@ class XLP6000SyringePump(AbstractSyringePump, AbstractDistributionValve):
         # Send command & check reply for errors
         self.send(self.cmd.SET_STOP_VEL, stop_velocity)
 
-    def set_resolution_mode(self, resolution_mode: str):
-        """Sets plunger resolution mode.
+    def get_velocities(self) -> tuple[int, int, int]:
+        """ Reads velocity settings for the syringe motor.
+            Returns tuple of three integers: start velocity, maximum velocity, stop velocity.
         """
 
         # Send command & check reply for errors
-        # FIXME this command doesn't seem to change anything on XLP6000
-        self.send(self.cmd.SET_RES_MODE, resolution_mode)
+        self.autorun = False
+        start = self.send(self.cmd.GET_START_VEL)
+        max = self.send(self.cmd.GET_MAX_VEL)
+        stop = self.send(self.cmd.GET_STOP_VEL)
+        self.autorun = True
+        return int(start), int(max), int(stop)
 
+        self.autorun = False
+        start_vel = self.send(self.cmd.GET_START_VEL)
+        max_vel = self.send(self.cmd.GET_MAX_VEL)
+        stop_vel = self.send(self.cmd.GET_STOP_VEL)
+        self.autorun = True
+        return int(start_vel), int(max_vel), int(stop_vel)
+
+    def get_valve_type(self) -> str:
+        """Reads valve type.
+        """
+
+        # Send command & check reply for errors
+        self.autorun = False
+        answer = self.send(self.cmd.GET_SET_VALVE_TYPE)
+        self.autorun = True
+        return answer
+    
     def set_valve_type(self, valve_type: str, confirm: bool = False):
         """Sets valve type. This command requires power-cycle to activate new settings!
         """
-
-        self.logger.warning("Changing the valve type would require power-cycling the pump!")
-        if confirm is not True:
-            self.logger.info("Please, execute set_valve_type(valve_type, confirm=True)"
-                             "to write new valve configuration to pump EEPROM.")
-            return
         try:
-            # Get correct valve code
-            self._valve_type = XLP6000SyringePumpCommands.VALVE_TYPES[valve_type]
+            # If valve_type is exactly 5 digits, it's considered a IMI Norgren valve part number
+            if valve_type.isdigit() and len(valve_type) == 5:
+                self._valve_type = valve_type
+            else:
+                # Get correct valve code from VALVE_TYPES dictionary
+                self._valve_type = Cadent3SyringePumpCommands.VALVE_TYPES[valve_type]
         except KeyError:
             raise PLDeviceCommandError("Invalid valve type requested!")
+        self.autorun = False
         # Send command & check reply for errors
-        self.send(self.cmd.SET_EEPROM, self._valve_type)
-        self.logger.info("Valve type updated successfully. Don't forget to power-cycle the pump!")
+        self.send(self.cmd.GET_SET_VALVE_TYPE, self._valve_type)
+        if confirm is not True:
+            self.logger.info("Please, execute set_valve_type(valve_type, confirm=True)"
+                                "to write new valve configuration to pump NMV.")
+        else:
+            self.send(self.cmd.SAVE_TO_NVM)
+        self.autorun = True
 
     def get_pump_configuration(self):
         """Reads pump EEPROM configuration.
         """
-        # Send command & check reply for errors
-        return self.send(self.cmd.GET_EEPROM_DATA)
+        raise NotImplementedError("Getting speed is not supported on this model.")
+    
+
+    def get_pump_resolution(self) -> int:
+        """ Returns the syringe pump resolution.
+            The driver is available in three resolutions: 6000 half-steps, 
+            12000 half-steps and 24000 half-steps for the same 3cm stroke length.
+        """
+        self.autorun = False
+        res = self.send(self.cmd.GET_SET_SYR_RES)
+        self.logger.debug("get_pump_resolution()::Syringe Pump resolution <%i>", res)
+        self.autorun = True
+        return res
