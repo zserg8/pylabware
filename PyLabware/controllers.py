@@ -437,7 +437,7 @@ class LabDevice(AbstractLabDevice):
             # Special case - returned value is a string representing float (e.g.
             # "0.0") and we need to cast it to int. int("0.0") would give a
             # ValueError, so we need to convert it to float first
-            if cmd["reply"]["type"] is int:
+            elif cmd["reply"]["type"] is int:
                 casted_reply = int(float(reply))
             else:
                 casted_reply = cmd["reply"]["type"](reply)
