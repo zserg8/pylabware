@@ -18,6 +18,9 @@ from .devices.ika_rct_digital import RCTDigitalHotplate
 from .devices.ika_ret_control_visc import RETControlViscHotplate
 from .devices.ika_rv10 import RV10Rotovap
 
+# IMI Norgren
+from .devices.imi_norgren_cadent_3 import Cadent3SyringePump
+
 # JULABO
 from .devices.julabo_cf41 import CF41Chiller
 # Kern
